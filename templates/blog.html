@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="relative bg-cubs-blue py-24 text-center overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-30"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-4">
+        <h1 class="font-display text-5xl font-bold text-white mb-4 uppercase tracking-wide">Academy Insights</h1>
+        <p class="text-gray-300 text-lg font-light">Expert advice on nutrition, mental conditioning, and academy news.</p>
+    </div>
+</section>
+
+<div class="bg-slate-50 min-h-screen py-16">
+    <div class="container mx-auto px-6">
+        
+        <div class="flex justify-center mb-16 -mt-24 relative z-20">
+            <form action="/blog" method="get" class="flex w-full max-w-lg shadow-2xl rounded-full overflow-hidden">
+                <input type="text" name="q" placeholder="Search articles..." value="{{ query if query else '' }}" 
+                       class="w-full px-8 py-4 border-none focus:ring-0 text-gray-700 outline-none">
+                <button type="submit" class="bg-cubs-gold text-cubs-blue px-8 font-bold hover:bg-white transition-colors">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for post in posts %}
+            <a href="/blog/{{ post.slug }}" class="group block h-full">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden h-full flex flex-col transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    
+                    <div class="h-56 bg-gray-200 relative overflow-hidden">
+                        <img src="{{ url_for('static', filename='img/blog/' + post.image) }}" 
+                             alt="{{ post.title }}" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                             onerror="this.src='{{ url_for('static', filename='img/Desert_cubs_logo.png') }}'; this.className='w-full h-full object-contain p-8 bg-cubs-blue';">
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-cubs-blue/80 via-transparent to-transparent opacity-60"></div>
+                        
+                        <div class="absolute top-4 right-4 bg-cubs-gold text-cubs-blue text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                            Read
+                        </div>
+                    </div>
+                    
+                    <div class="p-8 flex-grow flex flex-col">
+                        <div class="text-xs font-bold text-cubs-gold uppercase mb-2">{{ post.date }}</div>
+                        <h2 class="font-display text-2xl font-bold text-cubs-blue mb-4 leading-tight group-hover:text-cubs-gold transition-colors">{{ post.title }}</h2>
+                        <div class="mt-auto pt-4 border-t border-gray-100 flex items-center text-sm font-semibold text-gray-500 group-hover:text-cubs-blue">
+                            Read Article <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% else %}
+            <div class="col-span-3 text-center py-12">
+                <p class="text-gray-500 text-lg">No articles found.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if total_pages > 1 %}
+        <div class="flex justify-center mt-16 gap-4">
+            {% if current_page > 1 %}
+            <a href="/blog?page={{ current_page - 1 }}{{ '&q=' + query if query else '' }}" class="px-6 py-3 bg-white border border-gray-200 rounded-full font-bold text-cubs-blue hover:bg-cubs-gold hover:border-cubs-gold transition-colors">Previous</a>
+            {% endif %}
+            
+            <span class="px-6 py-3 bg-cubs-blue text-white rounded-full font-bold">Page {{ current_page }} of {{ total_pages }}</span>
+            
+            {% if current_page < total_pages %}
+            <a href="/blog?page={{ current_page + 1 }}{{ '&q=' + query if query else '' }}" class="px-6 py-3 bg-white border border-gray-200 rounded-full font-bold text-cubs-blue hover:bg-cubs-gold hover:border-cubs-gold transition-colors">Next</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

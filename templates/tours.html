@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="relative bg-cubs-blue py-32 overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
+    <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-50 to-transparent"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+        <h1 class="font-display text-5xl md:text-7xl font-bold text-white mb-6 uppercase">
+            Global <span class="text-cubs-gold">Expeditions</span>
+        </h1>
+        <p class="text-xl text-gray-300 max-w-2xl mx-auto font-light">
+            From the historic nets of Lord's to the bouncy tracks of Brisbane. We take our cubs to the world's greatest cricketing arenas.
+        </p>
+    </div>
+</section>
+
+<section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center space-x-4 mb-12">
+            <div class="h-px bg-gray-300 flex-grow"></div>
+            <h2 class="font-display text-3xl font-bold text-cubs-blue uppercase">Upcoming Tour</h2>
+            <div class="h-px bg-gray-300 flex-grow"></div>
+        </div>
+
+        {% for tour in tours.upcoming %}
+        <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border-2 border-cubs-gold transform hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-cubs-gold/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+            
+            <div class="relative z-10 grid md:grid-cols-3 gap-8 items-center">
+                <div class="md:col-span-2">
+                    <div class="inline-flex items-center space-x-2 bg-cubs-blue text-white px-4 py-1 rounded text-sm font-bold uppercase tracking-widest mb-4">
+                        <span>{{ tour.year }}</span>
+                        <span class="w-1 h-1 bg-cubs-gold rounded-full"></span>
+                        <span class="text-cubs-gold">{{ tour.status }}</span>
+                    </div>
+                    <h3 class="font-display text-5xl md:text-6xl font-bold text-cubs-blue mb-4">{{ tour.dest }}</h3>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">{{ tour.desc }}</p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="{{ tour.reg_link }}" target="_blank" class="bg-cubs-gold text-cubs-blue px-8 py-4 rounded-xl font-bold uppercase tracking-wide hover:bg-white border-2 border-cubs-gold transition-all flex items-center justify-center shadow-lg hover:shadow-xl">
+                            Register Interest <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <button onclick="openPdf('{{ url_for('static', filename='docs/' + tour.pdf) }}')" class="bg-white text-cubs-blue border-2 border-cubs-blue px-8 py-4 rounded-xl font-bold uppercase tracking-wide hover:bg-cubs-blue hover:text-white transition-all flex items-center justify-center">
+                            More Details <i class="fas fa-file-pdf ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex justify-center">
+                    <i class="fas fa-plane-departure text-9xl text-cubs-blue/10"></i>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-4xl font-bold text-cubs-blue uppercase">Tour History Hall of Fame</h2>
+            <div class="w-24 h-1 bg-cubs-gold mx-auto mt-4"></div>
+        </div>
+
+        <div class="relative border-l-4 border-cubs-gold/30 ml-4 md:ml-1/2 space-y-12">
+            {% for tour in tours.history %}
+            <div class="relative pl-8 md:pl-0">
+                <div class="absolute left-[-10px] top-0 w-5 h-5 bg-cubs-gold rounded-full border-4 border-white shadow-md"></div>
+                
+                <div class="bg-slate-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border border-gray-100 max-w-2xl group">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-baseline space-x-3 mb-2">
+                                <span class="text-2xl font-display font-bold text-cubs-gold">{{ tour.year }}</span>
+                                <h3 class="text-xl font-bold text-cubs-blue">{{ tour.dest }}</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">{{ tour.desc }}</p>
+                        </div>
+                        
+                        {% if tour.gallery %}
+                        <button onclick="openGallery('{{ tour.gallery.folder }}', '{{ tour.gallery.prefix }}', {{ tour.gallery.count }})" 
+                                class="flex-shrink-0 bg-white border border-gray-200 text-cubs-blue p-3 rounded-lg hover:bg-cubs-blue hover:text-white hover:border-cubs-blue transition-colors shadow-sm"
+                                title="View Gallery">
+                            <i class="fas fa-images text-lg"></i>
+                        </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<div id="pdfModal" class="fixed inset-0 z-[100] hidden bg-black/90 flex-col items-center justify-center p-4 backdrop-blur-sm" onclick="closePdf(event)">
+    <button class="absolute top-6 right-6 text-white hover:text-cubs-gold transition-colors z-[110]" onclick="closePdf(event, true)">
+        <i class="fas fa-times text-4xl"></i>
+    </button>
+    <div class="w-full h-full max-w-5xl bg-white rounded-lg overflow-hidden shadow-2xl relative">
+        <iframe id="pdfFrame" src="" class="w-full h-full"></iframe>
+    </div>
+</div>
+
+<div id="galleryModal" class="fixed inset-0 z-[100] hidden bg-black/95 flex-col items-center justify-center backdrop-blur-md" onclick="closeGallery(event)">
+    <button class="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-[110]" onclick="closeGallery(event, true)">
+        <i class="fas fa-times text-4xl"></i>
+    </button>
+
+    <div class="relative w-full h-full flex items-center justify-center p-4 md:p-12" onclick="event.stopPropagation()">
+        
+        <button onclick="changeImage(-1)" class="absolute left-4 md:left-8 text-white/50 hover:text-white hover:bg-white/10 p-4 rounded-full transition-all">
+            <i class="fas fa-chevron-left text-4xl md:text-6xl"></i>
+        </button>
+
+        <img id="galleryImage" src="" alt="Tour Memory" class="max-h-full max-w-full object-contain rounded shadow-2xl animate-fade-in">
+
+        <button onclick="changeImage(1)" class="absolute right-4 md:right-8 text-white/50 hover:text-white hover:bg-white/10 p-4 rounded-full transition-all">
+            <i class="fas fa-chevron-right text-4xl md:text-6xl"></i>
+        </button>
+        
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-4 py-1 rounded-full text-sm font-mono">
+            <span id="currentImgNum">1</span> / <span id="totalImgNum">10</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- PDF LOGIC ---
+    const pdfModal = document.getElementById('pdfModal');
+    const pdfFrame = document.getElementById('pdfFrame');
+
+    function openPdf(url) {
+        document.body.style.overflow = 'hidden';
+        pdfFrame.src = url;
+        pdfModal.classList.remove('hidden');
+        pdfModal.classList.add('flex');
+    }
+
+    function closePdf(event, force=false) {
+        if (force || event.target === pdfModal) {
+            document.body.style.overflow = 'auto';
+            pdfModal.classList.add('hidden');
+            pdfModal.classList.remove('flex');
+            pdfFrame.src = '';
+        }
+    }
+
+    // --- GALLERY LOGIC ---
+    const galleryModal = document.getElementById('galleryModal');
+    const galleryImg = document.getElementById('galleryImage');
+    const currentNumSpan = document.getElementById('currentImgNum');
+    const totalNumSpan = document.getElementById('totalImgNum');
+
+    let currentFolder = '';
+    let currentPrefix = '';
+    let currentCount = 0;
+    let currentIndex = 1;
+
+    function openGallery(folder, prefix, count) {
+        document.body.style.overflow = 'hidden';
+        
+        currentFolder = folder;
+        currentPrefix = prefix;
+        currentCount = count;
+        currentIndex = 1; // Start at 1
+        
+        updateGalleryImage();
+        
+        galleryModal.classList.remove('hidden');
+        galleryModal.classList.add('flex');
+    }
+
+    function closeGallery(event, force=false) {
+        if (force || event.target === galleryModal) {
+            document.body.style.overflow = 'auto';
+            galleryModal.classList.add('hidden');
+            galleryModal.classList.remove('flex');
+        }
+    }
+
+    function changeImage(direction) {
+        currentIndex += direction;
+        
+        // Loop Logic
+        if (currentIndex > currentCount) currentIndex = 1;
+        if (currentIndex < 1) currentIndex = currentCount;
+        
+        updateGalleryImage();
+    }
+
+    function updateGalleryImage() {
+        // Construct Path: /static/img/FOLDER/PREFIX{index}.jpg
+        // Note: We use 'url_for' logic manually here since it's JS
+        const path = `/static/img/${currentFolder}/${currentPrefix}${currentIndex}.jpg`;
+        galleryImg.src = path;
+        
+        // Update Counter
+        currentNumSpan.innerText = currentIndex;
+        totalNumSpan.innerText = currentCount;
+    }
+
+    // Keyboard Navigation
+    document.addEventListener('keydown', function(e) {
+        if (!galleryModal.classList.contains('hidden')) {
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+            if (e.key === 'Escape') closeGallery(e, true);
+        }
+        if (!pdfModal.classList.contains('hidden')) {
+            if (e.key === 'Escape') closePdf(e, true);
+        }
+    });
+</script>
+
+<style>
+    .animate-fade-in {
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0.5; transform: scale(0.98); }
+        to { opacity: 1; transform: scale(1); }
+    }
+</style>
+{% endblock %}

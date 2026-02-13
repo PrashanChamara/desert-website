@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ meta.title }}</title>
+    <meta name="description" content="{{ meta.description }}">
+    
+    <!-- Fonts: Oswald (Headings) & Inter (Body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Oswald', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'cubs-blue': '#003399', /* Royal Blue */
+                        'cubs-blue-light': '#1a4db2',
+                        'cubs-gold': '#FFCC00', /* Deep Golden Yellow */
+                        'cubs-gold-light': '#ffe066',
+                    },
+                    animation: {
+                        'spin-slow': 'spin 8s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'pulse-glow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Texture from your sample */
+        .hero-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(250, 204, 21, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(15, 23, 42, 0.4) 0%, transparent 50%),
+                linear-gradient(135deg, #0F172A 0%, #020617 100%);
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+            color: transparent;
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #FACC15;
+        }
+    </style>
+</head>
+<body class="font-body bg-slate-50 text-slate-900 selection:bg-cubs-gold selection:text-cubs-blue">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav shadow-2xl transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo Area -->
+                <a href="/" class="flex items-center space-x-3 group cursor-pointer">
+                    <div class="w-16 h-16 flex items-center justify-center transform group-hover:scale-105 transition-transform">
+                        <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}" alt="Desert Cubs Cricket Academy Logo - Legends of the Future" class="w-full h-full object-contain filter drop-shadow-lg">
+                    </div>
+                    <div class="leading-tight">
+                        <h1 class="font-display text-2xl font-bold text-white tracking-wide uppercase">Desert Cubs</h1>
+                        <p class="text-xs text-cubs-gold font-semibold tracking-widest uppercase">Legends of the Future</p>
+                    </div>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="/" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
+                        Home
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="/#branches" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
+                        Locations
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="/tours" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
+                        Tours
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="/blog" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
+                        Academy Blog
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#" class="bg-cubs-gold text-cubs-blue px-6 py-3 rounded-full font-bold uppercase text-sm hover:bg-white hover:text-cubs-blue transform hover:scale-105 transition-all shadow-lg hover:shadow-cubs-gold/50">
+                        Join the Pride
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-btn" class="md:hidden text-cubs-gold text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cubs-blue border-t border-gray-800">
+            <a href="/" class="block px-6 py-4 text-white hover:bg-cubs-blue-light border-b border-gray-800">Home</a>
+            <a href="/#branches" class="block px-6 py-4 text-white hover:bg-cubs-blue-light border-b border-gray-800">Locations</a>
+            <a href="/tours" class="block px-6 py-4 text-white hover:bg-cubs-blue-light border-b border-gray-800">Tours</a>
+            <a href="/blog" class="block px-6 py-4 text-white hover:bg-cubs-blue-light">Blog</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-cubs-blue text-gray-400 py-16 border-t-4 border-cubs-gold relative overflow-hidden">
+        <div class="absolute top-0 right-0 opacity-5 pointer-events-none">
+            <i class="fas fa-lion text-9xl transform -translate-y-1/2 translate-x-1/4"></i>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-4 gap-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-cubs-gold rounded-full flex items-center justify-center text-cubs-blue font-bold">DC</div>
+                        <span class="font-display text-2xl font-bold text-white uppercase">Desert Cubs</span>
+                    </div>
+                    <p class="mb-6 max-w-sm">
+                        Building Legends of the Future since 2007. The UAE's premier cricket academy focusing on holistic development, elite pathways, and global exposure.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-cubs-gold hover:text-cubs-blue transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-cubs-gold hover:text-cubs-blue transition-all"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-cubs-gold hover:text-cubs-blue transition-all"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-display font-bold text-lg mb-6 uppercase tracking-wider">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/tours" class="hover:text-cubs-gold transition-colors">International Tours</a></li>
+                        <li><a href="/#branches" class="hover:text-cubs-gold transition-colors">Find a Center</a></li>
+                        <li><a href="/blog" class="hover:text-cubs-gold transition-colors">Nutrition Guide</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-display font-bold text-lg mb-6 uppercase tracking-wider">Contact</h4>
+                    <ul class="space-y-3">
+                        <li><i class="fas fa-phone text-cubs-gold mr-2"></i> +971-6-5426449</li>
+                        <li><i class="fas fa-envelope text-cubs-gold mr-2"></i> admin@desertcubs.com</li>
+                        <li><i class="fas fa-map-marker-alt text-cubs-gold mr-2"></i> Sharjah & Dubai, UAE</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm">
+                &copy; 2026 Desert Cubs Cricket Academy. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
