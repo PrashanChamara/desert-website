@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, abort
 import os
 import math
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -157,9 +158,67 @@ TOURS = {
     ]
 }
 
+# --- NEW DATA: TOURNAMENTS ---
+# defined with approximate months for logic
+TOURNAMENTS = [
+    {"name": "DC Premier League", "month_start": 9, "month_end": 9, "type": "Internal", "desc": "The season opener."},
+    {"name": "DC Emerging League", "month_start": 10, "month_end": 10, "type": "Internal", "desc": "For our rising stars."},
+    {"name": "ECB National Junior Tournament", "month_start": 10, "month_end": 1, "type": "External", "desc": "UAE National Junior Cricket tournament."},
+    {"name": "Gulf Cup", "month_start": 11, "month_end": 1, "type": "External", "desc": "Regional championship."},
+    {"name": "DC Winter Cup", "month_start": 11, "month_end": 12, "type": "Internal", "desc": "Holiday season competitive series."},
+    {"name": "DC Super League", "month_start": 1, "month_end": 1, "type": "Internal", "desc": "High intensity league."},
+    {"name": "DC Ramadan Cup", "month_start": 1, "month_end": 2, "type": "Internal", "desc": "Evening matches under floodlights."},
+    {"name": "DC Junior Cups", "month_start": 2, "month_end": 2, "type": "Internal", "desc": "Focus on U10 and U12 development."},
+    {"name": "4 Nation Tournament", "month_start": 3, "month_end": 4, "type": "External", "desc": "International academy clash."},
+    {"name": "DC Summer Bash", "month_start": 4, "month_end": 5, "type": "Internal", "desc": "End of season celebration."},
+]
+
+# --- NEW DATA: MASTER CLASSES ---
+MASTER_CLASSES = [
+    {
+        "legend": "Marvan Atapattu",
+        "date": "Sept 2022",
+        "desc": "Former Sri Lankan Captain & Coach. Technical batting masterclass.",
+        "folder": "master_class",
+        "prefix": "marven_atapattu", 
+        "count": 10,
+        "id": "marvan"
+    },
+    {
+        "legend": "Chaminda Vaas",
+        "date": "Feb 2022",
+        "desc": "The legend of swing bowling.",
+        "folder": None, 
+        "count": 0,
+        "id": "vaas"
+    },
+    {
+        "legend": "Ravichandran Ashwin",
+        "date": "Past Visit",
+        "desc": "Spin wizardry and tactical analysis.",
+        "folder": None,
+        "count": 0,
+        "id": "ashwin"
+    }
+]
+
+# --- NEW DATA: EVENTS ---
+EVENTS = [
+    {
+        "title": "Annual Sports Day 2025",
+        "date": "December 2025",
+        "desc": "Our biggest annual gathering. Parents vs Coaches, Fun Games, and Talent Shows.",
+        "folder": "event",
+        "prefix": "dc_sports_day",
+        "count": 10,
+        "id": "sportsday25"
+    }
+]
+
 # ---------------------------------------------------------
-# HELPER: BLOG PARSER
+# HELPER FUNCTIONS
 # ---------------------------------------------------------
+
 def get_blog_posts():
     posts = []
     if not os.path.exists(BLOG_DIR):
@@ -184,17 +243,28 @@ def get_blog_posts():
                 continue
     return posts
 
+def get_active_tournament():
+    current_month = datetime.now().month
+    # Logic to find tournaments active in this month
+    active = [t for t in TOURNAMENTS if t['month_start'] <= current_month <= t['month_end']]
+    
+    # Fallback for display if nothing matches exactly (or if checking across year boundary)
+    if not active:
+        return TOURNAMENTS[0] # Return the first one or a default
+    return active[0]
+
 # ---------------------------------------------------------
 # ROUTES
 # ---------------------------------------------------------
 
 @app.route('/')
 def index():
+    active_tournament = get_active_tournament()
     meta = {
         'title': "Desert Cubs | Legends of the Future",
         'description': "The UAE's largest and most prestigious cricket academy. Est 2007. 15,000+ Alumni."
     }
-    return render_template('index.html', meta=meta, branches=BRANCHES)
+    return render_template('index.html', meta=meta, branches=BRANCHES, active_tournament=active_tournament)
 
 @app.route('/tours')
 def tours():
@@ -252,6 +322,22 @@ def location_detail(branch_id):
         'description': f"Join Desert Cubs at {branch['name']}. {branch['desc']}"
     }
     return render_template('location_detail.html', branch=branch, meta=meta)
+
+@app.route('/tournaments')
+def tournaments():
+    meta = {
+        'title': "Tournaments & Fixtures | Desert Cubs",
+        'description': "DC Premier League, ECB Tournament, and more."
+    }
+    return render_template('tournaments.html', meta=meta, tournaments=TOURNAMENTS)
+
+@app.route('/events')
+def events():
+    meta = {
+        'title': "Master Classes & Events | Desert Cubs",
+        'description': "Learn from Legends like Marvan Atapattu and join our Annual Sports Day."
+    }
+    return render_template('events.html', meta=meta, master_classes=MASTER_CLASSES, events=EVENTS)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

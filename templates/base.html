@@ -7,12 +7,9 @@
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}">
     <meta name="description" content="{{ meta.description }}">
     
-    <!-- Fonts: Oswald (Headings) & Inter (Body) -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -58,11 +55,9 @@
 </head>
 <body class="font-body bg-slate-50 text-slate-900 selection:bg-cubs-gold selection:text-cubs-blue">
 
-    <!-- Navigation -->
     <nav class="fixed w-full z-50 glass-nav shadow-2xl transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo Area -->
                 <a href="/" class="flex items-center space-x-3 group cursor-pointer">
                     <div class="w-16 h-16 flex items-center justify-center transform group-hover:scale-105 transition-transform">
                         <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}" alt="Desert Cubs Cricket Academy Logo - Legends of the Future" class="w-full h-full object-contain filter drop-shadow-lg">
@@ -73,8 +68,7 @@
                     </div>
                 </a>
                 
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
+                <div class="hidden md:flex space-x-6 lg:space-x-8 items-center">
                     <a href="/" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
                         Home
                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
@@ -83,12 +77,20 @@
                         Locations
                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
                     </a>
+                    <a href="/tournaments" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
+                        Tournaments
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="/events" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
+                        Events & Legends
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
+                    </a>
                     <a href="/tours" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
                         Tours
                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
                     </a>
                     <a href="/blog" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
-                        Academy Blog
+                        Blog
                         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
                     </a>
                     <a href="#" class="bg-cubs-gold text-cubs-blue px-6 py-3 rounded-full font-bold uppercase text-sm hover:bg-white hover:text-cubs-blue transform hover:scale-105 transition-all shadow-lg hover:shadow-cubs-gold/50">
@@ -96,27 +98,25 @@
                     </a>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <button id="mobile-btn" class="md:hidden text-cubs-gold text-2xl">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
-        <!-- Mobile Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-cubs-blue border-t border-gray-800">
             <a href="/" class="block px-6 py-4 text-white hover:bg-cubs-blue-light border-b border-gray-800">Home</a>
             <a href="/#branches" class="block px-6 py-4 text-white hover:bg-cubs-blue-light border-b border-gray-800">Locations</a>
+            <a href="/tournaments" class="block px-6 py-4 text-white hover:bg-cubs-blue-light border-b border-gray-800">Tournaments</a>
+            <a href="/events" class="block px-6 py-4 text-white hover:bg-cubs-blue-light border-b border-gray-800">Events & Legends</a>
             <a href="/tours" class="block px-6 py-4 text-white hover:bg-cubs-blue-light border-b border-gray-800">Tours</a>
             <a href="/blog" class="block px-6 py-4 text-white hover:bg-cubs-blue-light">Blog</a>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main>
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
     <footer class="bg-cubs-blue text-gray-400 py-16 border-t-4 border-cubs-gold relative overflow-hidden">
         <div class="absolute top-0 right-0 opacity-5 pointer-events-none">
             <i class="fas fa-lion text-9xl transform -translate-y-1/2 translate-x-1/4"></i>
@@ -140,6 +140,7 @@
                 <div>
                     <h4 class="text-white font-display font-bold text-lg mb-6 uppercase tracking-wider">Quick Links</h4>
                     <ul class="space-y-3">
+                        <li><a href="/tournaments" class="hover:text-cubs-gold transition-colors">Season Calendar</a></li>
                         <li><a href="/tours" class="hover:text-cubs-gold transition-colors">International Tours</a></li>
                         <li><a href="/#branches" class="hover:text-cubs-gold transition-colors">Find a Center</a></li>
                         <li><a href="/blog" class="hover:text-cubs-gold transition-colors">Nutrition Guide</a></li>
@@ -160,6 +161,69 @@
         </div>
     </footer>
 
+    <div id="galleryModal" class="fixed inset-0 z-[120] hidden bg-black/95 flex items-center justify-center backdrop-blur-md">
+        <button class="absolute top-6 right-6 text-white hover:text-cubs-gold transition-colors z-[130]" onclick="closeGallery()">
+            <i class="fas fa-times text-4xl"></i>
+        </button>
+        
+        <button class="absolute left-4 md:left-10 text-white hover:text-cubs-gold text-4xl z-[130]" onclick="changeImage(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="max-w-6xl max-h-[90vh] p-2 flex items-center justify-center">
+            <img id="galleryImage" src="" alt="Gallery" class="max-h-[85vh] max-w-full object-contain rounded border border-white/20 shadow-2xl">
+        </div>
+
+        <button class="absolute right-4 md:right-10 text-white hover:text-cubs-gold text-4xl z-[130]" onclick="changeImage(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    <script>
+        let currentGalleryImages = [];
+        let currentImageIndex = 0;
+        const galleryModal = document.getElementById('galleryModal');
+        const galleryImgElement = document.getElementById('galleryImage');
+
+        function openGallery(folder, prefix, count) {
+            currentGalleryImages = [];
+            // Generate image paths assuming logic: prefix1.jpg, prefix2.jpg ...
+            for (let i = 1; i <= count; i++) {
+                currentGalleryImages.push(`/static/img/${folder}/${prefix}${i}.jpg`);
+            }
+            
+            if (currentGalleryImages.length > 0) {
+                currentImageIndex = 0;
+                updateGalleryImage();
+                galleryModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function updateGalleryImage() {
+            galleryImgElement.src = currentGalleryImages[currentImageIndex];
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex >= currentGalleryImages.length) currentImageIndex = 0;
+            if (currentImageIndex < 0) currentImageIndex = currentGalleryImages.length - 1;
+            updateGalleryImage();
+        }
+
+        function closeGallery() {
+            galleryModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !galleryModal.classList.contains('hidden')) {
+                closeGallery();
+            }
+        });
+    </script>
 </body>
 </html>

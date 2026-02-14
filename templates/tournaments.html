@@ -1,44 +1,57 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="bg-gradient-to-r from-cubs-blue to-blue-800 text-white py-20 text-center">
-    <h1 class="text-4xl font-bold mb-4">Fixtures & Tournaments</h1>
-    <p class="text-xl opacity-90">Experience the thrill of competitive cricket.</p>
+<section class="bg-gradient-to-br from-cubs-blue to-blue-900 pt-32 pb-20 text-center relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full opacity-10 hero-pattern"></div>
+    
+    <div class="relative z-10 max-w-4xl mx-auto px-4">
+        <h1 class="font-display text-5xl md:text-6xl font-bold text-white mb-6 uppercase">Season <span class="text-stroke">Calendar</span></h1>
+        <p class="text-xl text-cubs-gold font-light">September to June • The Pursuit of Excellence</p>
+    </div>
 </section>
 
-<div class="container mx-auto px-6 py-12">
-    <!-- Upcoming Section -->
-    <div class="mb-16">
-        <h2 class="text-2xl font-bold text-cubs-blue mb-6 border-l-4 border-cubs-gold pl-4">Upcoming Fixtures</h2>
-        <div class="grid gap-4">
-            {% for event in upcoming %}
-            <div class="flex flex-col md:flex-row bg-white rounded-lg shadow border border-gray-100 p-6 items-center justify-between hover:shadow-md transition">
-                <div class="flex items-center gap-6 mb-4 md:mb-0">
-                    <div class="bg-cubs-light text-cubs-blue p-4 rounded-lg text-center min-w-[80px]">
-                        <span class="block font-bold text-xl">{{ event.date.split()[0] }}</span>
-                        <span class="block text-sm uppercase">{{ event.date.split()[1] }}</span>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-800">{{ event.title }}</h3>
-                        <p class="text-gray-500"><i class="fas fa-map-pin mr-2 text-cubs-gold"></i>{{ event.location }}</p>
-                    </div>
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    
+    <div class="relative border-l-4 border-gray-200 ml-6 md:ml-12 space-y-16">
+        
+        {% for t in tournaments %}
+        <div class="relative pl-8 md:pl-16 group">
+            <div class="absolute -left-[10px] md:-left-[14px] top-2 w-5 h-5 md:w-7 md:h-7 bg-white border-4 border-cubs-gold rounded-full z-10 group-hover:bg-cubs-blue transition-colors"></div>
+            
+            <div class="flex flex-col md:flex-row gap-6 md:items-start">
+                <div class="min-w-[120px]">
+                    <span class="block text-4xl font-display font-bold text-gray-300 group-hover:text-cubs-blue transition-colors">
+                        {{ ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][t.month_start - 1] }}
+                    </span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Month Start</span>
                 </div>
-                <a href="#" class="px-6 py-2 border border-cubs-blue text-cubs-blue rounded hover:bg-cubs-blue hover:text-white transition">Details</a>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 flex-1 group-hover:shadow-xl group-hover:border-cubs-gold/30 transition-all">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-display text-2xl font-bold text-cubs-blue uppercase">{{ t.name }}</h3>
+                        {% if t.type == 'External' %}
+                            <span class="bg-purple-100 text-purple-700 text-[10px] font-bold px-2 py-1 rounded uppercase">External</span>
+                        {% else %}
+                            <span class="bg-blue-100 text-cubs-blue text-[10px] font-bold px-2 py-1 rounded uppercase">Academy</span>
+                        {% endif %}
+                    </div>
+                    <p class="text-gray-600">{{ t.desc }}</p>
+                </div>
             </div>
-            {% endfor %}
         </div>
+        {% endfor %}
+
     </div>
 
-    <!-- Highlights/Gallery Section -->
-    <div>
-        <h2 class="text-2xl font-bold text-cubs-blue mb-6 border-l-4 border-cubs-gold pl-4">Past Tournament Highlights</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <!-- Placeholders for gallery -->
-            <div class="h-48 bg-gray-300 rounded-lg"></div>
-            <div class="h-48 bg-gray-300 rounded-lg"></div>
-            <div class="h-48 bg-gray-300 rounded-lg"></div>
-            <div class="h-48 bg-gray-300 rounded-lg"></div>
+    <div class="mt-20 bg-cubs-gold rounded-3xl p-8 md:p-12 text-center shadow-2xl relative overflow-hidden">
+        <div class="relative z-10">
+            <h2 class="font-display text-3xl font-bold text-cubs-blue mb-4 uppercase">Want to compete?</h2>
+            <p class="text-cubs-blue/80 mb-8 max-w-xl mx-auto">Registration for internal leagues is automatic for academy students. Selection for external tournaments is based on performance.</p>
+            <a href="/#branches" class="bg-cubs-blue text-white px-8 py-3 rounded-full font-bold uppercase hover:bg-white hover:text-cubs-blue transition-all">
+                Join a Team
+            </a>
         </div>
+        <i class="fas fa-trophy absolute -bottom-4 -right-4 text-9xl text-white/20 transform rotate-12"></i>
     </div>
 </div>
 {% endblock %}
