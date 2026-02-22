@@ -1,57 +1,289 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="bg-gradient-to-br from-cubs-blue to-blue-900 pt-32 pb-20 text-center relative overflow-hidden">
-    <div class="absolute top-0 left-0 w-full h-full opacity-10 hero-pattern"></div>
-    
+
+<!-- ============================================================
+     HERO SECTION
+============================================================= -->
+<section class="relative bg-cubs-blue overflow-hidden py-28 text-center">
+    <!-- Background pattern -->
+    <div class="absolute inset-0 cricket-field-pattern opacity-40"></div>
+    <!-- Decorative elements -->
+    <div class="absolute top-10 left-10 w-32 h-32 border-2 border-cubs-gold/20 rounded-full animate-spin" style="animation-duration:25s;"></div>
+    <div class="absolute bottom-10 right-10 w-20 h-20 border-2 border-white/10 rounded-full animate-spin" style="animation-duration:18s; animation-direction:reverse;"></div>
+    <div class="absolute top-1/2 left-1/4 w-3 h-3 bg-cubs-gold/40 rounded-full animate-bounce" style="animation-delay:0.5s;"></div>
+    <div class="absolute top-1/3 right-1/4 w-2 h-2 bg-white/30 rounded-full animate-bounce" style="animation-delay:1s;"></div>
+
+    <!-- Logo watermark -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 opacity-5 pointer-events-none">
+        <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}" alt="" class="w-full h-full object-contain">
+    </div>
+
     <div class="relative z-10 max-w-4xl mx-auto px-4">
-        <h1 class="font-display text-5xl md:text-6xl font-bold text-white mb-6 uppercase">Season <span class="text-stroke">Calendar</span></h1>
-        <p class="text-xl text-cubs-gold font-light">September to June • The Pursuit of Excellence</p>
+        <!-- Breadcrumb -->
+        <nav class="flex justify-center items-center gap-2 text-xs text-gray-400 mb-6">
+            <a href="/" class="hover:text-cubs-gold transition-colors">Home</a>
+            <i class="fas fa-chevron-right text-gray-600 text-[10px]"></i>
+            <span class="text-cubs-gold">Season Calendar</span>
+        </nav>
+
+        <p class="section-tag mb-3">September to June</p>
+        <h1 class="font-display text-5xl md:text-7xl font-black text-white uppercase leading-none mb-4">
+            Tournament <span class="text-cubs-gold">Season</span>
+        </h1>
+        <p class="text-gray-300 text-lg max-w-xl mx-auto font-light leading-relaxed">
+            10 competitive tournaments per season — internal academy leagues, national championships, 
+            and international competitions. Every student gets match experience.
+        </p>
+
+        <!-- Quick stats -->
+        <div class="flex justify-center gap-8 mt-10 pt-10 border-t border-white/10">
+            <div class="text-center">
+                <p class="font-display text-3xl font-black text-cubs-gold">10</p>
+                <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Tournaments / Season</p>
+            </div>
+            <div class="text-center">
+                <p class="font-display text-3xl font-black text-cubs-gold">Sep–Jun</p>
+                <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Full Season</p>
+            </div>
+            <div class="text-center">
+                <p class="font-display text-3xl font-black text-cubs-gold">U10–U19</p>
+                <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Age Groups</p>
+            </div>
+        </div>
     </div>
 </section>
 
-<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    
-    <div class="relative border-l-4 border-gray-200 ml-6 md:ml-12 space-y-16">
-        
-        {% for t in tournaments %}
-        <div class="relative pl-8 md:pl-16 group">
-            <div class="absolute -left-[10px] md:-left-[14px] top-2 w-5 h-5 md:w-7 md:h-7 bg-white border-4 border-cubs-gold rounded-full z-10 group-hover:bg-cubs-blue transition-colors"></div>
-            
-            <div class="flex flex-col md:flex-row gap-6 md:items-start">
-                <div class="min-w-[120px]">
-                    <span class="block text-4xl font-display font-bold text-gray-300 group-hover:text-cubs-blue transition-colors">
-                        {{ ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][t.month_start - 1] }}
-                    </span>
-                    <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Month Start</span>
-                </div>
 
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 flex-1 group-hover:shadow-xl group-hover:border-cubs-gold/30 transition-all">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-display text-2xl font-bold text-cubs-blue uppercase">{{ t.name }}</h3>
-                        {% if t.type == 'External' %}
-                            <span class="bg-purple-100 text-purple-700 text-[10px] font-bold px-2 py-1 rounded uppercase">External</span>
-                        {% else %}
-                            <span class="bg-blue-100 text-cubs-blue text-[10px] font-bold px-2 py-1 rounded uppercase">Academy</span>
-                        {% endif %}
-                    </div>
-                    <p class="text-gray-600">{{ t.desc }}</p>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-
-    </div>
-
-    <div class="mt-20 bg-cubs-gold rounded-3xl p-8 md:p-12 text-center shadow-2xl relative overflow-hidden">
-        <div class="relative z-10">
-            <h2 class="font-display text-3xl font-bold text-cubs-blue mb-4 uppercase">Want to compete?</h2>
-            <p class="text-cubs-blue/80 mb-8 max-w-xl mx-auto">Registration for internal leagues is automatic for academy students. Selection for external tournaments is based on performance.</p>
-            <a href="/#branches" class="bg-cubs-blue text-white px-8 py-3 rounded-full font-bold uppercase hover:bg-white hover:text-cubs-blue transition-all">
-                Join a Team
-            </a>
-        </div>
-        <i class="fas fa-trophy absolute -bottom-4 -right-4 text-9xl text-white/20 transform rotate-12"></i>
+<!-- ============================================================
+     FILTER TABS
+============================================================= -->
+<div class="bg-white sticky top-[72px] md:top-[100px] z-40 border-b border-gray-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 flex gap-2 py-3 overflow-x-auto scrollbar-hide">
+        <button onclick="filterTournaments('all')" id="filter-all" 
+                class="filter-btn active-filter px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider whitespace-nowrap transition-all bg-cubs-blue text-white">
+            All Tournaments
+        </button>
+        <button onclick="filterTournaments('Internal')" id="filter-Internal"
+                class="filter-btn px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider whitespace-nowrap transition-all bg-gray-100 text-gray-600 hover:bg-cubs-blue hover:text-white">
+            <i class="fas fa-shield mr-1.5"></i> Academy Leagues
+        </button>
+        <button onclick="filterTournaments('External')" id="filter-External"
+                class="filter-btn px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider whitespace-nowrap transition-all bg-gray-100 text-gray-600 hover:bg-cubs-blue hover:text-white">
+            <i class="fas fa-globe mr-1.5"></i> National & Regional
+        </button>
     </div>
 </div>
+
+
+<!-- ============================================================
+     TOURNAMENT TIMELINE
+============================================================= -->
+<section class="py-20 bg-slate-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- SEO text block above timeline -->
+        <div class="bg-white rounded-2xl p-6 mb-12 border border-gray-100 shadow-sm text-center">
+            <p class="text-gray-600 max-w-3xl mx-auto text-sm leading-relaxed">
+                Desert Cubs Academy runs the <strong class="text-cubs-blue">UAE's most comprehensive junior cricket tournament calendar</strong>. 
+                From the DC Premier League season opener to the ECB National Junior Tournament, our cubs compete in 
+                <strong class="text-cubs-blue">10 tournaments</strong> per season across all age groups (U10, U12, U14, U16, U19). 
+                All academy students are automatically enrolled in internal leagues.
+            </p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="relative">
+            <!-- Vertical line -->
+            <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cubs-gold via-cubs-blue/30 to-gray-200 md:-translate-x-1/2"></div>
+
+            <div class="space-y-8" id="tournamentList">
+                {% set months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] %}
+
+                {% for t in tournaments %}
+                <div class="tournament-item relative flex flex-col md:flex-row gap-0 md:gap-8 group" data-type="{{ t.type }}">
+
+                    <!-- Left side: Month label (only on desktop, alternating) -->
+                    <div class="hidden md:flex md:w-1/2 {% if loop.index is odd %}justify-end pr-10{% else %}justify-start pl-10 order-last{% endif %} items-start pt-2">
+                        <div class="text-right {% if loop.index is even %}text-left{% endif %}">
+                            <span class="font-display text-5xl font-black text-gray-200 group-hover:text-cubs-gold/40 transition-colors leading-none block">
+                                {{ months[t.month_start - 1] }}
+                            </span>
+                            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                                Month {{ t.month_start }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Center dot -->
+                    <div class="absolute left-6 md:left-1/2 top-3 md:-translate-x-1/2 z-10">
+                        <div class="w-5 h-5 rounded-full border-4 border-white shadow-md transition-all group-hover:scale-125
+                            {% if t.type == 'External' %}bg-purple-500 group-hover:border-purple-300
+                            {% else %}bg-cubs-gold group-hover:border-cubs-gold/30{% endif %}">
+                        </div>
+                    </div>
+
+                    <!-- Card -->
+                    <div class="ml-14 md:ml-0 md:w-1/2 {% if loop.index is odd %}md:pl-10{% else %}md:pr-10{% endif %}">
+                        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 
+                                    group-hover:shadow-xl group-hover:border-cubs-gold/30 transition-all duration-300
+                                    hover:-translate-y-1">
+
+                            <!-- Mobile: show month -->
+                            <div class="flex items-center gap-2 mb-3 md:hidden">
+                                <span class="font-display font-black text-2xl text-gray-300">{{ months[t.month_start - 1] }}</span>
+                                <span class="text-xs text-gray-400">→ {{ months[t.month_end - 1] if t.month_start != t.month_end else '' }}</span>
+                            </div>
+
+                            <!-- Type badge -->
+                            <div class="flex items-start justify-between mb-3">
+                                <h2 class="font-display text-xl md:text-2xl font-black text-cubs-blue uppercase leading-tight flex-1 pr-3">
+                                    {{ t.name }}
+                                </h2>
+                                {% if t.type == 'External' %}
+                                <span class="flex-shrink-0 bg-purple-100 text-purple-700 text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1">
+                                    <i class="fas fa-globe text-[9px]"></i> National
+                                </span>
+                                {% else %}
+                                <span class="flex-shrink-0 bg-cubs-gold/20 text-cubs-blue text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1">
+                                    <i class="fas fa-shield text-[9px]"></i> Academy
+                                </span>
+                                {% endif %}
+                            </div>
+
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">{{ t.desc }}</p>
+
+                            <!-- Duration info -->
+                            <div class="flex items-center gap-4 text-xs text-gray-400 font-bold uppercase border-t border-gray-100 pt-3">
+                                <span class="flex items-center gap-1.5">
+                                    <i class="fas fa-calendar text-cubs-gold"></i>
+                                    {{ months[t.month_start - 1] }}
+                                    {% if t.month_start != t.month_end %} – {{ months[t.month_end - 1] }}{% endif %}
+                                </span>
+                                <span class="flex items-center gap-1.5">
+                                    <i class="fas fa-users text-cubs-gold"></i>
+                                    All age groups
+                                </span>
+                                {% if t.type == 'External' %}
+                                <span class="flex items-center gap-1.5 text-purple-600">
+                                    <i class="fas fa-star"></i>
+                                    Performance based
+                                </span>
+                                {% else %}
+                                <span class="flex items-center gap-1.5 text-green-600">
+                                    <i class="fas fa-check-circle"></i>
+                                    Auto-enrolled
+                                </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- No results message (hidden by default) -->
+        <div id="noResults" class="hidden text-center py-12 text-gray-400">
+            <i class="fas fa-search text-4xl mb-4 block opacity-30"></i>
+            <p class="font-display text-xl">No tournaments found for this filter.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     HOW SELECTION WORKS — Info block
+============================================================= -->
+<section class="py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-cubs-gold/10 border border-cubs-gold/30 rounded-2xl p-8">
+                <div class="w-12 h-12 bg-cubs-gold rounded-xl flex items-center justify-center mb-4">
+                    <i class="fas fa-shield text-cubs-blue text-xl"></i>
+                </div>
+                <h3 class="font-display text-2xl font-black text-cubs-blue uppercase mb-3">Academy Leagues</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Internal academy leagues are <strong class="text-cubs-blue">automatically available</strong> to all enrolled students. 
+                    No separate registration needed. These include the DC Premier League, Emerging League, 
+                    Winter Cup, Super League, Ramadan Cup, Junior Cups, and Summer Bash.
+                </p>
+            </div>
+            <div class="bg-purple-50 border border-purple-200 rounded-2xl p-8">
+                <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mb-4">
+                    <i class="fas fa-globe text-white text-xl"></i>
+                </div>
+                <h3 class="font-display text-2xl font-black text-cubs-blue uppercase mb-3">National & Regional</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    External competitions like the <strong class="text-cubs-blue">ECB National Junior Tournament</strong>, 
+                    <strong class="text-cubs-blue">Gulf Cup</strong>, and the <strong class="text-cubs-blue">4 Nation Tournament</strong> 
+                    are merit-based selections. Coaches select players based on performance and development.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     BOTTOM CTA
+============================================================= -->
+<section class="py-20 bg-cubs-blue relative overflow-hidden">
+    <div class="absolute inset-0 cricket-field-pattern opacity-30"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-4 text-center">
+        <i class="fas fa-trophy text-cubs-gold text-5xl mb-6 block"></i>
+        <h2 class="font-display text-4xl md:text-5xl font-black text-white uppercase mb-4">
+            Ready to Compete?
+        </h2>
+        <p class="text-gray-300 text-lg mb-8 max-w-xl mx-auto">
+            Enroll your child today and they'll automatically join our next academy league season. 
+            Selection for external tournaments begins from day one.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="/#branches" class="btn-gold px-10 py-4 rounded-full text-base flex items-center gap-2">
+                <i class="fas fa-map-marker-alt"></i> Find a Centre & Enroll
+            </a>
+            <a href="/tours" class="border-2 border-white text-white px-10 py-4 rounded-full font-display font-black text-base uppercase tracking-wider hover:bg-white hover:text-cubs-blue transition-all flex items-center gap-2">
+                <i class="fas fa-plane"></i> International Tours
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     FILTER JAVASCRIPT
+============================================================= -->
+<script>
+function filterTournaments(type) {
+    const items = document.querySelectorAll('.tournament-item');
+    const buttons = document.querySelectorAll('.filter-btn');
+    let visibleCount = 0;
+
+    // Update button styles
+    buttons.forEach(btn => {
+        btn.classList.remove('bg-cubs-blue', 'text-white');
+        btn.classList.add('bg-gray-100', 'text-gray-600');
+    });
+    const activeBtn = document.getElementById('filter-' + type);
+    if (activeBtn) {
+        activeBtn.classList.add('bg-cubs-blue', 'text-white');
+        activeBtn.classList.remove('bg-gray-100', 'text-gray-600');
+    }
+
+    // Filter items
+    items.forEach(item => {
+        if (type === 'all' || item.dataset.type === type) {
+            item.style.display = '';
+            visibleCount++;
+        } else {
+            item.style.display = 'none';
+        }
+    });
+
+    // Show/hide no results
+    document.getElementById('noResults').classList.toggle('hidden', visibleCount > 0);
+}
+</script>
+
 {% endblock %}

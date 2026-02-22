@@ -1,229 +1,866 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en-AE">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ========== SEO META ========== -->
     <title>{{ meta.title }}</title>
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}">
     <meta name="description" content="{{ meta.description }}">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <meta name="keywords"    content="{{ meta.keywords | default('cricket academy UAE, junior cricket Dubai, cricket coaching Sharjah, kids cricket UAE, Desert Cubs, youth cricket') }}">
+    <meta name="author"      content="Desert Cubs Cricket Academy">
+    <meta name="robots"      content="index, follow">
+    <link rel="canonical"    href="{{ meta.canonical | default('https://www.desertcubs.com') }}">
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website">
+    <meta property="og:title"       content="{{ meta.title }}">
+    <meta property="og:description" content="{{ meta.description }}">
+    <meta property="og:image"       content="{{ meta.og_image | default('https://www.desertcubs.com/static/img/Desert_cubs_logo.png') }}">
+    <meta property="og:url"         content="{{ meta.canonical | default('https://www.desertcubs.com') }}">
+    <meta property="og:site_name"   content="Desert Cubs Cricket Academy">
+    <meta property="og:locale"      content="en_AE">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="{{ meta.title }}">
+    <meta name="twitter:description" content="{{ meta.description }}">
+    <meta name="twitter:image"       content="{{ meta.og_image | default('https://www.desertcubs.com/static/img/Desert_cubs_logo.png') }}">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsOrganization",
+      "name": "Desert Cubs Cricket Academy",
+      "url": "https://www.desertcubs.com",
+      "logo": "https://www.desertcubs.com/static/img/Desert_cubs_logo.png",
+      "description": "UAE's largest junior cricket academy. Est 2007. 15,000+ alumni.",
+      "foundingDate": "2007",
+      "telephone": "+971588274266",
+      "email": "info@desertcubs.com",
+      "address": { "@type": "PostalAddress", "addressLocality": "Sharjah", "addressCountry": "AE" },
+      "sport": "Cricket"
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}">
+
+    <!-- ========== FONTS ========== -->
+    <!-- Teko = bold display headings | Nunito = clean readable body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Main stylesheet (MUST come before Tailwind so Tailwind overrides work) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'display': ['Oswald', 'sans-serif'],
-                        'body': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'cubs-blue': '#003399', /* Royal Blue */
-                        'cubs-blue-light': '#1a4db2',
-                        'cubs-gold': '#FFCC00', /* Deep Golden Yellow */
-                        'cubs-gold-light': '#ffe066',
-                    },
-                    animation: {
-                        'spin-slow': 'spin 8s linear infinite',
-                        'bounce-slow': 'bounce 3s infinite',
-                        'pulse-glow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    }
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    'display': ['Teko', 'sans-serif'],
+                    'body':    ['Nunito', 'sans-serif'],
+                },
+                colors: {
+                    'cubs-blue':      '#003399',
+                    'cubs-blue-dark': '#001f66',
+                    'cubs-blue-mid':  '#1a4db2',
+                    'cubs-gold':      '#FFCC00',
+                    'cubs-gold-dark': '#e6b800',
                 }
             }
         }
+    }
     </script>
+
+    <!-- ========== INLINE CRITICAL STYLES ========== -->
+    <!-- These guarantee readability even if the external CSS fails to load -->
     <style>
-        /* Custom Texture from your sample */
-        .hero-pattern {
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(250, 204, 21, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(15, 23, 42, 0.4) 0%, transparent 50%),
-                linear-gradient(135deg, #0F172A 0%, #020617 100%);
+        /* Guarantee body font */
+        body { font-family: 'Nunito', sans-serif; }
+        h1,h2,h3,h4,h5,h6 { font-family: 'Teko', sans-serif; }
+
+        /* ── NAV: always solid dark, always readable ── */
+        #mainNav {
+            background-color: #001f66 !important;
+            border-bottom: 3px solid #FFCC00;
         }
-        .text-stroke {
-            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
-            color: transparent;
+        #topBar { background-color: #001045; }
+
+        /* ── HERO: THE KEY FIX ──
+           Remove the old hero-bg and cricket-field-pattern classes — 
+           we apply the dark gradient directly in index.html via inline style.
+           Any .animate-spin border circles inside hero are hidden. */
+        .hero-spin-deco { display: none !important; }
+
+        /* ── GOLD SECTION TAG ── */
+        .section-tag {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
+            font-size: 0.72rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            display: block;
         }
-        .glass-nav {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid #FACC15;
+
+        /* ── GOLD DIVIDER BAR ── */
+        .gold-bar {
+            width: 52px; height: 4px;
+            background: linear-gradient(90deg, #FFCC00, #e6b800);
+            border-radius: 2px;
+            display: block;
         }
+
+        /* ── BTN GOLD ── */
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #FFCC00, #e6b800);
+            color: #001f66 !important;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
+            font-size: 0.82rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 999px;
+            padding: 12px 28px;
+            transition: all 0.25s;
+            box-shadow: 0 4px 16px rgba(255,204,0,0.35);
+            white-space: nowrap;
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #ffe14d, #FFCC00);
+            color: #001f66 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(255,204,0,0.5);
+        }
+
+        /* ── BTN BLUE ── */
+        .btn-blue {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #003399;
+            color: #ffffff !important;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 900;
+            font-size: 0.82rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 999px;
+            padding: 12px 28px;
+            transition: all 0.25s;
+        }
+        .btn-blue:hover {
+            background: #001f66;
+            color: #ffffff !important;
+        }
+
+        /* ── NAV LINK ── */
+        .nav-link {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #ffffff !important;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-link:hover, .nav-link.active { color: #FFCC00 !important; }
+
+        /* ── CARD HOVER ── */
+        .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,51,153,0.12); }
+
+        /* ── WHATSAPP FLOAT ── */
+        .whatsapp-float {
+            position: fixed; bottom: 24px; right: 24px; z-index: 999;
+            width: 58px; height: 58px; background: #25D366; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.5);
+            text-decoration: none; transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.12); box-shadow: 0 10px 30px rgba(37,211,102,0.65); }
+        .whatsapp-float i { color: #ffffff; font-size: 1.6rem; }
+
+        /* ── FADE IN UP ── */
+        @keyframes fadeInUp {
+            from { opacity:0; transform:translateY(28px); }
+            to   { opacity:1; transform:translateY(0); }
+        }
+        .fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.7s ease forwards;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* ── SCROLL FADE (JS-triggered) ── */
+        .scroll-fade { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        .scroll-fade.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── SPONSORS MARQUEE ── */
+        @keyframes marqueeScroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marqueeScroll 32s linear infinite;
+        }
+        .marquee-track:hover { animation-play-state: paused; }
+
+        /* ── MODAL ── */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.92); z-index: 500;
+            align-items: center; justify-content: center;
+        }
+        .modal-overlay.active { display: flex !important; }
+
+        /* ── PROSE ── */
+        .prose-dc h2 { font-family:'Teko',sans-serif; font-weight:700; font-size:1.9rem; color:#003399; text-transform:uppercase; margin:1.8rem 0 0.7rem; }
+        .prose-dc h3 { font-family:'Teko',sans-serif; font-weight:600; font-size:1.4rem; color:#003399; margin:1.4rem 0 0.5rem; }
+        .prose-dc p  { color:#374151; line-height:1.85; margin-bottom:1.1rem; font-family:'Nunito',sans-serif; }
+        .prose-dc a  { color:#003399; font-weight:700; }
+        .prose-dc strong { color:#003399; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width:6px; }
+        ::-webkit-scrollbar-track { background:#e2e8f0; }
+        ::-webkit-scrollbar-thumb { background:#003399; border-radius:3px; }
+        ::-webkit-scrollbar-thumb:hover { background:#FFCC00; }
+        ::selection { background:#FFCC00; color:#001f66; }
     </style>
 </head>
-<body class="font-body bg-slate-50 text-slate-900 selection:bg-cubs-gold selection:text-cubs-blue">
 
-    <nav class="fixed w-full z-50 glass-nav shadow-2xl transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="/" class="flex items-center space-x-3 group cursor-pointer">
-                    <div class="w-16 h-16 flex items-center justify-center transform group-hover:scale-105 transition-transform">
-                        <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}" alt="Desert Cubs Cricket Academy Logo - Legends of the Future" class="w-full h-full object-contain filter drop-shadow-lg">
-                    </div>
-                    <div class="leading-tight">
-                        <h1 class="font-display text-2xl font-bold text-white tracking-wide uppercase">Desert Cubs</h1>
-                        <p class="text-xs text-cubs-gold font-semibold tracking-widest uppercase">Legends of the Future</p>
-                    </div>
+<body class="bg-slate-50">
+
+<!-- ============================================================
+     TOP CONTACT BAR
+============================================================= -->
+<div id="topBar" class="hidden md:block py-1.5">
+    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
+        <div class="flex items-center gap-6">
+            <a href="tel:+971588274266"
+               style="color:#bfd0ff; font-size:0.78rem; font-weight:700; text-decoration:none; display:flex; align-items:center; gap:6px;"
+               onmouseover="this.style.color='#FFCC00'" onmouseout="this.style.color='#bfd0ff'">
+                <i class="fas fa-phone" style="color:#FFCC00; font-size:0.72rem;"></i>+971 58 827 4266
+            </a>
+            <a href="mailto:admin@desertcubs.com" style="color:#003399; font-weight:900; text-decoration:none;" onmouseover="this.style.color='#e6b800'" onmouseout="this.style.color='#003399'">
+                admin@desertcubs.com
+            </a>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+            <span style="color:#bfd0ff; font-size:0.78rem; font-weight:700; display:flex; align-items:center; gap:5px;">
+                <i class="fas fa-map-marker-alt" style="color:#FFCC00; font-size:0.72rem;"></i>Dubai & Sharjah, UAE
+            </span>
+            <div style="display:flex; gap:10px;">
+                <a href="https://www.instagram.com/desertcubscricket" target="_blank" style="color:#bfd0ff;" onmouseover="this.style.color='#FFCC00'" onmouseout="this.style.color='#bfd0ff'"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/desertcubs" target="_blank" style="color:#bfd0ff;" onmouseover="this.style.color='#FFCC00'" onmouseout="this.style.color='#bfd0ff'"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/@desertcubs" target="_blank" style="color:#bfd0ff;" onmouseover="this.style.color='#FFCC00'" onmouseout="this.style.color='#bfd0ff'"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ============================================================
+     MAIN NAVIGATION
+============================================================= -->
+<nav id="mainNav" class="fixed w-full z-50 top-0 md:top-8 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16 md:h-[68px]">
+
+            <!-- LOGO -->
+            <a href="/" class="flex items-center gap-3 group" aria-label="Desert Cubs Cricket Academy Home">
+                <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}"
+                     alt="Desert Cubs Cricket Academy Logo"
+                     class="w-11 h-11 object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
+                <div class="leading-none">
+                    <span style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.55rem;
+                                 color:#ffffff; text-transform:uppercase; letter-spacing:0.03em; display:block;">
+                        Desert Cubs
+                    </span>
+                    <span style="font-family:'Nunito',sans-serif; font-weight:800; font-size:0.58rem;
+                                 color:#FFCC00; text-transform:uppercase; letter-spacing:0.22em; display:block;">
+                        Legends of the Future
+                    </span>
+                </div>
+            </a>
+
+            <!-- DESKTOP LINKS -->
+            <div class="hidden lg:flex items-center gap-6">
+                <a href="/"             class="nav-link">Home</a>
+                <a href="/#branches"    class="nav-link">Locations</a>
+                <a href="/tournaments"  class="nav-link">Tournaments</a>
+                <a href="/events"       class="nav-link">Events & Legends</a>
+                <a href="/tours"        class="nav-link">Tours</a>
+                <a href="/blog"         class="nav-link">Blog</a>
+                <a href="tel:+971588274266" class="btn-gold px-5 py-2.5 text-sm ml-2">
+                    <i class="fas fa-user-plus" style="font-size:0.8rem;"></i>Register Now
                 </a>
-                
-                <div class="hidden md:flex space-x-6 lg:space-x-8 items-center">
-                    <a href="/" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
-                        Home
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="/#branches" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
-                        Locations
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="/tournaments" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
-                        Tournaments
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="/events" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
-                        Events & Legends
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="/tours" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
-                        Tours
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="/blog" class="text-gray-300 hover:text-cubs-gold font-bold uppercase tracking-wider text-sm transition-colors relative group">
-                        Blog
-                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cubs-gold transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="#" class="bg-cubs-gold text-cubs-blue px-6 py-3 rounded-full font-bold uppercase text-sm hover:bg-white hover:text-cubs-blue transform hover:scale-105 transition-all shadow-lg hover:shadow-cubs-gold/50">
-                        Join the Pride
-                    </a>
-                </div>
-
-                <button id="mobile-btn" class="md:hidden text-cubs-gold text-2xl">
-                    <i class="fas fa-bars"></i>
-                </button>
             </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-cubs-blue border-t border-gray-800">
-            <a href="/" class="block px-6 py-4 text-white hover:bg-cubs-blue-light border-b border-gray-800">Home</a>
-            <a href="/#branches" class="block px-6 py-4 text-white hover:bg-cubs-blue-light border-b border-gray-800">Locations</a>
-            <a href="/tournaments" class="block px-6 py-4 text-white hover:bg-cubs-blue-light border-b border-gray-800">Tournaments</a>
-            <a href="/events" class="block px-6 py-4 text-white hover:bg-cubs-blue-light border-b border-gray-800">Events & Legends</a>
-            <a href="/tours" class="block px-6 py-4 text-white hover:bg-cubs-blue-light border-b border-gray-800">Tours</a>
-            <a href="/blog" class="block px-6 py-4 text-white hover:bg-cubs-blue-light">Blog</a>
-        </div>
-    </nav>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-
-    <footer class="bg-cubs-blue text-gray-400 py-16 border-t-4 border-cubs-gold relative overflow-hidden">
-        <div class="absolute top-0 right-0 opacity-5 pointer-events-none">
-            <i class="fas fa-lion text-9xl transform -translate-y-1/2 translate-x-1/4"></i>
+            <!-- MOBILE HAMBURGER -->
+            <button id="mobileMenuBtn" class="lg:hidden p-2" aria-label="Open navigation menu"
+                    style="color:#ffffff; background:none; border:none; cursor:pointer;">
+                <i id="menuIcon" class="fas fa-bars" style="font-size:1.5rem;"></i>
+            </button>
         </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid md:grid-cols-4 gap-12">
-                <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-10 h-10 bg-cubs-gold rounded-full flex items-center justify-center text-cubs-blue font-bold">DC</div>
-                        <span class="font-display text-2xl font-bold text-white uppercase">Desert Cubs</span>
-                    </div>
-                    <p class="mb-6 max-w-sm">
-                        Building Legends of the Future since 2007. The UAE's premier cricket academy focusing on holistic development, elite pathways, and global exposure.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-cubs-gold hover:text-cubs-blue transition-all"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-cubs-gold hover:text-cubs-blue transition-all"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-cubs-gold hover:text-cubs-blue transition-all"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-white font-display font-bold text-lg mb-6 uppercase tracking-wider">Quick Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="/tournaments" class="hover:text-cubs-gold transition-colors">Season Calendar</a></li>
-                        <li><a href="/tours" class="hover:text-cubs-gold transition-colors">International Tours</a></li>
-                        <li><a href="/#branches" class="hover:text-cubs-gold transition-colors">Find a Center</a></li>
-                        <li><a href="/blog" class="hover:text-cubs-gold transition-colors">Nutrition Guide</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-display font-bold text-lg mb-6 uppercase tracking-wider">Contact</h4>
-                    <ul class="space-y-3">
-                        <li><i class="fas fa-phone text-cubs-gold mr-2"></i> +971-6-5426449</li>
-                        <li><i class="fas fa-envelope text-cubs-gold mr-2"></i> admin@desertcubs.com</li>
-                        <li><i class="fas fa-map-marker-alt text-cubs-gold mr-2"></i> Sharjah & Dubai, UAE</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm">
-                &copy; 2026 Desert Cubs Cricket Academy. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
-    <div id="galleryModal" class="fixed inset-0 z-[120] hidden bg-black/95 flex items-center justify-center backdrop-blur-md">
-        <button class="absolute top-6 right-6 text-white hover:text-cubs-gold transition-colors z-[130]" onclick="closeGallery()">
-            <i class="fas fa-times text-4xl"></i>
-        </button>
-        
-        <button class="absolute left-4 md:left-10 text-white hover:text-cubs-gold text-4xl z-[130]" onclick="changeImage(-1)">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        
-        <div class="max-w-6xl max-h-[90vh] p-2 flex items-center justify-center">
-            <img id="galleryImage" src="" alt="Gallery" class="max-h-[85vh] max-w-full object-contain rounded border border-white/20 shadow-2xl">
-        </div>
-
-        <button class="absolute right-4 md:right-10 text-white hover:text-cubs-gold text-4xl z-[130]" onclick="changeImage(1)">
-            <i class="fas fa-chevron-right"></i>
-        </button>
     </div>
 
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    
-    <script>
-        let currentGalleryImages = [];
-        let currentImageIndex = 0;
-        const galleryModal = document.getElementById('galleryModal');
-        const galleryImgElement = document.getElementById('galleryImage');
+    <!-- MOBILE MENU (hidden by default) -->
+    <div id="mobileMenu" class="hidden lg:hidden"
+         style="background:#001045; border-top:1px solid rgba(255,255,255,0.08);">
+        <div class="px-4 py-3 space-y-1">
+            <!-- Each mobile link: dark bg → white text, gold icon -->
+            {% for href, icon, label in [
+                ('/', 'fa-home', 'Home'),
+                ('/#branches', 'fa-map-marker-alt', 'Locations'),
+                ('/tournaments', 'fa-trophy', 'Tournaments'),
+                ('/events', 'fa-star', 'Events & Legends'),
+                ('/tours', 'fa-plane', 'International Tours'),
+                ('/blog', 'fa-newspaper', 'Blog & Tips'),
+            ] %}
+            <a href="{{ href }}"
+               style="display:flex; align-items:center; gap:12px; padding:11px 14px;
+                      border-radius:10px; color:#ffffff; font-family:'Nunito',sans-serif;
+                      font-weight:800; font-size:0.85rem; text-transform:uppercase;
+                      text-decoration:none; letter-spacing:0.06em;
+                      transition:background 0.2s;"
+               onmouseover="this.style.background='rgba(255,255,255,0.07)'"
+               onmouseout="this.style.background='transparent'">
+                <i class="fas {{ icon }}" style="color:#FFCC00; font-size:0.85rem; width:16px;"></i>
+                {{ label }}
+            </a>
+            {% endfor %}
 
-        function openGallery(folder, prefix, count) {
-            currentGalleryImages = [];
-            // Generate image paths assuming logic: prefix1.jpg, prefix2.jpg ...
-            for (let i = 1; i <= count; i++) {
-                currentGalleryImages.push(`/static/img/${folder}/${prefix}${i}.jpg`);
-            }
-            
-            if (currentGalleryImages.length > 0) {
-                currentImageIndex = 0;
-                updateGalleryImage();
-                galleryModal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            }
-        }
+            <div style="padding:10px 0 4px;">
+                <a href="tel:+971588274266" class="btn-gold"
+                   style="width:100%; justify-content:center; font-size:0.88rem;">
+                    <i class="fas fa-phone" style="font-size:0.8rem;"></i>Call to Register
+                </a>
+            </div>
+            <!-- Mobile contact details -->
+            <div style="border-top:1px solid rgba(255,255,255,0.08); padding:12px 14px 6px; display:flex; flex-direction:column; gap:7px;">
+                <a href="tel:+971588274266"
+                   style="color:#94a3b8; font-size:0.78rem; font-weight:700; text-decoration:none; display:flex; align-items:center; gap:7px;">
+                    <i class="fas fa-phone" style="color:#FFCC00;"></i>+971 58 827 4266
+                </a>
+                <a href="mailto:admin@desertcubs.com" style="color:#003399; font-weight:900; text-decoration:none;" onmouseover="this.style.color='#e6b800'" onmouseout="this.style.color='#003399'">
+                    admin@desertcubs.com
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
 
-        function updateGalleryImage() {
-            galleryImgElement.src = currentGalleryImages[currentImageIndex];
-        }
 
-        function changeImage(direction) {
-            currentImageIndex += direction;
-            if (currentImageIndex >= currentGalleryImages.length) currentImageIndex = 0;
-            if (currentImageIndex < 0) currentImageIndex = currentGalleryImages.length - 1;
-            updateGalleryImage();
-        }
+<!-- ============================================================
+     MAIN PAGE CONTENT
+============================================================= -->
+<main style="padding-top:64px;" class="md:pt-[108px]">
+    {% block content %}{% endblock %}
+</main>
 
-        function closeGallery() {
-            galleryModal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
 
-        // Close on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && !galleryModal.classList.contains('hidden')) {
-                closeGallery();
-            }
-        });
-    </script>
+<!-- ============================================================
+     PARTNERS & SPONSORS SECTION
+     
+     ╔══════════════════════════════════════════════════════════╗
+     ║  WHERE TO PUT YOUR SPONSOR LOGOS:                       ║
+     ║                                                          ║
+     ║  Folder:  static/img/sponsors/                          ║
+     ║                                                          ║
+     ║  Copy all 13 logos into that folder using these         ║
+     ║  EXACT filenames (same names as your Google Drive):     ║
+     ║                                                          ║
+     ║  1.  dubai_duty_free.jpg                                ║
+     ║  2.  hj_unicare.png                                     ║
+     ║  3.  home_center.png                                    ║
+     ║  4.  jotoi.png                                          ║
+     ║  5.  k&h.png                                            ║
+     ║  6.  kulchaking.jpg                                     ║
+     ║  7.  neoterra.png                                       ║
+     ║  8.  om_computers.jpg                                   ║
+     ║  9.  owl_cafe.png                                       ║
+     ║  10. pay10.jpg                                          ║
+     ║  11. shiva_computers.jpg                                ║
+     ║  12. siraj_finance.jpg                                  ║
+     ║  13. yastakaful.jpg                                     ║
+     ║                                                          ║
+     ║  NOTE: If a logo file is missing, its name will         ║
+     ║  show as text automatically (no broken images).         ║
+     ╚══════════════════════════════════════════════════════════╝
+============================================================= -->
+<section style="background:#ffffff; border-top:2px solid #e5e7eb; padding:56px 0 40px;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section heading -->
+        <div style="text-align:center; margin-bottom:32px;">
+            <span class="section-tag" style="color:#003399; display:block; margin-bottom:6px;">Supporting Desert Cubs</span>
+            <h3 style="font-family:'Teko',sans-serif; font-weight:700; font-size:2rem;
+                       color:#003399; text-transform:uppercase; line-height:1;">
+                Partners & Sponsors
+            </h3>
+            <div class="gold-bar" style="margin:10px auto 0;"></div>
+        </div>
+
+        <!-- SCROLLING LOGO MARQUEE -->
+        <div style="overflow:hidden; position:relative; margin-bottom:32px;">
+            <!-- Fade edges left -->
+            <div style="position:absolute; left:0; top:0; bottom:0; width:70px; z-index:2;
+                        background:linear-gradient(to right, #ffffff, transparent); pointer-events:none;"></div>
+            <!-- Fade edges right -->
+            <div style="position:absolute; right:0; top:0; bottom:0; width:70px; z-index:2;
+                        background:linear-gradient(to left, #ffffff, transparent); pointer-events:none;"></div>
+
+            <div class="marquee-track">
+                {% set sponsors = [
+                    {'file': 'dubai_duty_free.jpg',  'name': 'Dubai Duty Free'},
+                    {'file': 'hj_unicare.png',       'name': 'HJ Unicare'},
+                    {'file': 'home_center.png',      'name': 'Home Center'},
+                    {'file': 'jotoi.png',            'name': 'Jotoi'},
+                    {'file': 'k&h.png',              'name': 'K&H'},
+                    {'file': 'kulchaking.jpg',       'name': 'Kulcha King'},
+                    {'file': 'neoterra.png',         'name': 'Neoterra'},
+                    {'file': 'om_computers.jpg',     'name': 'OM Computers'},
+                    {'file': 'owl_cafe.png',         'name': 'Owl Cafe'},
+                    {'file': 'pay10.jpg',            'name': 'Pay10'},
+                    {'file': 'shiva_computers.jpg',  'name': 'Shiva Computers'},
+                    {'file': 'siraj_finance.jpg',    'name': 'Siraj Finance'},
+                    {'file': 'yastakaful.jpg',       'name': 'Yastakaful'},
+                    {'file': 'dubai_duty_free.jpg',  'name': 'Dubai Duty Free'},
+                    {'file': 'hj_unicare.png',       'name': 'HJ Unicare'},
+                    {'file': 'home_center.png',      'name': 'Home Center'},
+                    {'file': 'jotoi.png',            'name': 'Jotoi'},
+                    {'file': 'k&h.png',              'name': 'K&H'},
+                    {'file': 'kulchaking.jpg',       'name': 'Kulcha King'},
+                    {'file': 'neoterra.png',         'name': 'Neoterra'},
+                    {'file': 'om_computers.jpg',     'name': 'OM Computers'},
+                    {'file': 'owl_cafe.png',         'name': 'Owl Cafe'},
+                    {'file': 'pay10.jpg',            'name': 'Pay10'},
+                    {'file': 'shiva_computers.jpg',  'name': 'Shiva Computers'},
+                    {'file': 'siraj_finance.jpg',    'name': 'Siraj Finance'},
+                    {'file': 'yastakaful.jpg',       'name': 'Yastakaful'},
+                ] %}
+                {% for s in sponsors %}
+                <div style="flex-shrink:0; margin:0 16px; width:140px; height:76px;
+                            background:#f8fafc; border:1.5px solid #e5e7eb; border-radius:12px;
+                            padding:10px 14px; display:flex; align-items:center; justify-content:center;
+                            transition:all 0.25s; cursor:default;"
+                     title="{{ s.name }}"
+                     onmouseover="this.style.borderColor='#FFCC00'; this.style.boxShadow='0 4px 16px rgba(255,204,0,0.25)'; this.style.background='#fffde7';"
+                     onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='#f8fafc';">
+                    <img src="{{ url_for('static', filename='img/sponsors/' + s.file) }}"
+                         alt="{{ s.name }} — Desert Cubs Cricket Academy sponsor UAE"
+                         style="max-width:110px; max-height:52px; width:auto; height:auto; object-fit:contain;"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <!-- Fallback: shows sponsor name as text if image missing -->
+                    <span style="display:none; align-items:center; justify-content:center;
+                                 font-family:'Nunito',sans-serif; font-weight:900; font-size:0.65rem;
+                                 color:#003399; text-transform:uppercase; text-align:center;
+                                 letter-spacing:0.05em; line-height:1.3;">
+                        {{ s.name }}
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- TRAINING VENUE PARTNERS (the 6 schools) -->
+        <div style="background:#f0f5ff; border:1.5px solid #c7d4f5; border-radius:16px; padding:20px 24px; margin-bottom:20px;">
+            <p style="font-family:'Nunito',sans-serif; font-weight:900; font-size:0.7rem;
+                      letter-spacing:0.22em; text-transform:uppercase; color:#003399;
+                      text-align:center; margin-bottom:14px;">
+                <i class="fas fa-school" style="color:#FFCC00; margin-right:6px;"></i>
+                Training Venue Partners
+            </p>
+            <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
+                {% for code, name, area in [
+                    ('SES', 'Sharjah English School',  'Sharjah'),
+                    ('DPS', 'Delhi Private School',    'Jebel Ali'),
+                    ('DIS', 'Deira Intl. School',      'Festival City'),
+                    ('SIS', 'Star Intl. School',       'Al Qusais'),
+                    ('AIS', 'Apple Intl. School',      'Al Karama'),
+                    ('BSA', 'Baseline Sports Academy', 'DIP'),
+                ] %}
+                <div style="display:flex; align-items:center; gap:8px;
+                            background:#ffffff; border:1.5px solid #c7d4f5;
+                            border-radius:999px; padding:6px 14px 6px 8px;">
+                    <span style="background:#003399; color:#FFCC00; font-family:'Nunito',sans-serif;
+                                 font-weight:900; font-size:0.65rem; padding:2px 9px;
+                                 border-radius:999px; letter-spacing:0.04em;">{{ code }}</span>
+                    <span style="font-family:'Nunito',sans-serif; font-weight:700;
+                                 font-size:0.8rem; color:#003399;">{{ name }}</span>
+                    <span style="font-size:0.72rem; color:#64748b;">· {{ area }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- CRICKET AFFILIATIONS -->
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:10px; margin-bottom:16px;">
+            <span style="font-family:'Nunito',sans-serif; font-weight:800; font-size:0.72rem;
+                         color:#64748b; text-transform:uppercase; letter-spacing:0.1em;">
+                Official Affiliations:
+            </span>
+            {% for body, full in [
+                ('ECB',  'Emirates Cricket Board'),
+                ('ICC',  'International Cricket Council'),
+                ('GCCA', 'Gulf Cricket Council for Academies'),
+            ] %}
+            <div title="{{ full }}"
+                 style="display:flex; align-items:center; gap:6px;
+                         background:#ffffff; border:1.5px solid #e5e7eb;
+                         border-radius:999px; padding:5px 14px;
+                         cursor:default; transition:all 0.2s;"
+                 onmouseover="this.style.borderColor='#FFCC00'; this.style.background='#fffde7';"
+                 onmouseout="this.style.borderColor='#e5e7eb'; this.style.background='#ffffff';">
+                <span style="background:#003399; color:#FFCC00; font-family:'Nunito',sans-serif;
+                             font-weight:900; font-size:0.65rem; padding:2px 8px;
+                             border-radius:999px;">{{ body }}</span>
+                <span style="font-family:'Nunito',sans-serif; font-weight:700;
+                             font-size:0.75rem; color:#374151;">{{ full }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Sponsor CTA -->
+        <p style="text-align:center; font-family:'Nunito',sans-serif; font-size:0.78rem;
+                  color:#94a3b8; font-weight:600;">
+            Become a sponsor →
+            <a href="mailto:admin@desertcubs.com" style="color:#003399; font-weight:900; text-decoration:none;" onmouseover="this.style.color='#e6b800'" onmouseout="this.style.color='#003399'">
+                admin@desertcubs.com
+            </a>
+        </p>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+============================================================= -->
+<footer style="background:#001045; color:#94a3b8; border-top:3px solid #FFCC00;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+            <!-- Brand column -->
+            <div class="lg:col-span-2">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+                    <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}"
+                         alt="Desert Cubs Cricket Academy"
+                         style="width:50px; height:50px; object-fit:contain;">
+                    <div>
+                        <span style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.5rem;
+                                     color:#ffffff; text-transform:uppercase; display:block; line-height:1;">
+                            Desert Cubs</span>
+                        <span style="font-family:'Nunito',sans-serif; font-weight:800; font-size:0.58rem;
+                                     color:#FFCC00; text-transform:uppercase; letter-spacing:0.2em;">
+                            Legends of the Future</span>
+                    </div>
+                </div>
+                <p style="font-size:0.88rem; line-height:1.75; max-width:290px; color:#94a3b8; margin-bottom:14px;">
+                    UAE's premier junior cricket academy since 2007. Building champions at 6 world-class 
+                    centres in Dubai & Sharjah. 15,000+ alumni trained.
+                </p>
+                <p style="font-size:0.75rem; color:#64748b; margin-bottom:14px;">Est. 2007 · ECB Affiliated · GCCA Member</p>
+                <div style="display:flex; gap:10px;">
+                    {% for href, icon, label in [
+                        ('https://www.facebook.com/desertcubs', 'fab fa-facebook-f', 'Facebook'),
+                        ('https://www.instagram.com/desertcubscricket', 'fab fa-instagram', 'Instagram'),
+                        ('https://www.youtube.com/@desertcubs', 'fab fa-youtube', 'YouTube'),
+                        ('https://wa.me/971588274266', 'fab fa-whatsapp', 'WhatsApp'),
+                    ] %}
+                    <a href="{{ href }}" target="_blank" rel="noopener" aria-label="{{ label }}"
+                       style="width:38px; height:38px; border:1.5px solid rgba(255,255,255,0.12);
+                              border-radius:50%; display:flex; align-items:center; justify-content:center;
+                              color:#94a3b8; text-decoration:none; transition:all 0.25s;"
+                       onmouseover="this.style.background='#FFCC00'; this.style.borderColor='#FFCC00'; this.style.color='#001f66';"
+                       onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(255,255,255,0.12)'; this.style.color='#94a3b8';">
+                        <i class="{{ icon }}" style="font-size:0.85rem;"></i>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Quick links -->
+            <div>
+                <h4 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.15rem;
+                            color:#ffffff; text-transform:uppercase; margin-bottom:16px; letter-spacing:0.05em;">
+                    Quick Links</h4>
+                <ul style="list-style:none; padding:0; margin:0;">
+                    {% for href, label in [
+                        ('/', 'Home'),
+                        ('/#branches', 'Our Locations'),
+                        ('/tournaments', 'Season Calendar'),
+                        ('/events', 'Master Classes'),
+                        ('/tours', 'International Tours'),
+                        ('/blog', 'Cricket Tips & Blog'),
+                    ] %}
+                    <li style="margin-bottom:9px;">
+                        <a href="{{ href }}"
+                           style="color:#94a3b8; text-decoration:none; font-size:0.88rem; font-weight:700;
+                                  display:flex; align-items:center; gap:7px; transition:color 0.2s;
+                                  font-family:'Nunito',sans-serif;"
+                           onmouseover="this.style.color='#FFCC00'" onmouseout="this.style.color='#94a3b8'">
+                            <i class="fas fa-chevron-right" style="font-size:0.6rem; color:#FFCC00; opacity:0.6;"></i>
+                            {{ label }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.15rem;
+                            color:#ffffff; text-transform:uppercase; margin-bottom:16px; letter-spacing:0.05em;">
+                    Contact Us</h4>
+                <ul style="list-style:none; padding:0; margin:0;">
+                    <li style="margin-bottom:12px; display:flex; gap:10px; align-items:flex-start;">
+                        <i class="fas fa-phone" style="color:#FFCC00; margin-top:3px; flex-shrink:0;"></i>
+                        <div>
+                            <a href="tel:+971588274266"
+                               style="color:#cbd5e1; text-decoration:none; font-size:0.9rem; font-weight:700; display:block; font-family:'Nunito',sans-serif;"
+                               onmouseover="this.style.color='#FFCC00'" onmouseout="this.style.color='#cbd5e1'">
+                                +971 58 827 4266
+                            </a>
+                            <span style="font-size:0.7rem; color:#64748b; font-family:'Nunito',sans-serif;">Academy Hotline</span>
+                        </div>
+                    </li>
+                    <li style="margin-bottom:12px; display:flex; gap:10px; align-items:flex-start;">
+                        <i class="fas fa-envelope" style="color:#FFCC00; margin-top:3px; flex-shrink:0;"></i>
+                        <div>
+                            <a href="mailto:info@desertcubs.com" style="color:#cbd5e1; text-decoration:none; font-size:0.88rem; font-weight:700; display:block; font-family:'Nunito',sans-serif;" onmouseover="this.style.color='#FFCC00'" onmouseout="this.style.color='#cbd5e1'">
+                            info@desertcubs.com
+                        </a>
+                        <a href="mailto:admin@desertcubs.com" style="color:#cbd5e1; text-decoration:none; font-size:0.88rem; font-weight:700; display:block; font-family:'Nunito',sans-serif;" onmouseover="this.style.color='#FFCC00'" onmouseout="this.style.color='#cbd5e1'">
+                            admin@desertcubs.com
+                        </a>
+                        </div>
+                    </li>
+                    <li style="display:flex; gap:10px; align-items:flex-start;">
+                        <i class="fas fa-map-marker-alt" style="color:#FFCC00; margin-top:3px; flex-shrink:0;"></i>
+                        <span style="color:#cbd5e1; font-size:0.88rem; font-weight:700; font-family:'Nunito',sans-serif;">
+                            Sharjah & Dubai, UAE<br>
+                            <span style="font-size:0.72rem; color:#64748b;">6 Training Centres</span>
+                        </span>
+                    </li>
+                </ul>
+                <a href="tel:+971588274266" class="btn-gold"
+                   style="margin-top:16px; width:100%; justify-content:center; font-size:0.82rem; padding:10px 20px;">
+                    <i class="fas fa-user-plus" style="font-size:0.78rem;"></i>Enroll Your Child
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div style="border-top:1px solid rgba(255,255,255,0.07); padding-top:22px;
+                    display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center;">
+            <p style="font-size:0.8rem; color:#64748b; font-family:'Nunito',sans-serif; font-weight:600;">
+                &copy; 2026 Desert Cubs Cricket Academy. All rights reserved.
+            </p>
+            <p style="font-size:0.75rem; color:#475569; font-family:'Nunito',sans-serif; display:flex; align-items:center; gap:6px;">
+                <i class="fas fa-shield-halved" style="color:#FFCC00;"></i>
+                UAE's Most Trusted Junior Cricket Academy Since 2007
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ============================================================
+     WHATSAPP FLOATING BUTTON
+============================================================= -->
+<a href="https://wa.me/971588274266?text=Hello%20Desert%20Cubs!%20I%20am%20interested%20in%20enrolling%20my%20child."
+   target="_blank" rel="noopener"
+   class="whatsapp-float"
+   aria-label="Chat with Desert Cubs on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+
+<!-- ============================================================
+     GALLERY MODAL
+============================================================= -->
+<div id="galleryModal" class="modal-overlay">
+    <button onclick="closeGallery()"
+            style="position:absolute; top:18px; right:18px; background:none; border:none;
+                   color:#ffffff; font-size:1.8rem; cursor:pointer; z-index:10;" aria-label="Close gallery">
+        <i class="fas fa-times"></i>
+    </button>
+    <button onclick="changeImage(-1)"
+            style="position:absolute; left:14px; top:50%; transform:translateY(-50%);
+                   background:rgba(255,255,255,0.12); border:none; color:#ffffff; font-size:1.5rem;
+                   cursor:pointer; z-index:10; padding:12px 16px; border-radius:8px; transition:background 0.2s;"
+            onmouseover="this.style.background='rgba(255,204,0,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'"
+            aria-label="Previous image">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+    <div style="max-width:900px; max-height:90vh; padding:12px; display:flex; align-items:center;">
+        <img id="galleryImage" src="" alt="Gallery photo"
+             style="max-height:86vh; max-width:100%; object-fit:contain; border-radius:12px; box-shadow:0 8px 40px rgba(0,0,0,0.6);">
+    </div>
+    <button onclick="changeImage(1)"
+            style="position:absolute; right:14px; top:50%; transform:translateY(-50%);
+                   background:rgba(255,255,255,0.12); border:none; color:#ffffff; font-size:1.5rem;
+                   cursor:pointer; z-index:10; padding:12px 16px; border-radius:8px; transition:background 0.2s;"
+            onmouseover="this.style.background='rgba(255,204,0,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'"
+            aria-label="Next image">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+    <div id="galleryCounter"
+         style="position:absolute; bottom:18px; color:#9ca3af; font-family:'Nunito',sans-serif; font-size:0.85rem;"></div>
+</div>
+
+<!-- PHOTO MODAL (coach / single photo) -->
+<div id="photoModal" class="modal-overlay" onclick="closeModal()">
+    <div style="position:relative; max-width:420px; width:90%; margin:20px;"
+         onclick="event.stopPropagation()">
+        <button onclick="closeModal()"
+                style="position:absolute; top:-14px; right:-14px; width:32px; height:32px;
+                       background:#FFCC00; color:#001f66; border:none; border-radius:50%;
+                       cursor:pointer; font-size:0.88rem; font-weight:900; z-index:10; display:flex; align-items:center; justify-content:center;">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="modalImage" src="" alt=""
+             style="width:100%; border-radius:16px; box-shadow:0 16px 50px rgba(0,0,0,0.6);">
+        <p id="modalCaption"
+           style="text-align:center; color:#ffffff; font-family:'Teko',sans-serif;
+                  font-size:1.4rem; font-weight:700; text-transform:uppercase; margin-top:10px;"></p>
+    </div>
+</div>
+
+<!-- SCHEDULE MODAL -->
+<div id="scheduleModal" class="modal-overlay" onclick="closeSchedule()">
+    <div style="position:relative; max-width:700px; width:92%; margin:20px;"
+         onclick="event.stopPropagation()">
+        <button onclick="closeSchedule()"
+                style="position:absolute; top:-14px; right:-14px; width:32px; height:32px;
+                       background:#FFCC00; color:#001f66; border:none; border-radius:50%;
+                       cursor:pointer; font-size:0.88rem; font-weight:900; z-index:10; display:flex; align-items:center; justify-content:center;">
+            <i class="fas fa-times"></i>
+        </button>
+        <p id="scheduleTitle"
+           style="text-align:center; color:#ffffff; font-family:'Teko',sans-serif;
+                  font-size:1.3rem; font-weight:700; text-transform:uppercase; margin-bottom:10px;"></p>
+        <img id="scheduleImage" src="" alt="Training Schedule"
+             style="width:100%; border-radius:16px; box-shadow:0 16px 50px rgba(0,0,0,0.6);">
+    </div>
+</div>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================= -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script>
+/* ── Mobile menu ── */
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu    = document.getElementById('mobileMenu');
+const menuIcon      = document.getElementById('menuIcon');
+mobileMenuBtn.addEventListener('click', () => {
+    const opening = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    menuIcon.className = opening ? 'fas fa-times' : 'fas fa-bars';
+    menuIcon.style.fontSize = '1.5rem';
+});
+// Close menu when a link inside it is clicked
+mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.className = 'fas fa-bars';
+    });
+});
+
+/* ── Nav shadow on scroll ── */
+window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').style.boxShadow =
+        window.scrollY > 30 ? '0 4px 30px rgba(0,0,0,0.5)' : '0 2px 12px rgba(0,0,0,0.3)';
+}, { passive: true });
+
+/* ── Active nav link ── */
+const curPath = window.location.pathname;
+document.querySelectorAll('.nav-link').forEach(link => {
+    if (link.getAttribute('href') === curPath) link.classList.add('active');
+});
+
+/* ── Scroll-fade animations (IntersectionObserver) ── */
+const sfObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); sfObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.scroll-fade').forEach(el => sfObs.observe(el));
+
+/* ── Gallery ── */
+let _imgs = [], _idx = 0;
+function openGallery(folder, prefix, count) {
+    _imgs = [];
+    for (let i = 1; i <= count; i++) _imgs.push('/static/img/' + folder + '/' + prefix + i + '.jpg');
+    if (!_imgs.length) return;
+    _idx = 0;
+    _showGalleryImg();
+    document.getElementById('galleryModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function _showGalleryImg() {
+    document.getElementById('galleryImage').src = _imgs[_idx];
+    document.getElementById('galleryCounter').textContent = (_idx + 1) + ' / ' + _imgs.length;
+}
+function changeImage(d) {
+    _idx = (_idx + d + _imgs.length) % _imgs.length;
+    _showGalleryImg();
+}
+function closeGallery() {
+    document.getElementById('galleryModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+/* ── Photo modal ── */
+function openModal(src, caption) {
+    document.getElementById('modalImage').src = src;
+    document.getElementById('modalCaption').textContent = caption || '';
+    document.getElementById('photoModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+    document.getElementById('photoModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+/* ── Schedule modal ── */
+function openSchedule(src, name) {
+    document.getElementById('scheduleImage').src = src;
+    document.getElementById('scheduleTitle').textContent = name ? name + ' - Schedule' : 'Schedule';
+    document.getElementById('scheduleModal').classList.add('active');
+    document.body.style.overflow = 'hidden'; // Stops the background from scrolling
+}
+
+function closeSchedule() {
+    document.getElementById('scheduleModal').classList.remove('active');
+    document.body.style.overflow = ''; // Restores background scrolling
+}
+</script>
+
 </body>
 </html>

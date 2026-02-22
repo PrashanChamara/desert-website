@@ -1,98 +1,381 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="bg-gradient-to-r from-gray-900 to-cubs-blue pt-32 pb-16 text-center">
-    <h1 class="font-display text-5xl font-bold text-white mb-4 uppercase">Legends & <span class="text-cubs-gold">Events</span></h1>
-    <p class="text-gray-300 text-xl max-w-2xl mx-auto">From Master Classes with World Cup winners to our annual community celebrations.</p>
+
+<!-- ============================================================
+     HERO SECTION
+============================================================= -->
+<section class="relative bg-cubs-blue overflow-hidden py-28 text-center">
+    <div class="absolute inset-0 cricket-field-pattern opacity-40"></div>
+
+    <!-- Animated background circles -->
+    <div class="absolute top-8 right-[15%] w-40 h-40 border border-cubs-gold/15 rounded-full animate-spin" style="animation-duration:30s;"></div>
+    <div class="absolute bottom-8 left-[10%] w-24 h-24 border border-white/10 rounded-full animate-spin" style="animation-duration:20s; animation-direction:reverse;"></div>
+
+    <!-- Logo watermark -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 opacity-5 pointer-events-none">
+        <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}" alt="" class="w-full h-full object-contain">
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4">
+        <!-- Breadcrumb -->
+        <nav class="flex justify-center items-center gap-2 text-xs text-gray-400 mb-6">
+            <a href="/" class="hover:text-cubs-gold transition-colors">Home</a>
+            <i class="fas fa-chevron-right text-gray-600 text-[10px]"></i>
+            <span class="text-cubs-gold">Events & Legends</span>
+        </nav>
+
+        <p class="section-tag mb-3">World-Class Learning</p>
+        <h1 class="font-display text-5xl md:text-7xl font-black text-white uppercase leading-none mb-4">
+            Events & <span class="text-cubs-gold">Legends</span>
+        </h1>
+        <p class="text-gray-300 text-lg max-w-xl mx-auto font-light leading-relaxed">
+            Our students don't just train — they learn directly from international cricket legends. 
+            From Jonty Rhodes to Ravichandran Ashwin, we bring the world's best to our cubs.
+        </p>
+
+        <!-- Quick stats -->
+        <div class="flex justify-center gap-8 mt-10 pt-10 border-t border-white/10">
+            <div class="text-center">
+                <p class="font-display text-3xl font-black text-cubs-gold">8+</p>
+                <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">World Legends</p>
+            </div>
+            <div class="text-center">
+                <p class="font-display text-3xl font-black text-cubs-gold">2016</p>
+                <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Program Since</p>
+            </div>
+            <div class="text-center">
+                <p class="font-display text-3xl font-black text-cubs-gold">5,000+</p>
+                <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Students Benefited</p>
+            </div>
+        </div>
+    </div>
 </section>
 
-<section class="py-20 bg-gray-50">
+
+<!-- ============================================================
+     MASTER CLASSES INTRO TEXT (SEO)
+============================================================= -->
+<section class="py-14 bg-white border-b border-gray-100">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <p class="section-tag mb-3">High Performance Programs</p>
+        <h2 class="section-title text-3xl md:text-4xl mb-5">Cricket Legend Master Classes</h2>
+        <div class="gold-bar mx-auto mb-6"></div>
+        <p class="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto">
+            Desert Cubs Cricket Academy has hosted multiple <strong class="text-cubs-blue">High Performance Programs</strong> conducted by 
+            former international cricketers and world-class coaches. These exclusive masterclasses give our junior 
+            cricketers in the UAE a rare opportunity to train alongside some of the greatest names in the sport.
+        </p>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     MASTER CLASS LEGEND CARDS
+============================================================= -->
+<section class="py-20 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-end justify-between mb-12 border-b border-gray-200 pb-4">
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {% for mc in master_classes %}
+            <article class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover group flex flex-col"
+                     itemscope itemtype="https://schema.org/Event">
+                
+                <!-- Card header -->
+                <div class="relative h-32 bg-gradient-to-br from-cubs-blue to-cubs-blue-dark flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 cricket-field-pattern opacity-30"></div>
+
+                    <!-- Cricket ball decoration -->
+                    <div class="absolute top-3 right-3 w-10 h-10 border-2 border-cubs-gold/20 rounded-full group-hover:border-cubs-gold/40 transition-colors"></div>
+                    <div class="absolute bottom-3 left-3 w-6 h-6 border border-white/10 rounded-full"></div>
+
+                    <!-- Country flag emoji based on origin -->
+                    {% set country_map = {
+                        'Marvan Atapattu': '🇱🇰',
+                        'Chaminda Vaas': '🇱🇰',
+                        'Ravichandran Ashwin': '🇮🇳',
+                        'Jonty Rhodes': '🇿🇦',
+                        'Dinesh Karthik': '🇮🇳',
+                        'Dav Whatmore': '🇦🇺',
+                        'Romesh Kaluwitharana': '🇱🇰',
+                        'Rumesh Ratnayake': '🇱🇰'
+                    } %}
+                    <div class="relative z-10 text-center">
+                        <span class="text-4xl block mb-1">{{ country_map.get(mc.legend, '🌍') }}</span>
+                        <span class="text-cubs-gold font-bold text-[10px] uppercase tracking-[0.2em]">{{ mc.date }}</span>
+                    </div>
+                </div>
+
+                <!-- Card body -->
+                <div class="p-5 flex-grow flex flex-col">
+                    <h3 class="font-display text-xl font-black text-cubs-blue uppercase mb-2 leading-tight" itemprop="name">
+                        {{ mc.legend }}
+                    </h3>
+                    <p class="text-gray-500 text-xs leading-relaxed flex-grow" itemprop="description">{{ mc.desc }}</p>
+
+                    <!-- Gallery button if photos exist -->
+                    {% if mc.folder and mc.count > 0 %}
+                    <button onclick="openGallery('{{ mc.folder }}', '{{ mc.prefix }}', {{ mc.count }})"
+                            class="mt-4 btn-gold w-full py-2.5 rounded-full text-xs flex items-center justify-center gap-2">
+                        <i class="fas fa-images"></i> View Photos ({{ mc.count }})
+                    </button>
+                    {% else %}
+                    <div class="mt-4 bg-gray-50 rounded-full py-2.5 text-center text-xs text-gray-400 font-bold border border-gray-200">
+                        <i class="fas fa-clock mr-1.5"></i> Gallery Coming Soon
+                    </div>
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     FEATURED LEGEND SPOTLIGHTS
+     Detailed cards for the major masterclasses
+============================================================= -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+            <p class="section-tag mb-2">In The Spotlight</p>
+            <h2 class="section-title text-3xl md:text-4xl mb-4">Highlight Programs</h2>
+            <div class="gold-bar mx-auto"></div>
+        </div>
+
+        <!-- Jonty Rhodes Feature -->
+        <div class="grid lg:grid-cols-2 gap-10 items-center mb-16 pb-16 border-b border-gray-100">
             <div>
-                <h2 class="font-display text-4xl font-bold text-cubs-blue uppercase">Master Class <span class="text-cubs-gold">Series</span></h2>
-                <p class="text-gray-600 mt-2">Learning from the Icons of the Game.</p>
+                <div class="inline-flex items-center gap-2 bg-cubs-gold/10 border border-cubs-gold/30 rounded-full px-4 py-2 mb-4">
+                    <span class="text-lg">🇿🇦</span>
+                    <span class="text-cubs-blue font-black text-xs uppercase tracking-wider">November 2019 • SES & DPS Centres</span>
+                </div>
+                <h3 class="font-display text-4xl md:text-5xl font-black text-cubs-blue uppercase mb-4 leading-none">
+                    Jonty <span class="text-cubs-gold">Rhodes</span>
+                </h3>
+                <p class="text-gray-500 text-sm font-bold uppercase tracking-wider mb-3">South African Fielding Legend • 3-Day Masterclass</p>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    One of cricket's greatest ever fielders, Jonty Rhodes delivered an unforgettable 3-day masterclass 
+                    at Desert Cubs' SES and DPS centres in November 2019. Hundreds of young cricketers had the privilege 
+                    of learning fielding techniques, athletic movement, and mental toughness directly from the legend himself.
+                </p>
+                <p class="text-gray-600 leading-relaxed mb-6">
+                    The program covered ground fielding, catching drills, relay throws, and the mental discipline 
+                    that made Jonty one of the world's best all-round cricketers.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="bg-slate-100 text-cubs-blue text-xs font-bold px-4 py-2 rounded-full uppercase"><i class="fas fa-running mr-1.5"></i> Fielding Masterclass</span>
+                    <span class="bg-slate-100 text-cubs-blue text-xs font-bold px-4 py-2 rounded-full uppercase"><i class="fas fa-brain mr-1.5"></i> Mental Toughness</span>
+                    <span class="bg-slate-100 text-cubs-blue text-xs font-bold px-4 py-2 rounded-full uppercase"><i class="fas fa-users mr-1.5"></i> SES + DPS Centres</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-3 gap-3">
+                {% for i in range(1, 4) %}
+                <div class="rounded-xl overflow-hidden aspect-square bg-gray-200 group cursor-pointer shadow-sm hover:shadow-lg transition-shadow"
+                     onclick="openGallery('master_class', 'jonty_rhodes', 9)">
+                    <div class="w-full h-full bg-gradient-to-br from-cubs-blue to-cubs-blue-dark flex items-center justify-center group-hover:opacity-80 transition-opacity">
+                        <div class="text-center">
+                            <i class="fas fa-images text-cubs-gold text-2xl block mb-1"></i>
+                            <span class="text-white text-xs font-bold">Photo {{ i }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            {% for item in master_classes %}
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
-                <div class="h-64 bg-gray-800 relative overflow-hidden">
-                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-cubs-blue to-gray-900">
-                        <span class="font-display text-6xl text-white/10 font-bold uppercase">{{ item.legend.split()[0] }}</span>
-                    </div>
-                    {% if item.folder %}
-                    <img src="{{ url_for('static', filename='img/' + item.folder + '/' + item.prefix + '1.jpg') }}" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" alt="{{ item.legend }}">
-                    {% endif %}
-                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent">
-                        <p class="text-cubs-gold text-xs font-bold uppercase tracking-wider">{{ item.date }}</p>
-                        <h3 class="text-white font-display text-2xl font-bold">{{ item.legend }}</h3>
+        <!-- Dinesh Karthik Feature -->
+        <div class="grid lg:grid-cols-2 gap-10 items-center mb-16 pb-16 border-b border-gray-100">
+            <div class="lg:order-2">
+                <div class="inline-flex items-center gap-2 bg-cubs-gold/10 border border-cubs-gold/30 rounded-full px-4 py-2 mb-4">
+                    <span class="text-lg">🇮🇳</span>
+                    <span class="text-cubs-blue font-black text-xs uppercase tracking-wider">October 2021 • DPS Centre</span>
+                </div>
+                <h3 class="font-display text-4xl md:text-5xl font-black text-cubs-blue uppercase mb-4 leading-none">
+                    Dinesh <span class="text-cubs-gold">Karthik</span>
+                </h3>
+                <p class="text-gray-500 text-sm font-bold uppercase tracking-wider mb-3">India's Elite Wicketkeeper-Batsman • 1-Day Program</p>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    Indian international Dinesh Karthik brought his elite wicketkeeping and power-hitting expertise 
+                    to Desert Cubs' DPS centre in October 2021. This exclusive 1-day program gave our students 
+                    direct access to one of India's most skilled specialist batsmen and wicketkeepers.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="bg-slate-100 text-cubs-blue text-xs font-bold px-4 py-2 rounded-full uppercase"><i class="fas fa-hand-paper mr-1.5"></i> Wicketkeeping</span>
+                    <span class="bg-slate-100 text-cubs-blue text-xs font-bold px-4 py-2 rounded-full uppercase"><i class="fas fa-baseball-bat-ball mr-1.5"></i> Power Hitting</span>
+                    <span class="bg-slate-100 text-cubs-blue text-xs font-bold px-4 py-2 rounded-full uppercase"><i class="fas fa-map-marker-alt mr-1.5"></i> DPS Centre</span>
+                </div>
+            </div>
+            <div class="lg:order-1 grid grid-cols-3 gap-3">
+                {% for i in range(1, 4) %}
+                <div class="rounded-xl overflow-hidden aspect-square bg-gray-200 group cursor-pointer shadow-sm hover:shadow-lg transition-shadow">
+                    <div class="w-full h-full bg-gradient-to-br from-cubs-blue-dark to-cubs-blue flex items-center justify-center group-hover:opacity-80 transition-opacity">
+                        <div class="text-center">
+                            <i class="fas fa-images text-cubs-gold text-2xl block mb-1"></i>
+                            <span class="text-white text-xs font-bold">Photo {{ i }}</span>
+                        </div>
                     </div>
                 </div>
-                <div class="p-6">
-                    <p class="text-gray-600 mb-6 min-h-[3rem]">{{ item.desc }}</p>
-                    {% if item.count > 0 %}
-                    <button onclick="openGallery('{{ item.folder }}', '{{ item.prefix }}', {{ item.count }})" class="w-full py-3 border-2 border-cubs-blue text-cubs-blue font-bold uppercase rounded-lg hover:bg-cubs-blue hover:text-white transition-all flex items-center justify-center gap-2">
-                        <i class="fas fa-camera"></i> View Gallery
-                    </button>
-                    {% else %}
-                    <button disabled class="w-full py-3 border border-gray-200 text-gray-400 font-bold uppercase rounded-lg cursor-not-allowed">
-                        Archive Only
-                    </button>
-                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Marvan Atapattu Feature (has actual photos) -->
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+                <div class="inline-flex items-center gap-2 bg-cubs-gold/10 border border-cubs-gold/30 rounded-full px-4 py-2 mb-4">
+                    <span class="text-lg">🇱🇰</span>
+                    <span class="text-cubs-blue font-black text-xs uppercase tracking-wider">September 2022 • Academy Programme</span>
                 </div>
+                <h3 class="font-display text-4xl md:text-5xl font-black text-cubs-blue uppercase mb-4 leading-none">
+                    Marvan <span class="text-cubs-gold">Atapattu</span>
+                </h3>
+                <p class="text-gray-500 text-sm font-bold uppercase tracking-wider mb-3">Former Sri Lanka Captain & Head Coach</p>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    Former Sri Lanka captain and head coach Marvan Atapattu led an intensive technical batting 
+                    masterclass for Desert Cubs players. Known for his technically correct batting and leadership 
+                    of the Sri Lanka national team, Atapattu focused on batting fundamentals, footwork, 
+                    and building match temperament in young cricketers.
+                </p>
+                <button onclick="openGallery('master_class', 'marven_atapattu', 10)"
+                        class="btn-gold px-8 py-3 rounded-full text-sm flex items-center gap-2 w-fit">
+                    <i class="fas fa-images"></i> View All 10 Photos
+                </button>
+            </div>
+            <div class="grid grid-cols-3 gap-3">
+                {% for i in range(1, 7) %}
+                <div class="rounded-xl overflow-hidden aspect-square bg-gray-200 group cursor-pointer shadow-sm hover:shadow-lg transition-all hover:-translate-y-1"
+                     onclick="openGallery('master_class', 'marven_atapattu', 10)">
+                    <img src="{{ url_for('static', filename='img/master_class/marven_atapattu' + i|string + '.jpg') }}"
+                         alt="Marvan Atapattu masterclass at Desert Cubs cricket academy UAE"
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-cubs-blue to-cubs-blue-dark flex items-center justify-center\'><i class=\'fas fa-images text-cubs-gold text-xl\'></i></div>'">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     OTHER LEGENDS STRIP
+============================================================= -->
+<section class="py-16 bg-cubs-blue">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+            <p class="section-tag mb-2">Also Featured</p>
+            <h2 class="section-title light text-3xl md:text-4xl mb-4">More Cricket Legends at Desert Cubs</h2>
+            <div class="gold-bar mx-auto"></div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {% set other_legends = [
+                {'name': 'Chaminda Vaas', 'country': '🇱🇰', 'role': 'Swing Bowling Legend', 'date': 'Feb 2022'},
+                {'name': 'Ravichandran Ashwin', 'country': '🇮🇳', 'role': 'Spin Wizard • World Cup Winner', 'date': 'Nov 2018'},
+                {'name': 'Dav Whatmore', 'country': '🇦🇺', 'role': 'World Cup Winning Coach', 'date': 'Nov 2017'},
+                {'name': 'Romesh Kaluwitharana', 'country': '🇱🇰', 'role': 'World Cup Winner', 'date': 'Mar 2018'},
+                {'name': 'Rumesh Ratnayake', 'country': '🇱🇰', 'role': 'Pace Foundation Expert', 'date': 'Oct 2016'},
+            ] %}
+            {% for legend in other_legends %}
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/10 hover:border-cubs-gold/30 transition-all group cursor-default">
+                <span class="text-3xl block mb-3">{{ legend.country }}</span>
+                <h4 class="font-display font-black text-white text-lg uppercase leading-tight mb-1 group-hover:text-cubs-gold transition-colors">{{ legend.name }}</h4>
+                <p class="text-gray-400 text-xs leading-relaxed">{{ legend.role }}</p>
+                <p class="text-cubs-gold text-[10px] font-bold uppercase tracking-wider mt-2">{{ legend.date }}</p>
             </div>
             {% endfor %}
         </div>
     </div>
 </section>
 
-<section class="py-20 bg-white border-t border-gray-100">
+
+<!-- ============================================================
+     EVENTS SECTION — Annual Sports Day etc
+============================================================= -->
+<section class="py-20 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="font-display text-4xl font-bold text-cubs-blue uppercase mb-12 text-center">Community <span class="text-cubs-gold">Events</span></h2>
-        
+        <div class="text-center mb-14">
+            <p class="section-tag mb-2">Academy Life</p>
+            <h2 class="section-title text-3xl md:text-4xl mb-4">Annual Events</h2>
+            <div class="gold-bar mx-auto mb-4"></div>
+            <p class="text-gray-600 max-w-xl mx-auto">
+                Beyond cricket training — celebrations, awards, and community moments that make Desert Cubs a family.
+            </p>
+        </div>
+
         {% for event in events %}
-        <div class="flex flex-col lg:flex-row gap-12 items-center mb-20">
-            <div class="lg:w-1/2 relative group cursor-pointer" onclick="openGallery('{{ event.folder }}', '{{ event.prefix }}', {{ event.count }})">
-                <div class="absolute inset-0 bg-cubs-gold transform translate-x-3 translate-y-3 rounded-2xl"></div>
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl h-[400px]">
-                    <img src="{{ url_for('static', filename='img/' + event.folder + '/' + event.prefix + '1.jpg') }}" alt="{{ event.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                        <i class="fas fa-play-circle text-6xl text-white/80 group-hover:scale-110 transition-transform"></i>
+        <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 max-w-4xl mx-auto">
+            <!-- Event banner -->
+            <div class="bg-gradient-to-r from-cubs-blue to-cubs-blue-dark p-8 md:p-12 relative overflow-hidden">
+                <div class="absolute inset-0 cricket-field-pattern opacity-30"></div>
+                <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 bg-cubs-gold/20 border border-cubs-gold/30 rounded-full px-4 py-1.5 mb-4">
+                            <i class="fas fa-calendar-star text-cubs-gold text-xs"></i>
+                            <span class="text-cubs-gold font-black text-xs uppercase tracking-wider">{{ event.date }}</span>
+                        </div>
+                        <h3 class="font-display text-3xl md:text-4xl font-black text-white uppercase leading-tight">{{ event.title }}</h3>
                     </div>
+                    {% if event.folder and event.count > 0 %}
+                    <button onclick="openGallery('{{ event.folder }}', '{{ event.prefix }}', {{ event.count }})"
+                            class="btn-gold px-8 py-3 rounded-full text-sm flex items-center gap-2 flex-shrink-0">
+                        <i class="fas fa-images"></i> See Photos
+                    </button>
+                    {% endif %}
                 </div>
             </div>
-            <div class="lg:w-1/2">
-                <div class="inline-block px-4 py-1 bg-cubs-blue text-white text-xs font-bold uppercase rounded-full mb-4">{{ event.date }}</div>
-                <h3 class="font-display text-4xl font-bold text-gray-900 mb-6">{{ event.title }}</h3>
-                <p class="text-gray-600 text-lg leading-relaxed mb-6">{{ event.desc }}</p>
-                
-                <div class="grid grid-cols-2 gap-4 mb-8">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-users text-cubs-gold text-xl"></i>
-                        <span class="font-bold text-gray-700">Parents vs Coaches</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-trophy text-cubs-gold text-xl"></i>
-                        <span class="font-bold text-gray-700">Inter-Branch Cup</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-star text-cubs-gold text-xl"></i>
-                        <span class="font-bold text-gray-700">Got Talent</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-table-tennis text-cubs-gold text-xl"></i>
-                        <span class="font-bold text-gray-700">Badminton</span>
-                    </div>
-                </div>
 
-                <button onclick="openGallery('{{ event.folder }}', '{{ event.prefix }}', {{ event.count }})" class="bg-cubs-gold text-cubs-blue px-8 py-3 rounded-full font-bold uppercase hover:bg-cubs-blue hover:text-white transition-colors shadow-lg">
-                    See Photos
-                </button>
+            <!-- Event details -->
+            <div class="p-8 md:p-12">
+                <p class="text-gray-600 text-lg leading-relaxed mb-8">{{ event.desc }}</p>
+
+                <h4 class="font-display font-black text-cubs-blue uppercase text-lg mb-5">Event Highlights</h4>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {% set highlights = [
+                        {'icon': 'fa-users', 'label': 'Parents vs Coaches'},
+                        {'icon': 'fa-trophy', 'label': 'Inter-Branch Cup'},
+                        {'icon': 'fa-star', 'label': 'Got Talent Show'},
+                        {'icon': 'fa-award', 'label': 'Player Awards Night'},
+                        {'icon': 'fa-table-tennis', 'label': 'Fun Games'},
+                        {'icon': 'fa-utensils', 'label': 'Community Feast'},
+                        {'icon': 'fa-camera', 'label': 'Photo Gallery'},
+                        {'icon': 'fa-music', 'label': 'Entertainment'},
+                    ] %}
+                    {% for h in highlights %}
+                    <div class="flex items-center gap-3 bg-slate-50 rounded-xl p-3 border border-gray-100">
+                        <i class="fas {{ h.icon }} text-cubs-gold text-sm flex-shrink-0 w-4"></i>
+                        <span class="text-sm font-semibold text-gray-700">{{ h.label }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </section>
+
+
+<!-- ============================================================
+     FINAL CTA
+============================================================= -->
+<section class="py-16 bg-cubs-gold">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="font-display text-4xl font-black text-cubs-blue uppercase mb-4">
+            Want Your Child to Train With Legends?
+        </h2>
+        <p class="text-cubs-blue/70 text-lg mb-8 font-semibold">
+            Join Desert Cubs today and be part of our next masterclass program.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="tel:+971588274266" class="btn-blue px-10 py-4 rounded-full text-base flex items-center gap-2">
+                <i class="fas fa-phone"></i> Call +971-58-8274266
+            </a>
+            <a href="/#branches" class="border-2 border-cubs-blue text-cubs-blue px-10 py-4 rounded-full font-display font-black text-base uppercase tracking-wider hover:bg-cubs-blue hover:text-white transition-all flex items-center gap-2">
+                <i class="fas fa-map-marker-alt"></i> Find a Centre
+            </a>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

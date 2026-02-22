@@ -1,45 +1,181 @@
 {% extends "base.html" %}
 
 {% block content %}
-<article class="bg-white min-h-screen pb-20">
-    <div class="relative h-[400px] flex items-center justify-center overflow-hidden bg-gray-900">
-        
-        <div class="absolute inset-0 bg-cover bg-center opacity-50" 
+
+<!-- ============================================================
+     POST HERO / BANNER
+============================================================= -->
+<article itemscope itemtype="https://schema.org/Article">
+
+    <header class="relative min-h-[50vh] flex items-end pb-14 bg-cubs-blue overflow-hidden">
+        <!-- Background image -->
+        <div class="absolute inset-0 bg-cover bg-center"
              style="background-image: url('{{ url_for('static', filename='img/blog/' + slug + '.jpg') }}');">
         </div>
-        
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cubs-blue/50 to-cubs-blue z-10"></div>
-        
-        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto mt-16">
-            <a href="/blog" class="inline-flex items-center text-cubs-gold font-bold uppercase text-sm mb-6 hover:text-white transition-colors">
-                <i class="fas fa-arrow-left mr-2"></i> Back to Insights
-            </a>
-            <h1 class="font-display text-4xl md:text-6xl font-bold text-white leading-tight mb-4 drop-shadow-lg">{{ title }}</h1>
+        <!-- Gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-cubs-blue via-cubs-blue/60 to-cubs-blue/20"></div>
+        <!-- Pattern overlay -->
+        <div class="absolute inset-0 cricket-field-pattern opacity-20"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 w-full">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center gap-2 text-xs text-gray-400 mb-5" aria-label="Breadcrumb">
+                <a href="/" class="hover:text-cubs-gold transition-colors">Home</a>
+                <i class="fas fa-chevron-right text-gray-600 text-[10px]"></i>
+                <a href="/blog" class="hover:text-cubs-gold transition-colors">Blog & Tips</a>
+                <i class="fas fa-chevron-right text-gray-600 text-[10px]"></i>
+                <span class="text-cubs-gold truncate max-w-[200px]">{{ title }}</span>
+            </nav>
+
+            <!-- Category -->
+            <span class="inline-flex items-center gap-2 bg-cubs-gold text-cubs-blue text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-wider mb-4">
+                <i class="fas fa-cricket-bat-ball text-[9px]"></i> Cricket Tips & Insights
+            </span>
+
+            <!-- Title -->
+            <h1 class="font-display text-4xl md:text-6xl font-black text-white uppercase leading-none mb-5 drop-shadow-lg" itemprop="headline">
+                {{ title }}
+            </h1>
+
+            <!-- Meta info -->
+            <div class="flex flex-wrap items-center gap-4 text-sm text-gray-300">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-cubs-gold rounded-full flex items-center justify-center flex-shrink-0">
+                        <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}" alt="" class="w-5 h-5 object-contain">
+                    </div>
+                    <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                        <span itemprop="name" class="font-bold text-white">Desert Cubs Academy Team</span>
+                    </span>
+                </div>
+                <span class="text-gray-500">•</span>
+                <span class="flex items-center gap-1.5">
+                    <i class="fas fa-clock text-cubs-gold text-xs"></i>
+                    <span itemprop="datePublished">{{ slug[:10] if slug | length >= 10 else '' }}</span>
+                </span>
+                <span class="text-gray-500">•</span>
+                <span class="flex items-center gap-1.5 text-xs">
+                    <i class="fas fa-map-marker-alt text-cubs-gold"></i> Desert Cubs UAE
+                </span>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ============================================================
+         ARTICLE CONTENT
+    ============================================================= -->
+    <div class="bg-slate-50 py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            
+            <!-- Main article card -->
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-14 border border-gray-100 -mt-10 relative z-20" itemprop="articleBody">
+                
+                <!-- Divider -->
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="gold-bar"></div>
+                    <span class="text-xs text-gray-400 font-bold uppercase tracking-widest">Desert Cubs Cricket Academy</span>
+                </div>
+
+                <!-- Article body from file -->
+                <div class="prose prose-lg max-w-none 
+                            prose-headings:font-display prose-headings:font-black prose-headings:text-cubs-blue prose-headings:uppercase
+                            prose-a:text-cubs-blue prose-a:font-bold hover:prose-a:text-cubs-gold
+                            prose-strong:text-cubs-blue
+                            prose-p:text-gray-600 prose-p:leading-relaxed
+                            prose-li:text-gray-600
+                            prose-img:rounded-2xl prose-img:shadow-lg">
+                    {{ content | safe }}
+                </div>
+
+                <!-- Share section -->
+                <div class="mt-12 pt-8 border-t border-gray-100">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+                        
+                        <!-- Author card -->
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-cubs-blue rounded-full flex items-center justify-center border-2 border-cubs-gold flex-shrink-0">
+                                <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}" alt="Desert Cubs" class="w-9 h-9 object-contain">
+                            </div>
+                            <div>
+                                <p class="font-display font-black text-cubs-blue text-base uppercase leading-tight">Desert Cubs Academy Team</p>
+                                <p class="text-xs text-gray-400 mt-0.5">UAE's Premier Junior Cricket Academy</p>
+                            </div>
+                        </div>
+
+                        <!-- Share buttons -->
+                        <div>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Share this article:</p>
+                            <div class="flex gap-2">
+                                <a href="https://wa.me/?text={{ title | urlencode }}%20https://www.desertcubs.com/blog/{{ slug }}"
+                                   target="_blank" rel="noopener"
+                                   class="w-9 h-9 bg-green-100 text-green-600 rounded-full flex items-center justify-center hover:bg-green-500 hover:text-white transition-all"
+                                   aria-label="Share on WhatsApp">
+                                    <i class="fab fa-whatsapp text-sm"></i>
+                                </a>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.desertcubs.com/blog/{{ slug }}"
+                                   target="_blank" rel="noopener"
+                                   class="w-9 h-9 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all"
+                                   aria-label="Share on Facebook">
+                                    <i class="fab fa-facebook-f text-sm"></i>
+                                </a>
+                                <a href="https://twitter.com/intent/tweet?text={{ title | urlencode }}&url=https://www.desertcubs.com/blog/{{ slug }}"
+                                   target="_blank" rel="noopener"
+                                   class="w-9 h-9 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center hover:bg-sky-500 hover:text-white transition-all"
+                                   aria-label="Share on Twitter">
+                                    <i class="fab fa-x-twitter text-sm"></i>
+                                </a>
+                                <button onclick="copyLink(this)"
+                                        class="w-9 h-9 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center hover:bg-cubs-gold hover:text-cubs-blue transition-all"
+                                        aria-label="Copy link">
+                                    <i class="fas fa-link text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to blog / CTA row -->
+            <div class="mt-8 grid md:grid-cols-2 gap-6">
+                <a href="/blog" 
+                   class="flex items-center gap-4 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-lg hover:border-cubs-gold/30 transition-all group">
+                    <div class="w-12 h-12 bg-cubs-blue rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-cubs-gold transition-colors">
+                        <i class="fas fa-arrow-left text-white group-hover:text-cubs-blue transition-colors"></i>
+                    </div>
+                    <div>
+                        <p class="font-display font-black text-cubs-blue uppercase text-base leading-none">All Articles</p>
+                        <p class="text-xs text-gray-400 mt-1">Back to the blog</p>
+                    </div>
+                </a>
+                <a href="/#branches"
+                   class="flex items-center gap-4 bg-cubs-blue rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 bg-cubs-gold rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <i class="fas fa-map-marker-alt text-cubs-blue"></i>
+                    </div>
+                    <div>
+                        <p class="font-display font-black text-white uppercase text-base leading-none">Join Desert Cubs</p>
+                        <p class="text-xs text-gray-400 mt-1">Find a training centre near you</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 
-    <div class="max-w-3xl mx-auto px-6 -mt-20 relative z-30">
-        <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-t-4 border-cubs-gold">
-            <div class="prose prose-lg prose-headings:font-display prose-headings:font-bold prose-headings:text-cubs-blue prose-a:text-cubs-gold hover:prose-a:text-cubs-blue max-w-none">
-                {{ content | safe }}
-            </div>
-            
-            <div class="mt-12 pt-8 border-t border-gray-100 flex justify-between items-center">
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center border border-gray-200">
-                        <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}" class="w-8 h-8 object-contain">
-                    </div>
-                    <div>
-                        <p class="font-bold text-cubs-blue text-sm">Desert Cubs Team</p>
-                        <p class="text-xs text-gray-500">Academy Staff</p>
-                    </div>
-                </div>
-                <div class="flex space-x-4">
-                    <button class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></button>
-                    <button class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-600 hover:text-white transition-colors"><i class="fab fa-whatsapp"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
 </article>
+
+<script>
+function copyLink(btn) {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+        const icon = btn.querySelector('i');
+        const original = icon.className;
+        icon.className = 'fas fa-check text-sm';
+        btn.classList.add('bg-green-100', 'text-green-600');
+        setTimeout(() => {
+            icon.className = original;
+            btn.classList.remove('bg-green-100', 'text-green-600');
+        }, 2000);
+    });
+}
+</script>
+
 {% endblock %}
