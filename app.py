@@ -324,18 +324,25 @@ def get_active_tournament():
     return active[0]
 
 
-# ---------------------------------------------------------
-# SEO HELPER — Build page-specific meta
-# ---------------------------------------------------------
-def seo(title, description, keywords=None, canonical=None, og_image=None):
+import json
+
+def get_global_seo():
+    try:
+        with open('content/seo.json', 'r') as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def seo(title=None, description=None, keywords=None, canonical=None, og_image=None):
+    global_seo = get_global_seo()
+    
     return {
-        'title': title,
-        'description': description,
-        'keywords': keywords or 'cricket academy UAE, junior cricket Dubai, cricket coaching Sharjah, kids cricket UAE, Desert Cubs',
+        'title': title or global_seo.get('title', 'Desert Cubs Cricket Academy UAE | Junior Cricket Dubai & Sharjah | Est. 2007'),
+        'description': description or global_seo.get('description', "UAE's largest junior cricket academy. 15,000+ alumni. 6 training centres across Dubai & Sharjah. ICC-certified coaches. Ages 4–19. Enroll today!"),
+        'keywords': keywords or global_seo.get('keywords', 'cricket academy UAE, junior cricket Dubai, cricket coaching Sharjah, kids cricket UAE, Desert Cubs'),
         'canonical': canonical or 'https://www.desertcubs.com',
         'og_image': og_image or 'https://www.desertcubs.com/static/img/Desert_cubs_logo.png'
     }
-
 
 # ---------------------------------------------------------
 # ROUTES
@@ -345,9 +352,6 @@ def seo(title, description, keywords=None, canonical=None, og_image=None):
 def index():
     active_tournament = get_active_tournament()
     meta = seo(
-        title="Desert Cubs Cricket Academy UAE | Junior Cricket Dubai & Sharjah | Est. 2007",
-        description="UAE's largest junior cricket academy. 15,000+ alumni. 6 training centres across Dubai & Sharjah. ICC-certified coaches. Ages 4–19. Enroll today!",
-        keywords="cricket academy UAE, junior cricket Dubai, cricket coaching Sharjah, best cricket academy Dubai, cricket classes for kids UAE, junior cricket academy UAE, cricket training Dubai, kids cricket UAE, youth cricket academy Dubai",
         canonical="https://www.desertcubs.com/"
     )
     return render_template('index.html', meta=meta, branches=BRANCHES, active_tournament=active_tournament, sponsors=SPONSORS, tours=TOURS)
