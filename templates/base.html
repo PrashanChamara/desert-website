@@ -31,16 +31,109 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SportsOrganization",
-      "name": "Desert Cubs Cricket Academy",
-      "url": "https://www.desertcubs.com",
-      "logo": "https://www.desertcubs.com/static/img/Desert_cubs_logo.png",
-      "description": "UAE's largest junior cricket academy. Est 2007. 15,000+ alumni.",
-      "foundingDate": "2007",
-      "telephone": "+971588274266",
-      "email": "info@desertcubs.com",
-      "address": { "@type": "PostalAddress", "addressLocality": "Sharjah", "addressCountry": "AE" },
-      "sport": "Cricket"
+      "@graph": [
+        {
+          "@type": ["SportsOrganization", "LocalBusiness"],
+          "@id": "https://www.desertcubs.com/#organization",
+          "name": "Desert Cubs Cricket Academy",
+          "alternateName": ["Desert Cubs", "Best Cricket Academy UAE", "Best Cricket Academy Dubai"],
+          "url": "https://www.desertcubs.com",
+          "logo": "https://www.desertcubs.com/static/img/Desert_cubs_logo.png",
+          "image": "https://www.desertcubs.com/static/img/Desert_cubs_logo.png",
+          "description": "UAE's best junior cricket academy. Est. 2007. 15,000+ alumni. 6 world-class training centres for UAE junior cricket coaching across Dubai and Sharjah. ICC-certified coaches for ages 4–19.",
+          "foundingDate": "2007",
+          "telephone": "+971588274266",
+          "email": "info@desertcubs.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Maliha Road",
+            "addressLocality": "Sharjah",
+            "addressCountry": "AE"
+          },
+          "areaServed": ["Dubai", "Sharjah", "UAE", "United Arab Emirates"],
+          "sport": "Cricket",
+          "numberOfLocations": 6,
+          "knowsAbout": [
+            "UAE Junior Cricket Coaching",
+            "Sharjah Junior Cricket Coaching",
+            "Advanced Player Analysis Junior Cricket UAE",
+            "UAE National Cricket Player Pathway",
+            "Junior International Cricket Tours",
+            "UAE Summer Camp Cricket",
+            "Junior International Cricket Tournament",
+            "Best Cricket Ground UAE"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Cricket Training Programs",
+            "itemListElement": [
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "UAE Junior Cricket Coaching", "description": "Structured cricket coaching for ages 4–19 across Dubai and Sharjah"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Advanced Player Analysis – Junior Cricket UAE", "description": "Video-based advanced player analysis for junior cricketers in UAE"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "UAE Summer Camp Cricket", "description": "Indoor cricket summer camps at our AC-controlled Baseline Sports Academy facility"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Junior International Cricket Tours", "description": "International cricket tours to UK, Australia, Sri Lanka, and South Africa for junior players"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "UAE National Cricket Player Pathway", "description": "ECB-affiliated pathway programme to develop junior players towards the UAE national cricket team"}}
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/desertcubscricket",
+            "https://www.facebook.com/desertcubs",
+            "https://www.youtube.com/@desertcubs"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is the best cricket academy in UAE?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Desert Cubs Cricket Academy is the best cricket academy in UAE, established in 2007 with 15,000+ alumni and 6 training centres across Dubai and Sharjah. It is an ECB-affiliated, ICC-certified academy offering UAE junior cricket coaching for ages 4–19."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where can I find junior cricket coaching in UAE and Sharjah?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Desert Cubs offers UAE junior cricket coaching and Sharjah junior cricket coaching at 6 locations: Sharjah English School (Maliha Road), Delhi Private School (Jebel Ali), Deira International School (Festival City), Star International School (Al Qusais), Baseline Sports Academy (DIP), and Apple International School (Al Karama)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Desert Cubs offer cricket summer camps in UAE?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes! Desert Cubs runs UAE summer camp cricket sessions at Baseline Sports Academy — our fully air-conditioned indoor cricket facility in Dubai Investment Park. Year-round training is available even during UAE summer months."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How can my child get on the UAE national cricket player pathway?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Desert Cubs is an ECB-affiliated academy and is the official UAE national cricket player pathway provider. Our students compete in the ECB National Junior Tournament and participate in junior international cricket tours to UK, Australia, and Sri Lanka, giving them maximum exposure for national selection."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Which cricket academy runs the most tournaments in UAE?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Desert Cubs runs the most cricket tournaments in UAE — 10 competitions per season including the DC Premier League, ECB National Junior Tournament, Gulf Cup, 4-Nation Junior International Cricket Tournament, DC Winter Cup, and more."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Desert Cubs offer junior international cricket tours?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Desert Cubs organises junior international cricket tours every year. Past tours include UK & Wales, Brisbane Australia, Sri Lanka, and South Africa. The 2026 UK tour is open for registration. Desert Cubs was the first UAE cricket academy to tour Australia."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
 

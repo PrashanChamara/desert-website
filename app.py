@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, abort
 import os
 import math
+import json
+import re
+import hmac
 from datetime import datetime
 
 app = Flask(__name__)
@@ -10,6 +13,7 @@ app = Flask(__name__)
 # ---------------------------------------------------------
 BLOG_DIR = 'content/posts'
 POSTS_PER_PAGE = 6
+WEBHOOK_SECRET = os.environ.get('WEBHOOK_SECRET', '')
 
 # ---------------------------------------------------------
 # DATA: BRANCH NETWORK
@@ -290,6 +294,20 @@ SPONSORS = {
 # HELPER FUNCTIONS
 # ---------------------------------------------------------
 
+def extract_post_meta(content):
+    """Extract SEO metadata embedded by N8N as an HTML comment at the top of the post.
+    N8N writes: <!-- DC_META: {"seo_title":"...","seo_description":"...","blog_title":"..."} -->
+    Returns a dict, or None if no comment found (falls back to slug-derived values).
+    """
+    match = re.search(r'<!--\s*DC_META:\s*(\{.*?\})\s*-->', content, re.DOTALL)
+    if match:
+        try:
+            return json.loads(match.group(1))
+        except (json.JSONDecodeError, ValueError):
+            pass
+    return None
+
+
 def get_blog_posts():
     posts = []
     if not os.path.exists(BLOG_DIR):
@@ -324,14 +342,21 @@ def get_active_tournament():
     return active[0]
 
 
-import json
-
 def get_global_seo():
     try:
-        with open('content/seo.json', 'r') as f:
+        seo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'content', 'seo.json')
+        with open(seo_path, 'r') as f:
             return json.load(f)
     except Exception:
         return {}
+
+
+def verify_webhook(req):
+    """Check X-Webhook-Token header against WEBHOOK_SECRET. Open if no secret configured."""
+    if not WEBHOOK_SECRET:
+        return True
+    token = req.headers.get('X-Webhook-Token', '')
+    return hmac.compare_digest(token, WEBHOOK_SECRET)
 
 def seo(title=None, description=None, keywords=None, canonical=None, og_image=None):
     global_seo = get_global_seo()
@@ -352,6 +377,9 @@ def seo(title=None, description=None, keywords=None, canonical=None, og_image=No
 def index():
     active_tournament = get_active_tournament()
     meta = seo(
+        title="Best Cricket Academy in UAE & Dubai | Desert Cubs | UAE Junior Cricket Coaching | Est. 2007",
+        description="Desert Cubs is the best cricket academy in UAE & Dubai. 15,000+ alumni. 6 training centres across Dubai & Sharjah. ICC-certified coaches. UAE junior cricket coaching for ages 4–19. Enroll today!",
+        keywords="best cricket academy UAE, best cricket academy Dubai, UAE junior cricket coaching, junior cricket Dubai, Sharjah junior cricket coaching, cricket academy UAE, cricket coaching UAE, kids cricket UAE, youth cricket academy Dubai, UAE national cricket player pathway",
         canonical="https://www.desertcubs.com/"
     )
     return render_template('index.html', meta=meta, branches=BRANCHES, active_tournament=active_tournament, sponsors=SPONSORS, tours=TOURS)
@@ -360,9 +388,9 @@ def index():
 @app.route('/tours')
 def tours():
     meta = seo(
-        title="International Cricket Tours | Desert Cubs UAE | UK, Australia, Sri Lanka",
-        description="Desert Cubs junior cricket tours — UK, Australia, Sri Lanka, South Africa. First UAE academy to tour Australia. 2026 UK tour registration open now!",
-        keywords="cricket tour UAE, junior cricket tour Dubai, international cricket UAE, cricket tour UK UAE, cricket academy tour",
+        title="Junior International Cricket Tours UAE | UAE National Cricket Player Pathway | Desert Cubs",
+        description="Desert Cubs runs junior international cricket tours to UK, Australia, Sri Lanka & South Africa. Build your child's UAE national cricket player pathway. First UAE academy to tour Australia. 2026 UK tour open!",
+        keywords="junior international cricket tour UAE, UAE national cricket player pathway, cricket tour UAE, junior cricket tour Dubai, international cricket UAE, cricket tour UK UAE, UAE cricket development pathway, cricket academy tour",
         canonical="https://www.desertcubs.com/tours"
     )
     return render_template('tours.html', meta=meta, tours=TOURS)
@@ -384,9 +412,9 @@ def blog():
     current_posts = all_posts[start:end]
 
     meta = seo(
-        title="Cricket Training Tips & Blog | Desert Cubs Academy UAE",
-        description="Expert cricket coaching tips, nutrition advice, and academy news for junior cricketers and parents in the UAE.",
-        keywords="junior cricket tips UAE, cricket training advice Dubai, cricket nutrition UAE, academy cricket blog",
+        title="UAE Junior Cricket Coaching Tips & Blog | Advanced Player Analysis | Desert Cubs",
+        description="Expert UAE junior cricket coaching tips, advanced player analysis, UAE summer camp cricket guides, batting & bowling advice from ICC-certified coaches. Desert Cubs Academy blog.",
+        keywords="UAE junior cricket coaching, advanced player analysis junior cricket UAE, UAE summer camp cricket, cricket training tips Dubai, junior cricket blog UAE, cricket coaching advice UAE, cricket nutrition UAE",
         canonical="https://www.desertcubs.com/blog"
     )
     return render_template('blog.html', posts=current_posts, meta=meta, current_page=page, total_pages=total_pages, query=query)
@@ -403,13 +431,18 @@ def blog_post(slug):
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    title = safe_slug[11:].replace('-', ' ').title()
+    # Use Gemini-generated SEO metadata if N8N embedded it, else fall back to slug
+    post_meta = extract_post_meta(content)
+    fallback_title = safe_slug[11:].replace('-', ' ').title()
+    display_title = post_meta.get('blog_title', fallback_title) if post_meta else fallback_title
+
     meta = seo(
-        title=f"{title} | Desert Cubs Cricket Blog",
-        description=f"Read: {title} — Cricket training tips and insights from Desert Cubs Academy UAE.",
-        canonical=f"https://www.desertcubs.com/blog/{slug}"
+        title=post_meta.get('seo_title', f"{display_title} | Desert Cubs Cricket Blog") if post_meta else f"{display_title} | Desert Cubs Cricket Blog",
+        description=post_meta.get('seo_description', f"Read: {display_title} — Cricket training tips from Desert Cubs Academy UAE.") if post_meta else f"Read: {display_title} — Cricket training tips from Desert Cubs Academy UAE.",
+        canonical=f"https://www.desertcubs.com/blog/{slug}",
+        og_image=f"https://www.desertcubs.com/static/img/blog/{safe_slug}.jpg"
     )
-    return render_template('post.html', content=content, title=title, meta=meta, slug=slug)
+    return render_template('post.html', content=content, title=display_title, meta=meta, slug=slug)
 
 
 @app.route('/locations/<branch_id>')
@@ -418,10 +451,12 @@ def location_detail(branch_id):
     if branch is None:
         abort(404)
 
+    clean_area = branch['area'].split('(')[0].strip()
+    city = 'Sharjah' if 'Sharjah' in branch['area'] else 'Dubai'
     meta = seo(
-        title=f"Cricket Coaching in {branch['area']} | {branch['name']} | Desert Cubs",
-        description=f"Junior cricket training at {branch['name']}, {branch['area']}. {branch['desc']} Join Desert Cubs today.",
-        keywords=f"cricket coaching {branch['area']}, cricket classes {branch['area']}, {branch['name']} cricket, junior cricket {branch['area']}",
+        title=f"Best Cricket Academy in {city} | {clean_area} Junior Cricket Coaching | {branch['name']}",
+        description=f"Junior cricket training at {branch['name']}, {clean_area}. {branch['desc']} UAE junior cricket coaching for ages 4–19. Enroll at Desert Cubs today.",
+        keywords=f"junior cricket coaching {clean_area}, best cricket academy {city}, cricket classes {clean_area}, {clean_area} cricket coaching, {branch['name']} cricket, best cricket ground UAE, UAE junior cricket coaching, cricket training {city}",
         canonical=f"https://www.desertcubs.com/locations/{branch_id}"
     )
     return render_template('location_detail.html', branch=branch, meta=meta)
@@ -430,9 +465,9 @@ def location_detail(branch_id):
 @app.route('/tournaments')
 def tournaments():
     meta = seo(
-        title="Cricket Tournaments & Season Calendar | Desert Cubs UAE",
-        description="Desert Cubs tournament schedule: DC Premier League, ECB National Junior Tournament, Gulf Cup, and more. Full season September to June.",
-        keywords="junior cricket tournament UAE, cricket league Dubai, ECB tournament UAE, kids cricket competition UAE",
+        title="Most Cricket Tournaments in UAE | Junior International Cricket Tournament | Desert Cubs",
+        description="Desert Cubs runs the most cricket tournaments in UAE — 10 competitions per season. DC Premier League, ECB National Junior Tournament, Gulf Cup, 4-Nation Junior International Cricket Tournament & more.",
+        keywords="most cricket tournaments UAE, junior cricket tournament UAE, junior international cricket tournament UAE, cricket league Dubai, ECB national junior tournament UAE, Gulf Cup cricket UAE, kids cricket competition UAE, cricket season UAE",
         canonical="https://www.desertcubs.com/tournaments"
     )
     return render_template('tournaments.html', meta=meta, tournaments=TOURNAMENTS)
@@ -441,12 +476,77 @@ def tournaments():
 @app.route('/events')
 def events():
     meta = seo(
-        title="Cricket Master Classes & Events | Desert Cubs UAE | Legends Program",
-        description="Desert Cubs hosted world cricket legends: Jonty Rhodes, Marvan Atapattu, Dinesh Karthik, R. Ashwin, Chaminda Vaas. Learn from the best.",
-        keywords="cricket master class UAE, Jonty Rhodes Dubai, cricket legends UAE, cricket events Dubai, junior cricket masterclass",
+        title="Cricket Master Classes & Events UAE | Advanced Player Analysis | Desert Cubs Legends Program",
+        description="Desert Cubs hosted world cricket legends for advanced player analysis sessions: Jonty Rhodes, Marvan Atapattu, Dinesh Karthik, R. Ashwin, Chaminda Vaas. Best cricket coaching in UAE.",
+        keywords="cricket master class UAE, advanced player analysis UAE, cricket legends UAE, Jonty Rhodes Dubai, cricket events Dubai, junior cricket masterclass UAE, best cricket coaching UAE",
         canonical="https://www.desertcubs.com/events"
     )
     return render_template('events.html', meta=meta, master_classes=MASTER_CLASSES, events=EVENTS)
+
+
+# ---------------------------------------------------------
+# N8N WEBHOOK ENDPOINTS
+# Secure with WEBHOOK_SECRET env var (set X-Webhook-Token header in N8N)
+# ---------------------------------------------------------
+
+@app.route('/webhook/update-seo', methods=['POST'])
+def webhook_update_seo():
+    if not verify_webhook(request):
+        abort(403)
+    data = request.get_json(silent=True)
+    if not data:
+        return {'error': 'Invalid JSON'}, 400
+
+    allowed = {'title', 'description', 'keywords'}
+    update = {k: v for k, v in data.items() if k in allowed and isinstance(v, str) and v.strip()}
+    if not update:
+        return {'error': 'No valid fields provided'}, 400
+
+    seo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'content', 'seo.json')
+    try:
+        current = {}
+        if os.path.exists(seo_path):
+            with open(seo_path, 'r') as f:
+                current = json.load(f)
+        current.update(update)
+        with open(seo_path, 'w') as f:
+            json.dump(current, f, indent=2)
+        return {'status': 'ok', 'updated': list(update.keys())}
+    except Exception as e:
+        return {'error': str(e)}, 500
+
+
+@app.route('/webhook/create-blog', methods=['POST'])
+def webhook_create_blog():
+    if not verify_webhook(request):
+        abort(403)
+    data = request.get_json(silent=True)
+    if not data:
+        return {'error': 'Invalid JSON'}, 400
+
+    title = str(data.get('title', '')).strip()
+    content = str(data.get('content', '')).strip()
+    date = str(data.get('date', datetime.now().strftime('%Y-%m-%d'))).strip()
+
+    if not title or not content:
+        return {'error': 'title and content are required'}, 400
+
+    slug_title = re.sub(r'[^a-z0-9\s-]', '', title.lower())
+    slug_title = re.sub(r'\s+', '-', slug_title.strip())
+    slug_title = re.sub(r'-+', '-', slug_title)[:60].rstrip('-')
+    slug = f"{date}_{slug_title}"
+
+    posts_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), BLOG_DIR)
+    filepath = os.path.join(posts_dir, f"{slug}.html")
+
+    if os.path.exists(filepath):
+        return {'error': 'Post already exists', 'slug': slug}, 409
+
+    os.makedirs(posts_dir, exist_ok=True)
+    with open(filepath, 'w', encoding='utf-8') as f:
+        f.write(content)
+
+    return {'status': 'created', 'slug': slug, 'url': f'/blog/{slug}'}, 201
 
 
 # ---------------------------------------------------------
@@ -456,13 +556,15 @@ def events():
 def sitemap():
     pages = [
         ('/', '1.0', 'daily'),
+        ('/blog', '0.9', 'daily'),
         ('/tournaments', '0.8', 'weekly'),
         ('/tours', '0.8', 'monthly'),
         ('/events', '0.8', 'monthly'),
-        ('/blog', '0.9', 'daily'),
     ]
     for branch in BRANCHES:
         pages.append((f'/locations/{branch["id"]}', '0.7', 'monthly'))
+    for post in get_blog_posts():
+        pages.append((f'/blog/{post["slug"]}', '0.6', 'monthly'))
 
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
