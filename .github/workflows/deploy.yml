@@ -1,0 +1,61 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# Desert Cubs – Auto Deploy
+#
+# This workflow runs automatically whenever anything is pushed to the main branch.
+# That includes N8N's weekly automated commits (new blog posts & SEO updates).
+#
+# HOW IT WORKS:
+#   N8N (weekly) → commits to GitHub main → this workflow fires → deploys to server
+#
+# SETUP — add these 3 Secrets in GitHub:
+#   Repository → Settings → Secrets and variables → Actions → New repository secret
+#
+#   SECRET NAME        VALUE
+#   ───────────────    ───────────────────────────────────────────────
+#   SERVER_HOST        Your server IP address or domain (e.g. 123.456.789.0)
+#   SERVER_USER        SSH username (e.g. ubuntu, root, desertcubs)
+#   SERVER_SSH_KEY     Your PRIVATE SSH key (the full text of ~/.ssh/id_rsa)
+#
+# Your server must already have the repo cloned and gunicorn running as a
+# systemd service. Adjust the script section below to match your setup.
+# ──────────────────────────────────────────────────────────────────────────────
+
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: SSH Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host:     ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key:      ${{ secrets.SERVER_SSH_KEY }}
+          port:     22
+          script: |
+            # ── Go to your project folder ──────────────────────────────────
+            # Change this path to wherever your app lives on the server
+            cd ~/desert-website
+
+            # ── Pull the latest changes from GitHub ───────────────────────
+            git pull origin main
+
+            # ── Install any new Python dependencies ───────────────────────
+            pip install -r requirements.txt --quiet
+
+            # ── Restart the gunicorn service ──────────────────────────────
+            # Change 'gunicorn-desertcubs' to the name of your systemd service.
+            # To check your service name, run: sudo systemctl list-units | grep gunicorn
+            sudo systemctl restart gunicorn-desertcubs
+
+            echo "✅ Desert Cubs deployed successfully"
