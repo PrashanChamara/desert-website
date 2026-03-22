@@ -81,6 +81,22 @@
           ]
         },
         {
+          "@type": "WebSite",
+          "@id": "https://www.desertcubs.com/#website",
+          "url": "https://www.desertcubs.com",
+          "name": "Desert Cubs Cricket Academy",
+          "description": "UAE's best junior cricket academy. Est. 2007. 15,000+ alumni. 6 training centres across Dubai & Sharjah.",
+          "inLanguage": "en-AE",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.desertcubs.com/blog?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
           "@type": "FAQPage",
           "mainEntity": [
             {
@@ -347,6 +363,9 @@
 
     <!-- Ahrefs Analytics -->
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="DvhDo4bPmRbzcV8BcJT3Yw" async></script>
+
+    <!-- Page-specific schema (injected by child templates) -->
+    {% block extra_head %}{% endblock %}
 </head>
 
 <body class="bg-slate-50">

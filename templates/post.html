@@ -1,5 +1,60 @@
 {% extends "base.html" %}
 
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "{{ meta.canonical }}#article",
+      "headline": "{{ title }}",
+      "description": "{{ meta.description }}",
+      "image": {
+        "@type": "ImageObject",
+        "url": "{{ meta.og_image }}",
+        "width": 1280,
+        "height": 640
+      },
+      "url": "{{ meta.canonical }}",
+      "datePublished": "{{ slug[:10] if slug|length >= 10 else '' }}",
+      "dateModified": "{{ slug[:10] if slug|length >= 10 else '' }}",
+      "author": {
+        "@type": "Organization",
+        "name": "Desert Cubs Cricket Academy",
+        "url": "https://www.desertcubs.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Desert Cubs Cricket Academy",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.desertcubs.com/static/img/Desert_cubs_logo.png",
+          "width": 200,
+          "height": 200
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ meta.canonical }}"
+      },
+      "isPartOf": {
+        "@id": "https://www.desertcubs.com/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home",        "item": "https://www.desertcubs.com"},
+        {"@type": "ListItem", "position": 2, "name": "Blog & Tips", "item": "https://www.desertcubs.com/blog"},
+        {"@type": "ListItem", "position": 3, "name": "{{ title }}", "item": "{{ meta.canonical }}"}
+      ]
+    }
+  ]
+}
+</script>
+{% endblock %}
+
 {% block content %}
 
 <!-- ============================================================
