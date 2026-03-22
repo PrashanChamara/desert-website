@@ -1,74 +1,87 @@
 {
-  "name": "Desert Cubs – Weekly SEO & Blog Auto-Update",
+  "name": "Desert Cubs – Weekly SEO & Blog Auto-Update (Gemini + Pollinations)",
   "nodes": [
+
     {
       "parameters": {
         "rule": {
-          "interval": [
-            {
-              "field": "cronExpression",
-              "expression": "0 6 * * 1"
-            }
-          ]
+          "interval": [{ "field": "cronExpression", "expression": "0 6 * * 1" }]
         }
       },
       "id": "dc-node-001",
       "name": "Every Monday 6am",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
-      "position": [0, 300],
-      "notes": "Runs every Monday at 6:00 AM. Change the cron expression if you want a different schedule."
+      "position": [0, 400]
     },
 
     {
       "parameters": {
-        "jsCode": "// ─────────────────────────────────────────────────────────────\n// STEP 1: Build the AI prompt\n// Desert Cubs target keywords — update this list whenever\n// you want to shift SEO focus.\n// ─────────────────────────────────────────────────────────────\n\nconst today = new Date();\nconst dateStr = today.toISOString().slice(0, 10);\n\nconst targetKeywords = [\n  'UAE Junior Cricket Coaching',\n  'Sharjah Junior Cricket Coaching',\n  'UAE Summer Camp Cricket',\n  'Best Cricket Academy in UAE',\n  'Best Cricket Academy in Dubai',\n  'UAE National Cricket Player Pathway',\n  'Best Cricket Ground in UAE',\n  'Advanced Player Analysis Junior Cricket UAE',\n  'Junior International Cricket Tournament UAE',\n  'Junior International Cricket Tour UAE',\n  'Most Cricket Tournaments in UAE'\n];\n\n// Pick a different keyword focus each week (cycles through the list)\nconst weekNumber = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));\nconst focusKeyword = targetKeywords[weekNumber % targetKeywords.length];\n\nconst systemPrompt = `You are an expert SEO content writer for Desert Cubs Cricket Academy — UAE's best junior cricket academy at www.desertcubs.com. The academy was founded in 2007, has 15,000+ alumni, and 6 training centres across Dubai and Sharjah with ICC-certified coaches for ages 4–19. Write content that is genuinely helpful to UAE parents and junior cricketers.`;\n\nconst userPrompt = `Today's date: ${dateStr}\\nThis week's focus keyword: \"${focusKeyword}\"\\n\\nWrite a brand new blog post for Desert Cubs Cricket Academy targeting the focus keyword above. The blog must:\\n- Be at least 500 words\\n- Use the focus keyword and related terms naturally throughout\\n- Include practical tips or information that parents/players in UAE will find useful\\n- Mention Desert Cubs Academy naturally (not as spam)\\n- End with a clear call-to-action to enrol or contact Desert Cubs\\n\\nReturn ONLY a valid JSON object with these exact keys (no markdown, no code block, pure JSON):\\n{\\n  \\"seo_keywords\\": [\\"keyword1\\", \\"keyword2\\", \\"keyword3\\", \\"keyword4\\", \\"keyword5\\", \\"keyword6\\", \\"keyword7\\", \\"keyword8\\"],\\n  \\"seo_title\\": \\"SEO page title — include focus keyword — under 70 characters\\",\\n  \\"seo_description\\": \\"Meta description — include focus keyword — under 160 characters\\",\\n  \\"blog_title\\": \\"Engaging readable blog post title\\",\\n  \\"blog_html\\": \\"Full HTML body content using ONLY <h2>, <h3>, <p>, <ul>, <li>, <strong> tags. No <html>, <head>, or <body> wrapper. Minimum 500 words.\\"\\n}`;\n\nconst openaiRequest = {\n  model: 'gpt-4o',\n  response_format: { type: 'json_object' },\n  temperature: 0.8,\n  messages: [\n    { role: 'system', content: systemPrompt },\n    { role: 'user',   content: userPrompt }\n  ]\n};\n\nreturn [{ json: { openaiRequest, focusKeyword, dateStr } }];"
+        "jsCode": "// ── Desert Cubs: Build weekly Gemini prompt ──────────────────────────────\n// Cycles through 11 target keywords so each week focuses on a different one.\n// Edit the list below whenever your SEO strategy changes.\n\nconst today = new Date();\nconst dateStr = today.toISOString().slice(0, 10);\n\nconst TARGET_KEYWORDS = [\n  'UAE Junior Cricket Coaching',\n  'Sharjah Junior Cricket Coaching',\n  'UAE Summer Camp Cricket',\n  'Best Cricket Academy in UAE',\n  'Best Cricket Academy in Dubai',\n  'UAE National Cricket Player Pathway',\n  'Best Cricket Ground in UAE',\n  'Advanced Player Analysis Junior Cricket UAE',\n  'Junior International Cricket Tournament UAE',\n  'Junior International Cricket Tour UAE',\n  'Most Cricket Tournaments in UAE'\n];\n\nconst weekNumber = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));\nconst focusKeyword = TARGET_KEYWORDS[weekNumber % TARGET_KEYWORDS.length];\n\nconst systemPrompt = `You are an expert SEO content writer for Desert Cubs Cricket Academy — UAE's best junior cricket academy at www.desertcubs.com. Founded 2007. 15,000+ alumni. 6 training centres across Dubai and Sharjah. ICC-certified coaches. Ages 4–19. Write content that is genuinely helpful to UAE parents and junior cricketers.`;\n\nconst userPrompt = `Today's date: ${dateStr}\nThis week's SEO focus keyword: \"${focusKeyword}\"\n\nWrite a brand new weekly blog post for Desert Cubs Cricket Academy.\n\nRequirements:\n- Minimum 500 words\n- Use the focus keyword and related terms naturally\n- Include practical tips UAE parents or players will find useful\n- Mention Desert Cubs naturally — not spam\n- End with a clear call-to-action to enrol or contact Desert Cubs\n\nReturn ONLY a valid JSON object (no markdown, no code block, pure JSON) with exactly these keys:\n{\n  \"seo_keywords\": [\"kw1\", \"kw2\", \"kw3\", \"kw4\", \"kw5\", \"kw6\", \"kw7\", \"kw8\"],\n  \"seo_title\": \"SEO page title with focus keyword — under 70 characters\",\n  \"seo_description\": \"Meta description with focus keyword — under 160 characters\",\n  \"blog_title\": \"Engaging, readable blog post title\",\n  \"image_prompt\": \"Realistic photography prompt for a wide banner image — describe the cricket scene in UAE (children training, academy setting, desert light). NO text or logos in image.\",\n  \"blog_html\": \"Full HTML body content using ONLY h2, h3, p, ul, li, strong tags. No html/head/body wrapper. Minimum 500 words.\"\n}`;\n\nconst geminiRequest = {\n  system_instruction: { parts: [{ text: systemPrompt }] },\n  contents: [{ role: 'user', parts: [{ text: userPrompt }] }],\n  generationConfig: { responseMimeType: 'application/json' }\n};\n\nreturn [{ json: { geminiRequest, focusKeyword, dateStr } }];"
       },
       "id": "dc-node-002",
-      "name": "Build AI Prompt",
+      "name": "Build Gemini Prompt",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [220, 300]
+      "position": [220, 400]
     },
 
     {
       "parameters": {
         "method": "POST",
-        "url": "https://api.openai.com/v1/chat/completions",
+        "url": "={{ 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + $vars.GEMINI_API_KEY }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            {
-              "name": "Authorization",
-              "value": "={{ 'Bearer ' + $vars.OPENAI_API_KEY }}"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            }
+            { "name": "Content-Type", "value": "application/json" }
           ]
         },
         "sendBody": true,
         "specifyBody": "string",
-        "body": "={{ JSON.stringify($('Build AI Prompt').first().json.openaiRequest) }}"
+        "body": "={{ JSON.stringify($('Build Gemini Prompt').first().json.geminiRequest) }}",
+        "options": {
+          "timeout": 60000
+        }
       },
       "id": "dc-node-003",
-      "name": "OpenAI – Generate Blog & Keywords",
+      "name": "Gemini 2.5 Flash – Generate Content",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
-      "position": [440, 300],
-      "notes": "Calls OpenAI GPT-4o. Requires OPENAI_API_KEY set in N8N Settings → Variables."
+      "position": [440, 400],
+      "notes": "Uses Gemini 2.5 Flash. Requires GEMINI_API_KEY in N8N Settings → Variables. Free tier: 1000 requests/month."
     },
 
     {
       "parameters": {
-        "jsCode": "// ─────────────────────────────────────────────────────────────\n// STEP 2: Parse AI response & prepare GitHub file payloads\n// ─────────────────────────────────────────────────────────────\n\nconst aiResponse = $input.first().json;\nconst buildStep  = $('Build AI Prompt').first().json;\n\n// Parse the JSON returned by OpenAI\nlet parsed;\ntry {\n  parsed = JSON.parse(aiResponse.choices[0].message.content);\n} catch(e) {\n  throw new Error('OpenAI did not return valid JSON. Response: ' +\n    aiResponse.choices[0].message.content.slice(0, 300));\n}\n\n// ── Validate required fields ──\nconst required = ['seo_keywords', 'seo_title', 'seo_description', 'blog_title', 'blog_html'];\nfor (const field of required) {\n  if (!parsed[field]) throw new Error(`AI response missing field: ${field}`);\n}\n\n// ── Build filename: YYYY-MM-DD_slug-title.html ──\nconst slug = parsed.blog_title\n  .toLowerCase()\n  .replace(/[^a-z0-9\\s-]/g, '')\n  .trim()\n  .replace(/\\s+/g, '-')\n  .replace(/-+/g, '-')\n  .slice(0, 60)\n  .replace(/-$/g, '');\nconst filename = `${buildStep.dateStr}_${slug}.html`;\n\n// ── Build updated seo.json content ──\nconst seoData = JSON.stringify({\n  title:       parsed.seo_title,\n  description: parsed.seo_description,\n  keywords:    Array.isArray(parsed.seo_keywords)\n               ? parsed.seo_keywords.join(', ')\n               : parsed.seo_keywords\n}, null, 2);\n\n// ── Base64 encode for GitHub API ──\nconst blogBase64 = Buffer.from(parsed.blog_html, 'utf-8').toString('base64');\nconst seoBase64  = Buffer.from(seoData, 'utf-8').toString('base64');\n\nreturn [{\n  json: {\n    filename,\n    blogBase64,\n    seoBase64,\n    blogTitle:     parsed.blog_title,\n    focusKeyword:  buildStep.focusKeyword,\n    dateStr:       buildStep.dateStr,\n    commitBlog:    `auto(n8n): new blog – ${parsed.blog_title}`,\n    commitSeo:     `auto(n8n): update SEO keywords ${buildStep.dateStr} – ${buildStep.focusKeyword}`\n  }\n}];"
+        "jsCode": "// ── Parse Gemini response & prepare all file payloads ────────────────────\nconst geminiResponse = $input.first().json;\nconst buildStep = $('Build Gemini Prompt').first().json;\n\n// Gemini returns: candidates[0].content.parts[0].text\nlet parsed;\ntry {\n  const rawText = geminiResponse.candidates[0].content.parts[0].text;\n  parsed = JSON.parse(rawText);\n} catch(e) {\n  throw new Error('Failed to parse Gemini JSON response: ' +\n    JSON.stringify(geminiResponse).slice(0, 400));\n}\n\n// Validate all required fields exist\nconst REQUIRED = ['seo_keywords', 'seo_title', 'seo_description', 'blog_title', 'image_prompt', 'blog_html'];\nfor (const field of REQUIRED) {\n  if (!parsed[field]) throw new Error(`Gemini response missing field: ${field}`);\n}\n\n// ── Build slug matching Flask app.py convention: YYYY-MM-DD_slug-title ──\nconst slugPart = parsed.blog_title\n  .toLowerCase()\n  .replace(/[^a-z0-9\\s-]/g, '')\n  .trim()\n  .replace(/\\s+/g, '-')\n  .replace(/-+/g, '-')\n  .slice(0, 55)\n  .replace(/-$/g, '');\nconst slug = `${buildStep.dateStr}_${slugPart}`;\n\n// ── File paths for GitHub API (exact paths in the repo) ──\nconst blogFilePath  = `content/posts/${slug}.html`;\nconst imageFilePath = `static/img/blog/${slug}.jpg`;\n\n// ── Build seo.json content ──\nconst seoContent = JSON.stringify({\n  title:       parsed.seo_title,\n  description: parsed.seo_description,\n  keywords:    Array.isArray(parsed.seo_keywords)\n                 ? parsed.seo_keywords.join(', ')\n                 : parsed.seo_keywords\n}, null, 2);\n\n// ── Base64 encode text files for GitHub API ──\nconst blogBase64 = Buffer.from(parsed.blog_html, 'utf-8').toString('base64');\nconst seoBase64  = Buffer.from(seoContent, 'utf-8').toString('base64');\n\n// ── Pollinations.ai free image URL (no API key needed) ──\nconst imagePromptEncoded = encodeURIComponent(parsed.image_prompt);\nconst pollinationsUrl = `https://image.pollinations.ai/prompt/${imagePromptEncoded}?width=1280&height=640&nologo=true&seed=${Date.now()}`;\n\nreturn [{\n  json: {\n    slug,\n    blogFilePath,\n    imageFilePath,\n    blogBase64,\n    seoBase64,\n    pollinationsUrl,\n    blogTitle:    parsed.blog_title,\n    focusKeyword: buildStep.focusKeyword,\n    dateStr:      buildStep.dateStr,\n    commitBlog:   `auto(n8n): new blog – ${parsed.blog_title}`,\n    commitImage:  `auto(n8n): blog banner image – ${slug}.jpg`,\n    commitSeo:    `auto(n8n): SEO keywords update ${buildStep.dateStr} – ${buildStep.focusKeyword}`\n  }\n}];"
       },
       "id": "dc-node-004",
-      "name": "Prepare GitHub Payloads",
+      "name": "Parse & Build Payloads",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [660, 300]
+      "position": [660, 400]
+    },
+
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $('Parse & Build Payloads').first().json.pollinationsUrl }}",
+        "options": {
+          "timeout": 90000,
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "data"
+            }
+          }
+        }
+      },
+      "id": "dc-node-005",
+      "name": "Pollinations – Download Banner Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [880, 280],
+      "notes": "Pollinations.ai is 100% free — no API key needed. Generates a realistic cricket blog banner (1280×640). Timeout set to 90s as image generation can be slow."
     },
 
     {
@@ -78,60 +91,77 @@
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            {
-              "name": "Authorization",
-              "value": "={{ 'Bearer ' + $vars.GITHUB_TOKEN }}"
-            },
-            {
-              "name": "Accept",
-              "value": "application/vnd.github+json"
-            },
-            {
-              "name": "X-GitHub-Api-Version",
-              "value": "2022-11-28"
-            }
+            { "name": "Authorization",       "value": "={{ 'Bearer ' + $vars.GITHUB_TOKEN }}" },
+            { "name": "Accept",              "value": "application/vnd.github+json" },
+            { "name": "X-GitHub-Api-Version","value": "2022-11-28" }
           ]
         }
       },
-      "id": "dc-node-005",
+      "id": "dc-node-006",
       "name": "GitHub – Get seo.json SHA",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
-      "position": [880, 180],
-      "notes": "Gets the current seo.json SHA — required by GitHub API to update an existing file."
+      "position": [880, 520],
+      "notes": "Gets the SHA of the current seo.json — required by GitHub API to update an existing file."
+    },
+
+    {
+      "parameters": {
+        "jsCode": "// ── Extract base64 image from Pollinations binary response ────────────────\n// N8N stores downloaded binary files in item.binary.data.data (base64 string)\nconst item = $input.first();\n\nlet imageBase64;\ntry {\n  imageBase64 = item.binary.data.data;\n  if (!imageBase64) throw new Error('binary.data.data is empty');\n} catch(e) {\n  throw new Error('Could not extract binary image from Pollinations response. ' + e.message);\n}\n\n// Merge image base64 with all blog/SEO data from the Parse step\nconst parseData = $('Parse & Build Payloads').first().json;\n\nreturn [{\n  json: {\n    ...parseData,\n    imageBase64\n  }\n}];"
+      },
+      "id": "dc-node-007",
+      "name": "Prepare Image Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1100, 280]
     },
 
     {
       "parameters": {
         "method": "PUT",
-        "url": "={{ 'https://api.github.com/repos/PrashanChamara/desert-website/contents/content/posts/' + $('Prepare GitHub Payloads').first().json.filename }}",
+        "url": "={{ 'https://api.github.com/repos/PrashanChamara/desert-website/contents/' + $input.first().json.blogFilePath }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            {
-              "name": "Authorization",
-              "value": "={{ 'Bearer ' + $vars.GITHUB_TOKEN }}"
-            },
-            {
-              "name": "Accept",
-              "value": "application/vnd.github+json"
-            },
-            {
-              "name": "X-GitHub-Api-Version",
-              "value": "2022-11-28"
-            }
+            { "name": "Authorization",       "value": "={{ 'Bearer ' + $vars.GITHUB_TOKEN }}" },
+            { "name": "Accept",              "value": "application/vnd.github+json" },
+            { "name": "X-GitHub-Api-Version","value": "2022-11-28" }
           ]
         },
         "sendBody": true,
         "specifyBody": "string",
-        "body": "={{ JSON.stringify({ message: $('Prepare GitHub Payloads').first().json.commitBlog, content: $('Prepare GitHub Payloads').first().json.blogBase64, branch: 'main' }) }}"
+        "body": "={{ JSON.stringify({ message: $input.first().json.commitBlog, content: $input.first().json.blogBase64, branch: 'main' }) }}"
       },
-      "id": "dc-node-006",
-      "name": "GitHub – Push New Blog Post",
+      "id": "dc-node-008",
+      "name": "GitHub – Push Blog Post HTML",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
-      "position": [880, 300],
-      "notes": "Creates a new blog post HTML file in content/posts/ on the main branch."
+      "position": [1320, 200],
+      "notes": "Creates content/posts/YYYY-MM-DD_slug.html on the main branch."
+    },
+
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "={{ 'https://api.github.com/repos/PrashanChamara/desert-website/contents/' + $input.first().json.imageFilePath }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization",       "value": "={{ 'Bearer ' + $vars.GITHUB_TOKEN }}" },
+            { "name": "Accept",              "value": "application/vnd.github+json" },
+            { "name": "X-GitHub-Api-Version","value": "2022-11-28" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "string",
+        "body": "={{ JSON.stringify({ message: $input.first().json.commitImage, content: $input.first().json.imageBase64, branch: 'main' }) }}"
+      },
+      "id": "dc-node-009",
+      "name": "GitHub – Push Blog Banner Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1320, 360],
+      "notes": "Creates static/img/blog/YYYY-MM-DD_slug.jpg — matches exactly what post.html template expects."
     },
 
     {
@@ -141,74 +171,63 @@
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            {
-              "name": "Authorization",
-              "value": "={{ 'Bearer ' + $vars.GITHUB_TOKEN }}"
-            },
-            {
-              "name": "Accept",
-              "value": "application/vnd.github+json"
-            },
-            {
-              "name": "X-GitHub-Api-Version",
-              "value": "2022-11-28"
-            }
+            { "name": "Authorization",       "value": "={{ 'Bearer ' + $vars.GITHUB_TOKEN }}" },
+            { "name": "Accept",              "value": "application/vnd.github+json" },
+            { "name": "X-GitHub-Api-Version","value": "2022-11-28" }
           ]
         },
         "sendBody": true,
         "specifyBody": "string",
-        "body": "={{ JSON.stringify({ message: $('Prepare GitHub Payloads').first().json.commitSeo, content: $('Prepare GitHub Payloads').first().json.seoBase64, sha: $input.first().json.sha, branch: 'main' }) }}"
+        "body": "={{ JSON.stringify({ message: $('Parse & Build Payloads').first().json.commitSeo, content: $('Parse & Build Payloads').first().json.seoBase64, sha: $input.first().json.sha, branch: 'main' }) }}"
       },
-      "id": "dc-node-007",
+      "id": "dc-node-010",
       "name": "GitHub – Update seo.json",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
-      "position": [1100, 180],
-      "notes": "Updates content/seo.json with the new AI-generated keywords."
+      "position": [1100, 520],
+      "notes": "Updates content/seo.json with fresh SEO keywords from Gemini."
     }
+
   ],
 
   "connections": {
     "Every Monday 6am": {
-      "main": [
-        [{ "node": "Build AI Prompt", "type": "main", "index": 0 }]
-      ]
+      "main": [[{ "node": "Build Gemini Prompt", "type": "main", "index": 0 }]]
     },
-    "Build AI Prompt": {
-      "main": [
-        [{ "node": "OpenAI – Generate Blog & Keywords", "type": "main", "index": 0 }]
-      ]
+    "Build Gemini Prompt": {
+      "main": [[{ "node": "Gemini 2.5 Flash – Generate Content", "type": "main", "index": 0 }]]
     },
-    "OpenAI – Generate Blog & Keywords": {
-      "main": [
-        [{ "node": "Prepare GitHub Payloads", "type": "main", "index": 0 }]
-      ]
+    "Gemini 2.5 Flash – Generate Content": {
+      "main": [[{ "node": "Parse & Build Payloads", "type": "main", "index": 0 }]]
     },
-    "Prepare GitHub Payloads": {
-      "main": [
-        [
-          { "node": "GitHub – Get seo.json SHA",  "type": "main", "index": 0 },
-          { "node": "GitHub – Push New Blog Post", "type": "main", "index": 0 }
-        ]
-      ]
+    "Parse & Build Payloads": {
+      "main": [[
+        { "node": "Pollinations – Download Banner Image", "type": "main", "index": 0 },
+        { "node": "GitHub – Get seo.json SHA",           "type": "main", "index": 0 }
+      ]]
+    },
+    "Pollinations – Download Banner Image": {
+      "main": [[{ "node": "Prepare Image Payload", "type": "main", "index": 0 }]]
+    },
+    "Prepare Image Payload": {
+      "main": [[
+        { "node": "GitHub – Push Blog Post HTML",    "type": "main", "index": 0 },
+        { "node": "GitHub – Push Blog Banner Image", "type": "main", "index": 0 }
+      ]]
     },
     "GitHub – Get seo.json SHA": {
-      "main": [
-        [{ "node": "GitHub – Update seo.json", "type": "main", "index": 0 }]
-      ]
+      "main": [[{ "node": "GitHub – Update seo.json", "type": "main", "index": 0 }]]
     }
   },
 
   "active": false,
-  "settings": {
-    "executionOrder": "v1"
-  },
+  "settings": { "executionOrder": "v1" },
   "staticData": null,
   "pinData": {},
-  "versionId": "desert-cubs-v1",
-  "id": "desert-cubs-weekly-seo-blog",
+  "versionId": "desert-cubs-v2-gemini",
+  "id": "desert-cubs-weekly-gemini",
   "meta": {
     "instanceId": "desert-cubs",
-    "notes": "SETUP REQUIRED — Before activating this workflow, set these two variables in N8N Settings → Variables:\n  OPENAI_API_KEY  — your OpenAI API key (starts with sk-...)\n  GITHUB_TOKEN    — GitHub Personal Access Token with 'Contents: Read & Write' permission on the PrashanChamara/desert-website repo\n\nOnce set, click the toggle to activate. The workflow runs every Monday at 6am and:\n  1. Asks GPT-4o to research trending UAE cricket topics and write a blog post\n  2. Commits the new blog post HTML to content/posts/ on main branch\n  3. Updates content/seo.json with fresh keywords\n  4. GitHub Actions automatically deploys the changes to your live server"
+    "notes": "VARIABLES NEEDED — set these in N8N Settings → Variables:\n  GEMINI_API_KEY  — Google AI Studio key (aistudio.google.com, free 1000/month)\n  GITHUB_TOKEN    — GitHub Fine-grained PAT with Contents: Read+Write on PrashanChamara/desert-website\n\nIMAGE GENERATION — Uses Pollinations.ai (100% free, no key needed)\n\nFLOW:\n  Monday 6am → Gemini writes blog + keywords + image prompt\n  → Pollinations generates 1280x640 banner image (free)\n  → Parallel: GitHub commit blog HTML + banner image + update seo.json\n  → GitHub Actions SSH deploys to server OR server cron pulls"
   }
 }
