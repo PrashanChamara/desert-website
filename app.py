@@ -294,6 +294,20 @@ SPONSORS = {
 # HELPER FUNCTIONS
 # ---------------------------------------------------------
 
+def extract_post_meta(content):
+    """Extract SEO metadata embedded by N8N as an HTML comment at the top of the post.
+    N8N writes: <!-- DC_META: {"seo_title":"...","seo_description":"...","blog_title":"..."} -->
+    Returns a dict, or None if no comment found (falls back to slug-derived values).
+    """
+    match = re.search(r'<!--\s*DC_META:\s*(\{.*?\})\s*-->', content, re.DOTALL)
+    if match:
+        try:
+            return json.loads(match.group(1))
+        except (json.JSONDecodeError, ValueError):
+            pass
+    return None
+
+
 def get_blog_posts():
     posts = []
     if not os.path.exists(BLOG_DIR):
@@ -417,13 +431,18 @@ def blog_post(slug):
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    title = safe_slug[11:].replace('-', ' ').title()
+    # Use Gemini-generated SEO metadata if N8N embedded it, else fall back to slug
+    post_meta = extract_post_meta(content)
+    fallback_title = safe_slug[11:].replace('-', ' ').title()
+    display_title = post_meta.get('blog_title', fallback_title) if post_meta else fallback_title
+
     meta = seo(
-        title=f"{title} | Desert Cubs Cricket Blog",
-        description=f"Read: {title} — Cricket training tips and insights from Desert Cubs Academy UAE.",
-        canonical=f"https://www.desertcubs.com/blog/{slug}"
+        title=post_meta.get('seo_title', f"{display_title} | Desert Cubs Cricket Blog") if post_meta else f"{display_title} | Desert Cubs Cricket Blog",
+        description=post_meta.get('seo_description', f"Read: {display_title} — Cricket training tips from Desert Cubs Academy UAE.") if post_meta else f"Read: {display_title} — Cricket training tips from Desert Cubs Academy UAE.",
+        canonical=f"https://www.desertcubs.com/blog/{slug}",
+        og_image=f"https://www.desertcubs.com/static/img/blog/{safe_slug}.jpg"
     )
-    return render_template('post.html', content=content, title=title, meta=meta, slug=slug)
+    return render_template('post.html', content=content, title=display_title, meta=meta, slug=slug)
 
 
 @app.route('/locations/<branch_id>')
