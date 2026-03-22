@@ -194,16 +194,18 @@
         <h2 class="section-title text-2xl md:text-3xl mb-6">Popular Topics</h2>
         <div class="flex flex-wrap justify-center gap-3">
             {% set topics = [
+                ('UAE Junior Cricket Coaching', 'fa-cricket-bat-ball'),
+                ('Sharjah Junior Cricket', 'fa-map-marker-alt'),
+                ('UAE Summer Camp Cricket', 'fa-sun'),
+                ('Player Pathway UAE', 'fa-trophy'),
+                ('Advanced Player Analysis', 'fa-chart-line'),
+                ('Junior International Tours', 'fa-plane'),
                 ('Cricket Nutrition', 'fa-apple-whole'),
                 ('Batting Tips', 'fa-baseball-bat-ball'),
                 ('Bowling Techniques', 'fa-rotate'),
-                ('Fielding Drills', 'fa-running'),
                 ('Mental Strength', 'fa-brain'),
-                ('Academics & Cricket', 'fa-graduation-cap'),
-                ('Parent Guidance', 'fa-users'),
-                ('U10 Training', 'fa-child'),
-                ('Girls Cricket UAE', 'fa-venus'),
                 ('Fitness & Conditioning', 'fa-dumbbell'),
+                ('Parent Guidance', 'fa-users'),
             ] %}
             {% for topic, icon in topics %}
             <a href="/blog?q={{ topic | urlencode }}"
