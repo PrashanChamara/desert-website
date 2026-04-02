@@ -32,7 +32,9 @@ BRANCHES = [
         "coaches": [
             {"name": "Murali Sockalingam", "role": "Deputy Head Coach", "qual": "ICC Level 3 / ACC Level 2", "img": "coach_murali.jpg"},
             {"name": "Aruna Bandaranayaka", "role": "Senior Coach", "qual": "ICC Level 3 / Cricket Aus Level 2", "img": "coach_aruna.jpg"},
-            {"name": "Vishwa Fernandopulle", "role": "Coach", "qual": "SL Level 1 / Umpire", "img": "coach_vishwa.jpg"}
+            {"name": "Vishwa Fernandopulle", "role": "Coach", "qual": "SL Level 1 / Umpire", "img": "coach_vishwa.jpg"},
+            {"name": "Janaka Senevirathna", "role": "Senior Coach", "qual": "ICC Level 2", "img": "coach_janaka.jpg"},
+            {"name": "Shanesh Weerawansha", "role": "Senior Coach", "qual": "ICC Level 2", "img": "coach_shanesh.jpg"}
         ]
     },
     {
@@ -61,7 +63,8 @@ BRANCHES = [
         "facilities": ["Natural Grass Ground", "Astro Center Pitch", "4 Side Nets", "Bowling Machine"],
         "coaches": [
             {"name": "Hashan Silva", "role": "Centre In-Charge", "qual": "ICC Level 1 / Winning Coach U16", "img": "coach_hashan.jpg"},
-            {"name": "Shahzada Saleem", "role": "Senior Coach", "qual": "ACC Level 3", "img": "coach_shahzada.jpg"}
+            {"name": "Shahzada Saleem", "role": "Senior Coach", "qual": "ACC Level 3", "img": "coach_shahzada.jpg"},
+            {"name": "Priyantha Ganegoda", "role": "Coach", "qual": "ICC Level 1", "img": "coach_priyantha.jpg"}
         ]
     },
     {
@@ -75,7 +78,8 @@ BRANCHES = [
         "facilities": ["Astro Turf Ground", "6 Practice Nets", "Indoor Pool", "Floodlights"],
         "coaches": [
             {"name": "Muhammad Ejaz", "role": "Centre In-Charge", "qual": "ICC Level 1 / PCB Level 1", "img": "coach_ejaz.jpg"},
-            {"name": "Manish Yadav", "role": "Coach", "qual": "SL Level 2", "img": "coach_manish.jpg"}
+            {"name": "Manish Yadav", "role": "Coach", "qual": "SL Level 2", "img": "coach_manish.jpg"},
+            {"name": "Nipuna Ratnayake", "role": "Senior Coach", "qual": "ICC Level 2", "img": "coach_nipuna.jpg"}
         ]
     },
     {
