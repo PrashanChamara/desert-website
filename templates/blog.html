@@ -83,6 +83,8 @@
                 <a href="/blog/{{ post.slug }}" class="block h-52 bg-gray-200 relative overflow-hidden flex-shrink-0">
                     <img src="{{ url_for('static', filename='img/blog/' + post.image) }}"
                          alt="{{ post.title }} — Desert Cubs Cricket Academy Blog"
+                         width="800" height="400"
+                         loading="lazy"
                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                          itemprop="image"
                          onerror="this.parentElement.style.background='linear-gradient(135deg,#003399,#001f66)'; this.style.display='none';">

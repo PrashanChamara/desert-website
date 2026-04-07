@@ -2,3 +2,8 @@ __pycache__/
 *.pyc
 .env
 .DS_Store
+
+# Tailwind build (input file — output tailwind.min.css is committed)
+static/css/tailwind-input.css
+tailwind.config.js
+node_modules/

@@ -10,8 +10,11 @@
     
     <!-- Background image -->
     <div class="absolute inset-0">
-        <img src="{{ url_for('static', filename='img/' + branch.img) }}" 
+        <img src="{{ url_for('static', filename='img/' + branch.img) }}"
              alt="Cricket training at {{ branch.name }}, {{ branch.area }}"
+             width="900" height="600"
+             fetchpriority="high"
+             loading="eager"
              class="w-full h-full object-cover"
              itemprop="image">
     </div>
@@ -98,8 +101,10 @@
                             <!-- Coach photo -->
                             <div class="w-20 h-20 rounded-xl bg-gray-100 overflow-hidden flex-shrink-0 cursor-pointer group relative border-2 border-gray-200 hover:border-cubs-gold transition-colors"
                                  onclick="openModal('{{ url_for('static', filename='img/' + coach.img) }}', '{{ coach.name }}')">
-                                <img src="{{ url_for('static', filename='img/' + coach.img) }}" 
+                                <img src="{{ url_for('static', filename='img/' + coach.img) }}"
                                      alt="{{ coach.name }} — Cricket coach at {{ branch.name }}"
+                                     width="80" height="80"
+                                     loading="lazy"
                                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                      itemprop="image">
                                 <div class="absolute inset-0 bg-cubs-blue/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">

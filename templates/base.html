@@ -141,38 +141,31 @@
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}">
 
     <!-- ========== FONTS ========== -->
-    <!-- Teko = bold display headings | Nunito = clean readable body -->
+    <!-- Preconnect early so font DNS/TLS is ready before the request fires -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Load fonts non-render-blocking: preload triggers fetch, onload swaps rel to stylesheet -->
+    <link rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap"
+          as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    </noscript>
 
-    <!-- Font Awesome icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Font Awesome — non-render-blocking -->
+    <link rel="preload"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </noscript>
 
-    <!-- Main stylesheet (MUST come before Tailwind so Tailwind overrides work) -->
+    <!-- Tailwind utilities (static pre-built — replaces CDN JS runtime) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.min.css') }}">
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                fontFamily: {
-                    'display': ['Teko', 'sans-serif'],
-                    'body':    ['Nunito', 'sans-serif'],
-                },
-                colors: {
-                    'cubs-blue':      '#003399',
-                    'cubs-blue-dark': '#001f66',
-                    'cubs-blue-mid':  '#1a4db2',
-                    'cubs-gold':      '#FFCC00',
-                    'cubs-gold-dark': '#e6b800',
-                }
-            }
-        }
-    }
-    </script>
 
     <!-- ========== INLINE CRITICAL STYLES ========== -->
     <!-- These guarantee readability even if the external CSS fails to load -->
@@ -371,9 +364,9 @@
                 <i class="fas fa-map-marker-alt" style="color:#FFCC00; font-size:0.72rem;"></i>Dubai & Sharjah, UAE
             </span>
             <div style="display:flex; gap:10px;">
-                <a href="https://www.instagram.com/desertcubscricket" target="_blank" style="color:#bfd0ff;" onmouseover="this.style.color='#FFCC00'" onmouseout="this.style.color='#bfd0ff'"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/desertcubs" target="_blank" style="color:#bfd0ff;" onmouseover="this.style.color='#FFCC00'" onmouseout="this.style.color='#bfd0ff'"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.youtube.com/@desertcubs" target="_blank" style="color:#bfd0ff;" onmouseover="this.style.color='#FFCC00'" onmouseout="this.style.color='#bfd0ff'"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/desertcubscricket" target="_blank" aria-label="Desert Cubs on Instagram" style="color:#bfd0ff;" onmouseover="this.style.color='#FFCC00'" onmouseout="this.style.color='#bfd0ff'"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <a href="https://www.facebook.com/desertcubs" target="_blank" aria-label="Desert Cubs on Facebook" style="color:#bfd0ff;" onmouseover="this.style.color='#FFCC00'" onmouseout="this.style.color='#bfd0ff'"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                <a href="https://www.youtube.com/@desertcubs" target="_blank" aria-label="Desert Cubs on YouTube" style="color:#bfd0ff;" onmouseover="this.style.color='#FFCC00'" onmouseout="this.style.color='#bfd0ff'"><i class="fab fa-youtube" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
@@ -570,6 +563,8 @@
                      onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'; this.style.background='#f8fafc';">
                     <img src="{{ url_for('static', filename='img/sponsors/' + s.file) }}"
                          alt="{{ s.name }} — Desert Cubs Cricket Academy sponsor UAE"
+                         width="110" height="52"
+                         loading="lazy"
                          style="max-width:110px; max-height:52px; width:auto; height:auto; object-fit:contain;"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <!-- Fallback: shows sponsor name as text if image missing -->
@@ -702,9 +697,9 @@
 
             <!-- Quick links -->
             <div>
-                <h4 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.15rem;
+                <h3 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.15rem;
                             color:#ffffff; text-transform:uppercase; margin-bottom:16px; letter-spacing:0.05em;">
-                    Quick Links</h4>
+                    Quick Links</h3>
                 <ul style="list-style:none; padding:0; margin:0;">
                     {% for href, label in [
                         ('/', 'Home'),
@@ -730,9 +725,9 @@
 
             <!-- Contact -->
             <div>
-                <h4 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.15rem;
+                <h3 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.15rem;
                             color:#ffffff; text-transform:uppercase; margin-bottom:16px; letter-spacing:0.05em;">
-                    Contact Us</h4>
+                    Contact Us</h3>
                 <ul style="list-style:none; padding:0; margin:0;">
                     <li style="margin-bottom:12px; display:flex; gap:10px; align-items:flex-start;">
                         <i class="fas fa-phone" style="color:#FFCC00; margin-top:3px; flex-shrink:0;"></i>
@@ -834,11 +829,11 @@
 <div id="photoModal" class="modal-overlay" onclick="closeModal()">
     <div style="position:relative; max-width:420px; width:90%; margin:20px;"
          onclick="event.stopPropagation()">
-        <button onclick="closeModal()"
+        <button onclick="closeModal()" aria-label="Close photo"
                 style="position:absolute; top:-14px; right:-14px; width:32px; height:32px;
                        background:#FFCC00; color:#001f66; border:none; border-radius:50%;
                        cursor:pointer; font-size:0.88rem; font-weight:900; z-index:10; display:flex; align-items:center; justify-content:center;">
-            <i class="fas fa-times"></i>
+            <i class="fas fa-times" aria-hidden="true"></i>
         </button>
         <img id="modalImage" src="" alt=""
              style="width:100%; border-radius:16px; box-shadow:0 16px 50px rgba(0,0,0,0.6);">
@@ -852,11 +847,11 @@
 <div id="scheduleModal" class="modal-overlay" onclick="closeSchedule()">
     <div style="position:relative; max-width:700px; width:92%; margin:20px;"
          onclick="event.stopPropagation()">
-        <button onclick="closeSchedule()"
+        <button onclick="closeSchedule()" aria-label="Close schedule"
                 style="position:absolute; top:-14px; right:-14px; width:32px; height:32px;
                        background:#FFCC00; color:#001f66; border:none; border-radius:50%;
                        cursor:pointer; font-size:0.88rem; font-weight:900; z-index:10; display:flex; align-items:center; justify-content:center;">
-            <i class="fas fa-times"></i>
+            <i class="fas fa-times" aria-hidden="true"></i>
         </button>
         <p id="scheduleTitle"
            style="text-align:center; color:#ffffff; font-family:'Teko',sans-serif;

@@ -138,6 +138,9 @@
                         position:relative;">
                 <img src="{{ url_for('static', filename='img/hero-bg.jpg') }}"
                      alt="Junior cricket training at Desert Cubs Academy Dubai UAE"
+                     width="700" height="520"
+                     fetchpriority="high"
+                     loading="eager"
                      style="width:100%; height:100%; object-fit:cover;">
                 <!-- Gradient overlay on image bottom -->
                 <div style="position:absolute; inset:0;
@@ -302,6 +305,8 @@
                 <div style="height:190px; overflow:hidden; position:relative; background:#001f66;">
                     <img src="{{ url_for('static', filename='img/' + branch.img) }}"
                          alt="{{ branch.name }} — Cricket Academy in {{ branch.area }}, UAE"
+                         width="600" height="190"
+                         loading="lazy"
                          style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s;"
                          itemprop="image"
                          onerror="this.style.display='none';">
@@ -349,8 +354,9 @@
                         {% endif %}
                         {% set sched_id = branch.id.upper().replace('-', '_') %}
                         <button onclick="openSchedule('{{ url_for('static', filename='img/' + branch.schedule_img) }}', '{{ branch.name }}')"
-                                class="btn-blue" style="padding:9px 16px; font-size:0.78rem; border-radius:12px;">
-                            <i class="fas fa-clock" style="font-size:0.75rem;"></i>
+                                class="btn-blue" style="padding:9px 16px; font-size:0.78rem; border-radius:12px;"
+                                aria-label="View training schedule for {{ branch.name }}">
+                            <i class="fas fa-clock" style="font-size:0.75rem;" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
@@ -461,6 +467,8 @@
                 <div style="height:170px; overflow:hidden; position:relative; background:#001f66;">
                     <img src="{{ url_for('static', filename='img/DC_Srilanka_2025/DC_Srilanka1.jpg') }}"
                          alt="Desert Cubs cricket tour Sri Lanka 2025"
+                         width="600" height="170"
+                         loading="lazy"
                          style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s;"
                          onerror="this.style.display='none'">
                     <div style="position:absolute; inset:0; background:rgba(0,0,0,0.3);"></div>
@@ -485,6 +493,8 @@
                 <div style="height:170px; overflow:hidden; position:relative; background:#001f66;">
                     <img src="{{ url_for('static', filename='img/DC_Australia_2024/DC_Australia1.jpg') }}"
                          alt="Desert Cubs cricket tour Australia 2024"
+                         width="600" height="170"
+                         loading="lazy"
                          style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s;"
                          onerror="this.style.display='none'">
                     <div style="position:absolute; inset:0; background:rgba(0,0,0,0.3);"></div>
@@ -550,9 +560,9 @@
                  onmouseover="this.style.background='rgba(255,204,0,0.1)'; this.style.borderColor='rgba(255,204,0,0.4)';"
                  onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='rgba(255,255,255,0.1)';">
                 <span style="font-size:2.5rem; display:block; margin-bottom:10px;">{{ l.flag }}</span>
-                <h4 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.2rem;
+                <h3 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.2rem;
                             color:#ffffff; text-transform:uppercase; line-height:1.1; margin-bottom:5px;">
-                    {{ l.name }}</h4>
+                    {{ l.name }}</h3>
                 <p style="font-family:'Nunito',sans-serif; font-size:0.75rem; color:#94a3b8; font-weight:700;">
                     {{ l.role }}</p>
             </div>
