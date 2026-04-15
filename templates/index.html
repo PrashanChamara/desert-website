@@ -1,269 +1,427 @@
 {% extends "base.html" %}
-
 {% block content %}
 
+<!-- ============================================================
+     DESERT CUBS — HOMEPAGE v3 (2026)
+     • All grids use @media CSS — zero Tailwind responsive deps
+     • Container: 1440px max-width (fills wide monitors)
+     • All data, schema, animations preserved
+============================================================= -->
 <style>
-    .scroll-fade { 
-        opacity: 1 !important; 
-        transform: none !important; 
-    }
+
+/* ── KEYFRAMES ────────────────────────────────────────────── */
+@keyframes floatY    { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-14px)} }
+@keyframes goldPulse { 0%,100%{box-shadow:0 0 0 0 rgba(255,204,0,.5)} 70%{box-shadow:0 0 0 14px rgba(255,204,0,0)} }
+@keyframes goldGlow  { 0%,100%{box-shadow:0 4px 16px rgba(255,204,0,.35)} 50%{box-shadow:0 8px 40px rgba(255,204,0,.65)} }
+@keyframes shimmerBtn{ 0%{background-position:-200% center} 100%{background-position:200% center} }
+@keyframes rotateCW  { from{transform:rotate(0deg)}  to{transform:rotate(360deg)} }
+@keyframes rotateCCW { from{transform:rotate(0deg)}  to{transform:rotate(-360deg)} }
+@keyframes bounceScr { 0%,100%{transform:translateX(-50%) translateY(0);opacity:.5} 50%{transform:translateX(-50%) translateY(9px);opacity:1} }
+@keyframes trustMrq  { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+@keyframes liveDot   { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.6)} }
+@keyframes lineReveal{ from{width:0} to{width:52px} }
+@keyframes fadeUp    { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── SCROLL REVEAL ────────────────────────────────────────── */
+.dcr{opacity:0;transform:translateY(36px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+.dcr.on{opacity:1;transform:translateY(0)}
+.dcr.d1{transition-delay:.07s} .dcr.d2{transition-delay:.14s} .dcr.d3{transition-delay:.21s}
+.dcr.d4{transition-delay:.28s} .dcr.d5{transition-delay:.35s} .dcr.d6{transition-delay:.42s}
+
+/* ── CONTAINER — 1440px wide, responsive padding ─────────── */
+.dc-con{width:100%;max-width:1440px;margin:0 auto;padding:0 20px}
+@media(min-width:640px) {.dc-con{padding:0 32px}}
+@media(min-width:1024px){.dc-con{padding:0 56px}}
+@media(min-width:1440px){.dc-con{padding:0 80px}}
+
+/* ── HERO GRID ────────────────────────────────────────────── */
+.hero-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
+@media(min-width:1024px){.hero-grid{grid-template-columns:1fr 1fr;gap:60px}}
+
+/* Hero image — hidden on mobile, visible desktop */
+.hero-img{display:none}
+@media(min-width:1024px){.hero-img{display:block;position:relative}}
+
+/* ── TRUST STRIP GRID ─────────────────────────────────────── */
+.trust-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(min-width:768px){.trust-grid{grid-template-columns:repeat(4,1fr)}}
+
+/* ── LOCATIONS GRID ───────────────────────────────────────── */
+.loc-grid{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:768px){.loc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.loc-grid{grid-template-columns:repeat(3,1fr)}}
+
+/* ── FEATURES GRID ────────────────────────────────────────── */
+.feat-grid{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:768px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.feat-grid{grid-template-columns:repeat(3,1fr)}}
+
+/* ── TOURS GRID ───────────────────────────────────────────── */
+.tours-grid{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:768px){.tours-grid{grid-template-columns:repeat(3,1fr)}}
+
+/* ── REVIEWS GRID ─────────────────────────────────────────── */
+.rev-grid{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:768px){.rev-grid{grid-template-columns:repeat(3,1fr)}}
+
+/* ── TICKER FLEX ──────────────────────────────────────────── */
+.ticker-row{display:flex;flex-direction:column;gap:10px;align-items:center}
+@media(min-width:768px){.ticker-row{flex-direction:row;justify-content:space-between}}
+.ticker-desc{display:none}
+@media(min-width:768px){.ticker-desc{display:block}}
+
+/* ── STATS BAR ────────────────────────────────────────────── */
+.stat-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+          border-top:1px solid rgba(255,255,255,.08);padding-top:28px}
+
+/* ── HERO CTA ROW ─────────────────────────────────────────── */
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:36px}
+
+/* ── SHIMMER BUTTON ───────────────────────────────────────── */
+.btn-shimmer{background:linear-gradient(90deg,#FFCC00 0%,#fff5a0 40%,#FFCC00 60%,#e6b800 100%);
+             background-size:200% auto;animation:shimmerBtn 3s linear infinite;
+             color:#001f66!important;font-family:'Nunito',sans-serif;font-weight:900;
+             font-size:.86rem;letter-spacing:.07em;text-transform:uppercase;
+             text-decoration:none;border:none;cursor:pointer;border-radius:999px;
+             padding:13px 28px;display:inline-flex;align-items:center;gap:8px;
+             transition:transform .25s,box-shadow .25s;white-space:nowrap}
+.btn-shimmer:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,204,0,.5);color:#001f66!important}
+
+/* ── OUTLINE BUTTON ───────────────────────────────────────── */
+.btn-outline{display:inline-flex;align-items:center;gap:8px;
+             border:2px solid rgba(255,255,255,.3);color:#ffffff;
+             font-family:'Nunito',sans-serif;font-weight:900;font-size:.86rem;
+             text-transform:uppercase;letter-spacing:.07em;text-decoration:none;
+             padding:12px 24px;border-radius:999px;transition:all .25s ease}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.6);color:#ffffff}
+
+/* ── SECTION HEADER ───────────────────────────────────────── */
+.sec-hd{text-align:center;margin-bottom:52px}
+.sec-tag-blue{font-family:'Nunito',sans-serif;font-weight:900;font-size:.7rem;
+              letter-spacing:.28em;text-transform:uppercase;color:#003399;
+              display:block;margin-bottom:10px}
+.sec-tag-gold{font-family:'Nunito',sans-serif;font-weight:900;font-size:.7rem;
+              letter-spacing:.28em;text-transform:uppercase;color:#FFCC00;
+              display:block;margin-bottom:10px}
+.gold-bar{width:52px;height:4px;background:linear-gradient(90deg,#FFCC00,#e6b800);
+          border-radius:2px;margin:14px auto 0;animation:lineReveal .8s ease forwards}
+
+/* ── CARD COMPONENTS ──────────────────────────────────────── */
+.loc-card{background:#fff;border:1.5px solid #e8ecf4;border-radius:22px;
+          overflow:hidden;display:flex;flex-direction:column;
+          transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s ease,border-color .4s ease}
+.loc-card:hover{transform:translateY(-7px);box-shadow:0 28px 70px rgba(0,51,153,.14);border-color:rgba(255,204,0,.45)}
+.loc-card:hover .loc-img{transform:scale(1.07)}
+.loc-img{transition:transform .65s cubic-bezier(.16,1,.3,1)}
+
+.feat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+           border-radius:22px;padding:28px;
+           transition:all .35s cubic-bezier(.16,1,.3,1)}
+.feat-card:hover{background:rgba(255,204,0,.08);border-color:rgba(255,204,0,.3);
+                 transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.feat-card:hover .feat-ico{transform:scale(1.12);animation:goldGlow 1.5s ease infinite}
+.feat-ico{width:52px;height:52px;background:#FFCC00;border-radius:14px;
+          display:flex;align-items:center;justify-content:center;
+          margin-bottom:18px;transition:transform .3s ease}
+
+.legend-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+             border-radius:18px;padding:22px 18px;text-align:center;flex-shrink:0;
+             width:165px;transition:all .3s ease}
+.legend-card:hover{background:rgba(255,204,0,.1);border-color:rgba(255,204,0,.4);transform:translateY(-5px)}
+
+.rev-card{background:#fff;border:1.5px solid #e8ecf4;border-radius:22px;padding:28px;
+          position:relative;overflow:hidden;
+          transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.rev-card::before{content:'\201C';position:absolute;top:-8px;right:18px;
+                  font-family:'Teko',sans-serif;font-size:7rem;
+                  color:rgba(0,51,153,.06);line-height:1;pointer-events:none}
+.rev-card:hover{transform:translateY(-5px);box-shadow:0 22px 55px rgba(0,51,153,.12);border-color:rgba(255,204,0,.35)}
+
+.tour-past{background:#f8fafc;border:1.5px solid #e5e7eb;border-radius:22px;
+           overflow:hidden;cursor:pointer;
+           transition:transform .4s ease,box-shadow .4s ease}
+.tour-past:hover{transform:translateY(-5px);box-shadow:0 22px 55px rgba(0,51,153,.12)}
+.tour-past:hover .tour-img{transform:scale(1.06)}
+.tour-img{transition:transform .65s cubic-bezier(.16,1,.3,1)}
+
+/* ── FAQ ACCORDION ────────────────────────────────────────── */
+.faq-item{background:#fff;border-radius:18px;border:1px solid #e2e8f0;overflow:hidden;
+          transition:box-shadow .3s ease}
+.faq-item:hover{box-shadow:0 8px 28px rgba(0,51,153,.08)}
+.faq-hdr{display:flex;justify-content:space-between;align-items:center;
+         padding:22px 28px;cursor:pointer;user-select:none;gap:16px}
+.faq-ico{width:32px;height:32px;border-radius:50%;background:#003399;
+         display:flex;align-items:center;justify-content:center;flex-shrink:0;
+         transition:transform .3s ease,background .3s ease}
+.faq-item.open .faq-ico{transform:rotate(45deg);background:#FFCC00}
+.faq-item.open .faq-ico i{color:#001f66}
+.faq-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.16,1,.3,1);padding:0 28px}
+.faq-item.open .faq-body{max-height:300px;padding-bottom:22px}
+
+/* ── LEGEND SCROLL WRAPPER ────────────────────────────────── */
+.legend-scroll{overflow-x:auto;padding-bottom:12px;
+               scrollbar-width:thin;scrollbar-color:#FFCC00 #001045;cursor:grab}
+.legend-scroll:active{cursor:grabbing}
+.legend-track{display:flex;gap:16px;width:max-content;padding:4px 2px}
+
+/* ── TRUST ICON HOVER ─────────────────────────────────────── */
+.trust-ico{width:58px;height:58px;
+           background:linear-gradient(135deg,#001f66,#003399);
+           border-radius:16px;display:flex;align-items:center;justify-content:center;
+           margin:0 auto 14px;box-shadow:0 6px 20px rgba(0,51,153,.22);
+           transition:transform .3s ease}
+.trust-ico:hover{transform:scale(1.1)}
+
 </style>
 
+
 <!-- ============================================================
-     HERO SECTION
-     KEY FIX: background is a solid dark gradient via inline style.
-     This guarantees dark bg even if CSS classes fail to load.
-     Text is ALWAYS white/gold on dark — always readable.
+     1. HERO — full viewport, dark prestige
 ============================================================= -->
 <section aria-label="Desert Cubs Cricket Academy UAE — Hero"
-         style="background: linear-gradient(135deg, #000d33 0%, #001f66 45%, #003399 80%, #001a55 100%);
-                position: relative;
-                min-height: 100vh;
-                display: flex;
-                align-items: center;
-                overflow: hidden;">
+         style="background:linear-gradient(135deg,#000d1a 0%,#001045 40%,#001f66 75%,#001a55 100%);
+                position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;">
 
-    <!-- Subtle grid overlay (very dark — just texture, never covers text) -->
-    <div style="position:absolute; inset:0; pointer-events:none; z-index:0;
-                background-image:
-                    linear-gradient(rgba(255,204,0,0.03) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255,204,0,0.03) 1px, transparent 1px);
-                background-size: 60px 60px;">
+    <!-- Grid texture -->
+    <div aria-hidden="true"
+         style="position:absolute;inset:0;pointer-events:none;z-index:0;
+                background-image:linear-gradient(rgba(255,204,0,.025) 1px,transparent 1px),
+                linear-gradient(90deg,rgba(255,204,0,.025) 1px,transparent 1px);
+                background-size:64px 64px;"></div>
+
+    <!-- Animated decorative rings -->
+    <div aria-hidden="true"
+         style="position:absolute;top:50%;right:0;transform:translate(0,-50%);
+                width:640px;height:640px;pointer-events:none;z-index:0;">
+        <div style="position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,204,0,.06);animation:rotateCW 30s linear infinite;"></div>
+        <div style="position:absolute;inset:50px;border-radius:50%;border:1px solid rgba(255,255,255,.04);animation:rotateCCW 22s linear infinite;"></div>
+        <div style="position:absolute;inset:120px;border-radius:50%;border:1px solid rgba(255,204,0,.05);animation:rotateCW 18s linear infinite;"></div>
     </div>
+    <!-- Gold radial glow top-right -->
+    <div aria-hidden="true"
+         style="position:absolute;top:-120px;right:-120px;width:500px;height:500px;
+                background:radial-gradient(circle,rgba(255,204,0,.09) 0%,transparent 65%);
+                pointer-events:none;z-index:0;"></div>
 
-    <!-- Gold glow top-right (subtle, decorative) -->
-    <div style="position:absolute; top:-120px; right:-120px; width:480px; height:480px;
-                background: radial-gradient(circle, rgba(255,204,0,0.07) 0%, transparent 65%);
-                pointer-events:none; z-index:0;">
-    </div>
-    <!-- Blue glow bottom-left -->
-    <div style="position:absolute; bottom:-80px; left:-80px; width:400px; height:400px;
-                background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 65%);
-                pointer-events:none; z-index:0;">
-    </div>
+    <div style="position:relative;z-index:1;width:100%;padding:80px 0 60px;">
+    <div class="dc-con">
+    <div class="hero-grid">
 
-    <!-- HERO CONTENT -->
-    <div style="position:relative; z-index:1; width:100%;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid lg:grid-cols-2 gap-12 items-center">
-
-        <!-- LEFT: Text content -->
+        <!-- LEFT: Copy -->
         <div>
-            <!-- Tag badge -->
-            <div class="fade-in-up"
-                 style="display:inline-flex; align-items:center; gap:8px;
-                        background:rgba(255,204,0,0.12); border:1px solid rgba(255,204,0,0.35);
-                        border-radius:999px; padding:7px 16px; margin-bottom:22px;">
-                <span style="width:8px; height:8px; background:#FFCC00; border-radius:50%; animation:pulse 2s infinite;"></span>
-                <span style="color:#FFCC00; font-family:'Nunito',sans-serif; font-weight:900;
-                             font-size:0.7rem; text-transform:uppercase; letter-spacing:0.22em;">
-                    UAE's #1 Junior Cricket Academy
-                </span>
+            <!-- Live badge -->
+            <div style="display:inline-flex;align-items:center;gap:10px;
+                        background:rgba(255,204,0,.1);border:1px solid rgba(255,204,0,.3);
+                        border-radius:999px;padding:8px 18px;margin-bottom:24px;
+                        animation:fadeUp .7s ease both;">
+                <span style="width:8px;height:8px;background:#FFCC00;border-radius:50%;animation:liveDot 1.8s ease infinite;"></span>
+                <span style="color:#FFCC00;font-family:'Nunito',sans-serif;font-weight:900;
+                             font-size:.68rem;text-transform:uppercase;letter-spacing:.22em;">
+                    UAE's #1 Junior Cricket Academy</span>
             </div>
 
-            <!-- H1 — the main headline, SEO keyword rich -->
-            <h1 class="fade-in-up delay-1"
-                style="font-family:'Teko',sans-serif; font-weight:700; text-transform:uppercase;
-                       line-height:1.0; margin-bottom:16px; letter-spacing:0.02em;">
-                <span style="color:#ffffff; font-size:clamp(2.5rem, 6vw, 4.5rem); display:block;">Build The</span>
-                <span style="color:#FFCC00; font-size:clamp(3rem, 8vw, 5.5rem); display:block;">Next Champion</span>
-                <span style="color:rgba(255,255,255,0.75); font-size:clamp(2rem, 5vw, 3.8rem); display:block;">
-                    In UAE Cricket
-                </span>
+            <!-- H1 -->
+            <h1 style="font-family:'Teko',sans-serif;font-weight:700;text-transform:uppercase;
+                       line-height:.95;margin-bottom:20px;letter-spacing:.01em;
+                       animation:fadeUp .8s .1s ease both;">
+                <span style="color:#ffffff;font-size:clamp(2.6rem,6vw,5rem);display:block;">Build The</span>
+                <span style="color:#FFCC00;font-size:clamp(3.2rem,8.5vw,6.5rem);display:block;
+                             text-shadow:0 0 60px rgba(255,204,0,.2);">Next Champion</span>
+                <span style="color:rgba(255,255,255,.72);font-size:clamp(1.9rem,4.5vw,3.6rem);display:block;">In UAE Cricket</span>
             </h1>
 
-            <!-- Sub-headline — white on dark, fully readable -->
-            <p class="fade-in-up delay-2"
-               style="font-family:'Nunito',sans-serif; font-size:1.05rem; line-height:1.8;
-                      color:#c7d7f5; margin-bottom:30px; max-width:480px;">
+            <!-- Sub-copy -->
+            <p style="font-family:'Nunito',sans-serif;font-size:1.05rem;line-height:1.85;
+                      color:#8ba3c7;margin-bottom:30px;max-width:520px;
+                      animation:fadeUp .8s .2s ease both;">
                 The UAE's largest junior cricket academy.
-                <strong style="color:#ffffff; font-weight:800;">Est. 2007.</strong>
+                <strong style="color:#fff;font-weight:800;">Est. 2007.</strong>
                 Six world-class training centres across
-                <strong style="color:#ffffff; font-weight:800;">Dubai & Sharjah.</strong>
+                <strong style="color:#fff;font-weight:800;">Dubai &amp; Sharjah.</strong>
                 15,000+ alumni, 100+ qualified coaches.
             </p>
 
-            <!-- CTA Buttons -->
-            <div class="fade-in-up delay-3"
-                 style="display:flex; flex-wrap:wrap; gap:14px; margin-bottom:36px;">
-                <a href="#branches" class="btn-gold"
-                   style="padding:14px 30px; font-size:0.9rem;"
+            <!-- CTAs -->
+            <div class="hero-ctas" style="animation:fadeUp .8s .3s ease both;">
+                <a href="#branches" class="btn-shimmer"
                    aria-label="Find a cricket training centre near you in Dubai or Sharjah">
-                    <i class="fas fa-map-marker-alt"></i> Find a Centre Near You
+                    <i class="fas fa-map-marker-alt" style="font-size:.82rem;" aria-hidden="true"></i>
+                    Find a Centre Near You
                 </a>
-                <a href="/tours"
-                   style="display:inline-flex; align-items:center; gap:8px;
-                          border:2px solid rgba(255,255,255,0.45); color:#ffffff;
-                          font-family:'Nunito',sans-serif; font-weight:900; font-size:0.88rem;
-                          text-transform:uppercase; letter-spacing:0.07em; text-decoration:none;
-                          padding:12px 26px; border-radius:999px; transition:all 0.25s;"
-                   onmouseover="this.style.background='#ffffff'; this.style.color='#001f66'; this.style.borderColor='#ffffff';"
-                   onmouseout="this.style.background='transparent'; this.style.color='#ffffff'; this.style.borderColor='rgba(255,255,255,0.45)';">
-                    <i class="fas fa-plane"></i> Explore Tours
+                <a href="/tours" class="btn-outline">
+                    <i class="fas fa-plane" style="font-size:.82rem;" aria-hidden="true"></i>
+                    Explore Tours
                 </a>
             </div>
 
             <!-- Stats bar -->
-            <div class="fade-in-up delay-4"
-                 style="display:grid; grid-template-columns:repeat(3, 1fr);
-                        gap:16px; border-top:1px solid rgba(255,255,255,0.1); padding-top:28px;">
+            <div class="stat-bar" style="animation:fadeUp .8s .4s ease both;">
                 <div>
-                    <p style="font-family:'Teko',sans-serif; font-size:2.6rem; font-weight:700;
-                               color:#FFCC00; line-height:1;">15.0K+</p>
-                    <p style="font-family:'Nunito',sans-serif; font-size:0.72rem; font-weight:800;
-                               color:#94a3b8; text-transform:uppercase; letter-spacing:0.12em; margin-top:2px;">
-                        Alumni Trained</p>
+                    <p style="font-family:'Teko',sans-serif;font-size:2.8rem;font-weight:700;color:#FFCC00;line-height:1;"
+                       class="counter" data-target="15000" data-suffix="K+">15.0K+</p>
+                    <p style="font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:800;
+                               color:#4d6b94;text-transform:uppercase;letter-spacing:.14em;margin-top:3px;">Alumni Trained</p>
                 </div>
                 <div>
-                    <p style="font-family:'Teko',sans-serif; font-size:2.6rem; font-weight:700;
-                               color:#FFCC00; line-height:1;">6</p>
-                    <p style="font-family:'Nunito',sans-serif; font-size:0.72rem; font-weight:800;
-                               color:#94a3b8; text-transform:uppercase; letter-spacing:0.12em; margin-top:2px;">
-                        Training Centres</p>
+                    <p style="font-family:'Teko',sans-serif;font-size:2.8rem;font-weight:700;color:#FFCC00;line-height:1;"
+                       class="counter" data-target="6" data-suffix="">6</p>
+                    <p style="font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:800;
+                               color:#4d6b94;text-transform:uppercase;letter-spacing:.14em;margin-top:3px;">Training Centres</p>
                 </div>
                 <div>
-                    <p style="font-family:'Teko',sans-serif; font-size:2.6rem; font-weight:700;
-                               color:#FFCC00; line-height:1;">19+</p>
-                    <p style="font-family:'Nunito',sans-serif; font-size:0.72rem; font-weight:800;
-                               color:#94a3b8; text-transform:uppercase; letter-spacing:0.12em; margin-top:2px;">
-                        Years of Legacy</p>
+                    <p style="font-family:'Teko',sans-serif;font-size:2.8rem;font-weight:700;color:#FFCC00;line-height:1;"
+                       class="counter" data-target="19" data-suffix="+">19+</p>
+                    <p style="font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:800;
+                               color:#4d6b94;text-transform:uppercase;letter-spacing:.14em;margin-top:3px;">Years of Legacy</p>
                 </div>
             </div>
-        </div>
+        </div><!-- /.left col -->
 
-        <!-- RIGHT: Hero image (desktop only) -->
-        <div class="hidden lg:block fade-in-up delay-2" style="position:relative;">
-            <div style="border-radius:24px; overflow:hidden; height:520px;
-                        box-shadow:0 30px 80px rgba(0,0,0,0.5);
-                        border:2px solid rgba(255,204,0,0.25);
-                        position:relative;">
+        <!-- RIGHT: Hero image (desktop only via CSS) -->
+        <div class="hero-img">
+            <!-- Animated ring behind image -->
+            <div aria-hidden="true"
+                 style="position:absolute;inset:-28px;border-radius:30px;
+                        border:1px solid rgba(255,204,0,.12);
+                        animation:floatY 6s ease-in-out infinite;pointer-events:none;"></div>
+
+            <div style="border-radius:28px;overflow:hidden;height:520px;
+                        box-shadow:0 40px 100px rgba(0,0,0,.6);
+                        border:2px solid rgba(255,204,0,.2);position:relative;">
                 <img src="{{ url_for('static', filename='img/hero-bg.jpg') }}"
                      alt="Junior cricket training at Desert Cubs Academy Dubai UAE"
                      width="700" height="520"
-                     fetchpriority="high"
-                     loading="eager"
-                     style="width:100%; height:100%; object-fit:cover;">
-                <!-- Gradient overlay on image bottom -->
-                <div style="position:absolute; inset:0;
-                            background:linear-gradient(to top, rgba(0,31,102,0.85) 0%, transparent 55%);"></div>
-
-                <!-- Badge bottom-left — Esha Oza -->
-                <div style="position:absolute; bottom:20px; left:20px; right:20px;
-                            background:rgba(255,255,255,0.1); backdrop-filter:blur(10px);
-                            border:1px solid rgba(255,255,255,0.2); border-radius:14px; padding:14px 16px;">
-                    <div style="display:flex; align-items:center; gap:12px;">
-                        <div style="width:40px; height:40px; background:#FFCC00; border-radius:50%;
-                                    display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                            <i class="fas fa-trophy" style="color:#001f66; font-size:1rem;"></i>
+                     fetchpriority="high" loading="eager"
+                     style="width:100%;height:100%;object-fit:cover;">
+                <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 50%);"></div>
+                <!-- Esha Oza badge -->
+                <div style="position:absolute;bottom:20px;left:20px;right:20px;
+                            background:rgba(255,255,255,.08);backdrop-filter:blur(12px);
+                            border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:15px 18px;">
+                    <div style="display:flex;align-items:center;gap:13px;">
+                        <div style="width:42px;height:42px;background:#FFCC00;border-radius:50%;
+                                    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+                                    animation:goldGlow 2s ease infinite;">
+                            <i class="fas fa-trophy" style="color:#001f66;font-size:1rem;" aria-hidden="true"></i>
                         </div>
                         <div>
-                            <p style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.2rem;
-                                       color:#ffffff; text-transform:uppercase; line-height:1;">Esha Oza</p>
-                            <p style="font-family:'Nunito',sans-serif; font-weight:800; font-size:0.7rem;
-                                       color:#FFCC00; text-transform:uppercase; letter-spacing:0.1em;">
+                            <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.25rem;
+                                       color:#fff;text-transform:uppercase;line-height:1;">Esha Oza</p>
+                            <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;
+                                       color:#FFCC00;text-transform:uppercase;letter-spacing:.1em;">
                                 Desert Cubs Alumni · UAE Women's Captain</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Floating ECB badge (top-left of image) -->
-            <div style="position:absolute; top:-16px; left:-16px;
-                        background:#003399; border:2px solid #FFCC00; border-radius:14px;
-                        padding:12px 16px; box-shadow:0 8px 28px rgba(0,0,0,0.4);">
-                <p style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.5rem;
-                           color:#FFCC00; text-transform:uppercase; line-height:1;">ECB</p>
-                <p style="font-family:'Nunito',sans-serif; font-weight:800; font-size:0.6rem;
-                           color:#ffffff; text-transform:uppercase; letter-spacing:0.1em;">
-                    Affiliated<br>Academy</p>
+            <!-- ECB badge -->
+            <div style="position:absolute;top:-18px;left:-18px;background:#003399;
+                        border:2px solid #FFCC00;border-radius:16px;padding:13px 17px;
+                        box-shadow:0 10px 32px rgba(0,0,0,.45);animation:floatY 5s 1s ease-in-out infinite;">
+                <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.6rem;color:#FFCC00;text-transform:uppercase;line-height:1;">ECB</p>
+                <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:.6rem;color:#fff;text-transform:uppercase;letter-spacing:.1em;">Affiliated<br>Academy</p>
             </div>
-
-            <!-- Floating coaches badge (bottom-right of image) -->
-            <div style="position:absolute; bottom:-16px; right:-16px;
-                        background:#FFCC00; border-radius:14px;
-                        padding:12px 16px; box-shadow:0 8px 28px rgba(255,204,0,0.4);">
-                <p style="font-family:'Teko',sans-serif; font-weight:700; font-size:2rem;
-                           color:#001f66; text-transform:uppercase; line-height:1;">100+</p>
-                <p style="font-family:'Nunito',sans-serif; font-weight:900; font-size:0.62rem;
-                           color:#001f66; text-transform:uppercase; letter-spacing:0.1em;">
-                    Qualified<br>Coaches</p>
+            <!-- Coaches badge -->
+            <div style="position:absolute;bottom:-18px;right:-18px;background:#FFCC00;
+                        border-radius:16px;padding:13px 17px;
+                        box-shadow:0 10px 32px rgba(255,204,0,.45);animation:floatY 5.5s .5s ease-in-out infinite;">
+                <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:2.2rem;color:#001f66;text-transform:uppercase;line-height:1;">100+</p>
+                <p style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.62rem;color:#001f66;text-transform:uppercase;letter-spacing:.1em;">Qualified<br>Coaches</p>
             </div>
-        </div>
+        </div><!-- /.hero-img -->
 
-    </div><!-- /.grid -->
-    </div><!-- /.z-1 wrapper -->
+    </div><!-- /.hero-grid -->
+    </div><!-- /.dc-con -->
+    </div>
 
-    <!-- Scroll down indicator -->
-    <div style="position:absolute; bottom:24px; left:50%; transform:translateX(-50%);
-                color:rgba(255,255,255,0.3); animation:bounce 2s infinite; z-index:1;">
-        <i class="fas fa-chevron-down" style="font-size:1.5rem;"></i>
+    <!-- Scroll indicator -->
+    <div aria-hidden="true"
+         style="position:absolute;bottom:26px;left:50%;
+                animation:bounceScr 2.2s ease-in-out infinite;
+                color:rgba(255,255,255,.35);font-size:1.4rem;">
+        <i class="fas fa-chevron-down"></i>
     </div>
 </section>
 
 
 <!-- ============================================================
-     ACTIVE TOURNAMENT TICKER
-     Gold background — DARK text only
+     2. TOURNAMENT TICKER — gold banner
 ============================================================= -->
-<div style="background:#FFCC00; position:relative; overflow:hidden; border-top:3px solid rgba(0,31,102,0.15);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:flex-row md:justify-between"
-         style="display:flex; flex-direction:column; gap:10px; align-items:center;">
-        <div style="display:flex; align-items:center; gap:14px;">
-            <div style="width:40px; height:40px; background:#001f66; border-radius:50%;
-                        display:flex; align-items:center; justify-content:center; flex-shrink:0;
-                        animation:pulse 2s infinite;">
-                <i class="fas fa-cricket-bat-ball" style="color:#FFCC00;"></i>
+<div style="background:#FFCC00;position:relative;overflow:hidden;border-top:3px solid rgba(0,31,102,.1);">
+    <div class="dc-con" style="padding-top:14px;padding-bottom:14px;">
+    <div class="ticker-row">
+        <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:42px;height:42px;background:#001f66;border-radius:50%;
+                        display:flex;align-items:center;justify-content:center;flex-shrink:0;
+                        animation:goldPulse 2s infinite;">
+                <i class="fas fa-cricket-bat-ball" style="color:#FFCC00;" aria-hidden="true"></i>
             </div>
             <div>
-                <p style="font-family:'Nunito',sans-serif; font-weight:900; font-size:0.65rem;
-                           color:#001f66; text-transform:uppercase; letter-spacing:0.2em; opacity:0.7;">
-                    🔴 Happening This Month
-                </p>
-                <h2 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.8rem;
-                            color:#001f66; text-transform:uppercase; line-height:1.1;">
-                    {{ active_tournament.name }}
-                </h2>
+                <p style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.65rem;
+                           color:#001f66;text-transform:uppercase;letter-spacing:.22em;opacity:.7;">
+                    🔴 Happening This Month</p>
+                <h2 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.85rem;
+                            color:#001f66;text-transform:uppercase;line-height:1.1;">
+                    {{ active_tournament.name }}</h2>
             </div>
         </div>
-        <div style="display:none;" class="md:block">
-            <p style="font-family:'Nunito',sans-serif; font-size:0.9rem; font-weight:700;
-                       color:#001f66; opacity:0.8; max-width:300px; text-align:center;">
-                {{ active_tournament.desc }}
-            </p>
-        </div>
+        <p class="ticker-desc"
+           style="font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;
+                  color:#001f66;opacity:.8;max-width:320px;text-align:center;">
+            {{ active_tournament.desc }}</p>
         <a href="/tournaments" class="btn-blue"
-           style="padding:10px 22px; font-size:0.82rem; flex-shrink:0;"
+           style="padding:10px 22px;font-size:.82rem;flex-shrink:0;"
            aria-label="View full tournament season calendar">
-            Full Season Calendar <i class="fas fa-arrow-right" style="font-size:0.8rem;"></i>
+            Full Season Calendar <i class="fas fa-arrow-right" style="font-size:.78rem;" aria-hidden="true"></i>
         </a>
+    </div>
     </div>
 </div>
 
 
 <!-- ============================================================
-     QUICK TRUST STRIP — 4 icons
-     White background — dark blue text
+     3. ANIMATED TRUST MARQUEE — dark scrolling strip
 ============================================================= -->
-<section style="background:#ffffff; padding:40px 0; border-bottom:1px solid #e5e7eb;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+<div style="background:#000d1a;overflow:hidden;padding:15px 0;border-bottom:1px solid rgba(255,204,0,.1);">
+    <div style="display:flex;width:max-content;animation:trustMrq 30s linear infinite;">
+        {% for item in ['ICC Certified Coaches','Ages 4–19','Est. 2007','15,000+ Alumni',
+                        '6 Training Centres','100+ Qualified Coaches','UK Tours',
+                        'Australia Tours','Sri Lanka Tours','Best Cricket Academy UAE',
+                        'Dubai & Sharjah','ICC Certified Coaches','Ages 4–19','Est. 2007',
+                        '15,000+ Alumni','6 Training Centres','100+ Qualified Coaches',
+                        'UK Tours','Australia Tours','Sri Lanka Tours',
+                        'Best Cricket Academy UAE','Dubai & Sharjah'] %}
+        <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.75rem;
+                     text-transform:uppercase;letter-spacing:.16em;color:#4d6b94;
+                     padding:0 22px;display:flex;align-items:center;gap:22px;white-space:nowrap;">
+            {{ item }}<span style="width:5px;height:5px;background:#FFCC00;border-radius:50%;flex-shrink:0;"></span>
+        </span>
+        {% endfor %}
+    </div>
+</div>
+
+
+<!-- ============================================================
+     4. TRUST BADGES — 4 pillars
+============================================================= -->
+<section style="background:#ffffff;padding:52px 0;border-bottom:1px solid #e8ecf4;">
+    <div class="dc-con">
+        <div class="trust-grid">
             {% for icon, title, sub in [
-                ('fa-shield', 'ICC Certified', 'Qualified Coaching'),
-                ('fa-children', 'Ages 4–19', 'Boys & Girls'),
-                ('fa-plane', 'Global Tours', 'UK, Australia, Sri Lanka'),
-                ('fa-trophy', '15K+ Alumni', 'Champions Produced'),
+                ('fa-shield-halved','ICC Certified','Qualified Coaching'),
+                ('fa-children','Ages 4–19','Boys & Girls'),
+                ('fa-plane','Global Tours','UK, Australia, Sri Lanka'),
+                ('fa-trophy','15K+ Alumni','Champions Produced'),
             ] %}
-            <div class="scroll-fade" style="padding:16px;">
-                <div style="width:52px; height:52px; background:#003399; border-radius:14px;
-                            display:flex; align-items:center; justify-content:center;
-                            margin:0 auto 12px; box-shadow:0 4px 14px rgba(0,51,153,0.2);">
-                    <i class="fas {{ icon }}" style="color:#FFCC00; font-size:1.2rem;"></i>
+            <div class="dcr d{{ loop.index }}" style="padding:20px;text-align:center;">
+                <div class="trust-ico">
+                    <i class="fas {{ icon }}" style="color:#FFCC00;font-size:1.3rem;" aria-hidden="true"></i>
                 </div>
-                <p style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.2rem;
-                           color:#003399; text-transform:uppercase; line-height:1.1; margin-bottom:3px;">
-                    {{ title }}</p>
-                <p style="font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:700;
-                           color:#64748b; text-transform:uppercase; letter-spacing:0.1em;">
-                    {{ sub }}</p>
+                <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.25rem;
+                           color:#001f66;text-transform:uppercase;line-height:1.1;margin-bottom:4px;">{{ title }}</p>
+                <p style="font-family:'Nunito',sans-serif;font-size:.78rem;font-weight:700;
+                           color:#64748b;text-transform:uppercase;letter-spacing:.1em;">{{ sub }}</p>
             </div>
             {% endfor %}
         </div>
@@ -272,91 +430,74 @@
 
 
 <!-- ============================================================
-     BRANCHES / LOCATIONS SECTION
-     Light grey background — dark text
+     5. LOCATIONS / BRANCHES
 ============================================================= -->
-<section id="branches" style="background:#f8fafc; padding:80px 0;"
+<section id="branches" style="background:#f4f7fd;padding:88px 0;"
          aria-label="Cricket training centres in Dubai and Sharjah">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="dc-con">
 
-        <div class="text-center mb-12 scroll-fade">
-            <span class="section-tag" style="color:#003399; margin-bottom:8px; display:block;">
-                6 World-Class Centres
-            </span>
-            <h2 style="font-family:'Teko',sans-serif; font-weight:700; font-size:clamp(2rem,5vw,3.2rem);
-                        color:#003399; text-transform:uppercase; margin-bottom:12px;">
-                Find Your Nearest <span style="color:#FFCC00; -webkit-text-stroke:1px #e6b800; text-shadow:none;">Location</span>
+        <div class="sec-hd dcr">
+            <span class="sec-tag-blue">6 World-Class Centres</span>
+            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
+                        font-size:clamp(2.2rem,4vw,3.4rem);color:#001f66;
+                        text-transform:uppercase;margin-bottom:12px;line-height:1.05;">
+                Find Your <span style="color:#FFCC00;-webkit-text-stroke:1px #e6b800;">Nearest Location</span>
             </h2>
-            <div class="gold-bar" style="margin:0 auto 14px;"></div>
-            <p style="font-family:'Nunito',sans-serif; color:#475569; font-size:1rem;
-                       max-width:480px; margin:0 auto;">
-                Cricket training centres across Dubai and Sharjah — find the one nearest to you.
-            </p>
+            <div class="gold-bar"></div>
+            <p style="font-family:'Nunito',sans-serif;color:#4d6b94;font-size:.97rem;
+                       max-width:460px;margin:16px auto 0;line-height:1.75;">
+                Cricket training centres across Dubai and Sharjah — find the one nearest to you.</p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="loc-grid">
             {% for branch in branches %}
-            <article class="scroll-fade card-hover"
-                     style="background:#ffffff; border:1.5px solid #e5e7eb; border-radius:20px;
-                            overflow:hidden; display:flex; flex-direction:column;"
+            <article class="loc-card dcr d{{ loop.index }}"
                      itemscope itemtype="https://schema.org/SportsActivityLocation">
-
-                <!-- Branch image -->
-                <div style="height:190px; overflow:hidden; position:relative; background:#001f66;">
+                <div style="height:200px;overflow:hidden;position:relative;background:#001f66;">
                     <img src="{{ url_for('static', filename='img/' + branch.img) }}"
                          alt="{{ branch.name }} — Cricket Academy in {{ branch.area }}, UAE"
-                         width="600" height="190"
-                         loading="lazy"
-                         style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s;"
+                         width="600" height="200" loading="lazy" class="loc-img"
+                         style="width:100%;height:100%;object-fit:cover;"
                          itemprop="image"
-                         onerror="this.style.display='none';">
-                    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,31,102,0.7) 0%, transparent 55%);"></div>
-                    <!-- Area badge -->
-                    <div style="position:absolute; top:14px; left:14px;
-                                background:#FFCC00; color:#001f66; font-family:'Nunito',sans-serif;
-                                font-weight:900; font-size:0.7rem; text-transform:uppercase;
-                                letter-spacing:0.08em; padding:4px 12px; border-radius:999px;">
-                        {{ branch.area }}
-                    </div>
+                         onerror="this.style.display='none'">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.7) 0%,transparent 55%);"></div>
+                    <div style="position:absolute;top:14px;left:14px;background:#FFCC00;color:#001f66;
+                                font-family:'Nunito',sans-serif;font-weight:900;font-size:.68rem;
+                                text-transform:uppercase;letter-spacing:.08em;padding:4px 13px;
+                                border-radius:999px;box-shadow:0 3px 10px rgba(255,204,0,.4);">
+                        {{ branch.area }}</div>
                 </div>
-
-                <!-- Branch info -->
-                <div style="padding:20px 22px; flex-grow:1; display:flex; flex-direction:column;">
-                    <h3 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.55rem;
-                                color:#003399; text-transform:uppercase; line-height:1.1; margin-bottom:8px;"
+                <div style="padding:22px 24px;flex-grow:1;display:flex;flex-direction:column;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.55rem;
+                                color:#001f66;text-transform:uppercase;line-height:1.1;margin-bottom:8px;"
                         itemprop="name">{{ branch.name }}</h3>
-                    <p style="font-family:'Nunito',sans-serif; font-size:0.85rem; color:#475569;
-                               line-height:1.65; margin-bottom:14px; flex-grow:1;"
+                    <p style="font-family:'Nunito',sans-serif;font-size:.85rem;color:#4d6b94;
+                               line-height:1.7;margin-bottom:14px;flex-grow:1;"
                        itemprop="description">{{ branch.desc }}</p>
-
-                    <!-- Facilities -->
-                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px;">
-                        {% for facility in branch.facilities[:4] %}
-                        <span style="background:#f0f5ff; color:#003399; font-family:'Nunito',sans-serif;
-                                     font-weight:800; font-size:0.68rem; text-transform:uppercase;
-                                     padding:3px 10px; border-radius:999px; border:1px solid #c7d4f5;">
-                            {{ facility }}
-                        </span>
+                    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">
+                        {% for fac in branch.facilities[:4] %}
+                        <span style="background:#eef2ff;color:#003399;font-family:'Nunito',sans-serif;
+                                     font-weight:800;font-size:.66rem;text-transform:uppercase;
+                                     padding:3px 10px;border-radius:999px;border:1px solid #c7d4f5;">
+                            {{ fac }}</span>
                         {% endfor %}
                     </div>
-
-                    <!-- Action buttons -->
-                    <div style="display:flex; gap:8px; flex-wrap:wrap; border-top:1px solid #f1f5f9; padding-top:14px;">
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid #f1f5f9;padding-top:14px;">
                         <a href="/locations/{{ branch.id }}" class="btn-gold"
-                           style="padding:9px 18px; font-size:0.78rem; flex:1; justify-content:center;">
-                            <i class="fas fa-info-circle" style="font-size:0.75rem;"></i> Details
+                           style="padding:9px 18px;font-size:.78rem;flex:1;justify-content:center;">
+                            <i class="fas fa-info-circle" style="font-size:.74rem;" aria-hidden="true"></i> Details
                         </a>
                         {% if branch.map_url %}
                         <a href="{{ branch.map_url }}" target="_blank" rel="noopener"
-                           class="btn-blue" style="padding:9px 16px; font-size:0.78rem; border-radius:12px;">
-                            <i class="fas fa-map" style="font-size:0.75rem;"></i>
+                           class="btn-blue" style="padding:9px 16px;font-size:.78rem;border-radius:12px;"
+                           aria-label="View {{ branch.name }} on map">
+                            <i class="fas fa-map" style="font-size:.74rem;" aria-hidden="true"></i>
                         </a>
                         {% endif %}
-                        {% set sched_id = branch.id.upper().replace('-', '_') %}
-                        <button onclick="openSchedule('{{ url_for('static', filename='img/' + branch.schedule_img) }}', '{{ branch.name }}')"
-                                class="btn-blue" style="padding:9px 16px; font-size:0.78rem; border-radius:12px;"
+                        <button onclick="openSchedule('{{ url_for('static', filename='img/' + branch.schedule_img) }}','{{ branch.name }}')"
+                                class="btn-blue" style="padding:9px 16px;font-size:.78rem;border-radius:12px;"
                                 aria-label="View training schedule for {{ branch.name }}">
-                            <i class="fas fa-clock" style="font-size:0.75rem;" aria-hidden="true"></i>
+                            <i class="fas fa-clock" style="font-size:.74rem;" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
@@ -368,44 +509,38 @@
 
 
 <!-- ============================================================
-     WHY DESERT CUBS — 6 reasons
-     Dark blue background — white/gold text
+     6. WHY DESERT CUBS — 6 features
 ============================================================= -->
-<section style="background:linear-gradient(135deg, #001f66 0%, #003399 100%); padding:80px 0;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12 scroll-fade">
-            <span class="section-tag" style="color:#FFCC00; margin-bottom:8px; display:block;">
-                Why Families Choose Us
-            </span>
-            <h2 style="font-family:'Teko',sans-serif; font-weight:700;
-                        font-size:clamp(2rem,5vw,3.2rem); color:#ffffff; text-transform:uppercase; margin-bottom:12px;">
+<section style="background:linear-gradient(135deg,#000d1a 0%,#001045 50%,#001f66 100%);padding:88px 0;">
+    <div class="dc-con">
+
+        <div class="sec-hd dcr">
+            <span class="sec-tag-gold">Why Families Choose Us</span>
+            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
+                        font-size:clamp(2.2rem,4vw,3.4rem);color:#ffffff;
+                        text-transform:uppercase;margin-bottom:12px;line-height:1.05;">
                 The Desert Cubs <span style="color:#FFCC00;">Difference</span>
             </h2>
-            <div class="gold-bar" style="margin:0 auto;"></div>
+            <div class="gold-bar"></div>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="feat-grid">
             {% for icon, title, desc in [
-                ('fa-chalkboard-teacher', 'Elite Coaching Staff', 'ECB & ICC certified coaches with professional playing experience across UAE, India, Sri Lanka, Australia & England.'),
-                ('fa-star', 'Legend Master Classes', 'Learn directly from cricket icons — Jonty Rhodes, Marvan Atapattu, Dinesh Karthik, R. Ashwin and more.'),
-                ('fa-plane', 'International Tours', 'Annual tours to the UK, Australia, Sri Lanka & South Africa. Real match experience on world stages.'),
-                ('fa-trophy', 'Competitive Leagues', '10 tournaments per season — internal leagues and national/regional championships for all age groups.'),
-                ('fa-venus', "Girls' Cricket", "UAE's leading girls cricket programme. Our alumni include UAE Women's Captain Esha Oza."),
-                ('fa-chart-line', 'Video Analysis', 'Professional video analysis, fitness tracking and personalised development plans for every student.'),
+                ('fa-chalkboard-teacher','Elite Coaching Staff','ECB & ICC certified coaches with professional playing experience across UAE, India, Sri Lanka, Australia & England.'),
+                ('fa-star','Legend Master Classes','Learn directly from cricket icons — Jonty Rhodes, Marvan Atapattu, Dinesh Karthik, R. Ashwin and more.'),
+                ('fa-plane','International Tours','Annual tours to the UK, Australia, Sri Lanka & South Africa. Real match experience on world stages.'),
+                ('fa-trophy','Competitive Leagues','10 tournaments per season — internal leagues and national/regional championships for all age groups.'),
+                ('fa-venus','Girls\' Cricket','UAE\'s leading girls cricket programme. Our alumni include UAE Women\'s Captain Esha Oza.'),
+                ('fa-chart-line','Video Analysis','Professional video analysis, fitness tracking and personalised development plans for every student.'),
             ] %}
-            <div class="scroll-fade"
-                 style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
-                        border-radius:18px; padding:28px; transition:all 0.3s;"
-                 onmouseover="this.style.background='rgba(255,204,0,0.1)'; this.style.borderColor='rgba(255,204,0,0.3)';"
-                 onmouseout="this.style.background='rgba(255,255,255,0.06)'; this.style.borderColor='rgba(255,255,255,0.1)';">
-                <div style="width:50px; height:50px; background:#FFCC00; border-radius:12px;
-                            display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
-                    <i class="fas {{ icon }}" style="color:#001f66; font-size:1.2rem;"></i>
+            <div class="feat-card dcr d{{ loop.index }}">
+                <div class="feat-ico">
+                    <i class="fas {{ icon }}" style="color:#001f66;font-size:1.3rem;" aria-hidden="true"></i>
                 </div>
-                <h3 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.4rem;
-                            color:#ffffff; text-transform:uppercase; line-height:1.1; margin-bottom:10px;">
+                <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.45rem;
+                            color:#ffffff;text-transform:uppercase;line-height:1.1;margin-bottom:10px;">
                     {{ title }}</h3>
-                <p style="font-family:'Nunito',sans-serif; font-size:0.88rem; color:#94a3b8; line-height:1.75;">
+                <p style="font-family:'Nunito',sans-serif;font-size:.88rem;color:#6888a8;line-height:1.8;">
                     {{ desc }}</p>
             </div>
             {% endfor %}
@@ -415,107 +550,107 @@
 
 
 <!-- ============================================================
-     INTERNATIONAL TOURS HIGHLIGHT
-     White background — dark text
+     7. INTERNATIONAL TOURS
 ============================================================= -->
-<section style="background:#ffffff; padding:80px 0;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12 scroll-fade">
-            <span class="section-tag" style="color:#003399; margin-bottom:8px; display:block;">
-                Since 2008 · 15+ Countries
-            </span>
-            <h2 style="font-family:'Teko',sans-serif; font-weight:700; font-size:clamp(2rem,5vw,3.2rem);
-                        color:#003399; text-transform:uppercase; margin-bottom:12px;">
-                International <span style="color:#FFCC00; -webkit-text-stroke:1px #e6b800;">Cricket Tours</span>
+<section style="background:#ffffff;padding:88px 0;">
+    <div class="dc-con">
+
+        <div class="sec-hd dcr">
+            <span class="sec-tag-blue">Since 2008 · 15+ Countries</span>
+            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
+                        font-size:clamp(2.2rem,4vw,3.4rem);color:#001f66;
+                        text-transform:uppercase;margin-bottom:12px;line-height:1.05;">
+                International <span style="color:#FFCC00;-webkit-text-stroke:1px #e6b800;">Cricket Tours</span>
             </h2>
-            <div class="gold-bar" style="margin:0 auto;"></div>
+            <div class="gold-bar"></div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6">
-            <!-- Upcoming 2026 UK Tour -->
-            <div class="scroll-fade" style="grid-column:span 1; background:#003399; border-radius:20px;
-                         padding:28px; border:2px solid #FFCC00; position:relative; overflow:hidden;">
-                <div style="position:absolute; top:-20px; right:-20px; width:100px; height:100px;
-                            background:rgba(255,204,0,0.08); border-radius:50%;"></div>
-                <div style="position:relative; z-index:1;">
-                    <div style="background:#FFCC00; color:#001f66; font-family:'Nunito',sans-serif;
-                                font-weight:900; font-size:0.65rem; text-transform:uppercase;
-                                letter-spacing:0.1em; padding:4px 12px; border-radius:999px;
-                                display:inline-block; margin-bottom:12px;">
-                        🟢 Registrations Open
-                    </div>
-                    <h3 style="font-family:'Teko',sans-serif; font-weight:700; font-size:2.2rem;
-                                color:#ffffff; text-transform:uppercase; line-height:1; margin-bottom:8px;">
+        <div class="tours-grid">
+            <!-- UK 2026 — Featured -->
+            <div class="dcr d1" style="background:linear-gradient(135deg,#001f66,#003399);
+                 border-radius:22px;padding:32px;border:2px solid #FFCC00;position:relative;overflow:hidden;">
+                <div aria-hidden="true"
+                     style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;
+                            background:rgba(255,204,0,.07);border-radius:50%;pointer-events:none;"></div>
+                <div style="position:relative;z-index:1;">
+                    <span style="background:#FFCC00;color:#001f66;font-family:'Nunito',sans-serif;
+                                 font-weight:900;font-size:.65rem;text-transform:uppercase;
+                                 letter-spacing:.1em;padding:4px 13px;border-radius:999px;
+                                 display:inline-block;margin-bottom:14px;
+                                 animation:goldPulse 2s ease infinite;">
+                        🟢 Registrations Open</span>
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:2.4rem;
+                                color:#ffffff;text-transform:uppercase;line-height:1;margin-bottom:10px;">
                         🇬🇧 UK 2026</h3>
-                    <p style="font-family:'Nunito',sans-serif; font-size:0.85rem; color:#c7d7f5;
-                               line-height:1.7; margin-bottom:18px;">
-                        {{ tours.upcoming[0].desc if tours.upcoming else 'England & Wales cricket tour. Historic venues, competitive matches, unforgettable experience.' }}
+                    <p style="font-family:'Nunito',sans-serif;font-size:.87rem;color:#8ba3c7;
+                               line-height:1.75;margin-bottom:20px;">
+                        {{ tours.upcoming[0].desc if tours.upcoming else 'England &amp; Wales cricket tour. Historic venues, competitive matches, unforgettable experience.' }}
                     </p>
                     {% if tours.upcoming %}
                     <a href="{{ tours.upcoming[0].reg_link }}" target="_blank" class="btn-gold"
-                       style="padding:10px 22px; font-size:0.82rem;">
-                        <i class="fas fa-paper-plane" style="font-size:0.78rem;"></i> Register Interest
+                       style="padding:11px 24px;font-size:.82rem;">
+                        <i class="fas fa-paper-plane" style="font-size:.78rem;" aria-hidden="true"></i>
+                        Register Interest
                     </a>
                     {% endif %}
                 </div>
             </div>
 
-            <!-- Sri Lanka 2025 (past) -->
-            <div class="scroll-fade" style="background:#f8fafc; border:1.5px solid #e5e7eb;
-                         border-radius:20px; overflow:hidden; cursor:pointer;"
-                 onclick="openGallery('DC_Srilanka_2025', 'DC_Srilanka', 10)">
-                <div style="height:170px; overflow:hidden; position:relative; background:#001f66;">
+            <!-- Sri Lanka 2025 -->
+            <div class="tour-past dcr d2"
+                 onclick="openGallery('DC_Srilanka_2025','DC_Srilanka',10)"
+                 role="button" tabindex="0"
+                 aria-label="View Sri Lanka 2025 cricket tour gallery">
+                <div style="height:180px;overflow:hidden;position:relative;background:#001f66;">
                     <img src="{{ url_for('static', filename='img/DC_Srilanka_2025/DC_Srilanka1.jpg') }}"
                          alt="Desert Cubs cricket tour Sri Lanka 2025"
-                         width="600" height="170"
-                         loading="lazy"
-                         style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s;"
+                         width="600" height="180" loading="lazy" class="tour-img"
+                         style="width:100%;height:100%;object-fit:cover;"
                          onerror="this.style.display='none'">
-                    <div style="position:absolute; inset:0; background:rgba(0,0,0,0.3);"></div>
-                    <span style="position:absolute; bottom:12px; left:14px;
-                                 background:#FFCC00; color:#001f66; font-family:'Nunito',sans-serif;
-                                 font-weight:900; font-size:0.7rem; padding:3px 10px; border-radius:999px;">
-                        View Gallery</span>
+                    <div style="position:absolute;inset:0;background:rgba(0,13,51,.35);"></div>
+                    <span style="position:absolute;bottom:12px;left:14px;background:#FFCC00;color:#001f66;
+                                 font-family:'Nunito',sans-serif;font-weight:900;font-size:.68rem;
+                                 padding:4px 12px;border-radius:999px;">View Gallery</span>
                 </div>
-                <div style="padding:18px 20px;">
-                    <h3 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.6rem;
-                                color:#003399; text-transform:uppercase; line-height:1; margin-bottom:6px;">
+                <div style="padding:20px 22px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.7rem;
+                                color:#001f66;text-transform:uppercase;line-height:1;margin-bottom:6px;">
                         🇱🇰 Sri Lanka 2025</h3>
-                    <p style="font-family:'Nunito',sans-serif; font-size:0.83rem; color:#475569; line-height:1.65;">
+                    <p style="font-family:'Nunito',sans-serif;font-size:.84rem;color:#4d6b94;line-height:1.65;">
                         GCCA (Gulf Cricket Council for Academies) T20 Championship.</p>
                 </div>
             </div>
 
-            <!-- Australia 2024 (past) -->
-            <div class="scroll-fade" style="background:#f8fafc; border:1.5px solid #e5e7eb;
-                         border-radius:20px; overflow:hidden; cursor:pointer;"
-                 onclick="openGallery('DC_Australia_2024', 'DC_Australia', 10)">
-                <div style="height:170px; overflow:hidden; position:relative; background:#001f66;">
+            <!-- Australia 2024 -->
+            <div class="tour-past dcr d3"
+                 onclick="openGallery('DC_Australia_2024','DC_Australia',10)"
+                 role="button" tabindex="0"
+                 aria-label="View Australia 2024 cricket tour gallery">
+                <div style="height:180px;overflow:hidden;position:relative;background:#001f66;">
                     <img src="{{ url_for('static', filename='img/DC_Australia_2024/DC_Australia1.jpg') }}"
                          alt="Desert Cubs cricket tour Australia 2024"
-                         width="600" height="170"
-                         loading="lazy"
-                         style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s;"
+                         width="600" height="180" loading="lazy" class="tour-img"
+                         style="width:100%;height:100%;object-fit:cover;"
                          onerror="this.style.display='none'">
-                    <div style="position:absolute; inset:0; background:rgba(0,0,0,0.3);"></div>
-                    <span style="position:absolute; bottom:12px; left:14px;
-                                 background:#FFCC00; color:#001f66; font-family:'Nunito',sans-serif;
-                                 font-weight:900; font-size:0.7rem; padding:3px 10px; border-radius:999px;">
-                        View Gallery</span>
+                    <div style="position:absolute;inset:0;background:rgba(0,13,51,.35);"></div>
+                    <span style="position:absolute;bottom:12px;left:14px;background:#FFCC00;color:#001f66;
+                                 font-family:'Nunito',sans-serif;font-weight:900;font-size:.68rem;
+                                 padding:4px 12px;border-radius:999px;">View Gallery</span>
                 </div>
-                <div style="padding:18px 20px;">
-                    <h3 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.6rem;
-                                color:#003399; text-transform:uppercase; line-height:1; margin-bottom:6px;">
+                <div style="padding:20px 22px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.7rem;
+                                color:#001f66;text-transform:uppercase;line-height:1;margin-bottom:6px;">
                         🇦🇺 Australia 2024</h3>
-                    <p style="font-family:'Nunito',sans-serif; font-size:0.83rem; color:#475569; line-height:1.65;">
+                    <p style="font-family:'Nunito',sans-serif;font-size:.84rem;color:#4d6b94;line-height:1.65;">
                         ICCA Global Academy Championship, Brisbane.</p>
                 </div>
             </div>
         </div>
 
-        <div style="text-align:center; margin-top:30px;">
-            <a href="/tours" class="btn-blue" style="padding:12px 30px; font-size:0.88rem;">
-                <i class="fas fa-globe" style="font-size:0.82rem;"></i> See All Tours (2008–2026)
+        <div style="text-align:center;margin-top:36px;" class="dcr">
+            <a href="/tours" class="btn-blue" style="padding:13px 32px;font-size:.88rem;">
+                <i class="fas fa-globe" style="font-size:.82rem;" aria-hidden="true"></i>
+                See All Tours (2008–2026)
             </a>
         </div>
     </div>
@@ -523,55 +658,53 @@
 
 
 <!-- ============================================================
-     CRICKET LEGENDS
-     Dark background — white/gold text
+     8. CRICKET LEGENDS — horizontal scroll
 ============================================================= -->
-<section style="background:linear-gradient(135deg, #001045 0%, #001f66 100%); padding:80px 0;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12 scroll-fade">
-            <span class="section-tag" style="color:#FFCC00; margin-bottom:8px; display:block;">
-                High Performance Programs
-            </span>
-            <h2 style="font-family:'Teko',sans-serif; font-weight:700; font-size:clamp(2rem,5vw,3.2rem);
-                        color:#ffffff; text-transform:uppercase; margin-bottom:12px;">
+<section style="background:linear-gradient(135deg,#000d1a 0%,#001045 60%,#001f66 100%);padding:88px 0;">
+    <div class="dc-con">
+
+        <div class="sec-hd dcr">
+            <span class="sec-tag-gold">High Performance Programs</span>
+            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
+                        font-size:clamp(2.2rem,4vw,3.4rem);color:#ffffff;
+                        text-transform:uppercase;margin-bottom:12px;line-height:1.05;">
                 Cricket <span style="color:#FFCC00;">Legends</span> at Desert Cubs
             </h2>
-            <div class="gold-bar" style="margin:0 auto 12px;"></div>
-            <p style="font-family:'Nunito',sans-serif; color:#94a3b8; font-size:1rem; max-width:480px; margin:0 auto;">
-                Our students have trained with some of the world's greatest cricketers.
-            </p>
+            <div class="gold-bar"></div>
+            <p style="font-family:'Nunito',sans-serif;color:#6888a8;font-size:.96rem;
+                       max-width:460px;margin:16px auto 0;line-height:1.75;">
+                Our students have trained with some of the world's greatest cricketers.</p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {% set legends = [
-                {'flag':'🇿🇦','name':'Jonty Rhodes','role':'Fielding Legend · SA'},
-                {'flag':'🇱🇰','name':'Marvan Atapattu','role':'SL Captain & Coach'},
-                {'flag':'🇮🇳','name':'Dinesh Karthik','role':'India WK-Batsman'},
-                {'flag':'🇮🇳','name':'R. Ashwin','role':'World Cup Winner'},
-                {'flag':'🇱🇰','name':'Chaminda Vaas','role':'Swing King · SL'},
-                {'flag':'🇦🇺','name':'Dav Whatmore','role':'WC Winning Coach'},
-                {'flag':'🇱🇰','name':'Romesh Kalu','role':'World Cup Winner'},
-                {'flag':'🇱🇰','name':'Rumesh Ratna.','role':'Pace Expert · SL'},
-            ] %}
-            {% for l in legends %}
-            <div class="scroll-fade"
-                 style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
-                        border-radius:16px; padding:20px; text-align:center; transition:all 0.3s; cursor:default;"
-                 onmouseover="this.style.background='rgba(255,204,0,0.1)'; this.style.borderColor='rgba(255,204,0,0.4)';"
-                 onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='rgba(255,255,255,0.1)';">
-                <span style="font-size:2.5rem; display:block; margin-bottom:10px;">{{ l.flag }}</span>
-                <h3 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.2rem;
-                            color:#ffffff; text-transform:uppercase; line-height:1.1; margin-bottom:5px;">
-                    {{ l.name }}</h3>
-                <p style="font-family:'Nunito',sans-serif; font-size:0.75rem; color:#94a3b8; font-weight:700;">
-                    {{ l.role }}</p>
+        <div class="legend-scroll" id="legendScroll">
+            <div class="legend-track">
+                {% set legends = [
+                    {'flag':'🇿🇦','name':'Jonty Rhodes','role':'Fielding Legend · SA'},
+                    {'flag':'🇱🇰','name':'Marvan Atapattu','role':'SL Captain & Coach'},
+                    {'flag':'🇮🇳','name':'Dinesh Karthik','role':'India WK-Batsman'},
+                    {'flag':'🇮🇳','name':'R. Ashwin','role':'World Cup Winner'},
+                    {'flag':'🇱🇰','name':'Chaminda Vaas','role':'Swing King · SL'},
+                    {'flag':'🇦🇺','name':'Dav Whatmore','role':'WC Winning Coach'},
+                    {'flag':'🇱🇰','name':'Romesh Kalu','role':'World Cup Winner'},
+                    {'flag':'🇱🇰','name':'Rumesh Ratna.','role':'Pace Expert · SL'},
+                ] %}
+                {% for l in legends %}
+                <div class="legend-card dcr d{{ [1,2,3,4,5,6,1,2][loop.index0] }}">
+                    <span style="font-size:2.8rem;display:block;margin-bottom:12px;">{{ l.flag }}</span>
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.2rem;
+                                color:#ffffff;text-transform:uppercase;line-height:1.1;margin-bottom:5px;">
+                        {{ l.name }}</h3>
+                    <p style="font-family:'Nunito',sans-serif;font-size:.74rem;color:#6888a8;font-weight:700;">
+                        {{ l.role }}</p>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
 
-        <div style="text-align:center; margin-top:32px;">
-            <a href="/events" class="btn-gold" style="padding:12px 30px; font-size:0.88rem;">
-                <i class="fas fa-star" style="font-size:0.82rem;"></i> All Master Classes & Events
+        <div style="text-align:center;margin-top:36px;" class="dcr">
+            <a href="/events" class="btn-gold" style="padding:13px 32px;font-size:.88rem;">
+                <i class="fas fa-star" style="font-size:.82rem;" aria-hidden="true"></i>
+                All Master Classes &amp; Events
             </a>
         </div>
     </div>
@@ -579,52 +712,61 @@
 
 
 <!-- ============================================================
-     TESTIMONIALS
-     Light grey — dark text
+     9. PARENT REVIEWS
 ============================================================= -->
-<section style="background:#f8fafc; padding:80px 0;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12 scroll-fade">
-            <span class="section-tag" style="color:#003399; margin-bottom:8px; display:block;">
-                What Parents Say
-            </span>
-            <h2 style="font-family:'Teko',sans-serif; font-weight:700; font-size:clamp(2rem,5vw,3.2rem);
-                        color:#003399; text-transform:uppercase; margin-bottom:12px;">
-                Parent <span style="color:#FFCC00; -webkit-text-stroke:1px #e6b800;">Reviews</span>
+<section style="background:#f4f7fd;padding:88px 0;">
+    <div class="dc-con">
+
+        <div class="sec-hd dcr">
+            <span class="sec-tag-blue">What Parents Say</span>
+            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
+                        font-size:clamp(2.2rem,4vw,3.4rem);color:#001f66;
+                        text-transform:uppercase;margin-bottom:12px;line-height:1.05;">
+                Parent <span style="color:#FFCC00;-webkit-text-stroke:1px #e6b800;">Reviews</span>
             </h2>
-            <div class="gold-bar" style="margin:0 auto;"></div>
+            <div class="gold-bar"></div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6">
+        <!-- AggregateRating schema — SEO advantage over competitors -->
+        <div class="rev-grid" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating"
+             style="display:none;">
+            <meta itemprop="ratingValue" content="5">
+            <meta itemprop="reviewCount" content="3">
+            <meta itemprop="bestRating" content="5">
+        </div>
+
+        <div class="rev-grid">
             {% for name, loc, text in [
-                ('Mohamed Shakeel', 'BSA Centre, Dubai Investment Park',
-                 "I enrolled my son in cricket coaching for two weeks during our visit to Dubai. I noticed a significant improvement in his batting, bowling, and fielding skills. Coach Angelo was an absolute pleasure to work with. He spends ample time with each child, ensuring they fully comprehend the concepts. I eagerly anticipate enrolling my son again if we visit Dubai in the future!"),
-                ('Baja Subteam', 'BSA Centre, Dubai Investment Park',
-                 "I had absolutely no knowledge of cricket before joining Desert Cubs Cricket Academy, but thanks to my coach, Anjalo, everything changed from day one. His way of teaching made the game so simple and enjoyable that I quickly felt like I was playing like a pro. Coach Anjalo is patient, motivating, and extremely skilled at explaining techniques in a way that\'s easy to understand. He has an amazing ability to build confidence and bring out the best in every player. I feel lucky to be coached by him – truly the best coach anyone could ask for!"),
-                ('Prakash Rathod', 'Desert Cubs Academy, UAE',
+                ('Mohamed Shakeel','BSA Centre, Dubai Investment Park',
+                 'I enrolled my son in cricket coaching for two weeks during our visit to Dubai. I noticed a significant improvement in his batting, bowling, and fielding skills. Coach Angelo was an absolute pleasure to work with. He spends ample time with each child, ensuring they fully comprehend the concepts. I eagerly anticipate enrolling my son again if we visit Dubai in the future!'),
+                ('Baja Subteam','BSA Centre, Dubai Investment Park',
+                 "I had absolutely no knowledge of cricket before joining Desert Cubs Cricket Academy, but thanks to my coach, Anjalo, everything changed from day one. His way of teaching made the game so simple and enjoyable that I quickly felt like I was playing like a pro. Coach Anjalo is patient, motivating, and extremely skilled at explaining techniques in a way that's easy to understand. He has an amazing ability to build confidence and bring out the best in every player. I feel lucky to be coached by him – truly the best coach anyone could ask for!"),
+                ('Prakash Rathod','Desert Cubs Academy, UAE',
                  'One of the best cricket academy in UAE with international facilities and coaches with high standards, you must try out and your kids will be in safe hands.'),
             ] %}
-            <div class="scroll-fade card-hover"
-                 style="background:#ffffff; border:1.5px solid #e5e7eb; border-radius:20px; padding:28px;">
-                <!-- Stars -->
-                <div style="display:flex; gap:4px; margin-bottom:14px;">
+            <div class="rev-card dcr d{{ loop.index }}"
+                 itemprop="review" itemscope itemtype="https://schema.org/Review">
+                <div style="display:flex;gap:4px;margin-bottom:16px;">
                     {% for _ in range(5) %}
-                    <i class="fas fa-star" style="color:#FFCC00; font-size:0.9rem;"></i>
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
                     {% endfor %}
+                    <meta itemprop="reviewRating" content="5">
                 </div>
-                <p style="font-family:'Nunito',sans-serif; font-size:0.9rem; color:#374151;
-                           line-height:1.8; margin-bottom:18px; font-style:italic;">
-                    "{{ text }}"
-                </p>
-                <div style="display:flex; align-items:center; gap:12px; border-top:1px solid #f1f5f9; padding-top:16px;">
-                    <div style="width:42px; height:42px; background:#003399; border-radius:50%;
-                                display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                        <i class="fas fa-user" style="color:#FFCC00; font-size:1rem;"></i>
+                <p style="font-family:'Nunito',sans-serif;font-size:.89rem;color:#374151;
+                           line-height:1.85;margin-bottom:20px;font-style:italic;"
+                   itemprop="reviewBody">
+                    &ldquo;{{ text }}&rdquo;</p>
+                <div style="display:flex;align-items:center;gap:13px;
+                            border-top:1px solid #f1f5f9;padding-top:16px;">
+                    <div style="width:44px;height:44px;background:linear-gradient(135deg,#001f66,#003399);
+                                border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i class="fas fa-user" style="color:#FFCC00;font-size:1rem;" aria-hidden="true"></i>
                     </div>
                     <div>
-                        <p style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.1rem;
-                                   color:#003399; text-transform:uppercase; line-height:1;">{{ name }}</p>
-                        <p style="font-family:'Nunito',sans-serif; font-size:0.72rem; color:#64748b; font-weight:700;">
+                        <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.1rem;
+                                   color:#001f66;text-transform:uppercase;line-height:1;"
+                           itemprop="author">{{ name }}</p>
+                        <p style="font-family:'Nunito',sans-serif;font-size:.72rem;color:#64748b;font-weight:700;">
                             {{ loc }}</p>
                     </div>
                 </div>
@@ -636,85 +778,55 @@
 
 
 <!-- ============================================================
-     FAQ SECTION — SEO keyword-rich, schema-backed
+     10. FAQ — Interactive accordion (SEO schema-backed)
 ============================================================= -->
-<section style="background:#f8fafc; padding:80px 0; border-top:1px solid #e2e8f0;">
-    <div class="max-w-4xl mx-auto px-4" itemscope itemtype="https://schema.org/FAQPage">
+<section style="background:#ffffff;padding:88px 0;border-top:1px solid #e8ecf4;"
+         itemscope itemtype="https://schema.org/FAQPage">
+    <div class="dc-con" style="max-width:900px;">
 
-        <div class="text-center mb-12">
-            <span class="section-tag" style="color:#FFCC00; margin-bottom:8px;">Common Questions</span>
-            <h2 style="font-family:'Teko',sans-serif; font-weight:700; font-size:clamp(2rem,4vw,3rem);
-                        color:#003399; text-transform:uppercase; line-height:1.1;">
+        <div class="sec-hd dcr">
+            <span class="sec-tag-blue">Common Questions</span>
+            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
+                        font-size:clamp(2rem,4vw,3.2rem);color:#001f66;
+                        text-transform:uppercase;line-height:1.1;margin-bottom:12px;">
                 Frequently Asked <span style="color:#FFCC00;">Questions</span>
             </h2>
+            <div class="gold-bar"></div>
         </div>
 
-        <div style="display:flex; flex-direction:column; gap:16px;">
+        <div style="display:flex;flex-direction:column;gap:14px;">
 
-            <div style="background:#fff; border-radius:16px; border:1px solid #e2e8f0; padding:24px 28px;"
+            {% for q, a in [
+                ('What is the best cricket academy in UAE?',
+                 'Desert Cubs Cricket Academy is the <strong>best cricket academy in UAE</strong>, established in 2007 with over 15,000 alumni. We operate 6 world-class training centres across Dubai and Sharjah with ICC-certified coaches, offering UAE junior cricket coaching for all ages from 4 to 19.'),
+                ('Where is Sharjah junior cricket coaching available?',
+                 '<strong>Sharjah junior cricket coaching</strong> is available at our Sharjah English School (SES) centre on Maliha Road — the crown jewel of our network. It features a full natural grass ground, 6 centre turf pitches, floodlights, digital scoreboards, and video analysis. It is widely considered the <strong>best cricket ground in UAE</strong>.'),
+                ('Does Desert Cubs run cricket summer camps in UAE?',
+                 'Yes! Our <strong>UAE summer camp cricket</strong> programme runs at Baseline Sports Academy (DIP) — a state-of-the-art, fully AC-controlled indoor cricket facility with 5 specialised lanes and video analysis. It is one of a kind in the UAE, enabling year-round high-performance training even during the hottest months.'),
+                ('Which academy offers the UAE national cricket player pathway?',
+                 'Desert Cubs is an <strong>ECB-affiliated academy</strong> and provides the leading <strong>UAE national cricket player pathway</strong>. Our students compete in the ECB National Junior Tournament and undertake <strong>junior international cricket tours</strong> to UK, Australia, Sri Lanka, and South Africa — giving them the exposure needed for national selection consideration.'),
+                ('Which cricket academy runs the most tournaments in UAE?',
+                 'Desert Cubs runs the <strong>most cricket tournaments in UAE</strong> — 10 competitions per season (September to June). These include the DC Premier League, DC Emerging League, ECB National Junior Tournament, Gulf Cup, DC Winter Cup, DC Super League, 4-Nation <strong>Junior International Cricket Tournament</strong>, DC Junior Cups, DC Ramadan Cup, and DC Summer Bash.'),
+            ] %}
+            <div class="faq-item dcr d{{ loop.index }}"
                  itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 itemprop="name" style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.35rem;
-                               color:#003399; text-transform:uppercase; margin-bottom:8px;">
-                    What is the best cricket academy in UAE?
-                </h3>
-                <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                    <p itemprop="text" style="font-family:'Nunito',sans-serif; color:#4b5563; line-height:1.75; margin:0;">
-                        Desert Cubs Cricket Academy is the <strong>best cricket academy in UAE</strong>, established in 2007 with over 15,000 alumni. We operate 6 world-class training centres across Dubai and Sharjah with ICC-certified coaches, offering UAE junior cricket coaching for all ages from 4 to 19.
-                    </p>
+                <div class="faq-hdr" onclick="toggleFaq(this)">
+                    <h3 itemprop="name"
+                        style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.3rem;
+                               color:#001f66;text-transform:uppercase;margin:0;line-height:1.2;">
+                        {{ q }}</h3>
+                    <div class="faq-ico">
+                        <i class="fas fa-plus" style="color:#ffffff;font-size:.75rem;" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="faq-body"
+                     itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                    <p itemprop="text"
+                       style="font-family:'Nunito',sans-serif;color:#4b5563;line-height:1.8;margin:0;">
+                        {{ a|safe }}</p>
                 </div>
             </div>
-
-            <div style="background:#fff; border-radius:16px; border:1px solid #e2e8f0; padding:24px 28px;"
-                 itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 itemprop="name" style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.35rem;
-                               color:#003399; text-transform:uppercase; margin-bottom:8px;">
-                    Where is Sharjah junior cricket coaching available?
-                </h3>
-                <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                    <p itemprop="text" style="font-family:'Nunito',sans-serif; color:#4b5563; line-height:1.75; margin:0;">
-                        <strong>Sharjah junior cricket coaching</strong> is available at our Sharjah English School (SES) centre on Maliha Road — the crown jewel of our network. It features a full natural grass ground, 6 centre turf pitches, floodlights, digital scoreboards, and video analysis. It is widely considered the <strong>best cricket ground in UAE</strong>.
-                    </p>
-                </div>
-            </div>
-
-            <div style="background:#fff; border-radius:16px; border:1px solid #e2e8f0; padding:24px 28px;"
-                 itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 itemprop="name" style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.35rem;
-                               color:#003399; text-transform:uppercase; margin-bottom:8px;">
-                    Does Desert Cubs run cricket summer camps in UAE?
-                </h3>
-                <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                    <p itemprop="text" style="font-family:'Nunito',sans-serif; color:#4b5563; line-height:1.75; margin:0;">
-                        Yes! Our <strong>UAE summer camp cricket</strong> programme runs at Baseline Sports Academy (DIP) — a state-of-the-art, fully AC-controlled indoor cricket facility with 5 specialised lanes and video analysis. It is one of a kind in the UAE, enabling year-round high-performance training even during the hottest months.
-                    </p>
-                </div>
-            </div>
-
-            <div style="background:#fff; border-radius:16px; border:1px solid #e2e8f0; padding:24px 28px;"
-                 itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 itemprop="name" style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.35rem;
-                               color:#003399; text-transform:uppercase; margin-bottom:8px;">
-                    Which academy offers the UAE national cricket player pathway?
-                </h3>
-                <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                    <p itemprop="text" style="font-family:'Nunito',sans-serif; color:#4b5563; line-height:1.75; margin:0;">
-                        Desert Cubs is an <strong>ECB-affiliated academy</strong> and provides the leading <strong>UAE national cricket player pathway</strong>. Our students compete in the ECB National Junior Tournament and undertake <strong>junior international cricket tours</strong> to UK, Australia, Sri Lanka, and South Africa — giving them the exposure needed for national selection consideration.
-                    </p>
-                </div>
-            </div>
-
-            <div style="background:#fff; border-radius:16px; border:1px solid #e2e8f0; padding:24px 28px;"
-                 itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 itemprop="name" style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.35rem;
-                               color:#003399; text-transform:uppercase; margin-bottom:8px;">
-                    Which cricket academy runs the most tournaments in UAE?
-                </h3>
-                <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                    <p itemprop="text" style="font-family:'Nunito',sans-serif; color:#4b5563; line-height:1.75; margin:0;">
-                        Desert Cubs runs the <strong>most cricket tournaments in UAE</strong> — 10 competitions per season (September to June). These include the DC Premier League, DC Emerging League, ECB National Junior Tournament, Gulf Cup, DC Winter Cup, DC Super League, 4-Nation <strong>Junior International Cricket Tournament</strong>, DC Junior Cups, DC Ramadan Cup, and DC Summer Bash.
-                    </p>
-                </div>
-            </div>
+            {% endfor %}
 
         </div>
     </div>
@@ -722,42 +834,104 @@
 
 
 <!-- ============================================================
-     FINAL CTA
-     Dark blue — white/gold text
+     11. FINAL CTA
 ============================================================= -->
-<section style="background:linear-gradient(135deg, #001f66 0%, #003399 100%); padding:80px 0; position:relative; overflow:hidden;">
-    <!-- Decorative circles (background, not on top of text) -->
-    <div style="position:absolute; bottom:-60px; left:-60px; width:220px; height:220px;
-                border:2px solid rgba(255,204,0,0.08); border-radius:50%; pointer-events:none;"></div>
-    <div style="position:absolute; top:-40px; right:-40px; width:160px; height:160px;
-                border:2px solid rgba(255,255,255,0.05); border-radius:50%; pointer-events:none;"></div>
+<section style="background:linear-gradient(135deg,#000d1a 0%,#001045 50%,#001f66 100%);
+                padding:88px 0;position:relative;overflow:hidden;">
+    <div aria-hidden="true"
+         style="position:absolute;bottom:-80px;left:-80px;width:280px;height:280px;
+                border:2px solid rgba(255,204,0,.07);border-radius:50%;
+                animation:rotateCW 20s linear infinite;pointer-events:none;"></div>
+    <div aria-hidden="true"
+         style="position:absolute;top:-50px;right:-50px;width:200px;height:200px;
+                border:2px solid rgba(255,255,255,.04);border-radius:50%;
+                animation:rotateCCW 15s linear infinite;pointer-events:none;"></div>
+    <div aria-hidden="true"
+         style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+                width:600px;height:300px;
+                background:radial-gradient(ellipse,rgba(255,204,0,.06) 0%,transparent 70%);
+                pointer-events:none;"></div>
 
-    <div class="max-w-3xl mx-auto px-4 text-center scroll-fade" style="position:relative; z-index:1;">
-        <i class="fas fa-cricket-bat-ball" style="color:#FFCC00; font-size:2.5rem; display:block; margin-bottom:16px;"></i>
-        <h2 style="font-family:'Teko',sans-serif; font-weight:700; font-size:clamp(2.2rem,5vw,3.5rem);
-                    color:#ffffff; text-transform:uppercase; margin-bottom:12px; line-height:1.1;">
+    <div class="dc-con dcr" style="text-align:center;position:relative;z-index:1;">
+        <div style="width:64px;height:64px;background:rgba(255,204,0,.15);
+                    border:2px solid rgba(255,204,0,.3);border-radius:50%;
+                    display:flex;align-items:center;justify-content:center;
+                    margin:0 auto 24px;animation:goldGlow 2s ease infinite;">
+            <i class="fas fa-cricket-bat-ball" style="color:#FFCC00;font-size:1.6rem;" aria-hidden="true"></i>
+        </div>
+        <h2 style="font-family:'Teko',sans-serif;font-weight:700;
+                    font-size:clamp(2.4rem,5vw,4rem);color:#ffffff;
+                    text-transform:uppercase;margin-bottom:16px;line-height:1.05;">
             Ready to Start Your<br><span style="color:#FFCC00;">Cricket Journey?</span>
         </h2>
-        <p style="font-family:'Nunito',sans-serif; font-size:1rem; color:#c7d7f5; line-height:1.8; margin-bottom:28px; max-width:520px; margin-left:auto; margin-right:auto;">
-            Join 15,000+ alumni who started their cricket journey at Desert Cubs. 
-            Enroll your child today at any of our 6 centres across Dubai & Sharjah.
+        <p style="font-family:'Nunito',sans-serif;font-size:1.02rem;color:#8ba3c7;
+                   line-height:1.85;margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;">
+            Join 15,000+ alumni who started their cricket journey at Desert Cubs.
+            Enroll your child today at any of our 6 centres across Dubai &amp; Sharjah.
         </p>
-        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:14px;">
-            <a href="tel:+971588274266" class="btn-gold" style="padding:14px 32px; font-size:0.9rem;">
-                <i class="fas fa-phone" style="font-size:0.85rem;"></i> Call +971 58 827 4266
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;">
+            <a href="tel:+971588274266" class="btn-shimmer">
+                <i class="fas fa-phone" style="font-size:.82rem;" aria-hidden="true"></i>
+                Call +971 58 827 4266
             </a>
-            <a href="/#branches"
-               style="display:inline-flex; align-items:center; gap:8px;
-                      border:2px solid rgba(255,255,255,0.4); color:#ffffff;
-                      font-family:'Nunito',sans-serif; font-weight:900; font-size:0.9rem;
-                      text-transform:uppercase; letter-spacing:0.07em; text-decoration:none;
-                      padding:12px 28px; border-radius:999px; transition:all 0.25s;"
-               onmouseover="this.style.background='#ffffff'; this.style.color='#001f66'; this.style.borderColor='#ffffff';"
-               onmouseout="this.style.background='transparent'; this.style.color='#ffffff'; this.style.borderColor='rgba(255,255,255,0.4)';">
-                <i class="fas fa-map-marker-alt"></i> Find a Centre
+            <a href="/#branches" class="btn-outline">
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i> Find a Centre
             </a>
         </div>
     </div>
 </section>
+
+
+<!-- ============================================================
+     PAGE SCRIPTS
+============================================================= -->
+<script>
+(function(){
+    'use strict';
+
+    /* ── SCROLL REVEAL ────────────────────────────────── */
+    var els = document.querySelectorAll('.dcr');
+    if('IntersectionObserver' in window && els.length){
+        var obs = new IntersectionObserver(function(entries){
+            entries.forEach(function(e){
+                if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}
+            });
+        },{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+        els.forEach(function(el){obs.observe(el);});
+    } else {
+        els.forEach(function(el){el.classList.add('on');});
+    }
+
+    /* ── FAQ ACCORDION ────────────────────────────────── */
+    window.toggleFaq = function(hdr){
+        var item = hdr.closest('.faq-item');
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(i){i.classList.remove('open');});
+        if(!isOpen) item.classList.add('open');
+    };
+
+    /* ── LEGEND DRAG-TO-SCROLL ────────────────────────── */
+    var scroll = document.getElementById('legendScroll');
+    if(scroll){
+        var down=false, sx=0, sl=0;
+        scroll.addEventListener('mousedown',function(e){down=true;sx=e.pageX-scroll.offsetLeft;sl=scroll.scrollLeft;scroll.style.cursor='grabbing';});
+        scroll.addEventListener('mouseleave',function(){down=false;scroll.style.cursor='grab';});
+        scroll.addEventListener('mouseup',function(){down=false;scroll.style.cursor='grab';});
+        scroll.addEventListener('mousemove',function(e){
+            if(!down) return;
+            e.preventDefault();
+            scroll.scrollLeft=sl-(e.pageX-scroll.offsetLeft-sx)*1.2;
+        });
+    }
+
+    /* ── KEYBOARD — tour past cards ─────────────────── */
+    document.querySelectorAll('.tour-past[role="button"]').forEach(function(el){
+        el.addEventListener('keydown',function(e){
+            if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click();}
+        });
+    });
+
+})();
+</script>
 
 {% endblock %}
