@@ -172,6 +172,43 @@
            transition:transform .3s ease}
 .trust-ico:hover{transform:scale(1.1)}
 
+/* ── FIRE BUTTON ──────────────────────────────────────────── */
+@keyframes fireFlicker{0%,100%{box-shadow:0 0 20px rgba(255,80,0,.7),0 0 40px rgba(255,140,0,.35)}
+                       50%{box-shadow:0 0 38px rgba(255,100,0,1),0 0 72px rgba(255,170,0,.55)}}
+@keyframes fireRise{0%{opacity:.85;transform:translateY(0) scale(1)}
+                    100%{opacity:0;transform:translateY(-30px) scale(.2)}}
+.btn-fire-wrap{position:relative;display:inline-block}
+.fire-dot{position:absolute;bottom:calc(100% - 4px);width:5px;border-radius:50% 50% 30% 30%;
+          pointer-events:none;animation:fireRise .7s ease-out infinite}
+.btn-fire{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px;
+          background:linear-gradient(135deg,#ff4500 0%,#ff7000 55%,#ffcc00 100%);
+          color:#fff!important;font-family:'Nunito',sans-serif;font-weight:900;
+          font-size:.95rem;letter-spacing:.1em;text-transform:uppercase;
+          border:none;cursor:pointer;border-radius:999px;padding:14px 38px;
+          animation:fireFlicker 1.8s ease-in-out infinite;
+          transition:transform .25s,box-shadow .25s}
+.btn-fire:hover{transform:translateY(-3px) scale(1.05);color:#fff!important;
+                box-shadow:0 12px 40px rgba(255,80,0,.6)}
+
+/* ── IPL PREDICTION MODAL ────────────────────────────────── */
+@keyframes modalPop{from{opacity:0;transform:scale(.9) translateY(30px)}
+                    to{opacity:1;transform:scale(1) translateY(0)}}
+#iplModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);
+          backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+          z-index:2000;align-items:center;justify-content:center;padding:16px}
+#iplModal.open{display:flex}
+.ipl-box{background:linear-gradient(160deg,#001045 0%,#000d1a 100%);
+         border:2px solid rgba(255,204,0,.5);border-radius:24px;
+         max-width:700px;width:100%;max-height:90vh;overflow-y:auto;
+         position:relative;animation:modalPop .4s cubic-bezier(.16,1,.3,1);
+         box-shadow:0 40px 100px rgba(0,0,0,.9),0 0 80px rgba(255,100,0,.18)}
+.ipl-close{position:absolute;top:14px;right:14px;width:38px;height:38px;
+           background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+           border-radius:50%;display:flex;align-items:center;justify-content:center;
+           cursor:pointer;color:#fff;font-size:.95rem;transition:all .2s;z-index:10;
+           line-height:1}
+.ipl-close:hover{background:rgba(255,60,0,.45);border-color:rgba(255,80,0,.6)}
+
 </style>
 
 
@@ -275,6 +312,26 @@
                                color:#4d6b94;text-transform:uppercase;letter-spacing:.14em;margin-top:3px;">Years of Legacy</p>
                 </div>
             </div>
+
+            <!-- 🔥 IPL GUESS & WIN FIRE BUTTON -->
+            <div style="margin-top:28px;animation:fadeUp .8s .5s ease both;">
+                <div class="btn-fire-wrap">
+                    <span class="fire-dot" style="left:12%;height:18px;background:linear-gradient(to top,#ff4500,#ffaa00,transparent);animation-delay:0s;animation-duration:.68s;"></span>
+                    <span class="fire-dot" style="left:28%;height:22px;background:linear-gradient(to top,#ff6000,#ffcc00,transparent);animation-delay:.2s;animation-duration:.6s;"></span>
+                    <span class="fire-dot" style="left:48%;height:20px;background:linear-gradient(to top,#ff4500,#ffe000,transparent);animation-delay:.38s;animation-duration:.75s;"></span>
+                    <span class="fire-dot" style="left:66%;height:17px;background:linear-gradient(to top,#ff5500,#ffbb00,transparent);animation-delay:.12s;animation-duration:.64s;"></span>
+                    <span class="fire-dot" style="left:84%;height:21px;background:linear-gradient(to top,#ff6500,#ffcc00,transparent);animation-delay:.28s;animation-duration:.72s;"></span>
+                    <button onclick="document.getElementById('iplModal').classList.add('open');document.body.style.overflow='hidden';"
+                            class="btn-fire"
+                            aria-label="IPL 2025 Prediction — Guess the Winner and Win a Prize">
+                        🔥 Guess &amp; WIN
+                    </button>
+                </div>
+                <p style="font-family:'Nunito',sans-serif;font-size:.66rem;font-weight:700;
+                           color:rgba(255,255,255,.38);letter-spacing:.14em;text-transform:uppercase;
+                           margin-top:10px;">IPL 2025 · Predict the Champion · Win a Prize</p>
+            </div>
+
         </div><!-- /.left col -->
 
         <!-- RIGHT: Hero image (desktop only via CSS) -->
@@ -933,5 +990,62 @@
 
 })();
 </script>
+
+
+<!-- ============================================================
+     IPL 2025 PREDICTION MODAL
+============================================================= -->
+<div id="iplModal" role="dialog" aria-modal="true" aria-labelledby="iplModalTitle"
+     onclick="if(event.target===this){this.classList.remove('open');document.body.style.overflow='';}">
+    <div class="ipl-box">
+
+        <!-- Close button -->
+        <button class="ipl-close"
+                onclick="document.getElementById('iplModal').classList.remove('open');document.body.style.overflow='';"
+                aria-label="Close prediction form">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <!-- Flame header -->
+        <div style="background:linear-gradient(135deg,#c43600 0%,#ff5500 35%,#ff8800 70%,#ffcc00 100%);
+                    padding:32px 40px 28px;border-radius:22px 22px 0 0;
+                    text-align:center;position:relative;overflow:hidden;">
+            <!-- Glow blob -->
+            <div aria-hidden="true"
+                 style="position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);
+                        width:300px;height:80px;border-radius:50%;
+                        background:rgba(255,255,0,.18);filter:blur(24px);pointer-events:none;"></div>
+            <p style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.68rem;
+                      letter-spacing:.3em;text-transform:uppercase;
+                      color:rgba(255,255,255,.85);margin-bottom:8px;position:relative;">
+                🏏 Desert Cubs × Siraj Finance Present
+            </p>
+            <h2 id="iplModalTitle"
+                style="font-family:'Teko',sans-serif;font-weight:700;line-height:.92;
+                       font-size:clamp(2.2rem,6vw,3.4rem);text-transform:uppercase;
+                       color:#ffffff;letter-spacing:.03em;
+                       text-shadow:0 3px 24px rgba(0,0,0,.45);position:relative;">
+                Who Takes<br>The Cup? 🏆
+            </h2>
+            <p style="font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:700;
+                      color:rgba(255,255,255,.9);margin-top:10px;position:relative;">
+                Drop your IPL 2025 prediction &amp; win big!
+            </p>
+        </div>
+
+        <!-- Embedded Google Form -->
+        <div style="background:#ffffff;border-radius:0 0 22px 22px;overflow:hidden;">
+            <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSd3jriNMbzujl7ctFMvVu7NQ_ff30EzAubFSOi24xZdgzB0Tw/viewform?embedded=true"
+                width="100%" height="640" frameborder="0"
+                marginheight="0" marginwidth="0"
+                style="display:block;width:100%;min-height:600px;border:none;"
+                title="IPL 2025 Prediction Contest Entry Form">
+                Loading form…
+            </iframe>
+        </div>
+
+    </div><!-- /.ipl-box -->
+</div><!-- /#iplModal -->
 
 {% endblock %}

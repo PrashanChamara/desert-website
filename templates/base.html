@@ -436,17 +436,35 @@
         <div class="flex justify-between items-center h-16 md:h-[68px]">
 
             <!-- LOGO -->
-            <a href="/" class="flex items-center gap-3 group" aria-label="Desert Cubs Cricket Academy Home">
+            <a href="/" class="flex items-center group" style="gap:10px; text-decoration:none;"
+               aria-label="Desert Cubs Cricket Academy Home">
+
+                <!-- Siraj Finance title sponsor logo -->
+                <img src="{{ url_for('static', filename='img/siraj_logo.png') }}"
+                     alt="Siraj Finance — Title Sponsor"
+                     style="height:32px; width:auto; object-fit:contain;
+                            filter:drop-shadow(0 1px 4px rgba(0,0,0,0.4)) brightness(1.05);"
+                     loading="eager">
+
+                <!-- Gold separator -->
+                <div style="width:1px; height:30px; background:rgba(255,204,0,0.35); flex-shrink:0;"></div>
+
+                <!-- Desert Cubs badge -->
                 <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}"
                      alt="Desert Cubs Cricket Academy Logo"
-                     class="w-11 h-11 object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
-                <div class="leading-none">
-                    <span style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.55rem;
-                                 color:#ffffff; text-transform:uppercase; letter-spacing:0.03em; display:block;">
-                        Desert Cubs
+                     style="width:42px; height:42px; object-fit:contain;"
+                     class="drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
+
+                <!-- Name & tagline (display only — SEO/schema always uses Desert Cubs) -->
+                <div style="line-height:1;">
+                    <span style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.15rem;
+                                 color:#ffffff; text-transform:uppercase; letter-spacing:0.02em;
+                                 display:block; line-height:1.15; white-space:nowrap;">
+                        Siraj Finance Desert Cubs
                     </span>
-                    <span style="font-family:'Nunito',sans-serif; font-weight:800; font-size:0.58rem;
-                                 color:#FFCC00; text-transform:uppercase; letter-spacing:0.22em; display:block;">
+                    <span style="font-family:'Nunito',sans-serif; font-weight:800; font-size:0.54rem;
+                                 color:#FFCC00; text-transform:uppercase; letter-spacing:0.2em;
+                                 display:block;">
                         Legends of the Future
                     </span>
                 </div>
