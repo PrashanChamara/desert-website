@@ -324,15 +324,27 @@ def get_blog_posts():
             try:
                 date_part = filename[:10]
                 slug = filename[:-5]
-                clean_title = slug[11:].replace('-', ' ').title()
+                fallback_title = slug[11:].replace('-', ' ').title()
+
+                # Read DC_META comment for real title and description
+                filepath = os.path.join(BLOG_DIR, filename)
+                meta = None
+                try:
+                    with open(filepath, 'r', encoding='utf-8') as f:
+                        head = f.read(512)  # Only read first 512 bytes — DC_META is always first line
+                    meta = extract_post_meta(head)
+                except Exception:
+                    pass
+
                 posts.append({
-                    'title': clean_title,
+                    'title': meta.get('blog_title', fallback_title) if meta else fallback_title,
+                    'description': meta.get('seo_description', '') if meta else '',
                     'date': date_part,
                     'slug': slug,
                     'filename': filename,
                     'image': f"{slug}.jpg"
                 })
-            except:
+            except Exception:
                 continue
     return posts
 
@@ -405,7 +417,8 @@ def blog():
     all_posts = get_blog_posts()
     query = request.args.get('q')
     if query:
-        all_posts = [p for p in all_posts if query.lower() in p['title'].lower()]
+        q = query.lower()
+        all_posts = [p for p in all_posts if q in p['title'].lower() or q in p.get('description', '').lower()]
 
     page = request.args.get('page', 1, type=int)
     total_posts = len(all_posts)
