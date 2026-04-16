@@ -85,6 +85,42 @@ git pull origin main 2>&1
 
 echo "[$TIMESTAMP]   Now: $(git rev-parse --short HEAD)"
 
+# ── Auto-convert new blog JPG images to WebP ────────────────────────────────
+# n8n commits blog banners as JPG. After each pull, convert any new JPGs that
+# don't yet have a WebP counterpart, then delete the original JPG.
+BLOG_IMG_DIR="$APP_DIR/static/img/blog"
+if [ -d "$BLOG_IMG_DIR" ]; then
+    echo "[$TIMESTAMP] Checking for new blog images to convert..."
+    converted=0
+    skipped=0
+    while IFS= read -r jpg; do
+        webp="${jpg%.jpg}.webp"
+        # Skip corrupt/empty files under 100 bytes
+        size=$(stat -c%s "$jpg" 2>/dev/null || echo 0)
+        if [ "$size" -lt 100 ]; then
+            echo "[$TIMESTAMP]   Skipping corrupt file: $(basename "$jpg") (${size} bytes)"
+            rm -f "$jpg"
+            continue
+        fi
+        if [ ! -f "$webp" ]; then
+            if magick "$jpg" -resize 800x\> -quality 80 "$webp" 2>/dev/null; then
+                rm "$jpg"
+                echo "[$TIMESTAMP]   Converted: $(basename "$jpg") → $(basename "$webp")"
+                converted=$((converted + 1))
+            else
+                echo "[$TIMESTAMP]   WARNING: Failed to convert $(basename "$jpg")"
+                skipped=$((skipped + 1))
+            fi
+        fi
+    done < <(find "$BLOG_IMG_DIR" -name "*.jpg" -type f)
+    if [ "$converted" -gt 0 ] || [ "$skipped" -gt 0 ]; then
+        echo "[$TIMESTAMP]   Converted: $converted | Failed: $skipped"
+    else
+        echo "[$TIMESTAMP]   No new images to convert."
+    fi
+fi
+# ─────────────────────────────────────────────────────────────────────────────
+
 # Install any new Python dependencies
 $PYTHON_BIN -m pip install -r requirements.txt --quiet 2>&1
 

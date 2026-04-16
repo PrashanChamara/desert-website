@@ -1076,7 +1076,7 @@ document.querySelectorAll('.scroll-fade').forEach(el => sfObs.observe(el));
 let _imgs = [], _idx = 0;
 function openGallery(folder, prefix, count) {
     _imgs = [];
-    for (let i = 1; i <= count; i++) _imgs.push('/static/img/' + folder + '/' + prefix + i + '.jpg');
+    for (let i = 1; i <= count; i++) _imgs.push('/static/img/' + folder + '/' + prefix + i + '.webp');
     if (!_imgs.length) return;
     _idx = 0;
     _showGalleryImg();

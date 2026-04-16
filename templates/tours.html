@@ -208,10 +208,13 @@
                      onclick="openGallery('{{ tour.gallery.folder }}', '{{ tour.gallery.prefix }}', {{ tour.gallery.count }})">
                     {% for i in range(1, 4) %}
                     <div class="relative overflow-hidden bg-gray-200">
-                        <img src="{{ url_for('static', filename='img/' + tour.gallery.folder + '/' + tour.gallery.prefix + i|string + '.jpg') }}"
-                             alt="Desert Cubs cricket tour {{ tour.dest }} {{ tour.year }}"
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                             onerror="this.parentElement.style.background='linear-gradient(135deg,#003399,#001f66)'">
+                        <picture>
+                            <source srcset="{{ url_for('static', filename='img/' + tour.gallery.folder + '/' + tour.gallery.prefix + i|string + '.webp') }}" type="image/webp">
+                            <img src="{{ url_for('static', filename='img/' + tour.gallery.folder + '/' + tour.gallery.prefix + i|string + '.jpg') }}"
+                                 alt="Desert Cubs cricket tour {{ tour.dest }} {{ tour.year }}"
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                 onerror="this.parentElement.style.background='linear-gradient(135deg,#003399,#001f66)'">
+                        </picture>
                         {% if loop.last %}
                         <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
                             <div class="text-center">

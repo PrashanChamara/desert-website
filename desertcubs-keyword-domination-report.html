@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desert Cubs — Full Keyword & Search Domination Strategy 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070b10;
+    --bg2: #0d1520;
+    --card: #0f1d2e;
+    --border: #1a2d42;
+    --accent: #f5a623;
+    --accent2: #00d4aa;
+    --blue: #4db8ff;
+    --red: #ff5252;
+    --green: #00d4aa;
+    --orange: #ff8c00;
+    --purple: #c084fc;
+    --text: #dce8f5;
+    --muted: #5a7a96;
+    --soft: #1c3050;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Space Grotesk', sans-serif; font-size: 14px; line-height: 1.7; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #0a1628 0%, #050c18 60%, #0d1a0a 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 48px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,166,35,0.07) 0%, transparent 70%);
+  }
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .hero-title em { color: var(--accent); font-style: normal; }
+  .hero-sub { color: var(--muted); font-size: 15px; max-width: 680px; }
+  .hero-stats {
+    display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px;
+  }
+  .hstat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 18px;
+    text-align: center;
+    min-width: 110px;
+  }
+  .hstat-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; font-weight: 700;
+    color: var(--accent); line-height: 1;
+  }
+  .hstat-l {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* LAYOUT */
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 32px 80px; }
+
+  /* SECTION */
+  .sec { margin-top: 56px; }
+  .sec-hd {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 22px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sec-icon {
+    width: 34px; height: 34px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .ic-y { background: rgba(245,166,35,0.15); }
+  .ic-g { background: rgba(0,212,170,0.12); }
+  .ic-b { background: rgba(77,184,255,0.12); }
+  .ic-p { background: rgba(192,132,252,0.12); }
+  .ic-r { background: rgba(255,82,82,0.12); }
+  .ic-o { background: rgba(255,140,0,0.12); }
+  .sec-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #fff; }
+  .sec-title small {
+    display: block; font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 400; color: var(--muted);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px;
+  }
+
+  /* KW TABLE MASTER */
+  .kw-master {
+    width: 100%; border-collapse: collapse;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden; font-size: 13px;
+  }
+  .kw-master thead { background: rgba(255,255,255,0.03); }
+  .kw-master th {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
+    padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border);
+  }
+  .kw-master td {
+    padding: 11px 14px; border-bottom: 1px solid rgba(26,45,66,0.6);
+    color: var(--text); vertical-align: middle;
+  }
+  .kw-master tr:last-child td { border-bottom: none; }
+  .kw-master tr:hover td { background: rgba(255,255,255,0.02); }
+  .kw-group td:first-child {
+    background: rgba(245,166,35,0.05);
+    border-left: 3px solid var(--accent);
+    font-weight: 700; color: var(--accent); font-size: 12px;
+  }
+  .kw-main { font-weight: 600; color: #e0eaf6; }
+  .kw-long { color: #8fa8c0; font-size: 12px; }
+
+  .pill {
+    display: inline-block; border-radius: 4px; padding: 2px 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    font-weight: 500; letter-spacing: 0.05em; white-space: nowrap;
+  }
+  .pill-h   { background: rgba(255,82,82,0.15);    color: #ff7070; border: 1px solid rgba(255,82,82,0.3); }
+  .pill-m   { background: rgba(255,140,0,0.15);    color: #ffaa44; border: 1px solid rgba(255,140,0,0.3); }
+  .pill-l   { background: rgba(245,197,24,0.12);   color: #f0d060; border: 1px solid rgba(245,197,24,0.25); }
+  .pill-c   { background: rgba(0,212,170,0.12);    color: var(--green); border: 1px solid rgba(0,212,170,0.25); }
+  .pill-ok  { background: rgba(77,184,255,0.12);   color: var(--blue); border: 1px solid rgba(77,184,255,0.25); }
+  .pill-win { background: rgba(192,132,252,0.12);  color: var(--purple); border: 1px solid rgba(192,132,252,0.25); }
+
+  .rank-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    display: inline-block; margin-right: 5px;
+  }
+  .rd-good  { background: var(--green); }
+  .rd-warn  { background: var(--orange); }
+  .rd-bad   { background: var(--red); }
+  .rd-none  { background: #3a506b; }
+
+  /* PAGE CARD */
+  .page-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .page-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px;
+  }
+  .page-card h4 {
+    font-size: 13px; font-weight: 700; color: var(--accent2);
+    margin-bottom: 4px;
+  }
+  .page-card .url {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--blue); margin-bottom: 10px;
+  }
+  .page-card p { font-size: 12px; color: #8fa8c0; line-height: 1.6; }
+  .page-card .kws {
+    display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px;
+  }
+  .kw-tag {
+    background: rgba(77,184,255,0.08); border: 1px solid rgba(77,184,255,0.2);
+    color: var(--blue); font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; padding: 2px 7px; border-radius: 3px;
+  }
+  .page-card.priority { border-color: rgba(245,166,35,0.35); }
+  .page-card.priority h4 { color: var(--accent); }
+
+  /* PLATFORM CARD */
+  .platform-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .plat-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+  }
+  .plat-head {
+    padding: 14px 16px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .plat-icon { font-size: 20px; }
+  .plat-name { font-weight: 700; font-size: 14px; color: #fff; }
+  .plat-pos { font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+  .plat-body { padding: 14px 16px; }
+  .plat-body p { font-size: 12px; color: #8fa8c0; line-height: 1.6; }
+  .plat-body ul { list-style: none; padding: 0; margin-top: 10px; }
+  .plat-body ul li {
+    font-size: 12px; color: #8fa8c0; padding: 4px 0;
+    border-bottom: 1px solid rgba(26,45,66,0.5);
+    display: flex; align-items: flex-start; gap: 7px;
+  }
+  .plat-body ul li:last-child { border-bottom: none; }
+  .plat-body ul li::before { content: '→'; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+
+  /* ACTION PLAN */
+  .action-list { list-style: none; padding: 0; }
+  .action-list li {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; margin-bottom: 10px; padding: 16px 20px;
+    display: grid; grid-template-columns: 40px 1fr auto;
+    gap: 14px; align-items: start;
+  }
+  .action-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 900;
+    color: var(--accent); line-height: 1;
+  }
+  .action-text h4 { font-size: 14px; font-weight: 700; color: #e0eaf6; margin-bottom: 4px; }
+  .action-text p { font-size: 12px; color: #8fa8c0; line-height: 1.6; }
+  .action-meta { text-align: right; white-space: nowrap; }
+
+  /* SCHEMA BOX */
+  pre {
+    font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+    background: rgba(0,0,0,0.5); border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px; color: #7ec8e3;
+    overflow-x: auto; line-height: 1.7; margin-top: 10px;
+  }
+
+  /* BLOG TABLE */
+  .blog-table {
+    width: 100%; border-collapse: collapse;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden; font-size: 13px;
+  }
+  .blog-table th {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
+    padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+  .blog-table td {
+    padding: 11px 14px; border-bottom: 1px solid rgba(26,45,66,0.6); color: var(--text);
+  }
+  .blog-table tr:last-child td { border-bottom: none; }
+
+  code {
+    font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+    background: rgba(0,0,0,0.4); border: 1px solid var(--border);
+    border-radius: 3px; padding: 1px 6px; color: #7ec8e3;
+  }
+
+  /* TOR SECTION */
+  .tor-box {
+    background: rgba(192,132,252,0.05);
+    border: 1px solid rgba(192,132,252,0.2);
+    border-radius: 10px; padding: 20px 24px; margin-bottom: 14px;
+  }
+  .tor-box h4 { font-size: 14px; font-weight: 700; color: var(--purple); margin-bottom: 8px; }
+  .tor-box p { font-size: 13px; color: #a080c0; line-height: 1.7; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--bg2); border-top: 1px solid var(--border);
+    padding: 22px 48px; display: flex;
+    align-items: center; justify-content: space-between;
+  }
+  .footer p { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+
+  @media (max-width: 768px) {
+    .hero { padding: 36px 20px 28px; }
+    .wrap { padding: 0 16px 60px; }
+    .hero-title { font-size: 28px; }
+    .page-grid { grid-template-columns: 1fr; }
+    .platform-grid { grid-template-columns: 1fr; }
+    .action-list li { grid-template-columns: 32px 1fr; }
+    .action-meta { grid-column: 2; text-align: left; }
+    .footer { flex-direction: column; gap: 6px; padding: 18px; }
+    .kw-master { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Desert Cubs Cricket Academy &nbsp;·&nbsp; Keyword & Search Domination Report &nbsp;·&nbsp; April 2026</div>
+  <h1 class="hero-title">Win Every Search.<br><em>Google. Bing. DuckDuckGo. AI. Tor.</em></h1>
+  <p class="hero-sub">Complete keyword research, platform-by-platform rankings, new page strategy, and an action plan to dominate every search engine for junior cricket in Dubai & Sharjah.</p>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-n">87</div><div class="hstat-l">Keywords Identified</div></div>
+    <div class="hstat"><div class="hstat-n">22</div><div class="hstat-l">New Pages Needed</div></div>
+    <div class="hstat"><div class="hstat-n">5</div><div class="hstat-l">Search Platforms</div></div>
+    <div class="hstat"><div class="hstat-n">#1</div><div class="hstat-l">Target Position</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ===== KEYWORD MASTER TABLE ===== -->
+  <div class="sec">
+    <div class="sec-hd">
+      <div class="sec-icon ic-y">🎯</div>
+      <div class="sec-title">Master Keyword List <small>87 keywords — Dubai, Sharjah & UAE junior cricket</small></div>
+    </div>
+
+    <table class="kw-master">
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Type</th>
+          <th>Volume</th>
+          <th>Competition</th>
+          <th>DC Position</th>
+          <th>Target Page</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- GROUP 1 -->
+        <tr class="kw-group">
+          <td colspan="6">🏆 TIER 1 — High Volume, High Intent (Win These First)</td>
+        </tr>
+        <tr>
+          <td class="kw-main">cricket academy Dubai</td>
+          <td><span class="pill pill-h">Head</span></td>
+          <td>High</td>
+          <td>High</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/cricket-academy-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-main">cricket academy UAE</td>
+          <td><span class="pill pill-h">Head</span></td>
+          <td>High</td>
+          <td>High</td>
+          <td><span class="rank-dot rd-good"></span>#1</td>
+          <td>Homepage</td>
+        </tr>
+        <tr>
+          <td class="kw-main">best cricket academy Dubai</td>
+          <td><span class="pill pill-h">Head</span></td>
+          <td>High</td>
+          <td>High</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/cricket-academy-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-main">best cricket academy UAE</td>
+          <td><span class="pill pill-h">Head</span></td>
+          <td>High</td>
+          <td>High</td>
+          <td><span class="rank-dot rd-good"></span>#1</td>
+          <td>Homepage</td>
+        </tr>
+        <tr>
+          <td class="kw-main">cricket coaching Dubai</td>
+          <td><span class="pill pill-h">Head</span></td>
+          <td>High</td>
+          <td>High</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/cricket-academy-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-main">cricket academy Sharjah</td>
+          <td><span class="pill pill-h">Head</span></td>
+          <td>High</td>
+          <td>Medium</td>
+          <td><span class="rank-dot rd-warn"></span>Page 2–3</td>
+          <td>/cricket-academy-sharjah</td>
+        </tr>
+        <tr>
+          <td class="kw-main">junior cricket Dubai</td>
+          <td><span class="pill pill-h">Head</span></td>
+          <td>High</td>
+          <td>Medium</td>
+          <td><span class="rank-dot rd-warn"></span>Page 2</td>
+          <td>/junior-cricket-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-main">junior cricket UAE</td>
+          <td><span class="pill pill-h">Head</span></td>
+          <td>High</td>
+          <td>Medium</td>
+          <td><span class="rank-dot rd-warn"></span>Page 2</td>
+          <td>Homepage</td>
+        </tr>
+
+        <!-- GROUP 2 -->
+        <tr class="kw-group">
+          <td colspan="6">📍 TIER 2 — Location-Specific (Build Dedicated Pages)</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket coaching Jebel Ali</td>
+          <td><span class="pill pill-m">Local</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/locations/delhi-private-school</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket academy Festival City Dubai</td>
+          <td><span class="pill pill-m">Local</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/locations/deira-international-school</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket coaching Al Qusais Dubai</td>
+          <td><span class="pill pill-m">Local</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/locations/star-international-school</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket academy Al Karama Dubai</td>
+          <td><span class="pill pill-m">Local</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/locations/apple-international-school</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket academy DIP Dubai Investment Park</td>
+          <td><span class="pill pill-m">Local</span></td>
+          <td>Low</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/locations/baseline-sports-academy</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket coaching Sharjah Maliha Road</td>
+          <td><span class="pill pill-m">Local</span></td>
+          <td>Low</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/locations/sharjah-english-school</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket training Sharjah English School</td>
+          <td><span class="pill pill-m">Local</span></td>
+          <td>Low</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-none"></span>Unknown</td>
+          <td>/locations/sharjah-english-school</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket academy near me Dubai</td>
+          <td><span class="pill pill-m">Local</span></td>
+          <td>High</td>
+          <td>Medium</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>Google Maps + /cricket-academy-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket academy near me Sharjah</td>
+          <td><span class="pill pill-m">Local</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>Google Maps + /cricket-academy-sharjah</td>
+        </tr>
+
+        <!-- GROUP 3 -->
+        <tr class="kw-group">
+          <td colspan="6">👦 TIER 3 — Age Group & Junior Specific</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket coaching for kids Dubai</td>
+          <td><span class="pill pill-m">Long-tail</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/junior-cricket-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-long">under 10 cricket coaching Dubai</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/junior-cricket-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-long">under 13 cricket coaching Dubai</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/junior-cricket-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-long">under 19 cricket UAE</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/junior-cricket-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket for beginners Dubai</td>
+          <td><span class="pill pill-m">Long-tail</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/junior-cricket-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket coaching for 4 year old Dubai</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-none"></span>Unknown</td>
+          <td>/junior-cricket-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket for children Sharjah</td>
+          <td><span class="pill pill-m">Long-tail</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/cricket-academy-sharjah</td>
+        </tr>
+        <tr>
+          <td class="kw-long">kids cricket training UAE ages 4 to 19</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-none"></span>Unknown</td>
+          <td>Homepage</td>
+        </tr>
+
+        <!-- GROUP 4 -->
+        <tr class="kw-group">
+          <td colspan="6">👧 TIER 4 — Girls Cricket (Almost Zero Competition)</td>
+        </tr>
+        <tr>
+          <td class="kw-main">girls cricket Dubai</td>
+          <td><span class="pill pill-h">Head</span></td>
+          <td>Medium</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/girls-cricket-uae</td>
+        </tr>
+        <tr>
+          <td class="kw-long">girls cricket coaching UAE</td>
+          <td><span class="pill pill-m">Long-tail</span></td>
+          <td>Medium</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/girls-cricket-uae</td>
+        </tr>
+        <tr>
+          <td class="kw-long">girls cricket academy Sharjah</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/girls-cricket-uae</td>
+        </tr>
+        <tr>
+          <td class="kw-long">UAE women cricket training juniors</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/girls-cricket-uae</td>
+        </tr>
+        <tr>
+          <td class="kw-long">Esha Oza cricket academy UAE</td>
+          <td><span class="pill pill-l">Brand/Person</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-none"></span>Unknown</td>
+          <td>/girls-cricket-uae</td>
+        </tr>
+
+        <!-- GROUP 5 -->
+        <tr class="kw-group">
+          <td colspan="6">☀️ TIER 5 — Summer & Holiday Camps (High Season Intent)</td>
+        </tr>
+        <tr>
+          <td class="kw-main">cricket summer camp Dubai</td>
+          <td><span class="pill pill-h">Seasonal</span></td>
+          <td>High</td>
+          <td>Medium</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/cricket-summer-camp-uae</td>
+        </tr>
+        <tr>
+          <td class="kw-main">cricket summer camp UAE</td>
+          <td><span class="pill pill-h">Seasonal</span></td>
+          <td>High</td>
+          <td>Medium</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/cricket-summer-camp-uae</td>
+        </tr>
+        <tr>
+          <td class="kw-long">indoor cricket summer camp Dubai 2026</td>
+          <td><span class="pill pill-m">Seasonal</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/cricket-summer-camp-uae</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket holiday camp UAE kids</td>
+          <td><span class="pill pill-m">Seasonal</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/cricket-summer-camp-uae</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket winter camp Dubai</td>
+          <td><span class="pill pill-l">Seasonal</span></td>
+          <td>Low</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/cricket-summer-camp-uae</td>
+        </tr>
+        <tr>
+          <td class="kw-long">Ramadan cricket camp UAE</td>
+          <td><span class="pill pill-l">Seasonal</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/cricket-summer-camp-uae</td>
+        </tr>
+
+        <!-- GROUP 6 -->
+        <tr class="kw-group">
+          <td colspan="6">🏟 TIER 6 — Indoor Cricket (Unique Advantage — BSA)</td>
+        </tr>
+        <tr>
+          <td class="kw-main">indoor cricket Dubai</td>
+          <td><span class="pill pill-h">Head</span></td>
+          <td>High</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/indoor-cricket-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-long">indoor cricket academy UAE</td>
+          <td><span class="pill pill-m">Long-tail</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/indoor-cricket-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-long">indoor cricket facility Dubai Investment Park</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/locations/baseline-sports-academy</td>
+        </tr>
+        <tr>
+          <td class="kw-long">air conditioned cricket nets Dubai</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/indoor-cricket-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket training summer heat UAE indoors</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/indoor-cricket-dubai</td>
+        </tr>
+
+        <!-- GROUP 7 -->
+        <tr class="kw-group">
+          <td colspan="6">✈️ TIER 7 — International Tours</td>
+        </tr>
+        <tr>
+          <td class="kw-main">cricket tour UAE schools</td>
+          <td><span class="pill pill-m">Long-tail</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-warn"></span>Page 2–3</td>
+          <td>/tours</td>
+        </tr>
+        <tr>
+          <td class="kw-long">junior cricket tour UK 2026</td>
+          <td><span class="pill pill-m">Seasonal</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/tours</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket tour UK from Dubai</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/tours</td>
+        </tr>
+        <tr>
+          <td class="kw-long">international cricket tour junior UAE 2026</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/tours</td>
+        </tr>
+
+        <!-- GROUP 8 -->
+        <tr class="kw-group">
+          <td colspan="6">🏏 TIER 8 — Coaching Technique & Tips (Blog Content)</td>
+        </tr>
+        <tr>
+          <td class="kw-long">batting tips for juniors cricket UAE</td>
+          <td><span class="pill pill-l">Blog</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/blog/batting-tips-junior-cricket-uae</td>
+        </tr>
+        <tr>
+          <td class="kw-long">bowling techniques kids cricket Dubai</td>
+          <td><span class="pill pill-l">Blog</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/blog/bowling-tips-kids-cricket</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket fitness training juniors UAE</td>
+          <td><span class="pill pill-l">Blog</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/blog/cricket-fitness-juniors-uae</td>
+        </tr>
+        <tr>
+          <td class="kw-long">how to improve cricket batting UAE</td>
+          <td><span class="pill pill-l">Blog</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/blog/improve-batting-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket fielding drills kids Dubai</td>
+          <td><span class="pill pill-l">Blog</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/blog/fielding-drills-juniors</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket nutrition for young players UAE</td>
+          <td><span class="pill pill-l">Blog</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/blog/cricket-nutrition-kids-uae</td>
+        </tr>
+        <tr>
+          <td class="kw-long">mental strength cricket junior athletes</td>
+          <td><span class="pill pill-l">Blog</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/blog/mental-strength-cricket-kids</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket parent guide UAE how to support child</td>
+          <td><span class="pill pill-l">Blog</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/blog/parent-guide-junior-cricket-uae</td>
+        </tr>
+
+        <!-- GROUP 9 -->
+        <tr class="kw-group">
+          <td colspan="6">🏅 TIER 9 — Tournaments & Competitive Play</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket tournaments Dubai juniors</td>
+          <td><span class="pill pill-m">Long-tail</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-warn"></span>Page 2</td>
+          <td>/tournaments</td>
+        </tr>
+        <tr>
+          <td class="kw-long">cricket tournaments UAE under 13</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/tournaments</td>
+        </tr>
+        <tr>
+          <td class="kw-long">DC Premier League cricket UAE</td>
+          <td><span class="pill pill-l">Brand</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-none"></span>Unknown</td>
+          <td>/tournaments</td>
+        </tr>
+        <tr>
+          <td class="kw-long">4 nation cricket tournament UAE juniors</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-none"></span>Unknown</td>
+          <td>/tournaments</td>
+        </tr>
+        <tr>
+          <td class="kw-long">ECB national junior tournament UAE</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/tournaments</td>
+        </tr>
+
+        <!-- GROUP 10 -->
+        <tr class="kw-group">
+          <td colspan="6">🤖 TIER 10 — AI Search / Question-Based Queries</td>
+        </tr>
+        <tr>
+          <td class="kw-long">what is the best cricket academy in UAE</td>
+          <td><span class="pill pill-c">AI/FAQ</span></td>
+          <td>High</td>
+          <td>Medium</td>
+          <td><span class="rank-dot rd-good"></span>FAQ on homepage</td>
+          <td>Homepage FAQPage Schema</td>
+        </tr>
+        <tr>
+          <td class="kw-long">where can my child learn cricket in Dubai</td>
+          <td><span class="pill pill-c">AI/FAQ</span></td>
+          <td>Medium</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not covered</td>
+          <td>FAQ section + /junior-cricket-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-long">how much does cricket coaching cost in Dubai</td>
+          <td><span class="pill pill-c">AI/FAQ</span></td>
+          <td>High</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not covered</td>
+          <td>/fees-cricket-coaching-dubai (new page)</td>
+        </tr>
+        <tr>
+          <td class="kw-long">what age can kids start cricket UAE</td>
+          <td><span class="pill pill-c">AI/FAQ</span></td>
+          <td>Medium</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not covered</td>
+          <td>FAQ + Blog post</td>
+        </tr>
+        <tr>
+          <td class="kw-long">is Desert Cubs good cricket academy Dubai</td>
+          <td><span class="pill pill-c">Brand</span></td>
+          <td>Medium</td>
+          <td>Very Low</td>
+          <td><span class="rank-dot rd-none"></span>Unknown</td>
+          <td>Homepage + Reviews page</td>
+        </tr>
+        <tr>
+          <td class="kw-long">ICC certified cricket coach Dubai for kids</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>/cricket-academy-dubai</td>
+        </tr>
+        <tr>
+          <td class="kw-long">ECB affiliated cricket academy UAE</td>
+          <td><span class="pill pill-l">Long-tail</span></td>
+          <td>Low</td>
+          <td>Low</td>
+          <td><span class="rank-dot rd-bad"></span>Not ranked</td>
+          <td>Homepage + FAQ</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== NEW PAGES NEEDED ===== -->
+  <div class="sec">
+    <div class="sec-hd">
+      <div class="sec-icon ic-g">📄</div>
+      <div class="sec-title">22 New Pages to Build <small>Every page targets a keyword gap Desert Cubs is missing</small></div>
+    </div>
+
+    <div class="page-grid">
+      <div class="page-card priority">
+        <h4>🔥 Priority #1 — Cricket Academy Dubai</h4>
+        <div class="url">/cricket-academy-dubai</div>
+        <p>Dedicated hub for all Dubai centres. 600–800 words. Lists all 5 Dubai locations with mini descriptions, maps, and session times. This single page can rank for 15+ keywords.</p>
+        <div class="kws">
+          <span class="kw-tag">cricket academy Dubai</span>
+          <span class="kw-tag">cricket coaching Dubai</span>
+          <span class="kw-tag">best cricket academy Dubai</span>
+          <span class="kw-tag">junior cricket Dubai</span>
+        </div>
+      </div>
+
+      <div class="page-card priority">
+        <h4>🔥 Priority #2 — Cricket Academy Sharjah</h4>
+        <div class="url">/cricket-academy-sharjah</div>
+        <p>Dedicated hub for Sharjah (SES). Natural grass ground, floodlights, unique facilities. This is a completely uncontested keyword — no competitor has a dedicated Sharjah page like you can build.</p>
+        <div class="kws">
+          <span class="kw-tag">cricket academy Sharjah</span>
+          <span class="kw-tag">cricket coaching Sharjah</span>
+          <span class="kw-tag">Sharjah junior cricket</span>
+        </div>
+      </div>
+
+      <div class="page-card priority">
+        <h4>🔥 Priority #3 — Indoor Cricket Dubai</h4>
+        <div class="url">/indoor-cricket-dubai</div>
+        <p>BSA is one of a kind in UAE. Year-round AC training. This is a massive keyword gap — no competitor is targeting this. Rank #1 here easily with a 500-word page about BSA and summer training.</p>
+        <div class="kws">
+          <span class="kw-tag">indoor cricket Dubai</span>
+          <span class="kw-tag">indoor cricket UAE</span>
+          <span class="kw-tag">summer cricket training Dubai</span>
+        </div>
+      </div>
+
+      <div class="page-card priority">
+        <h4>🔥 Priority #4 — Cricket Summer Camp UAE</h4>
+        <div class="url">/cricket-summer-camp-uae</div>
+        <p>Summer is peak season for this search. Parents are actively looking every April–June. Tie BSA indoor facility into this page. Include dates, age groups, and registration link.</p>
+        <div class="kws">
+          <span class="kw-tag">cricket summer camp Dubai</span>
+          <span class="kw-tag">cricket summer camp UAE</span>
+          <span class="kw-tag">cricket holiday camp kids</span>
+        </div>
+      </div>
+
+      <div class="page-card priority">
+        <h4>🔥 Priority #5 — Girls Cricket UAE</h4>
+        <div class="url">/girls-cricket-uae</div>
+        <p>Zero competition for this keyword. Esha Oza is your alumni — UAE Women's Captain. That is an incredibly powerful story. This page writes itself and will rank #1 with minimal effort.</p>
+        <div class="kws">
+          <span class="kw-tag">girls cricket Dubai</span>
+          <span class="kw-tag">girls cricket UAE</span>
+          <span class="kw-tag">Esha Oza cricket</span>
+          <span class="kw-tag">women cricket UAE junior</span>
+        </div>
+      </div>
+
+      <div class="page-card priority">
+        <h4>🔥 Priority #6 — Junior Cricket Dubai Hub</h4>
+        <div class="url">/junior-cricket-dubai</div>
+        <p>A dedicated page for parents searching for junior programs. Cover age groups 4–19 in detail, include progression pathway, testimonials from parents, and age-by-age FAQ.</p>
+        <div class="kws">
+          <span class="kw-tag">junior cricket Dubai</span>
+          <span class="kw-tag">cricket for kids Dubai</span>
+          <span class="kw-tag">under 10 cricket Dubai</span>
+          <span class="kw-tag">cricket beginners Dubai</span>
+        </div>
+      </div>
+
+      <div class="page-card">
+        <h4>Cricket Coaching Fees UAE</h4>
+        <div class="url">/cricket-coaching-fees-uae</div>
+        <p>One of the most searched questions that no academy answers. "How much does cricket coaching cost in Dubai?" — create a clear, transparent pricing page. This will rank quickly and drive conversions.</p>
+        <div class="kws">
+          <span class="kw-tag">cricket coaching fees Dubai</span>
+          <span class="kw-tag">cricket academy cost UAE</span>
+        </div>
+      </div>
+
+      <div class="page-card">
+        <h4>Cricket Player Pathway UAE</h4>
+        <div class="url">/uae-cricket-player-pathway</div>
+        <p>Parents want to know: can my child go pro? Explain the pathway from Desert Cubs → ECB tournaments → UAE national team. This creates huge E-E-A-T signals and AI citation opportunities.</p>
+        <div class="kws">
+          <span class="kw-tag">UAE cricket player pathway</span>
+          <span class="kw-tag">ECB academy UAE</span>
+          <span class="kw-tag">UAE national cricket junior</span>
+        </div>
+      </div>
+
+      <div class="page-card">
+        <h4>Expand: SES Location Page</h4>
+        <div class="url">/locations/sharjah-english-school</div>
+        <p>Natural grass ground, 6 turf pitches, floodlights, video analysis — write 500+ words unique content about this specific centre. Add LocalBusiness schema, Google Maps, and coach profiles.</p>
+        <div class="kws">
+          <span class="kw-tag">cricket Sharjah Maliha Road</span>
+          <span class="kw-tag">SES cricket coaching</span>
+        </div>
+      </div>
+
+      <div class="page-card">
+        <h4>Expand: DPS Location Page</h4>
+        <div class="url">/locations/delhi-private-school</div>
+        <p>Jebel Ali, The Gardens area. Write unique 500-word content. Target "cricket coaching Jebel Ali" and "cricket academy The Gardens Dubai."</p>
+        <div class="kws">
+          <span class="kw-tag">cricket Jebel Ali</span>
+          <span class="kw-tag">cricket The Gardens Dubai</span>
+        </div>
+      </div>
+
+      <div class="page-card">
+        <h4>Expand: DIS, SIS, AIS, BSA Pages</h4>
+        <div class="url">/locations/*</div>
+        <p>Same treatment for all remaining 4 location pages. Each needs 400–500 words of unique local content, neighbourhood context, coach info, and schema markup. Do all 4 together.</p>
+        <div class="kws">
+          <span class="kw-tag">Festival City</span>
+          <span class="kw-tag">Al Qusais</span>
+          <span class="kw-tag">Al Karama</span>
+          <span class="kw-tag">DIP</span>
+        </div>
+      </div>
+
+      <div class="page-card">
+        <h4>Coaching Staff & Coaches Page</h4>
+        <div class="url">/coaches</div>
+        <p>Profiles for all head coaches. Name, photo, credentials, playing background, coaching philosophy. This is critical for E-E-A-T and builds trust with parents. Also helps blog posts when you attribute articles to named coaches.</p>
+        <div class="kws">
+          <span class="kw-tag">cricket coaches Dubai</span>
+          <span class="kw-tag">ICC certified coach UAE</span>
+        </div>
+      </div>
+
+      <div class="page-card">
+        <h4>Reviews & Alumni Page</h4>
+        <div class="url">/reviews</div>
+        <p>Compile Google reviews, parent testimonials, and alumni achievements (especially Esha Oza and any UAE national players). This page ranks for "Desert Cubs reviews" and "best cricket academy reviews UAE."</p>
+        <div class="kws">
+          <span class="kw-tag">Desert Cubs reviews</span>
+          <span class="kw-tag">cricket academy UAE reviews</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PLATFORM RANKINGS ===== -->
+  <div class="sec">
+    <div class="sec-hd">
+      <div class="sec-icon ic-b">🔎</div>
+      <div class="sec-title">Platform-by-Platform Analysis <small>Google · Bing · DuckDuckGo · AI Search · Tor</small></div>
+    </div>
+
+    <div class="platform-grid">
+
+      <div class="plat-card">
+        <div class="plat-head">
+          <div class="plat-icon">🟢</div>
+          <div>
+            <div class="plat-name">Google</div>
+            <div class="plat-pos" style="color:var(--orange)">Mixed — #1 UAE, invisible Dubai</div>
+          </div>
+        </div>
+        <div class="plat-body">
+          <p>Ranks #1 for "best cricket academy UAE" but absent for "cricket academy Dubai" — the higher volume term. Old Joomla pages are polluting the index.</p>
+          <ul>
+            <li>Fix Joomla 301 redirects immediately</li>
+            <li>Submit sitemap to Search Console</li>
+            <li>Build /cricket-academy-dubai page</li>
+            <li>Add schema markup sitewide</li>
+            <li>Get listed on Google Maps for all 6 centres</li>
+            <li>Target Featured Snippets with FAQ schema</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plat-card">
+        <div class="plat-head">
+          <div class="plat-icon">🔵</div>
+          <div>
+            <div class="plat-name">Microsoft Bing</div>
+            <div class="plat-pos" style="color:var(--red)">Likely poor — needs Bing setup</div>
+          </div>
+        </div>
+        <div class="plat-body">
+          <p>Bing has its own webmaster tools and its own index. It does not just copy Google. Since no sitemap exists, Bing likely has the same old Joomla pages indexed. Bing is used by Microsoft Copilot (AI).</p>
+          <ul>
+            <li>Register on Bing Webmaster Tools (free)</li>
+            <li>Submit sitemap.xml to Bing directly</li>
+            <li>Verify domain ownership in Bing WMT</li>
+            <li>Bing favours exact-match keywords more than Google — use full phrases in titles</li>
+            <li>Bing gives more weight to social signals — share content on LinkedIn/Facebook</li>
+            <li>Copilot (AI) cites Bing results — fix this = get cited by Copilot</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plat-card">
+        <div class="plat-head">
+          <div class="plat-icon">🟠</div>
+          <div>
+            <div class="plat-name">DuckDuckGo</div>
+            <div class="plat-pos" style="color:var(--orange)">Unknown — indexing unclear</div>
+          </div>
+        </div>
+        <div class="plat-body">
+          <p>DuckDuckGo pulls results from Bing, Yahoo, and its own crawler. Fixing Bing = fixing DuckDuckGo. It gives extra weight to privacy-focused, ad-free sites. Your Flask site qualifies.</p>
+          <ul>
+            <li>Fix Bing = DDG improves automatically</li>
+            <li>DDG shows more local results — ensure NAP is consistent everywhere</li>
+            <li>DDG gives weight to Bing Local listings — claim yours</li>
+            <li>No ads policy on site is a trust signal here</li>
+            <li>Fast, clean pages rank better on DDG</li>
+            <li>No additional setup needed beyond Bing</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plat-card">
+        <div class="plat-head">
+          <div class="plat-icon">🤖</div>
+          <div>
+            <div class="plat-name">AI Search (ChatGPT / Perplexity / Gemini)</div>
+            <div class="plat-pos" style="color:var(--red)">Not cited — needs AI SEO work</div>
+          </div>
+        </div>
+        <div class="plat-body">
+          <p>Google AI Overviews, ChatGPT search, and Perplexity all handle "best cricket academy" queries. Desert Cubs is not currently being cited by any of them. The FAQ schema fix and structured content will change this.</p>
+          <ul>
+            <li>Add FAQPage + SportsOrganization schema — highest ROI action</li>
+            <li>Allow GPTBot, PerplexityBot, ClaudeBot in robots.txt</li>
+            <li>Create extractable "definition blocks" in blog posts (TL;DR at top)</li>
+            <li>Add statistics with sources to all key pages</li>
+            <li>Get listed on Wikipedia as a notable UAE sports academy</li>
+            <li>Get mentioned in Gulf News, Khaleej Times — AI cites news sources heavily</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plat-card">
+        <div class="plat-head">
+          <div class="plat-icon">🧅</div>
+          <div>
+            <div class="plat-name">Tor / Dark Web Search</div>
+            <div class="plat-pos" style="color:var(--purple)">Not applicable — but addressable</div>
+          </div>
+        </div>
+        <div class="plat-body">
+          <p>Tor Browser users access standard search engines (Google, DuckDuckGo) via Tor's anonymizing network. The search results they see are the same — just privacy-routed. There is no separate "Tor search index."</p>
+          <ul>
+            <li>Tor users see the same Google/DDG results — rank there = rank on Tor</li>
+            <li>Tor-friendly sites load without JavaScript blocking — your Flask site is fine</li>
+            <li>Ensure site works with JavaScript disabled (Tor's strict mode)</li>
+            <li>No special SEO is needed — just make the site accessible + fast</li>
+            <li>Expat privacy-conscious parents in UAE do use Tor/VPNs — clean site loads well</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plat-card">
+        <div class="plat-head">
+          <div class="plat-icon">📍</div>
+          <div>
+            <div class="plat-name">Google Maps / Local Search</div>
+            <div class="plat-pos" style="color:var(--red)">Missing from Map Pack</div>
+          </div>
+        </div>
+        <div class="plat-body">
+          <p>When someone searches "cricket academy near me" or "cricket academy Dubai" on mobile, the top 3 results are the Google Map Pack — not organic results. This is separate from SEO and requires Google Business Profile setup.</p>
+          <ul>
+            <li>Create/claim Google Business Profile for all 6 centres</li>
+            <li>Add photos, hours, and booking link to each profile</li>
+            <li>Get reviews on Google Business Profile — ask current parents</li>
+            <li>Use "cricket academy" as the business category</li>
+            <li>Consistent NAP across all 6 listings + website</li>
+            <li>Map Pack = instant #1 visibility for "near me" searches</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== BLOG CONTENT PLAN ===== -->
+  <div class="sec">
+    <div class="sec-hd">
+      <div class="sec-icon ic-p">📰</div>
+      <div class="sec-title">Blog Content Calendar <small>30 posts — one unique keyword per post, no duplicates</small></div>
+    </div>
+
+    <table class="blog-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Primary Keyword</th>
+          <th>URL Slug</th>
+          <th>Category</th>
+          <th>Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>How to Choose the Best Cricket Academy in Dubai for Your Child</td><td>cricket academy Dubai</td><td>/blog/choose-cricket-academy-dubai</td><td>Parent Guide</td><td><span class="pill pill-h">High</span></td></tr>
+        <tr><td>2</td><td>The Complete Guide to Junior Cricket Coaching in UAE (2026)</td><td>junior cricket coaching UAE</td><td>/blog/junior-cricket-coaching-uae-guide</td><td>Parent Guide</td><td><span class="pill pill-h">High</span></td></tr>
+        <tr><td>3</td><td>Indoor Cricket Dubai: Why Summer Training at BSA Changes Everything</td><td>indoor cricket Dubai summer</td><td>/blog/indoor-cricket-dubai-summer</td><td>Facility</td><td><span class="pill pill-h">High</span></td></tr>
+        <tr><td>4</td><td>Girls Cricket in UAE: How Desert Cubs is Leading the Way</td><td>girls cricket UAE</td><td>/blog/girls-cricket-uae</td><td>Girls Cricket</td><td><span class="pill pill-h">High</span></td></tr>
+        <tr><td>5</td><td>Esha Oza: From Desert Cubs to UAE Women's Captain</td><td>Esha Oza cricket UAE</td><td>/blog/esha-oza-desert-cubs-uae-womens-captain</td><td>Alumni Story</td><td><span class="pill pill-h">High</span></td></tr>
+        <tr><td>6</td><td>What Age Should My Child Start Cricket Coaching in Dubai?</td><td>what age cricket coaching Dubai</td><td>/blog/what-age-start-cricket-dubai</td><td>Parent FAQ</td><td><span class="pill pill-m">Medium</span></td></tr>
+        <tr><td>7</td><td>How Much Does Cricket Academy Cost in Dubai? (2026 Fees Guide)</td><td>cricket coaching fees Dubai</td><td>/blog/cricket-academy-fees-dubai-2026</td><td>Parent FAQ</td><td><span class="pill pill-m">Medium</span></td></tr>
+        <tr><td>8</td><td>Top 5 Batting Drills for Junior Cricketers in UAE Heat</td><td>batting drills juniors UAE</td><td>/blog/batting-drills-junior-cricket-uae</td><td>Coaching Tips</td><td><span class="pill pill-m">Medium</span></td></tr>
+        <tr><td>9</td><td>Bowling Techniques: What ICC-Certified Coaches Teach Kids in Dubai</td><td>bowling techniques kids Dubai</td><td>/blog/bowling-techniques-kids-dubai</td><td>Coaching Tips</td><td><span class="pill pill-m">Medium</span></td></tr>
+        <tr><td>10</td><td>Cricket Nutrition Guide for Young Players in UAE</td><td>cricket nutrition kids UAE</td><td>/blog/cricket-nutrition-young-players-uae</td><td>Nutrition</td><td><span class="pill pill-m">Medium</span></td></tr>
+        <tr><td>11</td><td>Mental Toughness in Cricket: A Desert Cubs Coach's Perspective</td><td>mental toughness cricket juniors</td><td>/blog/mental-toughness-junior-cricket</td><td>Mental Skills</td><td><span class="pill pill-m">Medium</span></td></tr>
+        <tr><td>12</td><td>Desert Cubs UK Tour 2026: What to Expect</td><td>cricket tour UK Dubai juniors</td><td>/blog/uk-cricket-tour-2026-desert-cubs</td><td>Tours</td><td><span class="pill pill-m">Medium</span></td></tr>
+        <tr><td>13</td><td>Sharjah English School Cricket Ground: The Crown Jewel of UAE Cricket</td><td>best cricket ground Sharjah UAE</td><td>/blog/sharjah-english-school-cricket-ground</td><td>Facilities</td><td><span class="pill pill-m">Medium</span></td></tr>
+        <tr><td>14</td><td>How to Support Your Child's Cricket Journey: A Parent's Guide</td><td>parent guide junior cricket UAE</td><td>/blog/parent-guide-junior-cricket</td><td>Parent Guide</td><td><span class="pill pill-l">Low</span></td></tr>
+        <tr><td>15</td><td>Cricket vs Football for Kids in Dubai: Which Is Right for Your Child?</td><td>cricket or football kids Dubai</td><td>/blog/cricket-vs-football-kids-dubai</td><td>Parent FAQ</td><td><span class="pill pill-l">Low</span></td></tr>
+        <tr><td>16</td><td>What Is the ECB National Junior Tournament UAE?</td><td>ECB junior tournament UAE</td><td>/blog/ecb-junior-tournament-uae</td><td>Tournaments</td><td><span class="pill pill-l">Low</span></td></tr>
+        <tr><td>17</td><td>Video Analysis in Cricket: How We Improve Every Player's Game</td><td>video analysis cricket coaching Dubai</td><td>/blog/video-analysis-cricket-coaching</td><td>Tech/Coaching</td><td><span class="pill pill-l">Low</span></td></tr>
+        <tr><td>18</td><td>Fielding Drills That Build Champions: Desert Cubs Training Methods</td><td>fielding drills junior cricket</td><td>/blog/fielding-drills-desert-cubs</td><td>Coaching Tips</td><td><span class="pill pill-l">Low</span></td></tr>
+        <tr><td>19</td><td>UAE National Cricket Team: How Academies Like Desert Cubs Feed the Pipeline</td><td>UAE national cricket pathway junior</td><td>/blog/uae-national-cricket-team-pathway</td><td>Player Pathway</td><td><span class="pill pill-l">Low</span></td></tr>
+        <tr><td>20</td><td>Desert Cubs DC Premier League: Your Child's First Tournament Experience</td><td>DC Premier League cricket UAE</td><td>/blog/dc-premier-league-cricket-uae</td><td>Tournaments</td><td><span class="pill pill-l">Low</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== MASTER ACTION PLAN ===== -->
+  <div class="sec">
+    <div class="sec-hd">
+      <div class="sec-icon ic-o">🚀</div>
+      <div class="sec-title">Master Action Plan <small>Phase by phase — what to build, when, and why</small></div>
+    </div>
+
+    <ul class="action-list">
+      <li>
+        <div class="action-num">1</div>
+        <div class="action-text">
+          <h4>Fix Old Joomla URLs + Add robots.txt + Sitemap (Week 1)</h4>
+          <p>Block old Joomla paths in Nginx with 301 redirects to homepage. Create robots.txt Flask route. Generate XML sitemap covering all pages. Submit to Google Search Console AND Bing Webmaster Tools. This alone can push you up 5–10 positions within weeks.</p>
+        </div>
+        <div class="action-meta"><span class="pill pill-h">Critical</span></div>
+      </li>
+      <li>
+        <div class="action-num">2</div>
+        <div class="action-text">
+          <h4>Set Up Google Business Profile for All 6 Centres (Week 1)</h4>
+          <p>Create or claim a Google Business Profile for each location: SES (Sharjah), DPS (Jebel Ali), DIS (Festival City), SIS (Al Qusais), AIS (Karama), BSA (DIP). Add photos, session times, phone, and website link. This puts you in the Map Pack for "near me" searches — which is where most parents look on mobile.</p>
+        </div>
+        <div class="action-meta"><span class="pill pill-h">Critical</span></div>
+      </li>
+      <li>
+        <div class="action-num">3</div>
+        <div class="action-text">
+          <h4>Add Schema Markup Sitewide (Week 1–2)</h4>
+          <p>Add LocalBusiness + SportsOrganization JSON-LD to homepage. FAQPage schema to homepage FAQ. Add individual LocalBusiness schema to each location page. This directly improves Google AI Overviews and Copilot citations.</p>
+        </div>
+        <div class="action-meta"><span class="pill pill-h">Critical</span></div>
+      </li>
+      <li>
+        <div class="action-num">4</div>
+        <div class="action-text">
+          <h4>Build /cricket-academy-dubai Page (Week 2)</h4>
+          <p>The single highest-impact page you can add. Target 15+ keywords. 700 words, all 5 Dubai centres listed, Google Maps embeds, LocalBusiness schema, title: "Cricket Academy Dubai | Desert Cubs — 5 Centres Across Dubai".</p>
+        </div>
+        <div class="action-meta"><span class="pill pill-h">High</span></div>
+      </li>
+      <li>
+        <div class="action-num">5</div>
+        <div class="action-text">
+          <h4>Build /cricket-academy-sharjah Page (Week 2)</h4>
+          <p>Very low competition. SES is your flagship. Rank #1 for Sharjah easily with a dedicated 600-word page. Title: "Cricket Academy Sharjah | Desert Cubs SES — Natural Grass Ground, Floodlights".</p>
+        </div>
+        <div class="action-meta"><span class="pill pill-h">High</span></div>
+      </li>
+      <li>
+        <div class="action-num">6</div>
+        <div class="action-text">
+          <h4>Build /indoor-cricket-dubai + /cricket-summer-camp-uae (Week 3)</h4>
+          <p>Two pages, both with zero competition right now. BSA's AC indoor facility is unique in UAE. Summer camp searches spike every April–July. Build these now before the season peaks.</p>
+        </div>
+        <div class="action-meta"><span class="pill pill-h">High</span></div>
+      </li>
+      <li>
+        <div class="action-num">7</div>
+        <div class="action-text">
+          <h4>Build /girls-cricket-uae Page (Week 3)</h4>
+          <p>Esha Oza — UAE Women's Captain — is your alumna. No other academy has this story. Write a dedicated page about Desert Cubs girls cricket programme. Rank #1 for "girls cricket Dubai" with virtually zero competition.</p>
+        </div>
+        <div class="action-meta"><span class="pill pill-h">High</span></div>
+      </li>
+      <li>
+        <div class="action-num">8</div>
+        <div class="action-text">
+          <h4>Expand All 6 Location Pages (Weeks 3–4)</h4>
+          <p>Each location page needs: 400–500 words unique local content, coach name, session schedule, neighbourhood context, Google Maps embed, LocalBusiness schema with specific address, and internal links to /cricket-academy-dubai or /cricket-academy-sharjah.</p>
+        </div>
+        <div class="action-meta"><span class="pill pill-m">Medium</span></div>
+      </li>
+      <li>
+        <div class="action-num">9</div>
+        <div class="action-text">
+          <h4>Register Bing Webmaster Tools + Submit Sitemap (Week 1)</h4>
+          <p>Go to bing.com/webmasters, verify domain, submit sitemap.xml. This directly improves DuckDuckGo AND Microsoft Copilot citations. Takes 15 minutes. Do this same week as Google Search Console.</p>
+        </div>
+        <div class="action-meta"><span class="pill pill-m">Medium</span></div>
+      </li>
+      <li>
+        <div class="action-num">10</div>
+        <div class="action-text">
+          <h4>Launch Blog Content Calendar — 1 Post Per Week (Ongoing)</h4>
+          <p>One post per week, each targeting a unique keyword from the table above. Use real data (match results, tour stats), named coaches, and specific Desert Cubs details. No duplicate topics. Posts 1–7 (the high priority ones) should be written first.</p>
+        </div>
+        <div class="action-meta"><span class="pill pill-m">Ongoing</span></div>
+      </li>
+      <li>
+        <div class="action-num">11</div>
+        <div class="action-text">
+          <h4>Build Coaches Page + Add Author Attribution to Blog (Week 4)</h4>
+          <p>Create /coaches page with real coach profiles. Then update all blog posts to attribute to a named coach. This is the single biggest improvement for Google's E-E-A-T scoring and AI citation quality.</p>
+        </div>
+        <div class="action-meta"><span class="pill pill-m">Medium</span></div>
+      </li>
+      <li>
+        <div class="action-num">12</div>
+        <div class="action-text">
+          <h4>Get Press Mentions in Gulf News / Khaleej Times / The National (Month 2)</h4>
+          <p>AI systems (ChatGPT, Perplexity, Gemini) heavily cite UAE news outlets. A single mention in Gulf News about Desert Cubs, Esha Oza, a tournament result, or the UK tour will get you cited in AI answers for months. Reach out to sports desk reporters — you have real news to share.</p>
+        </div>
+        <div class="action-meta"><span class="pill pill-m">Medium</span></div>
+      </li>
+      <li>
+        <div class="action-num">13</div>
+        <div class="action-text">
+          <h4>Add Cloudflare + Image Optimization (Week 2)</h4>
+          <p>Cloudflare free tier: CDN + caching + minification. Convert hero-bg.jpg and all location images to WebP. Add loading="lazy" to below-fold images. Add preload hint for hero. This directly improves Core Web Vitals which Google uses as a ranking signal.</p>
+        </div>
+        <div class="action-meta"><span class="pill pill-m">Medium</span></div>
+      </li>
+      <li>
+        <div class="action-num">14</div>
+        <div class="action-text">
+          <h4>Get Listed on Bayut, PropertyFinder, Coursetakers (Month 2)</h4>
+          <p>These high-authority UAE sites rank above you for "cricket academy Dubai." Get Desert Cubs listed prominently in all three. For Bayut and PropertyFinder — email their content team directly and ask to be featured/updated. These are not paid placements — they accept submissions. Being listed here means your name appears even when you don't rank #1 directly.</p>
+        </div>
+        <div class="action-meta"><span class="pill pill-l">Low</span></td>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ===== TOR / PRIVACY SEARCH DEEP DIVE ===== -->
+  <div class="sec">
+    <div class="sec-hd">
+      <div class="sec-icon ic-p">🧅</div>
+      <div class="sec-title">Tor & Privacy Search — Full Explanation <small>What it is, who uses it, and how to win there</small></div>
+    </div>
+
+    <div class="tor-box">
+      <h4>What Is Tor Search?</h4>
+      <p>Tor (The Onion Router) is a privacy network used by people who want to browse anonymously — journalists, privacy-conscious users, expats avoiding ISP tracking, and VPN users in the UAE. When using Tor Browser, users access normal search engines (Google, DuckDuckGo, Startpage) through anonymized routing. <strong>There is no separate "Tor index"</strong> — the results shown are the same Google or DuckDuckGo results, just accessed privately.</p>
+    </div>
+
+    <div class="tor-box">
+      <h4>Who Uses Tor in the UAE Context?</h4>
+      <p>In the UAE, many expat families use VPNs or Tor to bypass ISP restrictions or for privacy reasons. A parent searching "cricket academy Dubai" on DuckDuckGo via Tor will see the same results as a standard DuckDuckGo search. Winning on DuckDuckGo = winning on Tor. The only extra consideration: your site must work properly with JavaScript disabled (Tor's highest security setting). Your Flask server-rendered pages are perfect for this — they don't require JS to display content.</p>
+    </div>
+
+    <div class="tor-box">
+      <h4>Action: Ensure Site Works Without JavaScript</h4>
+      <p>Test your site with JavaScript disabled in your browser. All core content (location info, phone numbers, enrolment CTA) should be visible without JS. The sponsor carousel and IPL prediction widget will break — that's fine. The content that matters for parents must load without JS. This also benefits screen readers and accessibility scoring.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>desertcubs.com &nbsp;·&nbsp; Keyword & Search Domination Report &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 87 Keywords · 22 Pages · 5 Platforms</p>
+  <p>Prepared by Claude for Prashan — Desert Cubs Digital Team</p>
+</div>
+
+</body>
+</html>
