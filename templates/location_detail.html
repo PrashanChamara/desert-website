@@ -10,13 +10,16 @@
     
     <!-- Background image -->
     <div class="absolute inset-0">
-        <img src="{{ url_for('static', filename='img/' + branch.img) }}"
-             alt="Cricket training at {{ branch.name }}, {{ branch.area }}"
-             width="900" height="600"
-             fetchpriority="high"
-             loading="eager"
-             class="w-full h-full object-cover"
-             itemprop="image">
+        <picture>
+            <source srcset="{{ url_for('static', filename='img/' + branch.img.replace('.jpg','.webp')) }}" type="image/webp">
+            <img src="{{ url_for('static', filename='img/' + branch.img) }}"
+                 alt="Cricket training at {{ branch.name }}, {{ branch.area }}"
+                 width="900" height="600"
+                 fetchpriority="high"
+                 loading="eager"
+                 class="w-full h-full object-cover"
+                 itemprop="image">
+        </picture>
     </div>
     
     <!-- Gradient overlay -->
@@ -44,7 +47,7 @@
                aria-label="Get directions to {{ branch.name }}">
                 <i class="fas fa-location-arrow"></i> Get Directions
             </a>
-            <button onclick="openSchedule('{{ url_for('static', filename='img/' + branch.schedule_img) }}', '{{ branch.name }}')"
+            <button onclick="openSchedule('{{ url_for('static', filename='img/' + branch.schedule_img.replace('.jpg','.webp')) }}', '{{ branch.name }}')"
                     class="border-2 border-white text-white px-7 py-3 rounded-full font-display font-bold text-sm uppercase tracking-wider hover:bg-white hover:text-cubs-blue transition-all flex items-center gap-2 w-fit">
                 <i class="fas fa-calendar-alt"></i> View Schedule
             </button>
@@ -101,12 +104,15 @@
                             <!-- Coach photo -->
                             <div class="w-20 h-20 rounded-xl bg-gray-100 overflow-hidden flex-shrink-0 cursor-pointer group relative border-2 border-gray-200 hover:border-cubs-gold transition-colors"
                                  onclick="openModal('{{ url_for('static', filename='img/' + coach.img) }}', '{{ coach.name }}')">
-                                <img src="{{ url_for('static', filename='img/' + coach.img) }}"
-                                     alt="{{ coach.name }} — Cricket coach at {{ branch.name }}"
-                                     width="80" height="80"
-                                     loading="lazy"
-                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                     itemprop="image">
+                                <picture>
+                                    <source srcset="{{ url_for('static', filename='img/' + coach.img.replace('.jpg','.webp')) }}" type="image/webp">
+                                    <img src="{{ url_for('static', filename='img/' + coach.img) }}"
+                                         alt="{{ coach.name }} — Cricket coach at {{ branch.name }}"
+                                         width="80" height="80"
+                                         loading="lazy"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                         itemprop="image">
+                                </picture>
                                 <div class="absolute inset-0 bg-cubs-blue/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                     <i class="fas fa-expand text-white text-xs"></i>
                                 </div>

@@ -130,6 +130,54 @@
                 "@type": "Answer",
                 "text": "Yes. Desert Cubs organises junior international cricket tours every year. Past tours include UK & Wales, Brisbane Australia, Sri Lanka, and South Africa. The 2026 UK tour is open for registration. Desert Cubs was the first UAE cricket academy to tour Australia."
               }
+            },
+            {
+              "@type": "Question",
+              "name": "Where can my child learn cricket in Dubai?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Your child can learn cricket in Dubai at Desert Cubs Cricket Academy — the UAE's largest junior cricket academy with 4 Dubai locations: Delhi Private School (Jebel Ali), Deira International School (Festival City), Star International School (Al Qusais), and Apple International School (Al Karama). Coaching is available for ages 4–19, boys and girls."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How much does cricket coaching cost in Dubai UAE?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Desert Cubs Cricket Academy offers structured cricket coaching programmes across Dubai and Sharjah. Fees vary by centre, age group, and programme level. Contact us at +971 58 827 4266 or info@desertcubs.com for the current fee schedule and to register your child."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What age can kids start cricket coaching in UAE?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Desert Cubs accepts junior cricketers from as young as 4 years old up to 19 years. The programme is structured by age group: beginners (4–6), juniors (7–11), under-13, under-15, and under-19. Both boys and girls are welcome at all Desert Cubs cricket training centres in Dubai and Sharjah."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is there girls cricket coaching in UAE?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Desert Cubs runs one of the UAE's strongest girls cricket programmes. Our most famous alumna is Esha Oza, UAE Women's Cricket Captain. We have dedicated female coaches including Judith Jose Peter (ICC Level 1, ex-UAE Player). Girls cricket coaching is available at our Delhi Private School and other centres across Dubai and Sharjah."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Desert Cubs offer indoor cricket training in Dubai summer?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Desert Cubs operates a fully air-conditioned indoor cricket facility at Baseline Sports Academy, Dubai Investment Park (DIP). This state-of-the-art indoor cricket centre features 5 specialized cricket lanes, video analysis technology, and is ideal for year-round training — especially during UAE summer months when outdoor cricket is difficult."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Desert Cubs offer cricket summer camps in Dubai?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Desert Cubs runs cricket summer camps at Baseline Sports Academy — our fully air-conditioned indoor cricket facility in Dubai Investment Park. The summer camp programme is designed for junior cricketers ages 4–19 and runs during UAE school holidays. Contact us to register for the next summer camp."
+              }
             }
           ]
         }
@@ -140,24 +188,27 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}">
 
-    <!-- ========== FONTS ========== -->
+    <!-- ========== RESOURCE HINTS ========== -->
     <!-- Preconnect early so font DNS/TLS is ready before the request fires -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Load fonts non-render-blocking: preload triggers fetch, onload swaps rel to stylesheet -->
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://analytics.ahrefs.com">
+
+    <!-- ========== FONTS (display=optional → renders instantly in system font, no FOIT) ========== -->
     <link rel="preload"
-          href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=optional"
           as="style"
           onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=optional" rel="stylesheet">
     </noscript>
 
-    <!-- Font Awesome — non-render-blocking -->
-    <link rel="preload"
+    <!-- Font Awesome — deferred with media trick (non-render-blocking) -->
+    <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-          as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
+          media="print"
+          onload="this.media='all'">
     <noscript>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     </noscript>
@@ -440,20 +491,29 @@
                aria-label="Desert Cubs Cricket Academy Home">
 
                 <!-- Siraj Finance title sponsor logo -->
-                <img src="{{ url_for('static', filename='img/siraj_logo.png') }}"
-                     alt="Siraj Finance — Title Sponsor"
-                     style="height:32px; width:auto; object-fit:contain;
-                            filter:drop-shadow(0 1px 4px rgba(0,0,0,0.4)) brightness(1.05);"
-                     loading="eager">
+                <picture>
+                    <source srcset="{{ url_for('static', filename='img/siraj_logo.webp') }}" type="image/webp">
+                    <img src="{{ url_for('static', filename='img/siraj_logo.png') }}"
+                         alt="Siraj Finance — Title Sponsor"
+                         width="100" height="32"
+                         style="height:32px; width:auto; object-fit:contain;
+                                filter:drop-shadow(0 1px 4px rgba(0,0,0,0.4)) brightness(1.05);"
+                         loading="eager" fetchpriority="high">
+                </picture>
 
                 <!-- Gold separator -->
                 <div style="width:1px; height:30px; background:rgba(255,204,0,0.35); flex-shrink:0;"></div>
 
                 <!-- Desert Cubs badge -->
-                <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}"
-                     alt="Desert Cubs Cricket Academy Logo"
-                     style="width:42px; height:42px; object-fit:contain;"
-                     class="drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
+                <picture>
+                    <source srcset="{{ url_for('static', filename='img/Desert_cubs_logo.webp') }}" type="image/webp">
+                    <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}"
+                         alt="Desert Cubs Cricket Academy Logo"
+                         width="42" height="42"
+                         style="width:42px; height:42px; object-fit:contain;"
+                         class="drop-shadow-lg group-hover:scale-105 transition-transform duration-300"
+                         loading="eager" fetchpriority="high">
+                </picture>
 
                 <!-- Name & tagline (display only — SEO/schema always uses Desert Cubs) -->
                 <div style="line-height:1;">

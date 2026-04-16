@@ -9,10 +9,13 @@
 ============================================================= -->
 <style>
 
-/* ── KEYFRAMES ────────────────────────────────────────────── */
+/* ── KEYFRAMES (all GPU-composited: only transform + opacity) ── */
 @keyframes floatY    { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-14px)} }
-@keyframes goldPulse { 0%,100%{box-shadow:0 0 0 0 rgba(255,204,0,.5)} 70%{box-shadow:0 0 0 14px rgba(255,204,0,0)} }
-@keyframes goldGlow  { 0%,100%{box-shadow:0 4px 16px rgba(255,204,0,.35)} 50%{box-shadow:0 8px 40px rgba(255,204,0,.65)} }
+/* goldPulse: use scale+opacity instead of box-shadow (GPU composited) */
+@keyframes goldPulse { 0%,100%{opacity:.8;transform:scale(1)} 50%{opacity:1;transform:scale(1.04)} }
+/* goldGlow: use filter brightness instead of box-shadow */
+@keyframes goldGlow  { 0%,100%{filter:brightness(1) drop-shadow(0 4px 8px rgba(255,204,0,.3))} 50%{filter:brightness(1.15) drop-shadow(0 8px 24px rgba(255,204,0,.55))} }
+/* shimmerBtn: use translateX on ::before pseudo-element (done via will-change below) */
 @keyframes shimmerBtn{ 0%{background-position:-200% center} 100%{background-position:200% center} }
 @keyframes rotateCW  { from{transform:rotate(0deg)}  to{transform:rotate(360deg)} }
 @keyframes rotateCCW { from{transform:rotate(0deg)}  to{transform:rotate(-360deg)} }
@@ -77,15 +80,20 @@
 /* ── HERO CTA ROW ─────────────────────────────────────────── */
 .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:36px}
 
-/* ── SHIMMER BUTTON ───────────────────────────────────────── */
-.btn-shimmer{background:linear-gradient(90deg,#FFCC00 0%,#fff5a0 40%,#FFCC00 60%,#e6b800 100%);
-             background-size:200% auto;animation:shimmerBtn 3s linear infinite;
+/* ── SHIMMER BUTTON (GPU-composited: pseudo-element translateX) */
+.btn-shimmer{position:relative;overflow:hidden;
+             background:#FFCC00;
              color:#001f66!important;font-family:'Nunito',sans-serif;font-weight:900;
              font-size:.86rem;letter-spacing:.07em;text-transform:uppercase;
              text-decoration:none;border:none;cursor:pointer;border-radius:999px;
              padding:13px 28px;display:inline-flex;align-items:center;gap:8px;
-             transition:transform .25s,box-shadow .25s;white-space:nowrap}
-.btn-shimmer:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,204,0,.5);color:#001f66!important}
+             transition:transform .25s,box-shadow .25s;white-space:nowrap;
+             box-shadow:0 4px 18px rgba(255,204,0,.45)}
+.btn-shimmer::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
+             background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);
+             animation:shimmerBtn 2.5s ease-in-out infinite;will-change:transform}
+@keyframes shimmerBtn{0%{transform:translateX(-100%)} 60%,100%{transform:translateX(280%)}}
+.btn-shimmer:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,204,0,.55);color:#001f66!important}
 
 /* ── OUTLINE BUTTON ───────────────────────────────────────── */
 .btn-outline{display:inline-flex;align-items:center;gap:8px;
@@ -172,21 +180,21 @@
            transition:transform .3s ease}
 .trust-ico:hover{transform:scale(1.1)}
 
-/* ── FIRE BUTTON ──────────────────────────────────────────── */
-@keyframes fireFlicker{0%,100%{box-shadow:0 0 20px rgba(255,80,0,.7),0 0 40px rgba(255,140,0,.35)}
-                       50%{box-shadow:0 0 38px rgba(255,100,0,1),0 0 72px rgba(255,170,0,.55)}}
+/* ── FIRE BUTTON (GPU-composited: opacity+transform only) ─── */
+@keyframes fireFlicker{0%,100%{opacity:.9;transform:scale(1)}
+                       50%{opacity:1;transform:scale(1.02)}}
 @keyframes fireRise{0%{opacity:.85;transform:translateY(0) scale(1)}
                     100%{opacity:0;transform:translateY(-30px) scale(.2)}}
 .btn-fire-wrap{position:relative;display:inline-block}
 .fire-dot{position:absolute;bottom:calc(100% - 4px);width:5px;border-radius:50% 50% 30% 30%;
-          pointer-events:none;animation:fireRise .7s ease-out infinite}
+          pointer-events:none;animation:fireRise .7s ease-out infinite;will-change:transform,opacity}
 .btn-fire{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px;
           background:linear-gradient(135deg,#ff4500 0%,#ff7000 55%,#ffcc00 100%);
           color:#fff!important;font-family:'Nunito',sans-serif;font-weight:900;
           font-size:.95rem;letter-spacing:.1em;text-transform:uppercase;
           border:none;cursor:pointer;border-radius:999px;padding:14px 38px;
-          animation:fireFlicker 1.8s ease-in-out infinite;
-          transition:transform .25s,box-shadow .25s}
+          animation:fireFlicker 1.8s ease-in-out infinite;will-change:transform,opacity;
+          transition:transform .25s;box-shadow:0 6px 28px rgba(255,80,0,.55)}
 .btn-fire:hover{transform:translateY(-3px) scale(1.05);color:#fff!important;
                 box-shadow:0 12px 40px rgba(255,80,0,.6)}
 
@@ -230,9 +238,9 @@
     <div aria-hidden="true"
          style="position:absolute;top:50%;right:0;transform:translate(0,-50%);
                 width:640px;height:640px;pointer-events:none;z-index:0;">
-        <div style="position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,204,0,.06);animation:rotateCW 30s linear infinite;"></div>
-        <div style="position:absolute;inset:50px;border-radius:50%;border:1px solid rgba(255,255,255,.04);animation:rotateCCW 22s linear infinite;"></div>
-        <div style="position:absolute;inset:120px;border-radius:50%;border:1px solid rgba(255,204,0,.05);animation:rotateCW 18s linear infinite;"></div>
+        <div style="position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,204,0,.06);animation:rotateCW 30s linear infinite;will-change:transform;"></div>
+        <div style="position:absolute;inset:50px;border-radius:50%;border:1px solid rgba(255,255,255,.04);animation:rotateCCW 22s linear infinite;will-change:transform;"></div>
+        <div style="position:absolute;inset:120px;border-radius:50%;border:1px solid rgba(255,204,0,.05);animation:rotateCW 18s linear infinite;will-change:transform;"></div>
     </div>
     <!-- Gold radial glow top-right -->
     <div aria-hidden="true"
@@ -511,12 +519,15 @@
             <article class="loc-card dcr d{{ loop.index }}"
                      itemscope itemtype="https://schema.org/SportsActivityLocation">
                 <div style="height:200px;overflow:hidden;position:relative;background:#001f66;">
-                    <img src="{{ url_for('static', filename='img/' + branch.img) }}"
-                         alt="{{ branch.name }} — Cricket Academy in {{ branch.area }}, UAE"
-                         width="600" height="200" loading="lazy" class="loc-img"
-                         style="width:100%;height:100%;object-fit:cover;"
-                         itemprop="image"
-                         onerror="this.style.display='none'">
+                    <picture>
+                        <source srcset="{{ url_for('static', filename='img/' + branch.img.replace('.jpg','.webp')) }}" type="image/webp">
+                        <img src="{{ url_for('static', filename='img/' + branch.img) }}"
+                             alt="{{ branch.name }} — Cricket Academy in {{ branch.area }}, UAE"
+                             width="600" height="200" loading="lazy" class="loc-img"
+                             style="width:100%;height:100%;object-fit:cover;"
+                             itemprop="image"
+                             onerror="this.style.display='none'">
+                    </picture>
                     <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.7) 0%,transparent 55%);"></div>
                     <div style="position:absolute;top:14px;left:14px;background:#FFCC00;color:#001f66;
                                 font-family:'Nunito',sans-serif;font-weight:900;font-size:.68rem;
@@ -659,11 +670,14 @@
                  role="button" tabindex="0"
                  aria-label="View Sri Lanka 2025 cricket tour gallery">
                 <div style="height:180px;overflow:hidden;position:relative;background:#001f66;">
-                    <img src="{{ url_for('static', filename='img/DC_Srilanka_2025/DC_Srilanka1.jpg') }}"
-                         alt="Desert Cubs cricket tour Sri Lanka 2025"
-                         width="600" height="180" loading="lazy" class="tour-img"
-                         style="width:100%;height:100%;object-fit:cover;"
-                         onerror="this.style.display='none'">
+                    <picture>
+                        <source srcset="{{ url_for('static', filename='img/DC_Srilanka_2025/DC_Srilanka1.webp') }}" type="image/webp">
+                        <img src="{{ url_for('static', filename='img/DC_Srilanka_2025/DC_Srilanka1.jpg') }}"
+                             alt="Desert Cubs cricket tour Sri Lanka 2025"
+                             width="600" height="180" loading="lazy" class="tour-img"
+                             style="width:100%;height:100%;object-fit:cover;"
+                             onerror="this.style.display='none'">
+                    </picture>
                     <div style="position:absolute;inset:0;background:rgba(0,13,51,.35);"></div>
                     <span style="position:absolute;bottom:12px;left:14px;background:#FFCC00;color:#001f66;
                                  font-family:'Nunito',sans-serif;font-weight:900;font-size:.68rem;
@@ -684,11 +698,14 @@
                  role="button" tabindex="0"
                  aria-label="View Australia 2024 cricket tour gallery">
                 <div style="height:180px;overflow:hidden;position:relative;background:#001f66;">
-                    <img src="{{ url_for('static', filename='img/DC_Australia_2024/DC_Australia1.jpg') }}"
-                         alt="Desert Cubs cricket tour Australia 2024"
-                         width="600" height="180" loading="lazy" class="tour-img"
-                         style="width:100%;height:100%;object-fit:cover;"
-                         onerror="this.style.display='none'">
+                    <picture>
+                        <source srcset="{{ url_for('static', filename='img/DC_Australia_2024/DC_Australia1.webp') }}" type="image/webp">
+                        <img src="{{ url_for('static', filename='img/DC_Australia_2024/DC_Australia1.jpg') }}"
+                             alt="Desert Cubs cricket tour Australia 2024"
+                             width="600" height="180" loading="lazy" class="tour-img"
+                             style="width:100%;height:100%;object-fit:cover;"
+                             onerror="this.style.display='none'">
+                    </picture>
                     <div style="position:absolute;inset:0;background:rgba(0,13,51,.35);"></div>
                     <span style="position:absolute;bottom:12px;left:14px;background:#FFCC00;color:#001f66;
                                  font-family:'Nunito',sans-serif;font-weight:900;font-size:.68rem;
@@ -835,6 +852,158 @@
 
 
 <!-- ============================================================
+     9b. GIRLS CRICKET UAE — Dedicated keyword section
+============================================================= -->
+<section style="background:#ffffff;padding:80px 0;border-top:1px solid #e8ecf4;"
+         aria-label="Girls cricket coaching UAE — Desert Cubs">
+    <div class="dc-con">
+        <div style="display:grid;grid-template-columns:1fr;gap:48px;align-items:center;">
+            <style>
+            @media(min-width:1024px){.gc-grid{grid-template-columns:1fr 1fr!important;}}
+            </style>
+            <div class="gc-grid" style="display:grid;grid-template-columns:1fr;gap:48px;align-items:center;">
+            <!-- Text side -->
+            <div class="dcr">
+                <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;
+                             text-transform:uppercase;letter-spacing:.28em;color:#FFCC00;display:block;margin-bottom:12px;">
+                    Girls Cricket UAE</span>
+                <h2 style="font-family:'Teko',sans-serif;font-weight:700;
+                            font-size:clamp(2rem,4vw,3.2rem);color:#001f66;
+                            text-transform:uppercase;line-height:1;margin-bottom:16px;">
+                    UAE's Leading<br><span style="color:#FFCC00;-webkit-text-stroke:1px #e6b800;">Girls Cricket</span><br>Programme
+                </h2>
+                <p style="font-family:'Nunito',sans-serif;font-size:.95rem;color:#4d6b94;
+                           line-height:1.85;margin-bottom:20px;">
+                    Desert Cubs runs one of the UAE's most recognised <strong style="color:#001f66;">girls cricket coaching</strong> programmes in Dubai and Sharjah. Our most celebrated alumna is <strong style="color:#001f66;">Esha Oza</strong> — UAE Women's Cricket Captain — who trained at Desert Cubs. We have dedicated female coaches including <strong style="color:#001f66;">Judith Jose Peter</strong> (ICC Level 1, ex-UAE Women's Player), ensuring a safe, structured, and empowering environment for girls of all ages.
+                </p>
+                <ul style="list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:10px;">
+                    {% for point in [
+                        'Dedicated girls cricket batches across Dubai & Sharjah',
+                        'Female coaches including ex-UAE Women\'s players',
+                        'Alumni: Esha Oza, UAE Women\'s Cricket Captain',
+                        'ICC-certified training for girls ages 4–19',
+                        'Competition pathway: local leagues to international tours'
+                    ] %}
+                    <li style="display:flex;align-items:flex-start;gap:10px;font-family:'Nunito',sans-serif;font-size:.88rem;color:#374151;">
+                        <i class="fas fa-check-circle" style="color:#FFCC00;font-size:1rem;flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>
+                        {{ point }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a href="/#branches" class="btn-gold" style="font-size:.84rem;padding:12px 26px;">
+                    <i class="fas fa-map-marker-alt" style="font-size:.8rem;" aria-hidden="true"></i>
+                    Find a Girls Cricket Centre
+                </a>
+            </div>
+            <!-- Stats / highlight cards side -->
+            <div class="dcr d2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                {% for stat, label, icon in [
+                    ('Esha Oza','UAE Women\'s Captain','fa-star'),
+                    ('4–19','All Ages Welcome','fa-child'),
+                    ('ICC Lvl 1','Female Coach','fa-certificate'),
+                    ('6 Centres','Dubai & Sharjah','fa-map-marker-alt'),
+                ] %}
+                <div style="background:#f4f7fd;border:1px solid #e8ecf4;border-radius:16px;
+                            padding:22px 18px;text-align:center;border-top:3px solid #FFCC00;">
+                    <i class="fas {{ icon }}" style="color:#FFCC00;font-size:1.4rem;margin-bottom:10px;" aria-hidden="true"></i>
+                    <p style="font-family:'Teko',sans-serif;font-size:1.5rem;font-weight:700;
+                               color:#001f66;line-height:1;margin-bottom:4px;">{{ stat }}</p>
+                    <p style="font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:800;
+                               color:#64748b;text-transform:uppercase;letter-spacing:.1em;">{{ label }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     9c. INDOOR CRICKET & SUMMER CAMPS — keyword section
+============================================================= -->
+<section style="background:linear-gradient(135deg,#000d1a 0%,#001045 50%,#001f66 100%);padding:80px 0;"
+         aria-label="Indoor cricket Dubai and UAE cricket summer camps">
+    <div class="dc-con">
+        <div class="sec-hd dcr">
+            <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;
+                         text-transform:uppercase;letter-spacing:.28em;color:#FFCC00;display:block;margin-bottom:12px;">
+                Year-Round Cricket · All Seasons</span>
+            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
+                        font-size:clamp(2.2rem,4vw,3.4rem);color:#ffffff;
+                        text-transform:uppercase;margin-bottom:12px;line-height:1.05;">
+                Indoor Cricket &amp; <span style="color:#FFCC00;">Summer Camps</span> UAE
+            </h2>
+            <div class="gold-bar" style="margin:0 auto;"></div>
+            <p style="font-family:'Nunito',sans-serif;color:#6888a8;font-size:.96rem;
+                       max-width:520px;margin:16px auto 0;line-height:1.75;">
+                Dubai's heat doesn't stop Desert Cubs. Train indoors — air-conditioned, year-round cricket.
+            </p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr;gap:24px;margin-top:12px;">
+        <style>@media(min-width:768px){.ic-grid{grid-template-columns:1fr 1fr!important;}}</style>
+        <div class="ic-grid" style="display:grid;grid-template-columns:1fr;gap:24px;">
+
+            <!-- Indoor Cricket Card -->
+            <div class="dcr d1" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,204,0,.25);
+                         border-radius:22px;padding:36px;border-top:3px solid #FFCC00;">
+                <div style="width:52px;height:52px;background:rgba(255,204,0,.1);border-radius:14px;
+                            display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+                    <i class="fas fa-building" style="color:#FFCC00;font-size:1.4rem;" aria-hidden="true"></i>
+                </div>
+                <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.9rem;
+                            color:#ffffff;text-transform:uppercase;line-height:1;margin-bottom:12px;">
+                    Indoor Cricket Dubai — BSA</h3>
+                <p style="font-family:'Nunito',sans-serif;font-size:.9rem;color:#6888a8;line-height:1.8;margin-bottom:20px;">
+                    Baseline Sports Academy (Dubai Investment Park) is one of the UAE's premier <strong style="color:#fff;">indoor cricket facilities</strong>. Fully air-conditioned with 5 specialised cricket lanes, video analysis, and year-round access. Train through the hottest UAE summers without interruption.
+                </p>
+                <ul style="list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:8px;">
+                    {% for f in ['5 indoor cricket lanes','AC-controlled facility','Video analysis technology','Year-round availability','Dubai Investment Park (DIP)'] %}
+                    <li style="display:flex;align-items:center;gap:8px;font-family:'Nunito',sans-serif;font-size:.85rem;color:#8ba3c7;">
+                        <i class="fas fa-check" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;" aria-hidden="true"></i>{{ f }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a href="/locations/baseline-sports-academy" class="btn-gold" style="font-size:.82rem;padding:11px 22px;">
+                    <i class="fas fa-arrow-right" style="font-size:.78rem;" aria-hidden="true"></i>
+                    View BSA Indoor Facility
+                </a>
+            </div>
+
+            <!-- Summer Camp Card -->
+            <div class="dcr d2" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,204,0,.25);
+                         border-radius:22px;padding:36px;border-top:3px solid #FFCC00;">
+                <div style="width:52px;height:52px;background:rgba(255,204,0,.1);border-radius:14px;
+                            display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+                    <i class="fas fa-sun" style="color:#FFCC00;font-size:1.4rem;" aria-hidden="true"></i>
+                </div>
+                <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.9rem;
+                            color:#ffffff;text-transform:uppercase;line-height:1;margin-bottom:12px;">
+                    Cricket Summer Camps UAE</h3>
+                <p style="font-family:'Nunito',sans-serif;font-size:.9rem;color:#6888a8;line-height:1.8;margin-bottom:20px;">
+                    Desert Cubs runs <strong style="color:#fff;">cricket summer camps</strong> and holiday camps across Dubai and Sharjah during UAE school breaks. Intensive coaching, match play, fielding drills, and skills development — all in our world-class centres. Ideal for <strong style="color:#fff;">kids cricket training UAE</strong> ages 4–19.
+                </p>
+                <ul style="list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:8px;">
+                    {% for f in ['Summer, winter & Ramadan camps','Ages 4–19, all skill levels','Intensive coaching sessions','Match practice included','Dubai & Sharjah locations'] %}
+                    <li style="display:flex;align-items:center;gap:8px;font-family:'Nunito',sans-serif;font-size:.85rem;color:#8ba3c7;">
+                        <i class="fas fa-check" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;" aria-hidden="true"></i>{{ f }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a href="tel:+971588274266" class="btn-gold" style="font-size:.82rem;padding:11px 22px;">
+                    <i class="fas fa-phone" style="font-size:.78rem;" aria-hidden="true"></i>
+                    Enquire About Camps
+                </a>
+            </div>
+
+        </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
      10. FAQ — Interactive accordion (SEO schema-backed)
 ============================================================= -->
 <section style="background:#ffffff;padding:88px 0;border-top:1px solid #e8ecf4;"
@@ -856,10 +1025,16 @@
             {% for q, a in [
                 ('What is the best cricket academy in UAE?',
                  'Desert Cubs Cricket Academy is the <strong>best cricket academy in UAE</strong>, established in 2007 with over 15,000 alumni. We operate 6 world-class training centres across Dubai and Sharjah with ICC-certified coaches, offering UAE junior cricket coaching for all ages from 4 to 19.'),
+                ('Where can my child learn cricket in Dubai?',
+                 'Your child can learn cricket in Dubai at Desert Cubs Cricket Academy — with 4 Dubai locations: <strong>Delhi Private School (Jebel Ali)</strong>, <strong>Deira International School (Festival City)</strong>, <strong>Star International School (Al Qusais)</strong>, and <strong>Apple International School (Al Karama)</strong>. We coach boys and girls aged 4–19. Call +971 58 827 4266 to enroll.'),
+                ('What age can kids start cricket coaching in UAE?',
+                 'Desert Cubs accepts junior cricketers from as young as <strong>4 years old up to 19 years</strong>. Training is structured by age group: beginners (4–6), juniors (7–11), under-13, under-15, and under-19. Both boys and girls are welcome at all Desert Cubs cricket training centres in Dubai and Sharjah.'),
+                ('Is there girls cricket coaching in UAE?',
+                 'Yes. Desert Cubs runs the UAE\'s leading <strong>girls cricket coaching</strong> programme. Our most celebrated alumna is <strong>Esha Oza — UAE Women\'s Cricket Captain</strong> — who trained at Desert Cubs. We have dedicated female coaches including Judith Jose Peter (ICC Level 1, ex-UAE Women\'s Player). Girls cricket coaching is available for ages 4–19 across our Dubai and Sharjah centres.'),
                 ('Where is Sharjah junior cricket coaching available?',
                  '<strong>Sharjah junior cricket coaching</strong> is available at our Sharjah English School (SES) centre on Maliha Road — the crown jewel of our network. It features a full natural grass ground, 6 centre turf pitches, floodlights, digital scoreboards, and video analysis. It is widely considered the <strong>best cricket ground in UAE</strong>.'),
-                ('Does Desert Cubs run cricket summer camps in UAE?',
-                 'Yes! Our <strong>UAE summer camp cricket</strong> programme runs at Baseline Sports Academy (DIP) — a state-of-the-art, fully AC-controlled indoor cricket facility with 5 specialised lanes and video analysis. It is one of a kind in the UAE, enabling year-round high-performance training even during the hottest months.'),
+                ('Does Desert Cubs offer indoor cricket and summer camps in UAE?',
+                 'Yes! Our <strong>indoor cricket Dubai</strong> facility at Baseline Sports Academy (DIP) is fully air-conditioned with 5 specialised cricket lanes — one of a kind in the UAE. We run <strong>cricket summer camps UAE</strong> and holiday camps during school breaks. Train year-round regardless of UAE summer heat. Contact us to register for the next camp.'),
                 ('Which academy offers the UAE national cricket player pathway?',
                  'Desert Cubs is an <strong>ECB-affiliated academy</strong> and provides the leading <strong>UAE national cricket player pathway</strong>. Our students compete in the ECB National Junior Tournament and undertake <strong>junior international cricket tours</strong> to UK, Australia, Sri Lanka, and South Africa — giving them the exposure needed for national selection consideration.'),
                 ('Which cricket academy runs the most tournaments in UAE?',
@@ -898,11 +1073,11 @@
     <div aria-hidden="true"
          style="position:absolute;bottom:-80px;left:-80px;width:280px;height:280px;
                 border:2px solid rgba(255,204,0,.07);border-radius:50%;
-                animation:rotateCW 20s linear infinite;pointer-events:none;"></div>
+                animation:rotateCW 20s linear infinite;pointer-events:none;will-change:transform;"></div>
     <div aria-hidden="true"
          style="position:absolute;top:-50px;right:-50px;width:200px;height:200px;
                 border:2px solid rgba(255,255,255,.04);border-radius:50%;
-                animation:rotateCCW 15s linear infinite;pointer-events:none;"></div>
+                animation:rotateCCW 15s linear infinite;pointer-events:none;will-change:transform;"></div>
     <div aria-hidden="true"
          style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
                 width:600px;height:300px;

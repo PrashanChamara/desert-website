@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, abort
+from flask import Flask, render_template, request, abort, Response
 import os
 import math
 import json
@@ -7,6 +7,20 @@ import hmac
 from datetime import datetime
 
 app = Flask(__name__)
+
+# ---------------------------------------------------------
+# PERFORMANCE: Cache static assets for 30 days
+# ---------------------------------------------------------
+@app.after_request
+def add_performance_headers(response):
+    # Cache static files aggressively
+    if request.path.startswith('/static/'):
+        response.headers['Cache-Control'] = 'public, max-age=2592000, immutable'
+    # Add security headers
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+    return response
 
 # ---------------------------------------------------------
 # CONFIGURATION
@@ -393,7 +407,7 @@ def seo(title=None, description=None, keywords=None, canonical=None, og_image=No
 def index():
     active_tournament = get_active_tournament()
     meta = seo(
-        title="Best Cricket Academy in UAE & Dubai | Desert Cubs | UAE Junior Cricket Coaching | Est. 2007",
+        title="Desert Cubs — UAE's Best Cricket Academy | Dubai & Sharjah | Est. 2007",
         description="Desert Cubs is the best cricket academy in UAE & Dubai. 15,000+ alumni. 6 training centres across Dubai & Sharjah. ICC-certified coaches. UAE junior cricket coaching for ages 4–19. Enroll today!",
         keywords="best cricket academy UAE, best cricket academy Dubai, UAE junior cricket coaching, junior cricket Dubai, Sharjah junior cricket coaching, cricket academy UAE, cricket coaching UAE, kids cricket UAE, youth cricket academy Dubai, UAE national cricket player pathway",
         canonical="https://www.desertcubs.com/"
@@ -593,7 +607,6 @@ def sitemap():
         xml += f'  </url>\n'
     xml += '</urlset>'
 
-    from flask import Response
     return Response(xml, mimetype='application/xml')
 
 
@@ -602,10 +615,28 @@ def sitemap():
 # ---------------------------------------------------------
 @app.route('/robots.txt')
 def robots():
-    from flask import Response
     content = """User-agent: *
 Allow: /
 Disallow: /static/img/
+Disallow: /index.php
+Disallow: /services-4
+Disallow: /component/k2/
+
+# Explicitly allow AI crawlers to cite our content
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
 
 Sitemap: https://www.desertcubs.com/sitemap.xml
 """
