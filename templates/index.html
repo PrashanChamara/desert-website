@@ -1258,9 +1258,112 @@
                 title="IPL 2026 Prediction Contest Entry Form">
                 Loading form…
             </iframe>
+            <!-- T&C link -->
+            <p style="text-align:center;padding:10px 16px 14px;margin:0;font-size:0.78rem;color:#475569;">
+                By submitting you agree to our
+                <button onclick="document.getElementById('iplTncModal').style.display='flex'"
+                        style="background:none;border:none;padding:0;color:#003399;font-weight:700;font-size:0.78rem;cursor:pointer;text-decoration:underline;">
+                    Terms &amp; Conditions
+                </button>
+            </p>
         </div>
 
     </div><!-- /.ipl-box -->
 </div><!-- /#iplModal -->
+
+<!-- ── IPL T&C Modal ──────────────────────────────────────────────────── -->
+<div id="iplTncModal" role="dialog" aria-modal="true" aria-labelledby="iplTncTitle"
+     style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.80);z-index:9999;align-items:center;justify-content:center;padding:1rem;">
+<style>
+#iplTncModal.open{display:flex}
+.tnc-box{background:#fff;border-radius:16px;width:100%;max-width:680px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.5);overflow:hidden;}
+.tnc-header{background:linear-gradient(135deg,#003399,#001f66);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.tnc-body{overflow-y:auto;padding:24px 28px;color:#1e293b;font-family:'Nunito',sans-serif;font-size:0.92rem;line-height:1.7;}
+.tnc-body h3{font-family:'Teko',sans-serif;font-size:1.15rem;font-weight:700;color:#003399;text-transform:uppercase;margin:1.4rem 0 .3rem;}
+.tnc-body h3:first-child{margin-top:0;}
+.tnc-body p{margin:0 0 .6rem;}
+.tnc-body ul{margin:.3rem 0 .8rem 1.2rem;padding:0;}
+.tnc-body ul li{margin-bottom:.3rem;}
+.tnc-close-btn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0;}
+.tnc-close-btn:hover{background:rgba(255,255,255,.32);}
+</style>
+    <div class="tnc-box">
+        <div class="tnc-header">
+            <div>
+                <p style="color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin:0 0 2px;">Desert Cubs IPL 2026 Prediction Contest</p>
+                <h2 id="iplTncTitle" style="font-family:'Teko',sans-serif;font-size:1.5rem;font-weight:800;color:#FFCC00;text-transform:uppercase;margin:0;">Terms &amp; Conditions</h2>
+            </div>
+            <button class="tnc-close-btn" onclick="document.getElementById('iplTncModal').style.display='none'" aria-label="Close terms and conditions">✕</button>
+        </div>
+        <div class="tnc-body">
+            <h3>1. Organizer</h3>
+            <p>This promotional contest ("Contest") is organized by Desert Cubs Cricket Academy LLC, United Arab Emirates ("Desert Cubs" / "Organizer").</p>
+
+            <h3>2. Eligibility</h3>
+            <ul>
+                <li>The Contest is open to residents of the UAE.</li>
+                <li>Participants under the age of 18 must have prior consent from a parent or legal guardian to participate and to redeem any prize.</li>
+                <li>Employees of Desert Cubs and their immediate family members are not eligible to participate.</li>
+            </ul>
+
+            <h3>3. Contest Period</h3>
+            <ul>
+                <li><strong>Start Date:</strong> 16th April 2026</li>
+                <li><strong>Closing Date:</strong> 29th May 2026 (11:59 PM UAE time)</li>
+                <li>Entries received after the closing date will not be considered.</li>
+            </ul>
+
+            <h3>4. How to Enter</h3>
+            <p>To participate, entrants must:</p>
+            <ul>
+                <li>Like the official contest post on Desert Cubs' social media page</li>
+                <li>Tag at least one individual (parent/player) in the comments</li>
+                <li>Submit their prediction of the IPL 2026 winning team via the official Desert Cubs website</li>
+            </ul>
+            <p>Only entries fulfilling all the above criteria will be considered valid.</p>
+
+            <h3>5. Winner Selection Method</h3>
+            <ul>
+                <li>Participants who correctly predict the IPL 2026 winning team will be shortlisted.</li>
+                <li>If multiple correct entries are received, winners will be selected through a random draw conducted by Desert Cubs.</li>
+                <li>In the event of fewer correct entries, Desert Cubs reserves the right to select winners based on timing of submission or conduct a draw at its discretion.</li>
+                <li>The Organizer's decision shall be final and binding, and no correspondence will be entertained.</li>
+            </ul>
+
+            <h3>6. Prizes</h3>
+            <ul>
+                <li>🥇 <strong>1st Prize:</strong> Two (2) months of free coaching</li>
+                <li>🥈 <strong>2nd Prize:</strong> One (1) month of free coaching</li>
+                <li>🥉 <strong>3rd Prize:</strong> 50% discount on one (1) month coaching fee</li>
+            </ul>
+            <p><strong>Prize Conditions:</strong> Prizes are non-transferable, non-exchangeable, and not redeemable for cash. Coaching is subject to availability, scheduling, and standard academy policies. Non-members who win must purchase the official Desert Cubs training uniform to commence training.</p>
+
+            <h3>7. Winner Announcement</h3>
+            <ul>
+                <li>Winners will be announced on 1st June 2026 via Desert Cubs' official social media channels and/or website.</li>
+                <li>Winners must respond within 5 days of notification; failing which, the Organizer reserves the right to select an alternate winner.</li>
+            </ul>
+
+            <h3>8. Parental Consent (For Minors)</h3>
+            <p>For participants under 18 years of age, participation and prize redemption is subject to written or verbal consent from a parent or legal guardian. Desert Cubs reserves the right to request proof of such consent at any stage.</p>
+
+            <h3>9. General Conditions</h3>
+            <ul>
+                <li>Desert Cubs reserves the right to verify the validity of entries and disqualify any participant found to be tampering with the entry process or acting in violation of these terms.</li>
+                <li>The Organizer reserves the right to modify, suspend, or cancel the Contest at any time without prior notice.</li>
+                <li>By participating, entrants agree to allow Desert Cubs to use their name and/or likeness for promotional purposes without additional compensation.</li>
+            </ul>
+
+            <h3>10. Liability</h3>
+            <p>Desert Cubs shall not be held responsible for any technical issues, lost entries, or delays in submission. Participation is at the entrant's own risk.</p>
+
+            <h3>11. Governing Law</h3>
+            <p>These Terms &amp; Conditions shall be governed by and construed in accordance with the laws of the United Arab Emirates.</p>
+
+            <h3>12. Platform Disclaimer</h3>
+            <p>This promotion is in no way sponsored, endorsed, administered by, or associated with Instagram, Facebook, or any other social media platform.</p>
+        </div>
+    </div>
+</div><!-- /#iplTncModal -->
 
 {% endblock %}
