@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, abort, Response
+from flask import Flask, render_template, request, abort, Response, redirect
 import os
 import math
 import json
@@ -581,6 +581,34 @@ def webhook_create_blog():
 
 
 # ---------------------------------------------------------
+# LEGACY REDIRECTS (301) — old website URLs → new structure
+# Transfers SEO equity from indexed legacy pages to new pages
+# ---------------------------------------------------------
+LEGACY_REDIRECTS = {
+    '/privacypolicy':    '/blog',
+    '/services':         '/events',
+    '/contactus':        '/tours',
+    '/services-3':       '/locations/sharjah-english-school',
+    '/services-4':       '/events',
+    '/services-1':       '/tours',
+    '/services-4-1-1-2': '/tournaments',
+    '/services-4-1-1-1': '/tours',
+}
+
+@app.route('/privacypolicy')
+@app.route('/services')
+@app.route('/contactus')
+@app.route('/services-3')
+@app.route('/services-4')
+@app.route('/services-1')
+@app.route('/services-4-1-1-2')
+@app.route('/services-4-1-1-1')
+def legacy_redirect():
+    destination = LEGACY_REDIRECTS.get(request.path, '/')
+    return redirect(destination, code=301)
+
+
+# ---------------------------------------------------------
 # SITEMAP
 # ---------------------------------------------------------
 @app.route('/sitemap.xml')
@@ -619,7 +647,6 @@ def robots():
 Allow: /
 Disallow: /static/img/
 Disallow: /index.php
-Disallow: /services-4
 Disallow: /component/k2/
 
 # Explicitly allow AI crawlers to cite our content
