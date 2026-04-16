@@ -613,23 +613,26 @@ def legacy_redirect():
 # ---------------------------------------------------------
 @app.route('/sitemap.xml')
 def sitemap():
+    today = datetime.utcnow().strftime('%Y-%m-%d')
+    # (path, priority, changefreq, lastmod)
     pages = [
-        ('/', '1.0', 'daily'),
-        ('/blog', '0.9', 'daily'),
-        ('/tournaments', '0.8', 'weekly'),
-        ('/tours', '0.8', 'monthly'),
-        ('/events', '0.8', 'monthly'),
+        ('/', '1.0', 'daily', today),
+        ('/blog', '0.9', 'daily', today),
+        ('/tournaments', '0.8', 'weekly', today),
+        ('/tours', '0.8', 'monthly', today),
+        ('/events', '0.8', 'monthly', today),
     ]
     for branch in BRANCHES:
-        pages.append((f'/locations/{branch["id"]}', '0.7', 'monthly'))
+        pages.append((f'/locations/{branch["id"]}', '0.7', 'monthly', today))
     for post in get_blog_posts():
-        pages.append((f'/blog/{post["slug"]}', '0.6', 'monthly'))
+        pages.append((f'/blog/{post["slug"]}', '0.6', 'monthly', post['date']))
 
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    for page, priority, freq in pages:
+    for page, priority, freq, lastmod in pages:
         xml += f'  <url>\n'
         xml += f'    <loc>https://www.desertcubs.com{page}</loc>\n'
+        xml += f'    <lastmod>{lastmod}</lastmod>\n'
         xml += f'    <changefreq>{freq}</changefreq>\n'
         xml += f'    <priority>{priority}</priority>\n'
         xml += f'  </url>\n'
