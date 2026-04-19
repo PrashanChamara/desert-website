@@ -396,6 +396,70 @@
         ::-webkit-scrollbar-thumb:hover { background:#FFCC00; }
         ::selection { background:#FFCC00; color:#001f66; }
 
+        /* ── UK TOUR 2026 SPLASH SCREEN ── */
+        #dc-splash {
+            position:fixed; inset:0; z-index:9999;
+            background:#000;
+            display:flex; flex-direction:column;
+            align-items:center; justify-content:center;
+            overflow:hidden;
+            /* CSS fallback: auto-hide after 4.5 s if JS is disabled */
+            animation: dcAutoHide 0.5s ease 4.5s forwards;
+        }
+        @keyframes dcAutoHide { to { opacity:0; visibility:hidden; pointer-events:none; } }
+        #dc-splash.dc-gone { display:none !important; animation:none; }
+        #dc-splash.dc-exit {
+            animation: dcFadeOut 0.75s cubic-bezier(0.4,0,0.6,1) forwards !important;
+        }
+        @keyframes dcFadeOut { to { opacity:0; visibility:hidden; pointer-events:none; } }
+
+        /* Film-frame corner brackets */
+        .dc-corner { position:absolute; width:22px; height:22px; z-index:5; }
+        .dc-tl { top:14px; left:14px; border-top:2px solid rgba(255,255,255,0.5); border-left:2px solid rgba(255,255,255,0.5); }
+        .dc-tr { top:14px; right:14px; border-top:2px solid rgba(255,255,255,0.5); border-right:2px solid rgba(255,255,255,0.5); }
+        .dc-bl { bottom:14px; left:14px; border-bottom:2px solid rgba(255,255,255,0.5); border-left:2px solid rgba(255,255,255,0.5); }
+        .dc-br { bottom:14px; right:14px; border-bottom:2px solid rgba(255,255,255,0.5); border-right:2px solid rgba(255,255,255,0.5); }
+
+        /* Scanlines */
+        .dc-scanlines {
+            position:absolute; inset:0; pointer-events:none; z-index:4;
+            background:repeating-linear-gradient(
+                0deg, transparent 0, transparent 2px,
+                rgba(0,0,0,0.18) 2px, rgba(0,0,0,0.18) 4px);
+        }
+
+        /* Vignette */
+        .dc-vignette {
+            position:absolute; inset:0; pointer-events:none; z-index:3;
+            background:radial-gradient(ellipse at center, transparent 28%, rgba(0,0,0,0.82) 100%);
+        }
+
+        /* Subtle film-flicker on content */
+        @keyframes dcFlicker { 0%,15%,17%,19%,100%{opacity:1;} 16%,18%{opacity:0.88;} }
+
+        /* Content wrapper */
+        .dc-content {
+            position:relative; z-index:10;
+            display:flex; flex-direction:column; align-items:center;
+            width:100%; max-width:820px; padding:10px 22px;
+            gap:clamp(2px, 1vh, 9px);
+            animation:dcFlicker 8s steps(1) 1.5s infinite;
+        }
+
+        /* Per-element entrance animation */
+        @keyframes dcUp { from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:none;} }
+
+        /* Sponsor name — large, bold, clearly readable in 3 s */
+        .dc-sponsor  { font-family:'Teko','Impact','Arial Narrow',sans-serif; font-size:clamp(1.3rem,5vw,2.6rem); font-weight:700; letter-spacing:0.18em; color:#fff; text-transform:uppercase; text-shadow:0 0 30px rgba(255,255,255,0.2); animation:dcUp .5s ease .18s both; }
+        .dc-teamname { font-family:'Teko','Impact','Arial Narrow',sans-serif; font-size:clamp(1.5rem,6.5vw,3.5rem); font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:0.04em; line-height:1; text-shadow:0 0 40px rgba(255,255,255,0.14); animation:dcUp .5s ease .28s both; }
+        .dc-tourname { font-family:'Courier New',monospace; font-size:clamp(0.7rem,2.4vw,1.05rem); color:#bbb; letter-spacing:0.28em; text-transform:uppercase; animation:dcUp .5s ease .38s both; }
+        /* Flight SVG zone — taller on mobile to give plane room */
+        .dc-flight   { width:94%; max-width:720px; flex-shrink:0; animation:dcUp .5s ease .12s both; }
+        .dc-rule     { width:48px; height:1px; background:rgba(255,255,255,0.14); animation:dcUp .5s ease .44s both; }
+        .dc-days     { font-family:'Teko','Impact','Arial Narrow',sans-serif; font-size:clamp(5.5rem,22vw,12rem); font-weight:700; color:#fff; line-height:0.85; display:block; text-align:center; text-shadow:0 0 80px rgba(255,255,255,0.08); animation:dcUp .5s ease .5s both; }
+        .dc-label    { font-family:'Courier New',monospace; font-size:clamp(0.65rem,2.2vw,0.9rem); letter-spacing:0.55em; color:#777; text-transform:uppercase; animation:dcUp .5s ease .55s both; }
+        .dc-depart   { font-family:'Courier New',monospace; font-size:clamp(0.5rem,1.4vw,0.65rem); letter-spacing:0.16em; color:#444; text-transform:uppercase; animation:dcUp .5s ease .62s both; }
+
         /* ── NAV DROPDOWN ── */
         .nav-dropdown-wrap { position: relative; }
         .nav-dropdown-btn {
@@ -457,6 +521,191 @@
 </head>
 
 <body class="bg-slate-50">
+
+<!-- ============================================================
+     UK TOUR 2026 SPLASH SCREEN
+     Shows once per browser session · Auto-fades after 3 seconds
+     Disabled automatically after 18 July 2026
+============================================================= -->
+<div id="dc-splash" role="presentation" aria-hidden="true">
+
+    <!-- Film-frame corner brackets -->
+    <div class="dc-corner dc-tl"></div>
+    <div class="dc-corner dc-tr"></div>
+    <div class="dc-corner dc-bl"></div>
+    <div class="dc-corner dc-br"></div>
+
+    <!-- Scanlines + vignette overlays -->
+    <div class="dc-scanlines"></div>
+    <div class="dc-vignette"></div>
+
+    <!-- All text + animation content -->
+    <div class="dc-content">
+
+        <div class="dc-sponsor">SIRAJ FINANCE</div>
+        <div class="dc-teamname">Desert Cubs Cricket Academy</div>
+        <div class="dc-tourname">◆ &nbsp; Tour of United Kingdom &nbsp; '26 &nbsp; ◆</div>
+
+        <!-- ── Animated cartoon flight path ── -->
+        <div class="dc-flight">
+            <!-- viewBox taller (220) so wing tips never clip on mobile -->
+            <svg viewBox="0 0 800 220" width="100%" height="auto"
+                 aria-hidden="true" style="overflow:visible;">
+
+                <!-- Background stars -->
+                <circle cx="158" cy="90"  r="2"   fill="white" opacity="0.22"/>
+                <circle cx="308" cy="44"  r="1.4" fill="white" opacity="0.18"/>
+                <circle cx="452" cy="140" r="2"   fill="white" opacity="0.18"/>
+                <circle cx="622" cy="60"  r="1.4" fill="white" opacity="0.22"/>
+                <circle cx="102" cy="170" r="1.6" fill="white" opacity="0.15"/>
+                <circle cx="556" cy="30"  r="1.4" fill="white" opacity="0.18"/>
+                <circle cx="390" cy="180" r="1.2" fill="white" opacity="0.14"/>
+
+                <!-- Dotted arc flight path (shifted down to give wing room) -->
+                <path id="dc-fp"
+                      d="M 78,188 C 175,115 478,65 740,88"
+                      fill="none" stroke="white" stroke-width="1.5"
+                      stroke-dasharray="4 14" opacity="0.25"/>
+
+                <!-- Decorative clouds -->
+                <g transform="translate(228,135)" fill="white" opacity="0.10">
+                    <ellipse rx="28" ry="13"/>
+                    <ellipse cx="22" ry="15" rx="20"/>
+                    <ellipse cx="-20" ry="10" rx="18"/>
+                </g>
+                <g transform="translate(520,78)" fill="white" opacity="0.08">
+                    <ellipse rx="24" ry="10"/>
+                    <ellipse cx="17" ry="13" rx="16"/>
+                    <ellipse cx="-16" ry="8" rx="15"/>
+                </g>
+
+                <!-- DXB departure marker -->
+                <g transform="translate(78,188)">
+                    <circle r="6" fill="white" opacity="0.65"/>
+                    <circle r="14" fill="none" stroke="white"
+                            stroke-width="1" stroke-dasharray="2 5" opacity="0.25"/>
+                    <text x="0" y="-22" text-anchor="middle" fill="white" opacity="0.45"
+                          font-family="Courier New,monospace" font-size="10" letter-spacing="2">DXB</text>
+                    <text x="0" y="-34" text-anchor="middle" fill="white" opacity="0.22"
+                          font-family="Courier New,monospace" font-size="9">DUBAI</text>
+                </g>
+
+                <!-- LHR arrival marker -->
+                <g transform="translate(740,88)">
+                    <circle r="6" fill="white" opacity="0.65"/>
+                    <circle r="14" fill="none" stroke="white"
+                            stroke-width="1" stroke-dasharray="2 5" opacity="0.25"/>
+                    <text x="0" y="-22" text-anchor="middle" fill="white" opacity="0.45"
+                          font-family="Courier New,monospace" font-size="10" letter-spacing="2">LHR</text>
+                    <text x="0" y="-34" text-anchor="middle" fill="white" opacity="0.22"
+                          font-family="Courier New,monospace" font-size="9">LONDON</text>
+                </g>
+
+                <!-- ── CARTOON PLANE
+                     visibility:hidden until JS places it at DXB.
+                     Geometry is centred on (0,0); JS applies
+                     translate+rotate via setAttribute('transform').
+                ── -->
+                <g id="dc-plane-g" style="visibility:hidden">
+
+                    <!-- Speed lines (trailing behind fuselage) -->
+                    <line x1="-76" y1="-9"   x2="-126" y2="-16" stroke="white" stroke-width="2.5" opacity="0.44"/>
+                    <line x1="-76" y1="2"    x2="-137" y2="2"   stroke="white" stroke-width="3.2" opacity="0.27"/>
+                    <line x1="-76" y1="13"   x2="-122" y2="20"  stroke="white" stroke-width="2.5" opacity="0.44"/>
+
+                    <!-- Vapor puffs -->
+                    <circle cx="-95"  cy="4"  r="12"  fill="none" stroke="white" stroke-width="1.2" opacity="0.26"/>
+                    <circle cx="-122" cy="-2" r="9"   fill="none" stroke="white" stroke-width="1"   opacity="0.17"/>
+                    <circle cx="-148" cy="4"  r="7"   fill="none" stroke="white" stroke-width="0.9" opacity="0.11"/>
+
+                    <!-- Fuselage -->
+                    <path d="M -72,-4 C -72,-27 -11,-34 25,-32 L 72,-14 L 97,0 L 72,14 L 25,32 C -11,34 -72,27 -72,4 Z"
+                          fill="white"/>
+
+                    <!-- Swept-back wing -->
+                    <path d="M 18,-32 L 4,-95 L -65,-83 L -47,-32 Z"
+                          fill="white" stroke="#111" stroke-width="2.2"/>
+                    <line x1="-7" y1="-32" x2="-16" y2="-88" stroke="rgba(0,0,0,0.22)" stroke-width="1.4"/>
+
+                    <!-- Engine pod -->
+                    <ellipse cx="-22" cy="-63" rx="23" ry="11" fill="white" stroke="#222" stroke-width="1.6"/>
+                    <ellipse cx="-45" cy="-63" rx="11" ry="11" fill="#0d0d0d"/>
+                    <ellipse cx="-40" cy="-67" rx="3.6" ry="2.7" fill="rgba(255,255,255,0.4)"/>
+
+                    <!-- Tail vertical fin -->
+                    <path d="M -65,-32 L -79,-72 L -103,-59 L -79,-32 Z" fill="white"/>
+
+                    <!-- Tail horizontal stabilizer -->
+                    <path d="M -68,32 L -106,59 L -95,32 Z" fill="white" opacity="0.88"/>
+
+                    <!-- Cockpit windshield -->
+                    <path d="M 43,-20 C 50,-34 83,-31 86,-18 L 86,0 C 83,18 50,22 43,9 Z" fill="#0d0d0d"/>
+                    <line x1="54" y1="-27" x2="65" y2="-14" stroke="rgba(255,255,255,0.55)"
+                          stroke-width="3" stroke-linecap="round"/>
+
+                    <!-- Passenger windows -->
+                    <ellipse cx="11"  cy="-11" rx="12" ry="11" fill="#0d0d0d"/>
+                    <ellipse cx="-16" cy="-11" rx="11" ry="10" fill="#0d0d0d"/>
+                    <ellipse cx="-41" cy="-9"  rx="9"  ry="9"  fill="#0d0d0d"/>
+
+                    <!-- Underbelly wing -->
+                    <path d="M 18,32 L 7,58 L -47,54 L -47,32 Z"
+                          fill="white" opacity="0.38" stroke="#222" stroke-width="1.4"/>
+                </g>
+            </svg>
+        </div>
+        <!-- Pre-compute path samples + place plane at DXB before first paint -->
+        <script>
+        !function(){
+            var fp=document.getElementById('dc-fp');
+            var pg=document.getElementById('dc-plane-g');
+            if(!fp||!pg) return;
+            try {
+                var len=fp.getTotalLength();
+                var N=240; /* sample count — higher = smoother lookup */
+                var pts=[];
+                for(var i=0;i<=N;i++){
+                    var d=(i/N)*len;
+                    var d2=Math.min(d+len/N,len);
+                    var p=fp.getPointAtLength(d);
+                    var p2=fp.getPointAtLength(d2);
+                    pts.push({x:p.x,y:p.y,a:Math.atan2(p2.y-p.y,p2.x-p.x)*180/Math.PI});
+                }
+                /* Store for RAF loop — zero getPointAtLength calls at runtime */
+                window._dcPts=pts;
+                /* Place plane at DXB immediately — visible before browser paints */
+                pg.setAttribute('transform',
+                    'translate('+pts[0].x.toFixed(1)+','+pts[0].y.toFixed(1)+') rotate('+pts[0].a.toFixed(1)+')');
+                pg.style.visibility='visible';
+            } catch(e){ if(pg) pg.style.visibility='visible'; }
+        }();
+        </script>
+
+        <!-- Thin rule -->
+        <div class="dc-rule"></div>
+
+        <!-- Countdown number (updated by JS) -->
+        <span id="dc-days" class="dc-days">90</span>
+        <div class="dc-label">· &nbsp; Days To Go &nbsp; ·</div>
+
+        <div class="dc-depart">✈ &nbsp; Departing 18 July 2026 &nbsp;·&nbsp; United Kingdom &nbsp; ✈</div>
+
+    </div><!-- /.dc-content -->
+</div><!-- /#dc-splash -->
+
+<!-- noscript safety: hide splash if JS is disabled -->
+<noscript><style>#dc-splash{display:none!important}</style></noscript>
+
+<!-- Run synchronously so returning visitors never see the splash flash -->
+<script>
+!function(){
+    var s=document.getElementById('dc-splash');
+    if(!s) return;
+    var tour=new Date(2026,6,19), now=new Date(); now.setHours(0,0,0,0);
+    if(sessionStorage.getItem('dcSplash')==='1'||now>=tour) s.classList.add('dc-gone');
+}();
+</script>
+
 
 <!-- ============================================================
      TOP CONTACT BAR
@@ -1042,6 +1291,54 @@
 <!-- ============================================================
      JAVASCRIPT
 ============================================================= -->
+<!-- ── UK Tour Splash: countdown + smooth plane animation + 3 s fade-out ── -->
+<script>
+!function(){
+    var s=document.getElementById('dc-splash');
+    if(!s||s.classList.contains('dc-gone')) return;
+
+    /* ── Countdown: days remaining until 18 July 2026 ── */
+    var depart=new Date(2026,6,18);
+    var now=new Date(); now.setHours(0,0,0,0);
+    var days=Math.ceil((depart-now)/86400000);
+    var el=document.getElementById('dc-days');
+    if(el) el.textContent=days>0?days:0;
+
+    /* Mark session — navigating between pages skips the splash */
+    try{ sessionStorage.setItem('dcSplash','1'); }catch(e){}
+
+    /* ── Plane animation ──
+       Uses the lookup table pre-computed by the inline script above.
+       LINEAR speed (no easing) = constant, steady motion — never looks "stuck".
+       Zero getPointAtLength() calls at runtime = no per-frame DOM overhead. ── */
+    var pg=document.getElementById('dc-plane-g');
+    var pts=window._dcPts;
+    if(pg && pts && pts.length>1){
+        var DUR=2700;   /* ms — plane reaches LHR 300 ms before the splash fades */
+        var N=pts.length-1;
+        var t0=null;
+
+        function flyPlane(ts){
+            if(!t0) t0=ts;
+            var raw=Math.min((ts-t0)/DUR, 1);
+            /* Linear: idx advances uniformly — no slow spots, no stutter */
+            var idx=Math.round(raw*N);
+            var pt=pts[idx];
+            pg.setAttribute('transform',
+                'translate('+pt.x.toFixed(1)+','+pt.y.toFixed(1)+') rotate('+pt.a.toFixed(1)+')');
+            if(raw<1) requestAnimationFrame(flyPlane);
+        }
+        requestAnimationFrame(flyPlane);
+    }
+
+    /* ── Fade-out after 3 000 ms ── */
+    setTimeout(function(){
+        s.classList.add('dc-exit');
+        setTimeout(function(){ s.classList.add('dc-gone'); },800);
+    },3000);
+}();
+</script>
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="{{ url_for('static', filename='js/main.js') }}"></script>
 <script>
 /* ── Mobile menu ── */
