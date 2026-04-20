@@ -356,7 +356,8 @@ def get_blog_posts():
                     'date': date_part,
                     'slug': slug,
                     'filename': filename,
-                    'image': f"{slug}.jpg"
+                    'image': f"{slug}.jpg",
+                    'category': meta.get('category', 'Cricket Tips') if meta else 'Cricket Tips'
                 })
             except Exception:
                 continue
