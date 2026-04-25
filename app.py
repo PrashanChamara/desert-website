@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, abort, Response, redirect
+from flask_compress import Compress
 import os
 import math
 import json
@@ -7,6 +8,7 @@ import hmac
 from datetime import datetime
 
 app = Flask(__name__)
+Compress(app)
 
 # ---------------------------------------------------------
 # PERFORMANCE: Cache static assets for 30 days
@@ -516,6 +518,42 @@ def events():
     return render_template('events.html', meta=meta, master_classes=MASTER_CLASSES, events=EVENTS)
 
 
+@app.route('/about')
+def about():
+    meta = seo(
+        title="About Desert Cubs Cricket Academy UAE | Founded 2007 | Presley Polonnowita",
+        description="Desert Cubs Cricket Academy — UAE's largest junior cricket academy, established 2007 by Presley Polonnowita. 15,000+ alumni, 6 training centres, ECB-affiliated. Meet our executive team and discover our 18-year journey.",
+        keywords="Desert Cubs Cricket Academy history, Presley Polonnowita cricket coach UAE, best cricket academy UAE founded 2007, cricket academy Dubai about, GCCA UAE, ECB affiliated cricket academy UAE, Kunal Seth cricket UAE",
+        canonical="https://www.desertcubs.com/about",
+        og_image="https://www.desertcubs.com/static/img/mgmt_presley.webp"
+    )
+    return render_template('about.html', meta=meta)
+
+
+@app.route('/girls-cricket')
+def girls_cricket():
+    meta = seo(
+        title="Girls Cricket Dubai & UAE | Women's Cricket Coaching | Desert Cubs Academy",
+        description="Desert Cubs runs UAE's top girls cricket programme. Home of Esha Oza — UAE Women's Cricket Captain. Female ICC-certified coaches. First ECB Women's League winners 2017. Enroll your daughter today.",
+        keywords="girls cricket Dubai, girls cricket UAE, women cricket academy UAE, girls cricket coaching Dubai, female cricket UAE, girls cricket Sharjah, Esha Oza UAE women cricket captain, girls cricket classes Dubai, junior girls cricket UAE",
+        canonical="https://www.desertcubs.com/girls-cricket",
+        og_image="https://www.desertcubs.com/static/img/Desert_cubs_logo.png"
+    )
+    return render_template('girls_cricket.html', meta=meta)
+
+
+@app.route('/summer-camp')
+def summer_camp():
+    meta = seo(
+        title="Cricket Summer Camp Dubai 2026 | Holiday Cricket Camp UAE | Desert Cubs",
+        description="Desert Cubs cricket summer camps in Dubai 2026. Indoor air-conditioned facility at Baseline Sports Academy, DIP. Ages 4–19. Batting, bowling, fielding & match play. Limited spots — register now!",
+        keywords="cricket summer camp Dubai 2026, cricket holiday camp UAE, kids cricket camp Dubai, summer cricket camp Sharjah, indoor cricket camp Dubai, cricket camp UAE ages 4-19, best cricket summer camp Dubai, cricket camp school holidays UAE",
+        canonical="https://www.desertcubs.com/summer-camp",
+        og_image="https://www.desertcubs.com/static/img/Desert_cubs_logo.png"
+    )
+    return render_template('summer_camp.html', meta=meta)
+
+
 # ---------------------------------------------------------
 # N8N WEBHOOK ENDPOINTS
 # Secure with WEBHOOK_SECRET env var (set X-Webhook-Token header in N8N)
@@ -619,6 +657,9 @@ def sitemap():
     pages = [
         ('/', '1.0', 'daily', today),
         ('/blog', '0.9', 'daily', today),
+        ('/about', '0.9', 'monthly', today),
+        ('/girls-cricket', '0.9', 'monthly', today),
+        ('/summer-camp', '0.9', 'monthly', today),
         ('/tournaments', '0.8', 'weekly', today),
         ('/tours', '0.8', 'monthly', today),
         ('/events', '0.8', 'monthly', today),

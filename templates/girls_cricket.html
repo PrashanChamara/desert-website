@@ -1,0 +1,650 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "url": "https://www.desertcubs.com/girls-cricket",
+      "name": "Girls Cricket Dubai & UAE | Desert Cubs Academy",
+      "description": "Desert Cubs runs UAE's top girls cricket programme. Home of Esha Oza — UAE Women's Cricket Captain. Female ICC-certified coaches. First ECB Women's League winners 2017.",
+      "mainEntity": {
+        "@type": "SportsOrganization",
+        "name": "Desert Cubs Cricket Academy",
+        "sport": "Cricket",
+        "areaServed": ["Dubai", "Sharjah", "UAE"]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://www.desertcubs.com"},
+        {"@type":"ListItem","position":2,"name":"Girls Cricket","item":"https://www.desertcubs.com/girls-cricket"}
+      ]
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     HERO
+============================================================= -->
+<section class="relative overflow-hidden py-28 text-center" style="background:linear-gradient(135deg,#001f66 0%,#003399 60%,#001045 100%);">
+    <div class="absolute inset-0 cricket-field-pattern opacity-30"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 opacity-5 pointer-events-none">
+        <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}" alt="" class="w-full h-full object-contain">
+    </div>
+    <div class="relative z-10 max-w-4xl mx-auto px-4">
+        <nav class="flex justify-center items-center gap-2 text-xs text-gray-400 mb-6">
+            <a href="/" class="hover:text-cubs-gold transition-colors">Home</a>
+            <i class="fas fa-chevron-right text-gray-600 text-[10px]"></i>
+            <span class="text-cubs-gold">Girls Cricket</span>
+        </nav>
+        <p class="section-tag mb-3" style="color:#FFCC00;">UAE's #1 Girls Cricket Programme</p>
+        <h1 class="font-display text-5xl md:text-7xl font-black text-white uppercase leading-none mb-6">
+            Girls Cricket<br>
+            <span style="color:#FFCC00;">In The UAE</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 font-light">
+            From beginner to UAE national representative — Desert Cubs has been developing female cricketers since 2007. Breaking barriers, building champions.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="https://wa.me/97158XXXXXXX" target="_blank" rel="noopener"
+               class="inline-flex items-center gap-2 font-bold py-4 px-8 rounded-full text-base transition-all shadow-lg"
+               style="background:#FFCC00;color:#001f66;">
+                <i class="fab fa-whatsapp"></i> Enrol Your Daughter
+            </a>
+            <a href="/#branches"
+               class="inline-flex items-center gap-2 font-bold py-4 px-8 rounded-full text-base transition-all"
+               style="border:2px solid rgba(255,255,255,0.4);color:#ffffff;">
+                <i class="fas fa-map-marker-alt"></i> Find a Centre
+            </a>
+        </div>
+    </div>
+
+    <!-- Stats ribbon -->
+    <div class="relative z-10 mt-16 border-t border-white/10 pt-8">
+        <div class="max-w-4xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+                <p class="font-display font-black text-3xl md:text-4xl uppercase" style="color:#FFCC00;">2007</p>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Programme Est.</p>
+            </div>
+            <div>
+                <p class="font-display font-black text-3xl md:text-4xl uppercase" style="color:#FFCC00;">500+</p>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Girls Trained</p>
+            </div>
+            <div>
+                <p class="font-display font-black text-3xl md:text-4xl uppercase" style="color:#FFCC00;">3×</p>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">ECB Champions</p>
+            </div>
+            <div>
+                <p class="font-display font-black text-3xl md:text-4xl uppercase" style="color:#FFCC00;">UAE</p>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">National Players</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     ESHA OZA — STAR ALUMNA FEATURE
+============================================================= -->
+<section class="py-20" style="background:#ffffff;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Text -->
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="gold-bar"></div>
+                    <span class="text-xs font-bold uppercase tracking-widest" style="color:#003399;">Our Proudest Achievement</span>
+                </div>
+                <h2 class="font-display font-black text-4xl md:text-5xl uppercase leading-none mb-6" style="color:#001f66;">
+                    From Desert Cubs<br>
+                    <span style="color:#FFCC00;">To UAE Captain</span>
+                </h2>
+                <p class="text-lg mb-4" style="color:#475569;">
+                    <strong style="color:#001f66;">Esha Oza</strong> — UAE Women's Cricket Captain and one of the most celebrated female cricketers in the Gulf — began her journey right here at Desert Cubs Cricket Academy.
+                </p>
+                <p class="text-base mb-6" style="color:#475569;">
+                    Esha's story is not an exception. It is our mission. Desert Cubs has been the UAE's leading pathway for girls who dream of representing their country on the international stage. We provide the coaching, the environment, and the belief that every girl needs to reach her potential.
+                </p>
+
+                <!-- Achievement cards -->
+                <div class="grid grid-cols-1 gap-3">
+                    <div class="flex items-center gap-3 rounded-xl p-4" style="background:#f0f4ff;border-left:4px solid #003399;">
+                        <i class="fas fa-trophy text-xl flex-shrink-0" style="color:#FFCC00;"></i>
+                        <p class="text-sm font-bold" style="color:#001f66;">UAE Women's Cricket Captain</p>
+                    </div>
+                    <div class="flex items-center gap-3 rounded-xl p-4" style="background:#f0f4ff;border-left:4px solid #003399;">
+                        <i class="fas fa-star text-xl flex-shrink-0" style="color:#FFCC00;"></i>
+                        <p class="text-sm font-bold" style="color:#001f66;">Desert Cubs Academy Graduate</p>
+                    </div>
+                    <div class="flex items-center gap-3 rounded-xl p-4" style="background:#f0f4ff;border-left:4px solid #003399;">
+                        <i class="fas fa-globe text-xl flex-shrink-0" style="color:#FFCC00;"></i>
+                        <p class="text-sm font-bold" style="color:#001f66;">International Cricket Representation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlight card -->
+            <div class="relative">
+                <div class="rounded-3xl p-10 text-center relative overflow-hidden" style="background:linear-gradient(135deg,#001f66,#003399);">
+                    <div class="absolute inset-0 cricket-field-pattern opacity-20"></div>
+                    <div class="relative z-10">
+                        <div class="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center" style="background:#FFCC00;">
+                            <i class="fas fa-cricket-bat-ball text-4xl" style="color:#001f66;"></i>
+                        </div>
+                        <h3 class="font-display font-black text-3xl text-white uppercase mb-2">Esha Oza</h3>
+                        <p class="font-bold mb-4" style="color:#FFCC00;">UAE Women's Cricket Captain</p>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            "Desert Cubs gave me more than cricket skills — they gave me the confidence to believe I could captain my country. The coaches pushed me to be better every single day."
+                        </p>
+                        <div class="mt-6 pt-6 border-t border-white/20">
+                            <p class="text-xs text-gray-400 uppercase tracking-wider">Desert Cubs Graduate · UAE National Captain</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating badge -->
+                <div class="absolute -top-4 -right-4 w-20 h-20 rounded-full flex items-center justify-center shadow-xl"
+                     style="background:#FFCC00;">
+                    <div class="text-center">
+                        <p class="font-display font-black text-lg uppercase leading-none" style="color:#001f66;">UAE</p>
+                        <p class="text-[9px] font-bold uppercase leading-none" style="color:#001f66;">Captain</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     WHY GIRLS CRICKET MATTERS
+============================================================= -->
+<section class="py-20" style="background:#f8fafc;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+        <div class="flex justify-center items-center gap-3 mb-4">
+            <div class="gold-bar"></div>
+            <span class="text-xs font-bold uppercase tracking-widest" style="color:#003399;">Why Choose Desert Cubs</span>
+            <div class="gold-bar"></div>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl uppercase leading-none mb-4" style="color:#001f66;">
+            The UAE's Premier<br><span style="color:#FFCC00;">Girls Cricket Academy</span>
+        </h2>
+        <p class="text-lg max-w-2xl mx-auto mb-14" style="color:#475569;">
+            We've been pioneering girls cricket in the UAE since 2007. Our programme is built specifically for female cricketers — from the coaching methodology to the environment.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="rounded-3xl p-8 text-center card-hover" style="background:#ffffff;border:1px solid #e2e8f0;">
+                <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background:#001f66;">
+                    <i class="fas fa-chalkboard-teacher text-2xl text-white"></i>
+                </div>
+                <h3 class="font-display font-black text-xl uppercase mb-3" style="color:#001f66;">Female Head Coach</h3>
+                <p class="text-sm leading-relaxed" style="color:#475569;">
+                    Judith Jose Peter — ICC Level 1 certified, former UAE Women's Cricket player. Our dedicated female coach leads all girls sessions with expert insight and lived experience.
+                </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="rounded-3xl p-8 text-center card-hover" style="background:#ffffff;border:1px solid #e2e8f0;">
+                <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background:#001f66;">
+                    <i class="fas fa-shield-alt text-2xl text-white"></i>
+                </div>
+                <h3 class="font-display font-black text-xl uppercase mb-3" style="color:#001f66;">Safe Environment</h3>
+                <p class="text-sm leading-relaxed" style="color:#475569;">
+                    All female sessions are carefully structured with appropriate facilities, female coaching staff present, and safeguarding practices that give parents complete peace of mind.
+                </p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="rounded-3xl p-8 text-center card-hover" style="background:#ffffff;border:1px solid #e2e8f0;">
+                <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background:#001f66;">
+                    <i class="fas fa-medal text-2xl text-white"></i>
+                </div>
+                <h3 class="font-display font-black text-xl uppercase mb-3" style="color:#001f66;">ECB Champions 2017</h3>
+                <p class="text-sm leading-relaxed" style="color:#475569;">
+                    Desert Cubs made history in 2017 by winning the inaugural ECB Women's League in the UAE — cementing our status as the region's leading girls cricket academy.
+                </p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="rounded-3xl p-8 text-center card-hover" style="background:#ffffff;border:1px solid #e2e8f0;">
+                <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background:#001f66;">
+                    <i class="fas fa-users text-2xl text-white"></i>
+                </div>
+                <h3 class="font-display font-black text-xl uppercase mb-3" style="color:#001f66;">All Ages Welcome</h3>
+                <p class="text-sm leading-relaxed" style="color:#475569;">
+                    Girls aged 4–19 are welcome regardless of experience. Whether your daughter has never held a bat or is ready for competitive cricket, we have the right programme.
+                </p>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="rounded-3xl p-8 text-center card-hover" style="background:#ffffff;border:1px solid #e2e8f0;">
+                <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background:#001f66;">
+                    <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                </div>
+                <h3 class="font-display font-black text-xl uppercase mb-3" style="color:#001f66;">ICC-Certified Coaching</h3>
+                <p class="text-sm leading-relaxed" style="color:#475569;">
+                    Every coach holds ICC or ECB certification. Girls receive the same world-class coaching standard used to develop professional cricketers at the highest level.
+                </p>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="rounded-3xl p-8 text-center card-hover" style="background:#ffffff;border:1px solid #e2e8f0;">
+                <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background:#001f66;">
+                    <i class="fas fa-trophy text-2xl text-white"></i>
+                </div>
+                <h3 class="font-display font-black text-xl uppercase mb-3" style="color:#001f66;">National Pathway</h3>
+                <p class="text-sm leading-relaxed" style="color:#475569;">
+                    Multiple Desert Cubs girls have progressed to UAE national squads. We maintain active links with cricket boards to give talented girls the exposure they deserve.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     COACHING STAFF
+============================================================= -->
+<section class="py-20" style="background:#001f66;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <div class="gold-bar"></div>
+                <span class="text-xs font-bold uppercase tracking-widest" style="color:#FFCC00;">Expert Coaching</span>
+                <div class="gold-bar"></div>
+            </div>
+            <h2 class="font-display font-black text-4xl md:text-5xl uppercase leading-none" style="color:#ffffff;">
+                Coaches Who<br><span style="color:#FFCC00;">Understand the Game</span>
+            </h2>
+            <p class="text-lg mt-4 max-w-xl mx-auto" style="color:#94a3b8;">
+                Our girls cricket programme is led by qualified coaches who have played and coached at the highest levels.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <!-- Coach Card 1 -->
+            <div class="rounded-3xl p-8 text-center" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,204,0,0.2);">
+                <div class="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center" style="background:#FFCC00;">
+                    <i class="fas fa-user text-3xl" style="color:#001f66;"></i>
+                </div>
+                <h3 class="font-display font-black text-2xl uppercase text-white mb-1">Judith Jose Peter</h3>
+                <p class="font-bold text-sm mb-4" style="color:#FFCC00;">Girls Head Coach</p>
+                <div class="space-y-2 text-left">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-check-circle text-xs flex-shrink-0" style="color:#FFCC00;"></i>
+                        <span class="text-sm" style="color:#cbd5e1;">ICC Level 1 Certified Coach</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-check-circle text-xs flex-shrink-0" style="color:#FFCC00;"></i>
+                        <span class="text-sm" style="color:#cbd5e1;">Former UAE Women's Cricket Player</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-check-circle text-xs flex-shrink-0" style="color:#FFCC00;"></i>
+                        <span class="text-sm" style="color:#cbd5e1;">Specialist in Women's Cricket Development</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-check-circle text-xs flex-shrink-0" style="color:#FFCC00;"></i>
+                        <span class="text-sm" style="color:#cbd5e1;">Desert Cubs Academy since 2015</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coach Card 2 -->
+            <div class="rounded-3xl p-8 text-center" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,204,0,0.2);">
+                <div class="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center" style="background:#FFCC00;">
+                    <i class="fas fa-user text-3xl" style="color:#001f66;"></i>
+                </div>
+                <h3 class="font-display font-black text-2xl uppercase text-white mb-1">Presley Polonnowita</h3>
+                <p class="font-bold text-sm mb-4" style="color:#FFCC00;">Founder & CEO</p>
+                <div class="space-y-2 text-left">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-check-circle text-xs flex-shrink-0" style="color:#FFCC00;"></i>
+                        <span class="text-sm" style="color:#cbd5e1;">ECB Level 2 Certified Coach</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-check-circle text-xs flex-shrink-0" style="color:#FFCC00;"></i>
+                        <span class="text-sm" style="color:#cbd5e1;">President, Global Council for Cricket Academies</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-check-circle text-xs flex-shrink-0" style="color:#FFCC00;"></i>
+                        <span class="text-sm" style="color:#cbd5e1;">Pioneer of Girls Cricket in the UAE</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-check-circle text-xs flex-shrink-0" style="color:#FFCC00;"></i>
+                        <span class="text-sm" style="color:#cbd5e1;">18+ years developing UAE cricket</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     PROGRAMME DETAILS
+============================================================= -->
+<section class="py-20" style="background:#ffffff;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <div class="gold-bar"></div>
+                <span class="text-xs font-bold uppercase tracking-widest" style="color:#003399;">Training Programme</span>
+                <div class="gold-bar"></div>
+            </div>
+            <h2 class="font-display font-black text-4xl md:text-5xl uppercase leading-none" style="color:#001f66;">
+                What Your Daughter<br><span style="color:#FFCC00;">Will Learn</span>
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+            <!-- Skills grid -->
+            <div class="space-y-4">
+                <h3 class="font-display font-black text-xl uppercase mb-4" style="color:#001f66;">Technical Skills</h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="flex items-center gap-2 rounded-xl p-3" style="background:#f0f4ff;">
+                        <i class="fas fa-cricket-bat-ball text-sm flex-shrink-0" style="color:#003399;"></i>
+                        <span class="text-sm font-bold" style="color:#001f66;">Batting Technique</span>
+                    </div>
+                    <div class="flex items-center gap-2 rounded-xl p-3" style="background:#f0f4ff;">
+                        <i class="fas fa-circle text-sm flex-shrink-0" style="color:#003399;"></i>
+                        <span class="text-sm font-bold" style="color:#001f66;">Bowling Skills</span>
+                    </div>
+                    <div class="flex items-center gap-2 rounded-xl p-3" style="background:#f0f4ff;">
+                        <i class="fas fa-hands text-sm flex-shrink-0" style="color:#003399;"></i>
+                        <span class="text-sm font-bold" style="color:#001f66;">Fielding & Catching</span>
+                    </div>
+                    <div class="flex items-center gap-2 rounded-xl p-3" style="background:#f0f4ff;">
+                        <i class="fas fa-shield-alt text-sm flex-shrink-0" style="color:#003399;"></i>
+                        <span class="text-sm font-bold" style="color:#001f66;">Wicket Keeping</span>
+                    </div>
+                    <div class="flex items-center gap-2 rounded-xl p-3" style="background:#f0f4ff;">
+                        <i class="fas fa-brain text-sm flex-shrink-0" style="color:#003399;"></i>
+                        <span class="text-sm font-bold" style="color:#001f66;">Cricket IQ</span>
+                    </div>
+                    <div class="flex items-center gap-2 rounded-xl p-3" style="background:#f0f4ff;">
+                        <i class="fas fa-running text-sm flex-shrink-0" style="color:#003399;"></i>
+                        <span class="text-sm font-bold" style="color:#001f66;">Fitness & Agility</span>
+                    </div>
+                </div>
+
+                <h3 class="font-display font-black text-xl uppercase mb-4 mt-8" style="color:#001f66;">Life Skills</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3 p-4 rounded-xl" style="background:#fffbeb;border-left:4px solid #FFCC00;">
+                        <i class="fas fa-users text-sm mt-0.5 flex-shrink-0" style="color:#001f66;"></i>
+                        <div>
+                            <p class="font-bold text-sm" style="color:#001f66;">Teamwork & Leadership</p>
+                            <p class="text-xs mt-0.5" style="color:#475569;">Learn to collaborate, lead, and perform under pressure</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-4 rounded-xl" style="background:#fffbeb;border-left:4px solid #FFCC00;">
+                        <i class="fas fa-heart text-sm mt-0.5 flex-shrink-0" style="color:#001f66;"></i>
+                        <div>
+                            <p class="font-bold text-sm" style="color:#001f66;">Confidence & Resilience</p>
+                            <p class="text-xs mt-0.5" style="color:#475569;">Build mental strength that carries into every area of life</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-4 rounded-xl" style="background:#fffbeb;border-left:4px solid #FFCC00;">
+                        <i class="fas fa-handshake text-sm mt-0.5 flex-shrink-0" style="color:#001f66;"></i>
+                        <div>
+                            <p class="font-bold text-sm" style="color:#001f66;">Discipline & Fair Play</p>
+                            <p class="text-xs mt-0.5" style="color:#475569;">Cricket's values of respect and sportsmanship</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Programme structure -->
+            <div>
+                <h3 class="font-display font-black text-xl uppercase mb-6" style="color:#001f66;">Programme Structure</h3>
+                <div class="space-y-4">
+                    <div class="rounded-2xl p-6 relative overflow-hidden" style="background:linear-gradient(135deg,#001f66,#003399);">
+                        <div class="absolute top-0 right-0 w-24 h-24 rounded-full opacity-10" style="background:#FFCC00;transform:translate(30%,-30%);"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="font-display font-black text-xs uppercase px-3 py-1 rounded-full" style="background:#FFCC00;color:#001f66;">Ages 4–8</span>
+                                <span class="font-bold text-white">Cubs Starter</span>
+                            </div>
+                            <p class="text-sm" style="color:#94a3b8;">Fun, games-based introduction to cricket. Focus on hand-eye coordination, basic movement, and falling in love with the sport.</p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl p-6 relative overflow-hidden" style="background:linear-gradient(135deg,#001f66,#003399);">
+                        <div class="absolute top-0 right-0 w-24 h-24 rounded-full opacity-10" style="background:#FFCC00;transform:translate(30%,-30%);"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="font-display font-black text-xs uppercase px-3 py-1 rounded-full" style="background:#FFCC00;color:#001f66;">Ages 9–13</span>
+                                <span class="font-bold text-white">Cubs Development</span>
+                            </div>
+                            <p class="text-sm" style="color:#94a3b8;">Technical foundations built correctly. Batting, bowling, and fielding drills delivered by certified coaches with match-play experience.</p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl p-6 relative overflow-hidden" style="background:linear-gradient(135deg,#001f66,#003399);">
+                        <div class="absolute top-0 right-0 w-24 h-24 rounded-full opacity-10" style="background:#FFCC00;transform:translate(30%,-30%);"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="font-display font-black text-xs uppercase px-3 py-1 rounded-full" style="background:#FFCC00;color:#001f66;">Ages 14–19</span>
+                                <span class="font-bold text-white">Cubs Elite</span>
+                            </div>
+                            <p class="text-sm" style="color:#94a3b8;">Advanced training for competitive cricketers. Tournament preparation, UAE national squad pathway, and individual performance coaching.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     ACHIEVEMENTS TIMELINE
+============================================================= -->
+<section class="py-20" style="background:#f8fafc;">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <div class="gold-bar"></div>
+                <span class="text-xs font-bold uppercase tracking-widest" style="color:#003399;">A Legacy of Excellence</span>
+                <div class="gold-bar"></div>
+            </div>
+            <h2 class="font-display font-black text-4xl md:text-5xl uppercase leading-none" style="color:#001f66;">
+                Girls Cricket<br><span style="color:#FFCC00;">Milestones</span>
+            </h2>
+        </div>
+
+        <div class="space-y-4">
+            <div class="flex gap-4 items-start">
+                <div class="flex-shrink-0 w-16 text-right">
+                    <span class="font-display font-black text-sm" style="color:#FFCC00;">2007</span>
+                </div>
+                <div class="flex-shrink-0 w-px bg-gray-200 mt-1 self-stretch"></div>
+                <div class="flex-1 pb-6">
+                    <div class="rounded-xl p-4" style="background:#ffffff;border:1px solid #e2e8f0;">
+                        <p class="font-bold text-sm" style="color:#001f66;">Girls Programme Founded</p>
+                        <p class="text-xs mt-1" style="color:#475569;">Desert Cubs launches dedicated girls cricket sessions — the first structured girls programme at a UAE cricket academy.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-4 items-start">
+                <div class="flex-shrink-0 w-16 text-right">
+                    <span class="font-display font-black text-sm" style="color:#FFCC00;">2010</span>
+                </div>
+                <div class="flex-shrink-0 w-px bg-gray-200 mt-1 self-stretch"></div>
+                <div class="flex-1 pb-6">
+                    <div class="rounded-xl p-4" style="background:#ffffff;border:1px solid #e2e8f0;">
+                        <p class="font-bold text-sm" style="color:#001f66;">First Girls Tournament Entry</p>
+                        <p class="text-xs mt-1" style="color:#475569;">Desert Cubs girls team competes in their first ECB organised tournament in the UAE, finishing as runners-up.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-4 items-start">
+                <div class="flex-shrink-0 w-16 text-right">
+                    <span class="font-display font-black text-sm" style="color:#FFCC00;">2015</span>
+                </div>
+                <div class="flex-shrink-0 w-px bg-gray-200 mt-1 self-stretch"></div>
+                <div class="flex-1 pb-6">
+                    <div class="rounded-xl p-4" style="background:#ffffff;border:1px solid #e2e8f0;">
+                        <p class="font-bold text-sm" style="color:#001f66;">Judith Jose Peter Joins as Girls Head Coach</p>
+                        <p class="text-xs mt-1" style="color:#475569;">ICC Level 1 certified Judith Jose Peter — former UAE Women's player — joins Desert Cubs to lead the girls programme full-time.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-4 items-start">
+                <div class="flex-shrink-0 w-16 text-right">
+                    <span class="font-display font-black text-sm" style="color:#FFCC00;">2017</span>
+                </div>
+                <div class="flex-shrink-0 w-px bg-gray-200 mt-1 self-stretch"></div>
+                <div class="flex-1 pb-6">
+                    <div class="rounded-2xl p-5 relative overflow-hidden" style="background:linear-gradient(135deg,#001f66,#003399);">
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i class="fas fa-trophy" style="color:#FFCC00;"></i>
+                                <p class="font-bold text-sm text-white">ECB Women's League — First Ever Champions</p>
+                            </div>
+                            <p class="text-xs" style="color:#94a3b8;">Desert Cubs girls team wins the inaugural ECB Women's League in the UAE, making history and establishing the academy as the leading girls cricket institution in the Gulf.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-4 items-start">
+                <div class="flex-shrink-0 w-16 text-right">
+                    <span class="font-display font-black text-sm" style="color:#FFCC00;">2019</span>
+                </div>
+                <div class="flex-shrink-0 w-px bg-gray-200 mt-1 self-stretch"></div>
+                <div class="flex-1 pb-6">
+                    <div class="rounded-xl p-4" style="background:#ffffff;border:1px solid #e2e8f0;">
+                        <p class="font-bold text-sm" style="color:#001f66;">Esha Oza Appointed UAE Women's Captain</p>
+                        <p class="text-xs mt-1" style="color:#475569;">Desert Cubs graduate Esha Oza is named captain of the UAE Women's Cricket team — the academy's proudest alumni achievement.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-4 items-start">
+                <div class="flex-shrink-0 w-16 text-right">
+                    <span class="font-display font-black text-sm" style="color:#FFCC00;">2024</span>
+                </div>
+                <div class="flex-shrink-0 w-px bg-gray-200 mt-1 self-stretch"></div>
+                <div class="flex-1 pb-6">
+                    <div class="rounded-xl p-4" style="background:#ffffff;border:1px solid #e2e8f0;">
+                        <p class="font-bold text-sm" style="color:#001f66;">Girls Programme Expands to All 6 Centres</p>
+                        <p class="text-xs mt-1" style="color:#475569;">Dedicated girls sessions now available across all Desert Cubs centres in Dubai and Sharjah, making girls cricket accessible across the emirate.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     LOCATIONS FOR GIRLS
+============================================================= -->
+<section class="py-20" style="background:#ffffff;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+        <div class="flex justify-center items-center gap-3 mb-4">
+            <div class="gold-bar"></div>
+            <span class="text-xs font-bold uppercase tracking-widest" style="color:#003399;">Training Locations</span>
+            <div class="gold-bar"></div>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl uppercase leading-none mb-4" style="color:#001f66;">
+            Girls Sessions Across<br><span style="color:#FFCC00;">Dubai & Sharjah</span>
+        </h2>
+        <p class="text-lg max-w-xl mx-auto mb-12" style="color:#475569;">
+            Girls training sessions are available at all 6 Desert Cubs centres. Find the one closest to you.
+        </p>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="rounded-2xl p-5 text-left card-hover" style="background:#f0f4ff;border:1px solid #e0e8ff;">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fas fa-map-marker-alt" style="color:#003399;"></i>
+                    <h3 class="font-display font-black text-sm uppercase" style="color:#001f66;">Sharjah English School</h3>
+                </div>
+                <p class="text-xs" style="color:#475569;">Sharjah, Maliha Road</p>
+            </div>
+            <div class="rounded-2xl p-5 text-left card-hover" style="background:#f0f4ff;border:1px solid #e0e8ff;">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fas fa-map-marker-alt" style="color:#003399;"></i>
+                    <h3 class="font-display font-black text-sm uppercase" style="color:#001f66;">Delhi Private School</h3>
+                </div>
+                <p class="text-xs" style="color:#475569;">Jebel Ali, Dubai</p>
+            </div>
+            <div class="rounded-2xl p-5 text-left card-hover" style="background:#f0f4ff;border:1px solid #e0e8ff;">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fas fa-map-marker-alt" style="color:#003399;"></i>
+                    <h3 class="font-display font-black text-sm uppercase" style="color:#001f66;">Deira International School</h3>
+                </div>
+                <p class="text-xs" style="color:#475569;">Dubai Festival City</p>
+            </div>
+            <div class="rounded-2xl p-5 text-left card-hover" style="background:#f0f4ff;border:1px solid #e0e8ff;">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fas fa-map-marker-alt" style="color:#003399;"></i>
+                    <h3 class="font-display font-black text-sm uppercase" style="color:#001f66;">Star International School</h3>
+                </div>
+                <p class="text-xs" style="color:#475569;">Al Qusais 3, Dubai</p>
+            </div>
+            <div class="rounded-2xl p-5 text-left card-hover" style="background:#f0f4ff;border:1px solid #e0e8ff;">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fas fa-map-marker-alt" style="color:#003399;"></i>
+                    <h3 class="font-display font-black text-sm uppercase" style="color:#001f66;">British School Al Khubairat</h3>
+                </div>
+                <p class="text-xs" style="color:#475569;">Khalidiyah, Abu Dhabi</p>
+            </div>
+            <div class="rounded-2xl p-5 text-left card-hover" style="background:#f0f4ff;border:1px solid #e0e8ff;">
+                <div class="flex items-center gap-3 mb-2">
+                    <i class="fas fa-map-marker-alt" style="color:#003399;"></i>
+                    <h3 class="font-display font-black text-sm uppercase" style="color:#001f66;">Sharjah Boys School</h3>
+                </div>
+                <p class="text-xs" style="color:#475569;">Sharjah</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     CTA
+============================================================= -->
+<section class="py-20 text-center relative overflow-hidden" style="background:linear-gradient(135deg,#001f66 0%,#003399 60%,#001045 100%);">
+    <div class="absolute inset-0 cricket-field-pattern opacity-20"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-4">
+        <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style="background:#FFCC00;">
+            <i class="fas fa-cricket-bat-ball text-2xl" style="color:#001f66;"></i>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-6xl uppercase leading-none mb-4 text-white">
+            Ready to Start<br><span style="color:#FFCC00;">Her Journey?</span>
+        </h2>
+        <p class="text-lg mb-10" style="color:#94a3b8;">
+            The next UAE Women's Cricket Captain could be your daughter. Enrol in a free trial session today — no experience required.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="https://wa.me/971501544765"
+               target="_blank" rel="noopener"
+               class="inline-flex items-center gap-2 font-bold py-4 px-8 rounded-full text-base transition-all shadow-lg"
+               style="background:#FFCC00;color:#001f66;">
+                <i class="fab fa-whatsapp"></i> WhatsApp Us Now
+            </a>
+            <a href="/#branches"
+               class="inline-flex items-center gap-2 font-bold py-4 px-8 rounded-full text-base transition-all"
+               style="border:2px solid rgba(255,255,255,0.4);color:#ffffff;">
+                <i class="fas fa-map-marker-alt"></i> Find a Centre
+            </a>
+        </div>
+        <p class="text-xs mt-6" style="color:#64748b;">Free trial session · Ages 4–19 · All levels welcome</p>
+    </div>
+</section>
+
+{% endblock %}

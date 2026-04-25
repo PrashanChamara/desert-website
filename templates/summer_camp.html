@@ -1,0 +1,604 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Event",
+      "name": "Desert Cubs Cricket Summer Camp Dubai 2026",
+      "description": "Desert Cubs cricket summer camp in Dubai 2026. Indoor air-conditioned facility at Baseline Sports Academy, DIP. Ages 4–19.",
+      "startDate": "2026-06-15",
+      "endDate": "2026-08-29",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Baseline Sports Academy",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Dubai Investment Park",
+          "addressLocality": "Dubai",
+          "addressCountry": "AE"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Desert Cubs Cricket Academy",
+        "url": "https://www.desertcubs.com"
+      },
+      "audience": {
+        "@type": "PeopleAudience",
+        "suggestedMinAge": 4,
+        "suggestedMaxAge": 19
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://www.desertcubs.com"},
+        {"@type":"ListItem","position":2,"name":"Summer Camp","item":"https://www.desertcubs.com/summer-camp"}
+      ]
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     HERO
+============================================================= -->
+<section class="relative overflow-hidden py-28 text-center" style="background:linear-gradient(135deg,#001f66 0%,#003399 60%,#001045 100%);">
+    <div class="absolute inset-0 cricket-field-pattern opacity-30"></div>
+
+    <!-- Sun decoration -->
+    <div class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-5 pointer-events-none" style="background:#FFCC00;transform:translate(30%,-30%);"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full opacity-5 pointer-events-none" style="background:#FFCC00;transform:translate(-30%,30%);"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4">
+        <nav class="flex justify-center items-center gap-2 text-xs text-gray-400 mb-6">
+            <a href="/" class="hover:text-cubs-gold transition-colors">Home</a>
+            <i class="fas fa-chevron-right text-gray-600 text-[10px]"></i>
+            <span class="text-cubs-gold">Summer Camp</span>
+        </nav>
+        <p class="section-tag mb-3" style="color:#FFCC00;">Dubai · June–August 2026 · Indoor Facility</p>
+        <h1 class="font-display text-5xl md:text-7xl font-black text-white uppercase leading-none mb-6">
+            Cricket Summer<br>
+            <span style="color:#FFCC00;">Camp Dubai 2026</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 font-light">
+            Beat the UAE summer heat at Desert Cubs' fully air-conditioned indoor cricket camp. Professional coaching, real cricket, real fun — ages 4 to 19.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="https://wa.me/971501544765"
+               target="_blank" rel="noopener"
+               class="inline-flex items-center gap-2 font-bold py-4 px-8 rounded-full text-base transition-all shadow-lg"
+               style="background:#FFCC00;color:#001f66;">
+                <i class="fab fa-whatsapp"></i> Book a Place Now
+            </a>
+            <a href="#camp-details"
+               class="inline-flex items-center gap-2 font-bold py-4 px-8 rounded-full text-base transition-all"
+               style="border:2px solid rgba(255,255,255,0.4);color:#ffffff;">
+                <i class="fas fa-info-circle"></i> Camp Details
+            </a>
+        </div>
+    </div>
+
+    <!-- Stats ribbon -->
+    <div class="relative z-10 mt-16 border-t border-white/10 pt-8">
+        <div class="max-w-4xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+                <p class="font-display font-black text-3xl md:text-4xl uppercase" style="color:#FFCC00;">4–19</p>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Age Range</p>
+            </div>
+            <div>
+                <p class="font-display font-black text-3xl md:text-4xl uppercase" style="color:#FFCC00;">5</p>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Cricket Lanes</p>
+            </div>
+            <div>
+                <p class="font-display font-black text-3xl md:text-4xl uppercase" style="color:#FFCC00;">A/C</p>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Indoor Facility</p>
+            </div>
+            <div>
+                <p class="font-display font-black text-3xl md:text-4xl uppercase" style="color:#FFCC00;">Pro</p>
+                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">ICC Coaches</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     BEAT THE HEAT BANNER
+============================================================= -->
+<div class="py-6 text-center" style="background:#FFCC00;">
+    <div class="max-w-4xl mx-auto px-4 flex flex-wrap items-center justify-center gap-4">
+        <div class="flex items-center gap-2">
+            <i class="fas fa-sun text-xl" style="color:#001f66;"></i>
+            <span class="font-display font-black text-lg uppercase" style="color:#001f66;">Beat The UAE Summer Heat</span>
+        </div>
+        <span class="hidden md:block text-2xl" style="color:#001f66;">·</span>
+        <span class="font-bold text-sm" style="color:#003399;">Fully Air-Conditioned Indoor Cricket Facility</span>
+        <span class="hidden md:block text-2xl" style="color:#001f66;">·</span>
+        <span class="font-bold text-sm" style="color:#003399;">Baseline Sports Academy, DIP Dubai</span>
+    </div>
+</div>
+
+
+<!-- ============================================================
+     THE VENUE
+============================================================= -->
+<section class="py-20" style="background:#ffffff;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Text -->
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="gold-bar"></div>
+                    <span class="text-xs font-bold uppercase tracking-widest" style="color:#003399;">Our Summer Venue</span>
+                </div>
+                <h2 class="font-display font-black text-4xl md:text-5xl uppercase leading-none mb-6" style="color:#001f66;">
+                    Baseline Sports<br>
+                    <span style="color:#FFCC00;">Academy, DIP</span>
+                </h2>
+                <p class="text-lg mb-6" style="color:#475569;">
+                    Our summer camp is held at <strong style="color:#001f66;">Baseline Sports Academy (BSA)</strong> in Dubai Investment Park — one of the UAE's finest indoor cricket facilities. Purpose-built for cricket, fully air-conditioned, and equipped with everything your child needs for a world-class training experience.
+                </p>
+
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#001f66;">
+                            <i class="fas fa-wind text-sm text-white"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-sm" style="color:#001f66;">Fully Air-Conditioned</p>
+                            <p class="text-sm" style="color:#475569;">Train in perfect comfort regardless of outside temperature. No heat, no humidity — just cricket.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#001f66;">
+                            <i class="fas fa-layer-group text-sm text-white"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-sm" style="color:#001f66;">5 Professional Cricket Lanes</p>
+                            <p class="text-sm" style="color:#475569;">Multiple lanes mean more time with ball in hand — more repetitions, faster development, no waiting.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#001f66;">
+                            <i class="fas fa-map-marker-alt text-sm text-white"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-sm" style="color:#001f66;">Dubai Investment Park</p>
+                            <p class="text-sm" style="color:#475569;">Easily accessible from Jebel Ali, Discovery Gardens, Al Furjan, and surrounding Dubai communities.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#001f66;">
+                            <i class="fas fa-parking text-sm text-white"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-sm" style="color:#001f66;">Ample Parking</p>
+                            <p class="text-sm" style="color:#475569;">Free on-site parking available for parents dropping off and collecting children.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Venue card -->
+            <div class="rounded-3xl overflow-hidden shadow-2xl">
+                <div class="p-8 text-center" style="background:linear-gradient(135deg,#001f66,#003399);">
+                    <i class="fas fa-building text-5xl mb-4" style="color:#FFCC00;"></i>
+                    <h3 class="font-display font-black text-2xl uppercase text-white mb-2">Baseline Sports Academy</h3>
+                    <p class="mb-6" style="color:#94a3b8;">Dubai Investment Park, Dubai, UAE</p>
+                    <div class="grid grid-cols-2 gap-4 text-left">
+                        <div class="rounded-xl p-3" style="background:rgba(255,255,255,0.08);">
+                            <p class="text-xs font-bold" style="color:#FFCC00;">Facility</p>
+                            <p class="text-sm text-white">Indoor Cricket</p>
+                        </div>
+                        <div class="rounded-xl p-3" style="background:rgba(255,255,255,0.08);">
+                            <p class="text-xs font-bold" style="color:#FFCC00;">Lanes</p>
+                            <p class="text-sm text-white">5 Cricket Lanes</p>
+                        </div>
+                        <div class="rounded-xl p-3" style="background:rgba(255,255,255,0.08);">
+                            <p class="text-xs font-bold" style="color:#FFCC00;">Climate</p>
+                            <p class="text-sm text-white">Fully A/C</p>
+                        </div>
+                        <div class="rounded-xl p-3" style="background:rgba(255,255,255,0.08);">
+                            <p class="text-xs font-bold" style="color:#FFCC00;">Parking</p>
+                            <p class="text-sm text-white">Free On-Site</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-5" style="background:#FFCC00;">
+                    <a href="https://wa.me/971501544765" target="_blank" rel="noopener"
+                       class="flex items-center justify-center gap-2 font-bold text-sm transition-all"
+                       style="color:#001f66;">
+                        <i class="fab fa-whatsapp"></i> Ask About Summer Camp 2026
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     CAMP DETAILS
+============================================================= -->
+<section id="camp-details" class="py-20" style="background:#f8fafc;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <div class="gold-bar"></div>
+                <span class="text-xs font-bold uppercase tracking-widest" style="color:#003399;">Summer 2026</span>
+                <div class="gold-bar"></div>
+            </div>
+            <h2 class="font-display font-black text-4xl md:text-5xl uppercase leading-none" style="color:#001f66;">
+                Camp Details &<br><span style="color:#FFCC00;">What's Included</span>
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <!-- Dates card -->
+            <div class="rounded-3xl p-8 text-center" style="background:#ffffff;border:2px solid #FFCC00;">
+                <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4" style="background:#FFCC00;">
+                    <i class="fas fa-calendar-alt text-2xl" style="color:#001f66;"></i>
+                </div>
+                <h3 class="font-display font-black text-xl uppercase mb-3" style="color:#001f66;">Camp Dates</h3>
+                <p class="font-bold text-base mb-1" style="color:#003399;">June – August 2026</p>
+                <p class="text-sm" style="color:#475569;">Weekly sessions throughout the summer school break. Multiple time slots available — morning and afternoon.</p>
+                <div class="mt-4 pt-4 border-t border-gray-100">
+                    <p class="text-xs font-bold uppercase tracking-wider" style="color:#FFCC00;">Contact us for exact schedule</p>
+                </div>
+            </div>
+
+            <!-- Ages card -->
+            <div class="rounded-3xl p-8 text-center" style="background:#ffffff;border:2px solid #e2e8f0;">
+                <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4" style="background:#001f66;">
+                    <i class="fas fa-child text-2xl text-white"></i>
+                </div>
+                <h3 class="font-display font-black text-xl uppercase mb-3" style="color:#001f66;">Who Can Join</h3>
+                <p class="font-bold text-base mb-1" style="color:#003399;">Ages 4–19</p>
+                <p class="text-sm" style="color:#475569;">All ability levels welcome — from complete beginners who have never held a bat to advanced players preparing for competitive cricket.</p>
+                <div class="mt-4 pt-4 border-t border-gray-100">
+                    <p class="text-xs font-bold uppercase tracking-wider" style="color:#94a3b8;">Boys & Girls · All nationalities</p>
+                </div>
+            </div>
+
+            <!-- Coaching card -->
+            <div class="rounded-3xl p-8 text-center" style="background:#ffffff;border:2px solid #e2e8f0;">
+                <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4" style="background:#001f66;">
+                    <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                </div>
+                <h3 class="font-display font-black text-xl uppercase mb-3" style="color:#001f66;">Coaching Standard</h3>
+                <p class="font-bold text-base mb-1" style="color:#003399;">ICC/ECB Certified</p>
+                <p class="text-sm" style="color:#475569;">All Desert Cubs coaches hold ICC or ECB certifications. The same world-class coaching used year-round is applied at every camp session.</p>
+                <div class="mt-4 pt-4 border-t border-gray-100">
+                    <p class="text-xs font-bold uppercase tracking-wider" style="color:#94a3b8;">30+ certified coaches</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- What's included -->
+        <div class="rounded-3xl p-8 md:p-12" style="background:linear-gradient(135deg,#001f66,#003399);">
+            <h3 class="font-display font-black text-3xl uppercase text-white text-center mb-8">What's Included in Every Camp Session</h3>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-check-circle flex-shrink-0" style="color:#FFCC00;"></i>
+                    <span class="text-sm text-white">Professional batting coaching</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-check-circle flex-shrink-0" style="color:#FFCC00;"></i>
+                    <span class="text-sm text-white">Bowling technique & drills</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-check-circle flex-shrink-0" style="color:#FFCC00;"></i>
+                    <span class="text-sm text-white">Fielding & catching practice</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-check-circle flex-shrink-0" style="color:#FFCC00;"></i>
+                    <span class="text-sm text-white">Match play & game situations</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-check-circle flex-shrink-0" style="color:#FFCC00;"></i>
+                    <span class="text-sm text-white">Fitness & agility warm-ups</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-check-circle flex-shrink-0" style="color:#FFCC00;"></i>
+                    <span class="text-sm text-white">Indoor A/C facility access</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-check-circle flex-shrink-0" style="color:#FFCC00;"></i>
+                    <span class="text-sm text-white">Equipment provided on-site</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-check-circle flex-shrink-0" style="color:#FFCC00;"></i>
+                    <span class="text-sm text-white">Small group coaching ratios</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-check-circle flex-shrink-0" style="color:#FFCC00;"></i>
+                    <span class="text-sm text-white">Safe, supervised environment</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     AGE GROUPS
+============================================================= -->
+<section class="py-20" style="background:#ffffff;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <div class="gold-bar"></div>
+                <span class="text-xs font-bold uppercase tracking-widest" style="color:#003399;">Age-Specific Groups</span>
+                <div class="gold-bar"></div>
+            </div>
+            <h2 class="font-display font-black text-4xl md:text-5xl uppercase leading-none" style="color:#001f66;">
+                Tailored Training for<br><span style="color:#FFCC00;">Every Age Group</span>
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Mini Cubs -->
+            <div class="rounded-3xl overflow-hidden shadow-lg card-hover">
+                <div class="p-6 text-center" style="background:#FFCC00;">
+                    <p class="font-display font-black text-4xl uppercase" style="color:#001f66;">Mini Cubs</p>
+                    <p class="font-bold text-sm mt-1" style="color:#003399;">Ages 4 – 7</p>
+                </div>
+                <div class="p-6" style="background:#ffffff;border:1px solid #e2e8f0;border-top:none;">
+                    <p class="text-sm mb-4" style="color:#475569;">Fun-first introduction to cricket. Games, movement, and motor skills in a playful, pressure-free environment designed for young children.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm" style="color:#475569;">
+                            <i class="fas fa-cricket-bat-ball text-xs flex-shrink-0" style="color:#003399;"></i>
+                            Soft cricket equipment
+                        </li>
+                        <li class="flex items-center gap-2 text-sm" style="color:#475569;">
+                            <i class="fas fa-cricket-bat-ball text-xs flex-shrink-0" style="color:#003399;"></i>
+                            Games-based learning
+                        </li>
+                        <li class="flex items-center gap-2 text-sm" style="color:#475569;">
+                            <i class="fas fa-cricket-bat-ball text-xs flex-shrink-0" style="color:#003399;"></i>
+                            High coach-to-child ratio
+                        </li>
+                        <li class="flex items-center gap-2 text-sm" style="color:#475569;">
+                            <i class="fas fa-cricket-bat-ball text-xs flex-shrink-0" style="color:#003399;"></i>
+                            Parent viewing area
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Junior Cubs -->
+            <div class="rounded-3xl overflow-hidden shadow-lg card-hover">
+                <div class="p-6 text-center" style="background:#003399;">
+                    <p class="font-display font-black text-4xl uppercase text-white">Junior Cubs</p>
+                    <p class="font-bold text-sm mt-1" style="color:#FFCC00;">Ages 8 – 13</p>
+                </div>
+                <div class="p-6" style="background:#ffffff;border:1px solid #e2e8f0;border-top:none;">
+                    <p class="text-sm mb-4" style="color:#475569;">Technical skills built properly from the ground up. Batting stance, bowling action, fielding positions — all coached with ICC methodology by certified coaches.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm" style="color:#475569;">
+                            <i class="fas fa-cricket-bat-ball text-xs flex-shrink-0" style="color:#003399;"></i>
+                            Technical batting & bowling
+                        </li>
+                        <li class="flex items-center gap-2 text-sm" style="color:#475569;">
+                            <i class="fas fa-cricket-bat-ball text-xs flex-shrink-0" style="color:#003399;"></i>
+                            Video analysis (advanced)
+                        </li>
+                        <li class="flex items-center gap-2 text-sm" style="color:#475569;">
+                            <i class="fas fa-cricket-bat-ball text-xs flex-shrink-0" style="color:#003399;"></i>
+                            Match simulation drills
+                        </li>
+                        <li class="flex items-center gap-2 text-sm" style="color:#475569;">
+                            <i class="fas fa-cricket-bat-ball text-xs flex-shrink-0" style="color:#003399;"></i>
+                            Cricket intelligence training
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Elite Cubs -->
+            <div class="rounded-3xl overflow-hidden shadow-lg card-hover">
+                <div class="p-6 text-center" style="background:#001f66;">
+                    <p class="font-display font-black text-4xl uppercase text-white">Elite Cubs</p>
+                    <p class="font-bold text-sm mt-1" style="color:#FFCC00;">Ages 14 – 19</p>
+                </div>
+                <div class="p-6" style="background:#ffffff;border:1px solid #e2e8f0;border-top:none;">
+                    <p class="text-sm mb-4" style="color:#475569;">Advanced training for competitive players. Focus on match performance, tournament prep, and identifying talent for UAE national squad consideration.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm" style="color:#475569;">
+                            <i class="fas fa-cricket-bat-ball text-xs flex-shrink-0" style="color:#003399;"></i>
+                            High-performance conditioning
+                        </li>
+                        <li class="flex items-center gap-2 text-sm" style="color:#475569;">
+                            <i class="fas fa-cricket-bat-ball text-xs flex-shrink-0" style="color:#003399;"></i>
+                            Competition preparation
+                        </li>
+                        <li class="flex items-center gap-2 text-sm" style="color:#475569;">
+                            <i class="fas fa-cricket-bat-ball text-xs flex-shrink-0" style="color:#003399;"></i>
+                            Mental skills coaching
+                        </li>
+                        <li class="flex items-center gap-2 text-sm" style="color:#475569;">
+                            <i class="fas fa-cricket-bat-ball text-xs flex-shrink-0" style="color:#003399;"></i>
+                            National squad pathway
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     WHY SUMMER CAMP
+============================================================= -->
+<section class="py-20" style="background:#f8fafc;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+        <div class="flex justify-center items-center gap-3 mb-4">
+            <div class="gold-bar"></div>
+            <span class="text-xs font-bold uppercase tracking-widest" style="color:#003399;">For Parents</span>
+            <div class="gold-bar"></div>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-5xl uppercase leading-none mb-4" style="color:#001f66;">
+            Why Desert Cubs<br><span style="color:#FFCC00;">Summer Camp?</span>
+        </h2>
+        <p class="text-lg max-w-2xl mx-auto mb-14" style="color:#475569;">
+            While your child trains like a professional, you have complete peace of mind. Here's what makes our summer camp different.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6 text-left max-w-4xl mx-auto">
+            <div class="flex items-start gap-4 rounded-2xl p-6" style="background:#ffffff;border:1px solid #e2e8f0;">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#001f66;">
+                    <i class="fas fa-thermometer-half text-lg text-white"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-base mb-1" style="color:#001f66;">No Heat. No Humidity.</h3>
+                    <p class="text-sm" style="color:#475569;">Our fully air-conditioned indoor facility means children train in comfort all summer. No sunstroke risk, no heat exhaustion — just cricket.</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 rounded-2xl p-6" style="background:#ffffff;border:1px solid #e2e8f0;">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#001f66;">
+                    <i class="fas fa-shield-alt text-lg text-white"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-base mb-1" style="color:#001f66;">Safeguarding First</h3>
+                    <p class="text-sm" style="color:#475569;">All Desert Cubs coaches undergo DBS checks and safeguarding training. Your child's safety is our first priority at every session.</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 rounded-2xl p-6" style="background:#ffffff;border:1px solid #e2e8f0;">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#001f66;">
+                    <i class="fas fa-chart-line text-lg text-white"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-base mb-1" style="color:#001f66;">Measurable Improvement</h3>
+                    <p class="text-sm" style="color:#475569;">In just one week of camp, children make observable technical improvements. Our coaches give parents feedback after every session.</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 rounded-2xl p-6" style="background:#ffffff;border:1px solid #e2e8f0;">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#001f66;">
+                    <i class="fas fa-smile text-lg text-white"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-base mb-1" style="color:#001f66;">Fun, Not Just Training</h3>
+                    <p class="text-sm" style="color:#475569;">Summer camp should be fun. We balance technical coaching with match games, challenges, and activities that make children want to come back.</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 rounded-2xl p-6" style="background:#ffffff;border:1px solid #e2e8f0;">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#001f66;">
+                    <i class="fas fa-users text-lg text-white"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-base mb-1" style="color:#001f66;">Multi-Nationality Community</h3>
+                    <p class="text-sm" style="color:#475569;">Children from over 20 nationalities train together. Summer camp builds friendships and social skills alongside sporting skills.</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-4 rounded-2xl p-6" style="background:#ffffff;border:1px solid #e2e8f0;">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#001f66;">
+                    <i class="fas fa-certificate text-lg text-white"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-base mb-1" style="color:#001f66;">18 Years of Excellence</h3>
+                    <p class="text-sm" style="color:#475569;">Since 2007, Desert Cubs has trained over 15,000 young cricketers. We know how to develop children's cricket — summer is no different.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     FAQ
+============================================================= -->
+<section class="py-20" style="background:#ffffff;">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <div class="gold-bar"></div>
+                <span class="text-xs font-bold uppercase tracking-widest" style="color:#003399;">Common Questions</span>
+                <div class="gold-bar"></div>
+            </div>
+            <h2 class="font-display font-black text-4xl uppercase leading-none" style="color:#001f66;">
+                Summer Camp <span style="color:#FFCC00;">FAQ</span>
+            </h2>
+        </div>
+
+        <div class="space-y-4">
+            <div class="rounded-2xl p-6" style="background:#f8fafc;border:1px solid #e2e8f0;">
+                <h3 class="font-bold text-base mb-2" style="color:#001f66;">Does my child need to know cricket before joining?</h3>
+                <p class="text-sm" style="color:#475569;">Absolutely not. Our Mini Cubs and Junior Cubs groups are perfect for complete beginners. Coaches start from the very basics and no experience is required to join any age group.</p>
+            </div>
+
+            <div class="rounded-2xl p-6" style="background:#f8fafc;border:1px solid #e2e8f0;">
+                <h3 class="font-bold text-base mb-2" style="color:#001f66;">What equipment does my child need to bring?</h3>
+                <p class="text-sm" style="color:#475569;">All cricket equipment is provided at the Baseline Sports Academy facility. Children should wear comfortable sports clothing and bring a water bottle. Cricket whites are not required.</p>
+            </div>
+
+            <div class="rounded-2xl p-6" style="background:#f8fafc;border:1px solid #e2e8f0;">
+                <h3 class="font-bold text-base mb-2" style="color:#001f66;">Can girls join the summer camp?</h3>
+                <p class="text-sm" style="color:#475569;">Yes — absolutely. Desert Cubs runs UAE's leading girls cricket programme year-round. Girls are fully welcome at our summer camp alongside our dedicated girls-only sessions throughout the year.</p>
+            </div>
+
+            <div class="rounded-2xl p-6" style="background:#f8fafc;border:1px solid #e2e8f0;">
+                <h3 class="font-bold text-base mb-2" style="color:#001f66;">How do I book a place?</h3>
+                <p class="text-sm" style="color:#475569;">The easiest way is to WhatsApp us directly. Our team will confirm availability, share the exact schedule and pricing, and get your child registered quickly.</p>
+            </div>
+
+            <div class="rounded-2xl p-6" style="background:#f8fafc;border:1px solid #e2e8f0;">
+                <h3 class="font-bold text-base mb-2" style="color:#001f66;">Are the coaches qualified?</h3>
+                <p class="text-sm" style="color:#475569;">Yes. All Desert Cubs coaches hold ICC or ECB coaching certifications and have undergone safeguarding training. Our founder Presley Polonnowita holds ECB Level 2 certification and has developed cricket in the UAE since 2007.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     CTA
+============================================================= -->
+<section class="py-20 text-center relative overflow-hidden" style="background:linear-gradient(135deg,#001f66 0%,#003399 60%,#001045 100%);">
+    <div class="absolute inset-0 cricket-field-pattern opacity-20"></div>
+    <div class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-5 pointer-events-none" style="background:#FFCC00;transform:translate(30%,-30%);"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-4">
+        <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style="background:#FFCC00;">
+            <i class="fas fa-sun text-2xl" style="color:#001f66;"></i>
+        </div>
+        <h2 class="font-display font-black text-4xl md:text-6xl uppercase leading-none mb-4 text-white">
+            Book Your Child's<br><span style="color:#FFCC00;">Summer 2026 Camp</span>
+        </h2>
+        <p class="text-lg mb-4" style="color:#94a3b8;">
+            Places are limited. Secure your child's spot at Desert Cubs Cricket Summer Camp 2026 before they fill up.
+        </p>
+        <p class="text-base mb-10 font-bold" style="color:#FFCC00;">
+            Baseline Sports Academy · Dubai Investment Park · June–August 2026
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="https://wa.me/971501544765"
+               target="_blank" rel="noopener"
+               class="inline-flex items-center gap-2 font-bold py-4 px-8 rounded-full text-base transition-all shadow-lg"
+               style="background:#FFCC00;color:#001f66;">
+                <i class="fab fa-whatsapp"></i> WhatsApp to Book
+            </a>
+            <a href="tel:+971501544765"
+               class="inline-flex items-center gap-2 font-bold py-4 px-8 rounded-full text-base transition-all"
+               style="border:2px solid rgba(255,255,255,0.4);color:#ffffff;">
+                <i class="fas fa-phone"></i> Call Us
+            </a>
+        </div>
+        <p class="text-xs mt-6" style="color:#64748b;">Ages 4–19 · Boys & Girls · All ability levels · Indoor A/C facility</p>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,401 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "url": "https://www.desertcubs.com/about",
+      "name": "About Desert Cubs Cricket Academy",
+      "description": "Desert Cubs Cricket Academy — UAE's largest junior cricket academy, established October 2007 by Presley Polonnowita. 15,000+ alumni trained, 6 training centres across Dubai and Sharjah.",
+      "mainEntity": {
+        "@type": "SportsOrganization",
+        "name": "Desert Cubs Cricket Academy",
+        "foundingDate": "2007-10-01",
+        "founder": {"@type": "Person", "name": "Presley Polonnowita"},
+        "numberOfEmployees": {"@type": "QuantitativeValue", "value": 100},
+        "areaServed": ["Dubai", "Sharjah", "UAE"]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://www.desertcubs.com"},
+        {"@type":"ListItem","position":2,"name":"About Us","item":"https://www.desertcubs.com/about"}
+      ]
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     HERO
+============================================================= -->
+<section class="relative overflow-hidden py-28 text-center" style="background:linear-gradient(135deg,#001f66 0%,#003399 60%,#001045 100%);">
+    <div class="absolute inset-0 cricket-field-pattern opacity-30"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 opacity-5 pointer-events-none">
+        <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}" alt="" class="w-full h-full object-contain">
+    </div>
+    <div class="relative z-10 max-w-4xl mx-auto px-4">
+        <nav class="flex justify-center items-center gap-2 text-xs text-gray-400 mb-6">
+            <a href="/" class="hover:text-cubs-gold transition-colors">Home</a>
+            <i class="fas fa-chevron-right text-gray-600 text-[10px]"></i>
+            <span class="text-cubs-gold">About Us</span>
+        </nav>
+        <p class="section-tag mb-3" style="color:#FFCC00;">Est. October 2007 · UAE's Largest Cricket Academy</p>
+        <h1 class="font-display text-5xl md:text-7xl font-black text-white uppercase leading-none mb-6">
+            Our <span style="color:#FFCC00;">Story</span>
+        </h1>
+        <p class="text-gray-300 text-lg font-light leading-relaxed max-w-3xl mx-auto">
+            From 11 youngsters at a corner net of Sharjah International Cricket Stadium in 2007 to the UAE's largest cricket academy — this is the Desert Cubs journey.
+        </p>
+        <!-- Quick stats bar -->
+        <div class="flex flex-wrap justify-center gap-6 mt-10">
+            <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,204,0,0.3); border-radius:12px; padding:14px 24px; min-width:120px;">
+                <div style="font-family:'Teko',sans-serif; font-size:2rem; font-weight:700; color:#FFCC00; line-height:1;">Est. 2007</div>
+                <div style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase; letter-spacing:0.1em; margin-top:2px;">Founded</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,204,0,0.3); border-radius:12px; padding:14px 24px; min-width:120px;">
+                <div style="font-family:'Teko',sans-serif; font-size:2rem; font-weight:700; color:#FFCC00; line-height:1;">15,000+</div>
+                <div style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase; letter-spacing:0.1em; margin-top:2px;">Alumni Trained</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,204,0,0.3); border-radius:12px; padding:14px 24px; min-width:120px;">
+                <div style="font-family:'Teko',sans-serif; font-size:2rem; font-weight:700; color:#FFCC00; line-height:1;">6</div>
+                <div style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase; letter-spacing:0.1em; margin-top:2px;">Training Centres</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,204,0,0.3); border-radius:12px; padding:14px 24px; min-width:120px;">
+                <div style="font-family:'Teko',sans-serif; font-size:2rem; font-weight:700; color:#FFCC00; line-height:1;">30+</div>
+                <div style="font-size:0.7rem; color:#94a3b8; text-transform:uppercase; letter-spacing:0.1em; margin-top:2px;">Qualified Coaches</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     INTRODUCTION / PRIDE
+============================================================= -->
+<section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid md:grid-cols-2 gap-14 items-center">
+            <div>
+                <p class="section-tag mb-3" style="color:#003399;">The Desert Cubs Story</p>
+                <h2 class="font-display text-4xl md:text-5xl font-black text-cubs-blue uppercase leading-none mb-6">
+                    Legends of <span style="color:#FFCC00;">The Future</span>
+                </h2>
+                <p class="text-gray-600 leading-relaxed mb-5">
+                    Desert Cubs Cricket Academy is the largest, best-equipped registered cricket academy in the Gulf region. Born from a passion by founder Presley Polonnowita to nurture young talent into great sportsmen and sportswomen, we have grown from a modest group of 11 youngsters at a corner net of Sharjah International Cricket Stadium to the UAE's premier cricket institution.
+                </p>
+                <p class="text-gray-600 leading-relaxed mb-5">
+                    We are a registered academy in UAE, affiliated with the <strong style="color:#003399;">Emirates Cricket Board</strong>, <strong style="color:#003399;">Dubai Sports Council</strong>, <strong style="color:#003399;">Dubai Cricket Council</strong>, <strong style="color:#003399;">Sharjah Cricket Council</strong>, and <strong style="color:#003399;">Ajman Cricket Council</strong>. Our coaches hold ICC certifications, and our programme is designed with a well-structured curriculum using the latest equipment and technology.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    Our 2024/2025 revenue of <strong style="color:#003399;">USD 1.63 million</strong> reflects a business model that is scalable, profitable, and built on steady year-on-year growth — proof that when you invest in young talent, everything else follows.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                {% for label, value, icon in [
+                    ('ECB Affiliated','Emirates Cricket Board','fa-shield-halved'),
+                    ('ICC Certified','Coaching Standards','fa-certificate'),
+                    ('GCCA Founding Member','Global Council','fa-globe'),
+                    ('Dubai Sports Council','Registered Academy','fa-building'),
+                ] %}
+                <div class="bg-slate-50 border border-gray-100 rounded-2xl p-5 text-center">
+                    <div style="width:44px; height:44px; background:#003399; border-radius:12px; display:flex; align-items:center; justify-content:center; margin:0 auto 10px;">
+                        <i class="fas {{ icon }}" style="color:#FFCC00; font-size:1.1rem;"></i>
+                    </div>
+                    <p style="font-family:'Teko',sans-serif; font-weight:700; font-size:1rem; color:#003399; text-transform:uppercase;">{{ label }}</p>
+                    <p style="font-size:0.75rem; color:#64748b; margin-top:3px;">{{ value }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     VISION & MISSION
+============================================================= -->
+<section class="py-16" style="background:#f0f5ff;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+            <p class="section-tag mb-3" style="color:#003399;">What Drives Us</p>
+            <h2 class="font-display text-4xl font-black text-cubs-blue uppercase">Our Vision &amp; Mission</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="rounded-2xl p-8" style="background:#003399; color:#ffffff;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:40px; height:40px; background:#FFCC00; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                        <i class="fas fa-eye" style="color:#001f66; font-size:1rem;"></i>
+                    </div>
+                    <h3 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.6rem; text-transform:uppercase; color:#FFCC00;">Our Vision</h3>
+                </div>
+                <blockquote style="font-size:1.05rem; font-weight:700; color:#ffffff; border-left:3px solid #FFCC00; padding-left:14px; margin-bottom:14px; line-height:1.6;">
+                    "To be the best Cricket Academy in UAE admired for its effectiveness, methods, quality and performance."
+                </blockquote>
+                <p style="color:#bfdbfe; font-size:0.9rem; line-height:1.75;">
+                    Our long-term goal is to establish a Sporting Centre of Excellence with training and coaching facilities for all major sports in the Gulf, producing 'LEGENDS OF THE FUTURE' who can adapt to the current and future challenges of the domestic and international sports arena.
+                </p>
+            </div>
+            <div class="rounded-2xl p-8" style="background:#001f66; color:#ffffff;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="width:40px; height:40px; background:#FFCC00; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                        <i class="fas fa-bullseye" style="color:#001f66; font-size:1rem;"></i>
+                    </div>
+                    <h3 style="font-family:'Teko',sans-serif; font-weight:700; font-size:1.6rem; text-transform:uppercase; color:#FFCC00;">Our Mission</h3>
+                </div>
+                <blockquote style="font-size:1.05rem; font-weight:700; color:#ffffff; border-left:3px solid #FFCC00; padding-left:14px; margin-bottom:14px; line-height:1.6;">
+                    "To produce quality sportsmen and sportswomen who can respond well to the current and future challenges of Domestic and International Cricket."
+                </blockquote>
+                <p style="color:#bfdbfe; font-size:0.9rem; line-height:1.75;">
+                    We focus on embedding basic skills in young athletes at the starting point of their careers — coaching curricula designed to gradually instil all the necessary skills so they are fully equipped for challenges of different forms of the game.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     EXECUTIVE TEAM
+============================================================= -->
+<section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+            <p class="section-tag mb-3" style="color:#003399;">The People Behind the Academy</p>
+            <h2 class="font-display text-4xl md:text-5xl font-black text-cubs-blue uppercase leading-none mb-4">
+                Executive <span style="color:#FFCC00;">Team</span>
+            </h2>
+            <p class="text-gray-500 max-w-2xl mx-auto">The leadership team that built Desert Cubs from 11 students into a USD 1.63M academy and the largest cricket institution in the Gulf.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- Kunal Seth -->
+            <div class="text-center group">
+                <div class="relative mx-auto mb-5 overflow-hidden rounded-2xl shadow-xl" style="width:200px; height:240px;">
+                    <picture>
+                        <source srcset="{{ url_for('static', filename='img/mgmt_kunal.webp') }}" type="image/webp">
+                        <img src="{{ url_for('static', filename='img/mgmt_kunal.webp') }}"
+                             alt="Kunal Seth — Chairman, Desert Cubs Cricket Academy UAE & GCCA"
+                             width="200" height="240"
+                             loading="lazy"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </picture>
+                    <div class="absolute inset-0 bg-gradient-to-t from-cubs-blue/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+                <h3 class="font-display text-xl font-black text-cubs-blue uppercase leading-tight mb-1">Kunal Seth</h3>
+                <p style="font-size:0.8rem; font-weight:700; color:#FFCC00; background:#003399; display:inline-block; padding:3px 12px; border-radius:999px; margin-bottom:8px;">Chairman</p>
+                <p style="font-size:0.8rem; color:#64748b; line-height:1.5;">Desert Cubs Cricket Academy UAE &amp;<br>Global Council for Cricket Academies (GCCA)</p>
+            </div>
+
+            <!-- Presley Polonnowita -->
+            <div class="text-center group">
+                <div class="relative mx-auto mb-5 overflow-hidden rounded-2xl shadow-xl" style="width:200px; height:240px;">
+                    <picture>
+                        <source srcset="{{ url_for('static', filename='img/mgmt_presley.webp') }}" type="image/webp">
+                        <img src="{{ url_for('static', filename='img/mgmt_presley.webp') }}"
+                             alt="Presley Polonnowita — Founder & CEO, Desert Cubs Cricket Academy UAE"
+                             width="200" height="240"
+                             loading="lazy"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </picture>
+                    <div class="absolute inset-0 bg-gradient-to-t from-cubs-blue/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+                <h3 class="font-display text-xl font-black text-cubs-blue uppercase leading-tight mb-1">Presley Polonnowita</h3>
+                <p style="font-size:0.8rem; font-weight:700; color:#FFCC00; background:#003399; display:inline-block; padding:3px 12px; border-radius:999px; margin-bottom:8px;">Founder &amp; CEO</p>
+                <p style="font-size:0.8rem; color:#64748b; line-height:1.5;">Desert Cubs Cricket Academy UAE &amp;<br>President, Global Council for Cricket Academies (GCCA)</p>
+            </div>
+
+            <!-- Anoj Silva -->
+            <div class="text-center group">
+                <div class="relative mx-auto mb-5 overflow-hidden rounded-2xl shadow-xl" style="width:200px; height:240px;">
+                    <picture>
+                        <source srcset="{{ url_for('static', filename='img/mgmt_anoj.webp') }}" type="image/webp">
+                        <img src="{{ url_for('static', filename='img/mgmt_anoj.webp') }}"
+                             alt="Anoj Silva — Director, Desert Cubs Cricket Academy UAE"
+                             width="200" height="240"
+                             loading="lazy"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </picture>
+                    <div class="absolute inset-0 bg-gradient-to-t from-cubs-blue/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+                <h3 class="font-display text-xl font-black text-cubs-blue uppercase leading-tight mb-1">Anoj Silva</h3>
+                <p style="font-size:0.8rem; font-weight:700; color:#FFCC00; background:#003399; display:inline-block; padding:3px 12px; border-radius:999px; margin-bottom:8px;">Director</p>
+                <p style="font-size:0.8rem; color:#64748b; line-height:1.5;">Desert Cubs Cricket Academy UAE<br>Executive Committee Member, GCCA</p>
+            </div>
+
+            <!-- Farah Polonnowita -->
+            <div class="text-center group">
+                <div class="relative mx-auto mb-5 overflow-hidden rounded-2xl shadow-xl" style="width:200px; height:240px;">
+                    <picture>
+                        <source srcset="{{ url_for('static', filename='img/mgmt_farah.webp') }}" type="image/webp">
+                        <img src="{{ url_for('static', filename='img/mgmt_farah.webp') }}"
+                             alt="Farah Polonnowita — Head of Finance & HR, Desert Cubs Cricket Academy UAE"
+                             width="200" height="240"
+                             loading="lazy"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </picture>
+                    <div class="absolute inset-0 bg-gradient-to-t from-cubs-blue/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+                <h3 class="font-display text-xl font-black text-cubs-blue uppercase leading-tight mb-1">Farah Polonnowita</h3>
+                <p style="font-size:0.8rem; font-weight:700; color:#FFCC00; background:#003399; display:inline-block; padding:3px 12px; border-radius:999px; margin-bottom:8px;">Head of Finance &amp; HR</p>
+                <p style="font-size:0.8rem; color:#64748b; line-height:1.5;">Head of Finance, HR &amp;<br>Administration, Desert Cubs UAE</p>
+            </div>
+        </div>
+
+        <!-- Founder quote -->
+        <blockquote class="mt-14 text-center max-w-3xl mx-auto" style="border-top:2px solid #FFCC00; border-bottom:2px solid #FFCC00; padding:28px 20px;">
+            <p style="font-family:'Teko',sans-serif; font-size:1.6rem; color:#003399; font-weight:700; line-height:1.4; margin-bottom:10px;">
+                "We aim to transform our Cubs into Legends of the Future — and their journey begins right here with us at Desert Cubs."
+            </p>
+            <cite style="font-size:0.85rem; color:#64748b; font-weight:700; text-transform:uppercase; letter-spacing:0.1em;">— Presley Polonnowita, Founder &amp; CEO</cite>
+        </blockquote>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     MILESTONES TIMELINE
+============================================================= -->
+<section class="py-20" style="background:#f8fafc;">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+            <p class="section-tag mb-3" style="color:#003399;">18 Years of Growth</p>
+            <h2 class="font-display text-4xl md:text-5xl font-black text-cubs-blue uppercase leading-none">
+                Key <span style="color:#FFCC00;">Milestones</span>
+            </h2>
+        </div>
+
+        <div class="relative">
+            <!-- Timeline spine -->
+            <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5" style="background:linear-gradient(to bottom,#FFCC00,#003399);"></div>
+
+            {% set milestones = [
+                ('2007','Oct 2007 — Desert Cubs founded with 11 youngsters at Sharjah International Cricket Stadium practice nets by Presley Polonnowita.'),
+                ('2011','Moved to Sharjah English School — still our flagship centre with 6 natural grass turf pitches and floodlights.'),
+                ('2012','Expanded to Dubai College, Jumeirah and Deira International School, Festival City.'),
+                ('2013','Toured England & Wales with 165 participants — the largest cricket tour ever by a UAE academy with 7 teams.'),
+                ('2014','First UAE cricket academy to tour South Africa — Cape Town.'),
+                ('2015','First UAE cricket academy to tour Australia (Brisbane). Built 4 international-standard natural grass pitches at SES.'),
+                ('2017','First ECB Women\'s League winners. Growing our girls cricket programme.'),
+                ('2018','Hosted India legend Ravichandran Ashwin for the annual awards ceremony — Hotel InterContinental Dubai.'),
+                ('2019','First UAE academy to tour Zimbabwe (Harare). Opened first overseas branch in Melbourne, Australia. Hosted Jonty Rhodes masterclass.'),
+                ('2022','First sports facility management agreement with SIS, Al Qusais. Toured South Africa (Pretoria, Johannesburg, Rustenburg). Won ECB U16 National League.'),
+                ('2023','Founded the Global Council for Cricket Academies (GCCA). Toured England with 220 participants. Hosted ICCA Global Academy Championship in Nottinghamshire.'),
+                ('2024','First GCCA T20 Championship in Sharjah. Toured Brisbane with 9 teams. Won ECB U16 National League 2024-2025.'),
+                ('2025','Toured Sri Lanka with 150 delegates. Opened Baseline Sports Academy (DIP) — UAE\'s first dedicated indoor cricket facility. Reached Apple International School, Al Karama.'),
+            ] %}
+
+            {% for year, event in milestones %}
+            <div class="relative flex {% if loop.index % 2 == 0 %}md:flex-row-reverse{% endif %} items-start gap-6 mb-10 pl-16 md:pl-0">
+                <!-- Year bubble -->
+                <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center shadow-lg z-10"
+                     style="background:#003399; border:3px solid #FFCC00;">
+                    <span style="font-family:'Teko',sans-serif; font-size:0.7rem; font-weight:700; color:#FFCC00; letter-spacing:0.04em;">{{ year }}</span>
+                </div>
+                <!-- Content card -->
+                <div class="{% if loop.index % 2 == 0 %}md:w-5/12 md:pr-10{% else %}md:w-5/12 md:ml-auto md:pl-10{% endif %} w-full">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:border-cubs-gold transition-colors">
+                        <span style="font-family:'Teko',sans-serif; font-size:1.3rem; font-weight:700; color:#FFCC00; display:block; margin-bottom:4px;">{{ year }}</span>
+                        <p style="font-size:0.88rem; color:#374151; line-height:1.65;">{{ event }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     ACHIEVEMENTS
+============================================================= -->
+<section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+            <p class="section-tag mb-3" style="color:#003399;">On The Field</p>
+            <h2 class="font-display text-4xl font-black text-cubs-blue uppercase">Trophy <span style="color:#FFCC00;">Cabinet</span></h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for trophy, year, detail in [
+                ('ECB Women\'s League Champions','2017','First ever ECB Women\'s League title — making UAE history.'),
+                ('ECB U17 National League','2017–2018','League Champion & Runner-up of the ECB Under 17 National Academy League.'),
+                ('ECB U14 National League','2018–2019','Winner of the ECB Under 14 National Academy League.'),
+                ('ECB U19 National League','2019–2020','Winner of the ECB Under 19 National Academy League.'),
+                ('ECB U16 National League','2020–2021','Winner of the ECB Under 16 National Academy League.'),
+                ('ECB U16 National League','2024–2025','Winner of the ECB Under 16 National Academy League — back on top!'),
+            ] %}
+            <div class="rounded-2xl p-6 border border-gray-100 shadow-sm hover:border-cubs-gold hover:shadow-md transition-all">
+                <div style="width:44px; height:44px; background:#FFCC00; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                    <i class="fas fa-trophy" style="color:#001f66; font-size:1.1rem;"></i>
+                </div>
+                <p style="font-family:'Teko',sans-serif; font-size:1.2rem; font-weight:700; color:#003399; text-transform:uppercase; line-height:1.2; margin-bottom:4px;">{{ trophy }}</p>
+                <p style="font-size:0.78rem; font-weight:900; color:#FFCC00; background:#003399; display:inline-block; padding:2px 10px; border-radius:999px; margin-bottom:8px;">{{ year }}</p>
+                <p style="font-size:0.85rem; color:#64748b;">{{ detail }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     AFFILIATIONS / CREDENTIALS
+============================================================= -->
+<section class="py-16" style="background:#001f66;">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+        <p class="section-tag mb-3" style="color:#FFCC00;">Official Affiliations &amp; Credentials</p>
+        <h2 class="font-display text-4xl font-black text-white uppercase mb-10">
+            Trusted by Cricket's <span style="color:#FFCC00;">Governing Bodies</span>
+        </h2>
+        <div class="flex flex-wrap justify-center gap-4">
+            {% for body, full, icon in [
+                ('ECB','Emirates Cricket Board','fa-shield-halved'),
+                ('ICC','International Cricket Council — Certified Coaching','fa-certificate'),
+                ('GCCA','Global Council for Cricket Academies — Founding Member','fa-globe'),
+                ('Dubai Sports Council','Registered Academy','fa-building'),
+                ('Dubai Cricket Council','Affiliated Academy','fa-cricket-bat-ball'),
+                ('Sharjah Cricket Council','Affiliated Academy','fa-map-marker-alt'),
+                ('Ajman Cricket Council','Affiliated Academy','fa-flag'),
+            ] %}
+            <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,204,0,0.25); border-radius:12px; padding:14px 20px; display:flex; align-items:center; gap:10px;">
+                <i class="fas {{ icon }}" style="color:#FFCC00; font-size:0.9rem;"></i>
+                <span style="font-family:'Nunito',sans-serif; font-weight:800; font-size:0.85rem; color:#ffffff;">{{ body }}</span>
+                <span style="font-size:0.72rem; color:#94a3b8; display:none;" class="md:inline">— {{ full }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     CTA
+============================================================= -->
+<section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+        <h2 class="font-display text-4xl font-black text-cubs-blue uppercase mb-4">
+            Be Part of the <span style="color:#FFCC00;">Legacy</span>
+        </h2>
+        <p class="text-gray-500 mb-8 text-lg">
+            Join 15,000+ alumni who started their cricket journey at Desert Cubs. 6 training centres across Dubai &amp; Sharjah. Coaching for ages 4–19.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="/#branches" class="btn-gold px-10 py-4 rounded-full text-base flex items-center gap-2">
+                <i class="fas fa-map-marker-alt"></i> Find a Centre
+            </a>
+            <a href="tel:+971588274266" class="border-2 border-cubs-blue text-cubs-blue px-10 py-4 rounded-full font-display font-black text-base uppercase tracking-wider hover:bg-cubs-blue hover:text-white transition-all flex items-center gap-2">
+                <i class="fas fa-phone"></i> Call Now
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

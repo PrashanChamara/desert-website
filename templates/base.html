@@ -518,6 +518,9 @@
 
     <!-- Ahrefs Analytics -->
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="DvhDo4bPmRbzcV8BcJT3Yw" async></script>
+
+    <!-- Per-page extra head (Schema, etc.) -->
+    {% block extra_head %}{% endblock %}
 </head>
 
 <body class="bg-slate-50">
@@ -794,7 +797,7 @@
                 <a href="/tours"     class="nav-link">Tours</a>
                 <a href="/blog"      class="nav-link">Blog</a>
 
-                <!-- Tournaments + Events & Legends grouped under "More" -->
+                <!-- More dropdown: Tournaments, Events, About, Girls Cricket, Summer Camp -->
                 <div class="nav-dropdown-wrap">
                     <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="More navigation options">
                         More <i class="fas fa-chevron-down dd-caret" aria-hidden="true"></i>
@@ -805,6 +808,15 @@
                         </a>
                         <a href="/events" class="nav-dropdown-item" role="menuitem">
                             <i class="fas fa-star" aria-hidden="true"></i> Events & Legends
+                        </a>
+                        <a href="/about" class="nav-dropdown-item" role="menuitem">
+                            <i class="fas fa-users" aria-hidden="true"></i> About Us
+                        </a>
+                        <a href="/girls-cricket" class="nav-dropdown-item" role="menuitem">
+                            <i class="fas fa-heart" aria-hidden="true"></i> Girls Cricket
+                        </a>
+                        <a href="/summer-camp" class="nav-dropdown-item" role="menuitem">
+                            <i class="fas fa-sun" aria-hidden="true"></i> Summer Camp
                         </a>
                     </div>
                 </div>
@@ -840,6 +852,9 @@
                 ('/blog', 'fa-newspaper', 'Blog & Tips'),
                 ('/tournaments', 'fa-trophy', 'Tournaments'),
                 ('/events', 'fa-star', 'Events & Legends'),
+                ('/about', 'fa-users', 'About Us'),
+                ('/girls-cricket', 'fa-heart', 'Girls Cricket'),
+                ('/summer-camp', 'fa-sun', 'Summer Camp'),
             ] %}
             <a href="{{ href }}"
                style="display:flex; align-items:center; gap:12px; padding:11px 14px;
@@ -1130,6 +1145,9 @@
                     {% for href, label in [
                         ('/', 'Home'),
                         ('/#branches', 'Our Locations'),
+                        ('/about', 'About Desert Cubs'),
+                        ('/girls-cricket', 'Girls Cricket UAE'),
+                        ('/summer-camp', 'Summer Cricket Camp'),
                         ('/tournaments', 'Season Calendar'),
                         ('/events', 'Master Classes'),
                         ('/tours', 'International Tours'),
