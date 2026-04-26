@@ -1,0 +1,773 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "url": "https://www.desertcubs.com/legends",
+      "name": "Legends of the Future | Desert Cubs Cricket Academy | UAE Cricket Stars",
+      "description": "Desert Cubs Cricket Academy alumni who represent UAE at national and international level. UAE U19 World Cup players, ECB champions, ACC West Zone Cup winners — the proof is in our players.",
+      "mainEntity": {
+        "@type": "SportsOrganization",
+        "name": "Desert Cubs Cricket Academy",
+        "sport": "Cricket",
+        "areaServed": ["Dubai", "Sharjah", "UAE"],
+        "award": "First ECB Women's League Champions 2017 | ACC U16 West Zone Cup 2025 | UAE U19 World Cup Qualifiers"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://www.desertcubs.com"},
+        {"@type":"ListItem","position":2,"name":"Legends of the Future","item":"https://www.desertcubs.com/legends"}
+      ]
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     HERO
+============================================================= -->
+<section style="background:linear-gradient(135deg,#001f66 0%,#003399 60%,#001045 100%);
+                padding:112px 0 80px;text-align:center;overflow:hidden;position:relative;">
+    <div class="absolute inset-0 cricket-field-pattern opacity-30" style="position:absolute;inset:0;opacity:.15;"></div>
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+                width:340px;height:340px;opacity:.05;pointer-events:none;">
+        <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}" alt="" style="width:100%;height:100%;object-fit:contain;">
+    </div>
+    <div style="position:relative;z-index:10;max-width:900px;margin:0 auto;padding:0 20px;">
+        <!-- Breadcrumb -->
+        <nav style="display:flex;justify-content:center;align-items:center;gap:8px;
+                    font-size:.75rem;color:#9ca3af;margin-bottom:24px;">
+            <a href="/" style="color:#9ca3af;text-decoration:none;">Home</a>
+            <i class="fas fa-chevron-right" style="font-size:.6rem;color:#6b7280;" aria-hidden="true"></i>
+            <span style="color:#FFCC00;">Legends of the Future</span>
+        </nav>
+        <p style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;
+                   text-transform:uppercase;letter-spacing:.28em;color:#FFCC00;
+                   display:block;margin-bottom:16px;">Desert Cubs Cricket Academy</p>
+        <h1 style="font-family:'Teko',sans-serif;font-weight:900;
+                    font-size:clamp(3rem,7vw,6rem);color:#ffffff;
+                    text-transform:uppercase;line-height:1;margin-bottom:16px;">
+            Legends of the<br>
+            <span style="color:#FFCC00;-webkit-text-stroke:1px #e6b800;">Future</span>
+        </h1>
+        <p style="font-family:'Nunito',sans-serif;font-size:clamp(1rem,2.5vw,1.2rem);
+                   color:#d1d5db;max-width:680px;margin:0 auto 40px;line-height:1.8;">
+            From Dubai training grounds to UAE national squads, ACC championships and ICC tournaments — these are the players Desert Cubs helped forge. Their achievements are our proof.
+        </p>
+        <a href="https://wa.me/971501544765" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:10px;font-family:'Nunito',sans-serif;
+                  font-weight:800;padding:16px 36px;border-radius:50px;font-size:.95rem;
+                  background:#FFCC00;color:#001f66;text-decoration:none;
+                  box-shadow:0 8px 24px rgba(255,204,0,.35);">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> Join the Next Generation
+        </a>
+    </div>
+
+    <!-- Stats ribbon -->
+    <div style="position:relative;z-index:10;margin-top:64px;
+                border-top:1px solid rgba(255,255,255,.1);padding-top:32px;">
+        <div style="max-width:900px;margin:0 auto;padding:0 20px;
+                    display:grid;grid-template-columns:repeat(2,1fr);gap:24px;text-align:center;">
+            <style>@media(min-width:640px){.leg-stats{grid-template-columns:repeat(4,1fr)!important;}}</style>
+            <div class="leg-stats" style="display:contents;">
+            <div>
+                <p style="font-family:'Teko',sans-serif;font-weight:900;
+                           font-size:clamp(2rem,5vw,3.5rem);color:#FFCC00;
+                           text-transform:uppercase;line-height:1;">17+</p>
+                <p style="font-family:'Nunito',sans-serif;font-size:.72rem;
+                           color:#9ca3af;text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Alumni Profiled</p>
+            </div>
+            <div>
+                <p style="font-family:'Teko',sans-serif;font-weight:900;
+                           font-size:clamp(2rem,5vw,3.5rem);color:#FFCC00;
+                           text-transform:uppercase;line-height:1;">UAE</p>
+                <p style="font-family:'Nunito',sans-serif;font-size:.72rem;
+                           color:#9ca3af;text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">National Players</p>
+            </div>
+            <div>
+                <p style="font-family:'Teko',sans-serif;font-weight:900;
+                           font-size:clamp(2rem,5vw,3.5rem);color:#FFCC00;
+                           text-transform:uppercase;line-height:1;">ACC</p>
+                <p style="font-family:'Nunito',sans-serif;font-size:.72rem;
+                           color:#9ca3af;text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Champions 2025</p>
+            </div>
+            <div>
+                <p style="font-family:'Teko',sans-serif;font-weight:900;
+                           font-size:clamp(2rem,5vw,3.5rem);color:#FFCC00;
+                           text-transform:uppercase;line-height:1;">2007</p>
+                <p style="font-family:'Nunito',sans-serif;font-size:.72rem;
+                           color:#9ca3af;text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Building Champions</p>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     INTRO BANNER
+============================================================= -->
+<section style="background:#FFCC00;padding:28px 0;">
+    <div style="max-width:900px;margin:0 auto;padding:0 20px;text-align:center;">
+        <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.4rem;
+                   color:#001f66;text-transform:uppercase;letter-spacing:.05em;">
+            <i class="fas fa-trophy" style="margin-right:8px;" aria-hidden="true"></i>
+            Every UAE national cricket team member below started their journey at Desert Cubs Cricket Academy
+            <i class="fas fa-trophy" style="margin-left:8px;" aria-hidden="true"></i>
+        </p>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     CURRENT STARS — 2024/25 GENERATION
+============================================================= -->
+<section style="background:#f8fafc;padding:80px 0;">
+    <div style="max-width:1200px;margin:0 auto;padding:0 20px;">
+
+        <div style="text-align:center;margin-bottom:56px;" class="dcr">
+            <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;
+                         text-transform:uppercase;letter-spacing:.28em;color:#003399;display:block;margin-bottom:12px;">
+                Current Stars</span>
+            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
+                        font-size:clamp(2.2rem,4vw,3.4rem);color:#001f66;
+                        text-transform:uppercase;line-height:1.05;margin-bottom:12px;">
+                The 2024–25 <span style="color:#FFCC00;-webkit-text-stroke:1px #e6b800;">Generation</span>
+            </h2>
+            <div style="width:60px;height:3px;background:#FFCC00;margin:0 auto 16px;border-radius:2px;"></div>
+            <p style="font-family:'Nunito',sans-serif;font-size:.95rem;color:#475569;max-width:640px;margin:0 auto;">
+                ACC U16 West Zone Cup winners, UAE national representatives, ECB Academy League champions — all Desert Cubs trained.
+            </p>
+        </div>
+
+        <style>
+        .leg-grid{display:grid;grid-template-columns:1fr;gap:24px;}
+        @media(min-width:640px){.leg-grid{grid-template-columns:repeat(2,1fr);}}
+        @media(min-width:1024px){.leg-grid{grid-template-columns:repeat(3,1fr);}}
+        .leg-card{background:#ffffff;border-radius:20px;overflow:hidden;
+                  border:1px solid #e8ecf4;
+                  box-shadow:0 2px 12px rgba(0,31,102,.06);
+                  transition:transform .25s,box-shadow .25s;}
+        .leg-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,31,102,.12);}
+        .leg-badge{display:inline-block;font-family:'Nunito',sans-serif;font-weight:800;
+                   font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;
+                   padding:3px 10px;border-radius:20px;margin-right:4px;margin-bottom:4px;}
+        .badge-national{background:#001f66;color:#FFCC00;}
+        .badge-acc{background:#003399;color:#ffffff;}
+        .badge-ecb{background:#FFCC00;color:#001f66;}
+        .badge-record{background:#0f172a;color:#FFCC00;}
+        .badge-reserve{background:#e8ecf4;color:#475569;}
+        </style>
+
+        <div class="leg-grid">
+
+            <!-- Akshat Rai -->
+            <div class="leg-card dcr">
+                <div style="height:220px;overflow:hidden;position:relative;background:#001f66;">
+                    <img src="{{ url_for('static', filename='img/player_akshat.webp') }}"
+                         alt="Akshat Rai — UAE U19 Cricket Star, Desert Cubs Academy"
+                         width="400" height="220" loading="lazy"
+                         style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:.9;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 55%);"></div>
+                    <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+                        <span class="leg-badge badge-national">UAE U19</span>
+                        <span class="leg-badge badge-record">Record Holder</span>
+                    </div>
+                </div>
+                <div style="padding:20px 22px 24px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.5rem;
+                                color:#001f66;text-transform:uppercase;line-height:1;margin-bottom:4px;">Akshat Rai</h3>
+                    <p style="font-family:'Nunito',sans-serif;font-size:.72rem;color:#FFCC00;
+                               font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;">
+                        UAE U19 National Team &bull; Right-Hand Bat / Right-Arm Medium</p>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;">
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-trophy" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            UAE U19 — World Cup 2025 Qualifiers &amp; Asia Cup 2024</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-star" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Record: 213-run opening partnership vs Japan — U19 Asia Cup history</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-chart-line" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            ECB U16 MVP 2022–23: 580 runs in 9 innings</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-globe" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            UAE U16 Tour of Leicestershire UK — Top scorer: 255 runs in 5 games</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mohamed Nafees -->
+            <div class="leg-card dcr d2">
+                <div style="height:220px;overflow:hidden;position:relative;background:#001f66;">
+                    <img src="{{ url_for('static', filename='img/player_nafees.webp') }}"
+                         alt="Mohamed Nafees — UAE U16, Desert Cubs Academy"
+                         width="400" height="220" loading="lazy"
+                         style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:.9;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 55%);"></div>
+                    <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+                        <span class="leg-badge badge-acc">ACC U16 Champion</span>
+                        <span class="leg-badge badge-ecb">ECB League Captain</span>
+                    </div>
+                </div>
+                <div style="padding:20px 22px 24px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.5rem;
+                                color:#001f66;text-transform:uppercase;line-height:1;margin-bottom:4px;">Mohamed Nafees</h3>
+                    <p style="font-family:'Nunito',sans-serif;font-size:.72rem;color:#FFCC00;
+                               font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;">
+                        UAE U16 National Team &bull; Right-Hand Bat</p>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;">
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-trophy" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            ACC Men's U16 West Zone Cup 2025 — Champions (Qatar)</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-star" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Scored 127 off 114 balls vs Oman in ACC final league game</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-shield-alt" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Captained DCCA team to ECB U16 National Academy League title 2024–25</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-cricket" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Selected by Dubai Cricket Council at age 11 — active since 2020</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Liam D'Souza -->
+            <div class="leg-card dcr d3">
+                <div style="height:220px;overflow:hidden;position:relative;background:#001f66;">
+                    <img src="{{ url_for('static', filename='img/player_liam.webp') }}"
+                         alt="Liam D'Souza — UAE U16, Desert Cubs Academy"
+                         width="400" height="220" loading="lazy"
+                         style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:.9;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 55%);"></div>
+                    <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+                        <span class="leg-badge badge-acc">ACC U16 Reserve</span>
+                        <span class="leg-badge badge-ecb">Desert Vipers</span>
+                    </div>
+                </div>
+                <div style="padding:20px 22px 24px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.5rem;
+                                color:#001f66;text-transform:uppercase;line-height:1;margin-bottom:4px;">Liam D&rsquo;Souza</h3>
+                    <p style="font-family:'Nunito',sans-serif;font-size:.72rem;color:#FFCC00;
+                               font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;">
+                        Dubai Cricket Council &bull; Right-Hand Bat / Off-Spin</p>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;">
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-trophy" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            ACC U16 West Zone Cup 2025 — Reserve squad member</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-star" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            ECB Semi-Final 100 &amp; U16 Inter-Emirates — 3rd highest aggregate, two 100s &amp; a 50</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-cricket" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Played UAE U19 Inter-Emirates at age 14 — scored two rapid 50s vs national team players</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-shield-alt" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Desert Vipers Development team 2024 &amp; 2025</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Aiden Manian -->
+            <div class="leg-card dcr">
+                <div style="height:220px;overflow:hidden;position:relative;background:#001f66;">
+                    <img src="{{ url_for('static', filename='img/player_aiden.webp') }}"
+                         alt="Aiden Manian — UAE U16, Desert Cubs Academy"
+                         width="400" height="220" loading="lazy"
+                         style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:.9;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 55%);"></div>
+                    <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+                        <span class="leg-badge badge-national">UAE U16</span>
+                        <span class="leg-badge badge-ecb">Desert Vipers Captain</span>
+                    </div>
+                </div>
+                <div style="padding:20px 22px 24px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.5rem;
+                                color:#001f66;text-transform:uppercase;line-height:1;margin-bottom:4px;">Aiden Manian</h3>
+                    <p style="font-family:'Nunito',sans-serif;font-size:.72rem;color:#FFCC00;
+                               font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;">
+                        UAE U16 National Team &bull; All-Rounder</p>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;">
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-trophy" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            ACC Men's U16 West Zone Cup 2025 — Winners (Qatar)</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-shield-alt" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Captained Desert Vipers Juniors 2024; member 2025</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-star" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            DCCA ECB U16 National Academy League Champions 2024–25</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-cricket" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            U16 Inter-Emirates Champions — Dubai Cricket Council 2025</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Jordan Alvares -->
+            <div class="leg-card dcr d2">
+                <div style="height:220px;overflow:hidden;position:relative;background:#001f66;">
+                    <img src="{{ url_for('static', filename='img/player_jordan.webp') }}"
+                         alt="Jordan Alvares — UAE Cricket, Desert Cubs Academy"
+                         width="400" height="220" loading="lazy"
+                         style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:.9;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 55%);"></div>
+                    <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+                        <span class="leg-badge badge-acc">ACC U16 Reserve</span>
+                    </div>
+                </div>
+                <div style="padding:20px 22px 24px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.5rem;
+                                color:#001f66;text-transform:uppercase;line-height:1;margin-bottom:4px;">Jordan Alvares</h3>
+                    <p style="font-family:'Nunito',sans-serif;font-size:.72rem;color:#FFCC00;
+                               font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;">
+                        Dubai Cricket Council &bull; Right-Hand Bat</p>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;">
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-trophy" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            ACC U16 West Zone Cup 2025 — Reserve squad (Qatar)</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-star" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            DCCA ECB U16 National Academy League Champions 2024–25</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-cricket" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            U16 Inter-Emirates Champions — Dubai Cricket Council 2025</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-shield-alt" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Dubai CC Vikings — U19 Ramadan Youth League Champions 2025</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Nameer Palekar -->
+            <div class="leg-card dcr d3">
+                <div style="height:220px;overflow:hidden;position:relative;background:#001f66;">
+                    <img src="{{ url_for('static', filename='img/player_nameer.webp') }}"
+                         alt="Nameer Palekar — Man of the Match UAE U16, Desert Cubs"
+                         width="400" height="220" loading="lazy"
+                         style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:.9;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 55%);"></div>
+                    <div style="position:absolute;bottom:16px;left:16px;right:16px;">
+                        <span class="leg-badge badge-national">UAE U16</span>
+                        <span class="leg-badge badge-record">Player of Tournament</span>
+                    </div>
+                </div>
+                <div style="padding:20px 22px 24px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.5rem;
+                                color:#001f66;text-transform:uppercase;line-height:1;margin-bottom:4px;">Nameer Palekar</h3>
+                    <p style="font-family:'Nunito',sans-serif;font-size:.72rem;color:#FFCC00;
+                               font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;">
+                        UAE U16 National Team &bull; All-Rounder</p>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;">
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-trophy" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            ACC Men's U16 West Zone Cup 2025 — Won <strong>Man of the Match</strong></li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-medal" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            DCCA ECB U16 League 2024–25 — <strong>Player of the Tournament</strong></li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;color:#374151;">
+                            <i class="fas fa-cricket" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            ECB Development Squad — U16 &amp; U19 Inter-Emirates 2025</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     KAVISHA KUMARI — WORLD RECORD HOLDER (SPECIAL FEATURE)
+============================================================= -->
+<section style="background:linear-gradient(135deg,#001f66 0%,#003399 100%);padding:80px 0;overflow:hidden;position:relative;">
+    <div style="position:absolute;top:-40px;right:-40px;width:300px;height:300px;
+                background:rgba(255,204,0,.05);border-radius:50%;pointer-events:none;"></div>
+    <div style="max-width:1200px;margin:0 auto;padding:0 20px;">
+        <div style="text-align:center;margin-bottom:48px;" class="dcr">
+            <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;
+                         text-transform:uppercase;letter-spacing:.28em;color:#FFCC00;display:block;margin-bottom:12px;">
+                World Record Holder</span>
+            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
+                        font-size:clamp(2.2rem,4vw,3.4rem);color:#ffffff;
+                        text-transform:uppercase;line-height:1.05;margin-bottom:12px;">
+                Kavisha <span style="color:#FFCC00;">Kumari</span>
+            </h2>
+            <div style="width:60px;height:3px;background:#FFCC00;margin:0 auto 16px;border-radius:2px;"></div>
+        </div>
+        <div style="display:grid;gap:32px;align-items:center;">
+            <style>@media(min-width:768px){.kav-grid{grid-template-columns:300px 1fr!important;}}</style>
+            <div class="kav-grid" style="display:grid;grid-template-columns:1fr;gap:32px;align-items:center;">
+            <div style="text-align:center;">
+                <img src="{{ url_for('static', filename='img/player_kavisha.webp') }}"
+                     alt="Kavisha Kumari — UAE Women's cricket world record holder, Desert Cubs Academy"
+                     width="280" height="360" loading="lazy"
+                     style="width:240px;height:300px;object-fit:cover;object-position:top;
+                            border-radius:20px;border:4px solid #FFCC00;
+                            box-shadow:0 20px 48px rgba(0,0,0,.4);margin:0 auto;display:block;">
+                <div style="margin-top:16px;">
+                    <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;
+                                 text-transform:uppercase;letter-spacing:.1em;color:#9ca3af;">Desert Cubs Academy Graduate</span>
+                </div>
+            </div>
+            <div class="dcr d2">
+                <div style="display:grid;gap:14px;">
+                    <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,204,0,.3);
+                                border-left:4px solid #FFCC00;border-radius:12px;padding:18px 20px;">
+                        <p style="font-family:'Teko',sans-serif;font-size:1rem;font-weight:700;
+                                   color:#FFCC00;text-transform:uppercase;margin-bottom:4px;">World Record</p>
+                        <p style="font-family:'Nunito',sans-serif;font-size:.85rem;color:#e2e8f0;line-height:1.6;">
+                            Youngest cricketer in the world (male or female) to score an international half-century — breaking <strong style="color:#FFCC00;">Sachin Tendulkar's record</strong> with 57* vs Malaysia at age 15+ (Thailand T20 Smash 2019)</p>
+                    </div>
+                    <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,204,0,.3);
+                                border-left:4px solid #FFCC00;border-radius:12px;padding:18px 20px;">
+                        <p style="font-family:'Teko',sans-serif;font-size:1rem;font-weight:700;
+                                   color:#FFCC00;text-transform:uppercase;margin-bottom:4px;">UAE National Records</p>
+                        <p style="font-family:'Nunito',sans-serif;font-size:.85rem;color:#e2e8f0;line-height:1.6;">
+                            Youngest UAE Women's National Team selection at age 11 (Gulf Cup 2014) &bull; Top 5 most runs in International Women's T20 2023 (696 runs in 2022) &bull; Youngest female cricketer to 1500 international runs</p>
+                    </div>
+                    <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,204,0,.3);
+                                border-left:4px solid #FFCC00;border-radius:12px;padding:18px 20px;">
+                        <p style="font-family:'Teko',sans-serif;font-size:1rem;font-weight:700;
+                                   color:#FFCC00;text-transform:uppercase;margin-bottom:4px;">Global Recognition</p>
+                        <p style="font-family:'Nunito',sans-serif;font-size:.85rem;color:#e2e8f0;line-height:1.6;">
+                            FairBreak Invitational 2022 &amp; 2023 (Barmy Army) &bull; Best Female Cricketer of UAE Season 2018 — award from Kumar Sangakkara &bull; First female to play Red Bull Campus Cricket UAE 2019</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     2018–19 GENERATION (UAE U19 World Cup Qualifiers)
+============================================================= -->
+<section style="background:#ffffff;padding:80px 0;">
+    <div style="max-width:1200px;margin:0 auto;padding:0 20px;">
+
+        <div style="text-align:center;margin-bottom:48px;" class="dcr">
+            <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;
+                         text-transform:uppercase;letter-spacing:.28em;color:#003399;display:block;margin-bottom:12px;">
+                UAE U19 — World Cup Qualifier Generation</span>
+            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
+                        font-size:clamp(2.2rem,4vw,3.4rem);color:#001f66;
+                        text-transform:uppercase;line-height:1.05;margin-bottom:12px;">
+                The 2018–19 <span style="color:#FFCC00;-webkit-text-stroke:1px #e6b800;">Champions</span>
+            </h2>
+            <div style="width:60px;height:3px;background:#FFCC00;margin:0 auto 16px;border-radius:2px;"></div>
+            <p style="font-family:'Nunito',sans-serif;font-size:.95rem;color:#475569;max-width:600px;margin:0 auto;">
+                Five Desert Cubs graduates in the UAE U19 squad that qualified for both the Asia Cup (Sri Lanka) and Cricket World Cup (South Africa) 2019–20.
+            </p>
+        </div>
+
+        <div class="leg-grid">
+
+            <!-- Aaron Benjamin -->
+            <div class="leg-card dcr">
+                <div style="height:200px;overflow:hidden;position:relative;background:#001f66;">
+                    <img src="{{ url_for('static', filename='img/player_aaron.webp') }}"
+                         alt="Aaron Benjamin — UAE U19 Cricket, Desert Cubs"
+                         width="400" height="200" loading="lazy"
+                         style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:.9;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 55%);"></div>
+                    <div style="position:absolute;bottom:12px;left:16px;right:16px;">
+                        <span class="leg-badge badge-national">UAE U19</span>
+                        <span class="leg-badge badge-ecb">World Cup Qualifier</span>
+                    </div>
+                </div>
+                <div style="padding:18px 20px 22px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.4rem;
+                                color:#001f66;text-transform:uppercase;margin-bottom:4px;">Aaron Benjamin</h3>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;">
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-trophy" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            UAE U19 Asia Cup — Bangladesh 2018</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-star" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Sharjah U19 — UAE Inter-Emirates Winners 2018</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-globe" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            UAE U19 — qualified for Asia Cup (Sri Lanka) &amp; World Cup (South Africa)</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-medal" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            U19 Inter-Emirates Winner award — Kumar Sangakkara ceremony 2019</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Ashwanth Valthapa C -->
+            <div class="leg-card dcr d2">
+                <div style="height:200px;overflow:hidden;position:relative;background:#001f66;">
+                    <img src="{{ url_for('static', filename='img/player_ashwanth.webp') }}"
+                         alt="Ashwanth Valthapa — UAE U19 Cricket, Desert Cubs"
+                         width="400" height="200" loading="lazy"
+                         style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:.9;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 55%);"></div>
+                    <div style="position:absolute;bottom:12px;left:16px;right:16px;">
+                        <span class="leg-badge badge-national">UAE U19</span>
+                        <span class="leg-badge badge-record">World Cup Qualifier</span>
+                    </div>
+                </div>
+                <div style="padding:18px 20px 22px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.4rem;
+                                color:#001f66;text-transform:uppercase;margin-bottom:4px;">Ashwanth Valthapa C</h3>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;">
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-trophy" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            UAE U19 — World Cup &amp; Asia Cup Qualifiers 2019 (scored unbeaten 100)</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-star" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            UAE U19 — qualified for Asia Cup (Sri Lanka) &amp; World Cup (South Africa)</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-cricket" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Sharjah U19 Runners-up — UAE Inter-Emirates 2018–19</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Chethiya Gamage -->
+            <div class="leg-card dcr d3">
+                <div style="height:200px;overflow:hidden;position:relative;background:#001f66;">
+                    <img src="{{ url_for('static', filename='img/player_chethiya.webp') }}"
+                         alt="Chethiya Gamage — UAE U19 Cricket, Desert Cubs"
+                         width="400" height="200" loading="lazy"
+                         style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:.9;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 55%);"></div>
+                    <div style="position:absolute;bottom:12px;left:16px;right:16px;">
+                        <span class="leg-badge badge-national">UAE U19</span>
+                    </div>
+                </div>
+                <div style="padding:18px 20px 22px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.4rem;
+                                color:#001f66;text-transform:uppercase;margin-bottom:4px;">Chethiya Gamage</h3>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;">
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-trophy" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            UAE U19 Asia Cup — Bangladesh 2018</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-cricket" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Dubai U19 Runners-up — UAE Inter-Emirates 2018</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-globe" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            UAE U19 — Poolist for Asia Cup &amp; World Cup Qualifiers 2019</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Niel Lobo -->
+            <div class="leg-card dcr">
+                <div style="height:200px;overflow:hidden;position:relative;background:#001f66;">
+                    <img src="{{ url_for('static', filename='img/player_niel.webp') }}"
+                         alt="Niel Lobo — UAE U19 Cricket Captain, Desert Cubs"
+                         width="400" height="200" loading="lazy"
+                         style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:.9;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 55%);"></div>
+                    <div style="position:absolute;bottom:12px;left:16px;right:16px;">
+                        <span class="leg-badge badge-national">UAE U19</span>
+                        <span class="leg-badge badge-ecb">Teen Award Winner</span>
+                    </div>
+                </div>
+                <div style="padding:18px 20px 22px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.4rem;
+                                color:#001f66;text-transform:uppercase;margin-bottom:4px;">Niel Lobo</h3>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;">
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-trophy" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            UAE U19 Asia Cup — Bangladesh 2018</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-shield-alt" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Captained DCCA Elite ECB U17 Academy League 2018–19</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-award" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Winner UAE Teen Awards 2019</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-globe" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            UAE U19 — qualified for Asia Cup (Sri Lanka) &amp; World Cup (South Africa)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Saneen Latheef -->
+            <div class="leg-card dcr d2">
+                <div style="height:200px;overflow:hidden;position:relative;background:#001f66;">
+                    <img src="{{ url_for('static', filename='img/player_saneen.webp') }}"
+                         alt="Saneen Latheef — UAE Cricket, Desert Cubs"
+                         width="400" height="200" loading="lazy"
+                         style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:.9;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 55%);"></div>
+                    <div style="position:absolute;bottom:12px;left:16px;right:16px;">
+                        <span class="leg-badge badge-reserve">UAE U19 Reserve</span>
+                    </div>
+                </div>
+                <div style="padding:18px 20px 22px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.4rem;
+                                color:#001f66;text-transform:uppercase;margin-bottom:4px;">Saneen Latheef</h3>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;">
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-trophy" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Reserve for UAE U19 — Asia Cup &amp; World Cup Qualifiers 2019</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-star" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Sharjah U19 Runners-up — UAE Inter-Emirates 2019</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-chart-line" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Top run scorer for DCCA in ECB U17 League 2018–19 — 1000+ runs that season</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Brandon Martis -->
+            <div class="leg-card dcr d3">
+                <div style="height:200px;overflow:hidden;position:relative;background:#001f66;">
+                    <img src="{{ url_for('static', filename='img/player_brandon.webp') }}"
+                         alt="Brandon Martis — UAE U19 Asia Cup, Desert Cubs"
+                         width="400" height="200" loading="lazy"
+                         style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:.9;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 55%);"></div>
+                    <div style="position:absolute;bottom:12px;left:16px;right:16px;">
+                        <span class="leg-badge badge-national">UAE U19</span>
+                    </div>
+                </div>
+                <div style="padding:18px 20px 22px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.4rem;
+                                color:#001f66;text-transform:uppercase;margin-bottom:4px;">Brandon Martis</h3>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;">
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-trophy" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            Western Region Qualifiers Asia Cup 2017 — Malaysia</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-globe" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            UAE U19 Asia Cup 2017 participant</li>
+                        <li style="display:flex;align-items:flex-start;gap:8px;font-family:'Nunito',sans-serif;font-size:.78rem;color:#374151;">
+                            <i class="fas fa-star" style="color:#FFCC00;font-size:.72rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            DCCA Runners-up — ECB U17 National League 2017–18</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     WOMEN'S CRICKET LEGENDS
+============================================================= -->
+<section style="background:#f0f4ff;padding:80px 0;">
+    <div style="max-width:1200px;margin:0 auto;padding:0 20px;">
+
+        <div style="text-align:center;margin-bottom:48px;" class="dcr">
+            <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;
+                         text-transform:uppercase;letter-spacing:.28em;color:#003399;display:block;margin-bottom:12px;">
+                UAE Women's Cricket</span>
+            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
+                        font-size:clamp(2.2rem,4vw,3.4rem);color:#001f66;
+                        text-transform:uppercase;line-height:1.05;margin-bottom:12px;">
+                Our Women's <span style="color:#FFCC00;-webkit-text-stroke:1px #e6b800;">Champions</span>
+            </h2>
+            <div style="width:60px;height:3px;background:#FFCC00;margin:0 auto 16px;border-radius:2px;"></div>
+            <p style="font-family:'Nunito',sans-serif;font-size:.95rem;color:#475569;max-width:640px;margin:0 auto;">
+                Desert Cubs produced the first-ever ECB Women's League champions in UAE history (2017) and continues to send women to ICC global events.
+            </p>
+        </div>
+
+        <div style="display:grid;gap:20px;grid-template-columns:1fr;">
+            <style>@media(min-width:640px){.wom-grid{grid-template-columns:repeat(2,1fr)!important;}}
+                   @media(min-width:1024px){.wom-grid{grid-template-columns:repeat(4,1fr)!important;}}</style>
+            <div class="wom-grid" style="display:grid;grid-template-columns:1fr;gap:20px;">
+
+            {% for name, img_name, badges, achievements in [
+                ('Esha Oza', 'player_esha.webp',
+                 [('UAE Captain','badge-national'),('ECB Champions','badge-ecb'),('ICC Global','badge-record')],
+                 ['UAE Women\'s Captain &amp; Desert Cubs graduate','Captained DCCA ECB Women\'s League Runners-up 2017–18','ICC Women\'s Global Development Squad — England 2018','ICC Women\'s World T20 Qualifier — Netherlands 2018','World Cup Qualifiers — Thailand 2017']),
+                ('Heena Hotchandani', 'player_heena.webp',
+                 [('ICC T20 Qualifier','badge-national')],
+                 ['ICC Women\'s World T20 Qualifier — Netherlands 2018','DCCA ECB Women\'s League Runners-up 2017–18']),
+                ('Judit Cleetus', 'player_judit.webp',
+                 [('ICC T20 Qualifier','badge-national')],
+                 ['ICC Women\'s World T20 Qualifier — Netherlands 2018','DCCA ECB Women\'s League Runners-up 2017–18']),
+                ('Shivani Sathe', 'player_shivani.webp',
+                 [('World Cup Qualifier','badge-ecb')],
+                 ['World Cup Qualifiers — Thailand 2017','DCCA ECB Women\'s League Runners-up 2017–18','Standby for ICC Women\'s World T20 Qualifier — Netherlands 2018']),
+            ] %}
+            <div class="leg-card dcr d{{ loop.index }}" style="border-top:3px solid #FFCC00;">
+                <div style="height:180px;overflow:hidden;position:relative;background:#001f66;">
+                    <img src="{{ url_for('static', filename='img/' + img_name) }}"
+                         alt="{{ name }} — Desert Cubs Women's Cricket UAE"
+                         width="300" height="180" loading="lazy"
+                         style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:.9;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.8) 0%,transparent 55%);"></div>
+                </div>
+                <div style="padding:16px 18px 20px;">
+                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.3rem;
+                                color:#001f66;text-transform:uppercase;margin-bottom:8px;">{{ name }}</h3>
+                    <div style="margin-bottom:12px;">
+                        {% for badge_text, badge_class in badges %}
+                        <span class="leg-badge {{ badge_class }}" style="font-size:.6rem;">{{ badge_text }}</span>
+                        {% endfor %}
+                    </div>
+                    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;">
+                        {% for ach in achievements %}
+                        <li style="display:flex;align-items:flex-start;gap:7px;font-family:'Nunito',sans-serif;font-size:.76rem;color:#374151;">
+                            <i class="fas fa-check-circle" style="color:#FFCC00;font-size:.7rem;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+                            {{ ach }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     CTA SECTION
+============================================================= -->
+<section style="background:linear-gradient(135deg,#001f66 0%,#003399 100%);padding:80px 20px;text-align:center;overflow:hidden;position:relative;">
+    <div style="position:absolute;inset:0;opacity:.06;background-image:
+                radial-gradient(circle at 20% 50%, #FFCC00 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, #FFCC00 0%, transparent 50%);"></div>
+    <div style="position:relative;z-index:2;max-width:700px;margin:0 auto;" class="dcr">
+        <i class="fas fa-star" style="font-size:2.5rem;color:#FFCC00;display:block;margin-bottom:20px;" aria-hidden="true"></i>
+        <h2 style="font-family:'Teko',sans-serif;font-weight:700;
+                    font-size:clamp(2.5rem,5vw,4rem);color:#ffffff;
+                    text-transform:uppercase;line-height:1.05;margin-bottom:16px;">
+            Your Child Could Be <span style="color:#FFCC00;">Next</span>
+        </h2>
+        <p style="font-family:'Nunito',sans-serif;font-size:1rem;color:#d1d5db;
+                   line-height:1.8;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;">
+            Every legend on this page started in a Desert Cubs session just like the ones happening this week at 6 centres across Dubai and Sharjah. Book a free trial today.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;">
+            <a href="https://wa.me/971501544765" target="_blank" rel="noopener"
+               style="display:inline-flex;align-items:center;gap:10px;font-family:'Nunito',sans-serif;
+                      font-weight:800;padding:16px 36px;border-radius:50px;font-size:.95rem;
+                      background:#FFCC00;color:#001f66;text-decoration:none;">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i> Book Free Trial
+            </a>
+            <a href="/girls-cricket"
+               style="display:inline-flex;align-items:center;gap:10px;font-family:'Nunito',sans-serif;
+                      font-weight:800;padding:16px 36px;border-radius:50px;font-size:.95rem;
+                      border:2px solid rgba(255,255,255,.4);color:#ffffff;text-decoration:none;">
+                <i class="fas fa-female" aria-hidden="true"></i> Girls Cricket Programme
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

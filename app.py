@@ -554,6 +554,18 @@ def summer_camp():
     return render_template('summer_camp.html', meta=meta)
 
 
+@app.route('/legends')
+def legends():
+    meta = seo(
+        title="Legends of the Future | Desert Cubs Cricket Academy Alumni | UAE Cricket Stars",
+        description="Desert Cubs Cricket Academy alumni who represent UAE nationally and internationally. ACC U16 West Zone Cup 2025 winners, UAE U19 World Cup qualifiers, ECB Women's League champions — see our proof of excellence.",
+        keywords="UAE cricket academy success stories, Desert Cubs alumni achievements, UAE national cricket players academy, cricket academy Dubai results, UAE U19 cricket stars, ACC cricket champions UAE, ECB cricket league champions UAE, Akshat Rai cricket UAE, Mohamed Nafees cricket, Kavisha Kumari world record cricket, cricket academy Dubai legends, best cricket results UAE",
+        canonical="https://www.desertcubs.com/legends",
+        og_image="https://www.desertcubs.com/static/img/player_akshat.webp"
+    )
+    return render_template('legends.html', meta=meta)
+
+
 # ---------------------------------------------------------
 # N8N WEBHOOK ENDPOINTS
 # Secure with WEBHOOK_SECRET env var (set X-Webhook-Token header in N8N)
@@ -660,6 +672,7 @@ def sitemap():
         ('/about', '0.9', 'monthly', today),
         ('/girls-cricket', '0.9', 'monthly', today),
         ('/summer-camp', '0.9', 'monthly', today),
+        ('/legends', '0.9', 'monthly', today),
         ('/tournaments', '0.8', 'weekly', today),
         ('/tours', '0.8', 'monthly', today),
         ('/events', '0.8', 'monthly', today),

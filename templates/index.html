@@ -810,42 +810,100 @@
         </div>
 
         <div class="rev-grid">
-            {% for name, loc, text in [
-                ('Mohamed Shakeel','BSA Centre, Dubai Investment Park',
-                 'I enrolled my son in cricket coaching for two weeks during our visit to Dubai. I noticed a significant improvement in his batting, bowling, and fielding skills. Coach Angelo was an absolute pleasure to work with. He spends ample time with each child, ensuring they fully comprehend the concepts. I eagerly anticipate enrolling my son again if we visit Dubai in the future!'),
-                ('Baja Subteam','BSA Centre, Dubai Investment Park',
-                 "I had absolutely no knowledge of cricket before joining Desert Cubs Cricket Academy, but thanks to my coach, Anjalo, everything changed from day one. His way of teaching made the game so simple and enjoyable that I quickly felt like I was playing like a pro. Coach Anjalo is patient, motivating, and extremely skilled at explaining techniques in a way that's easy to understand. He has an amazing ability to build confidence and bring out the best in every player. I feel lucky to be coached by him – truly the best coach anyone could ask for!"),
-                ('Prakash Rathod','Desert Cubs Academy, UAE',
-                 'One of the best cricket academy in UAE with international facilities and coaches with high standards, you must try out and your kids will be in safe hands.'),
-            ] %}
-            <div class="rev-card dcr d{{ loop.index }}"
-                 itemprop="review" itemscope itemtype="https://schema.org/Review">
+
+            <!-- Testimonial 1 — Shivanthi & Malinda Perera -->
+            <div class="rev-card dcr d1" itemprop="review" itemscope itemtype="https://schema.org/Review">
                 <div style="display:flex;gap:4px;margin-bottom:16px;">
-                    {% for _ in range(5) %}
                     <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    {% endfor %}
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
                     <meta itemprop="reviewRating" content="5">
                 </div>
                 <p style="font-family:'Nunito',sans-serif;font-size:.89rem;color:#374151;
                            line-height:1.85;margin-bottom:20px;font-style:italic;"
                    itemprop="reviewBody">
-                    &ldquo;{{ text }}&rdquo;</p>
+                    &ldquo;The coaches taught our sons discipline, sportsmanship, and the mental resilience needed to succeed on and off the field. Both boys were given the opportunity to captain the Under 11 team — and in 2023 we toured the UK together as a family. Memories that will stay with them for a lifetime.&rdquo;</p>
                 <div style="display:flex;align-items:center;gap:13px;
                             border-top:1px solid #f1f5f9;padding-top:16px;">
-                    <div style="width:44px;height:44px;background:linear-gradient(135deg,#001f66,#003399);
-                                border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                        <i class="fas fa-user" style="color:#FFCC00;font-size:1rem;" aria-hidden="true"></i>
-                    </div>
+                    <img src="{{ url_for('static', filename='img/testimonial_shivanthi.webp') }}"
+                         alt="Shivanthi &amp; Malinda Perera — Desert Cubs parents"
+                         width="44" height="44" loading="lazy"
+                         style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;
+                                border:2px solid #FFCC00;">
                     <div>
                         <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.1rem;
                                    color:#001f66;text-transform:uppercase;line-height:1;"
-                           itemprop="author">{{ name }}</p>
+                           itemprop="author">Shivanthi &amp; Malinda Perera</p>
                         <p style="font-family:'Nunito',sans-serif;font-size:.72rem;color:#64748b;font-weight:700;">
-                            {{ loc }}</p>
+                            Parents of Shenul &amp; Denith &mdash; SES Centre</p>
                     </div>
                 </div>
             </div>
-            {% endfor %}
+
+            <!-- Testimonial 2 — Sudhir & Sowmya -->
+            <div class="rev-card dcr d2" itemprop="review" itemscope itemtype="https://schema.org/Review">
+                <div style="display:flex;gap:4px;margin-bottom:16px;">
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
+                    <meta itemprop="reviewRating" content="5">
+                </div>
+                <p style="font-family:'Nunito',sans-serif;font-size:.89rem;color:#374151;
+                           line-height:1.85;margin-bottom:20px;font-style:italic;"
+                   itemprop="reviewBody">
+                    &ldquo;Since Saaketh enrolled in 2021, his growth as a cricketer has been phenomenal — not just in skill but in fitness and mental strength. DCCA&rsquo;s overseas tours to South Africa, UK, and Australia gave him exposure no classroom could ever provide. We strongly believe his cricketing future is in safe hands.&rdquo;</p>
+                <div style="display:flex;align-items:center;gap:13px;
+                            border-top:1px solid #f1f5f9;padding-top:16px;">
+                    <img src="{{ url_for('static', filename='img/testimonial_sudhir.webp') }}"
+                         alt="Sudhir &amp; Sowmya — Desert Cubs parents"
+                         width="44" height="44" loading="lazy"
+                         style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;
+                                border:2px solid #FFCC00;">
+                    <div>
+                        <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.1rem;
+                                   color:#001f66;text-transform:uppercase;line-height:1;"
+                           itemprop="author">Sudhir &amp; Sowmya Mohandas</p>
+                        <p style="font-family:'Nunito',sans-serif;font-size:.72rem;color:#64748b;font-weight:700;">
+                            Parents of Saaketh &mdash; SES Centre</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 — Amitabh & Swati -->
+            <div class="rev-card dcr d3" itemprop="review" itemscope itemtype="https://schema.org/Review">
+                <div style="display:flex;gap:4px;margin-bottom:16px;">
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
+                    <meta itemprop="reviewRating" content="5">
+                </div>
+                <p style="font-family:'Nunito',sans-serif;font-size:.89rem;color:#374151;
+                           line-height:1.85;margin-bottom:20px;font-style:italic;"
+                   itemprop="reviewBody">
+                    &ldquo;Since 2014, Desert Cubs has been an institution that makes learning fun. The MasterClasses with Jonty Rhodes, Chaminda Vaas, and Rumesh Ratnayake gave Akshat advanced-level insights money cannot buy. The coaches are not just technically brilliant — their calmness and humility have made him a better person.&rdquo;</p>
+                <div style="display:flex;align-items:center;gap:13px;
+                            border-top:1px solid #f1f5f9;padding-top:16px;">
+                    <img src="{{ url_for('static', filename='img/testimonial_swati.webp') }}"
+                         alt="Amitabh &amp; Swati — Desert Cubs parents"
+                         width="44" height="44" loading="lazy"
+                         style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;
+                                border:2px solid #FFCC00;">
+                    <div>
+                        <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.1rem;
+                                   color:#001f66;text-transform:uppercase;line-height:1;"
+                           itemprop="author">Amitabh Ranjan &amp; Swati Vats</p>
+                        <p style="font-family:'Nunito',sans-serif;font-size:.72rem;color:#64748b;font-weight:700;">
+                            Parents of Akshat Rai &mdash; SES Centre</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
