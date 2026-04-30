@@ -65,22 +65,8 @@ BRANCHES = [
         "coaches": [
             {"name": "Prosanta Chanda", "role": "Centre In-Charge", "qual": "ICC Level 3 / Cricket Aus Level 2", "img": "coach_prosanta.jpg"},
             {"name": "Chanaka Ediriweerage", "role": "Coach", "qual": "SL Level 2", "img": "coach_chanaka.jpg"},
-            {"name": "Judith Jose Peter", "role": "Coach (Girls)", "qual": "ICC Level 1 / Ex-UAE Player", "img": "coach_judith.jpg"}
-        ]
-    },
-    {
-        "id": "deira-international-school",
-        "name": "Deira Intl. School (DIS)",
-        "area": "Dubai Festival City",
-        "map_url": "https://maps.app.goo.gl/uuRBPjNs5UN61Nmw7",
-        "img": "DIS_Location.jpg",
-        "schedule_img": "DIS_Schedule.jpg",
-        "desc": "Located in Festival City, this centre boasts a natural grass ground and an Astro turf center pitch. Equipped with four side practice nets and modern bowling machines.",
-        "facilities": ["Natural Grass Ground", "Astro Center Pitch", "4 Side Nets", "Bowling Machine"],
-        "coaches": [
-            {"name": "Hashan Silva", "role": "Centre In-Charge", "qual": "ICC Level 1 / Winning Coach U16", "img": "coach_hashan.jpg"},
-            {"name": "Shahzada Saleem", "role": "Senior Coach", "qual": "ACC Level 3", "img": "coach_shahzada.jpg"},
-            {"name": "Priyantha Ganegoda", "role": "Coach", "qual": "ICC Level 1", "img": "coach_priyantha.jpg"}
+            {"name": "Judith Jose Peter", "role": "Coach (Girls)", "qual": "ICC Level 1 / Ex-UAE Player", "img": "coach_judith.jpg"},
+            {"name": "Ruwan Jayakody", "role": "Coach", "qual": "ICC Level 2", "img": "coach_ruwan.jpg"}
         ]
     },
     {
@@ -96,6 +82,21 @@ BRANCHES = [
             {"name": "Muhammad Ejaz", "role": "Centre In-Charge", "qual": "ICC Level 1 / PCB Level 1", "img": "coach_ejaz.jpg"},
             {"name": "Manish Yadav", "role": "Coach", "qual": "SL Level 2", "img": "coach_manish.jpg"},
             {"name": "Nipuna Ratnayake", "role": "Senior Coach", "qual": "ICC Level 2", "img": "coach_nipuna.jpg"}
+        ]
+    },
+    {
+        "id": "deira-international-school",
+        "name": "Deira Intl. School (DIS)",
+        "area": "Dubai Festival City",
+        "map_url": "https://maps.app.goo.gl/uuRBPjNs5UN61Nmw7",
+        "img": "DIS_Location.jpg",
+        "schedule_img": "DIS_Schedule.jpg",
+        "desc": "Located in Festival City, this centre boasts a natural grass ground and an Astro turf center pitch. Equipped with four side practice nets and modern bowling machines.",
+        "facilities": ["Natural Grass Ground", "Astro Center Pitch", "4 Side Nets", "Bowling Machine"],
+        "coaches": [
+            {"name": "Hashan Silva", "role": "Centre In-Charge", "qual": "ICC Level 1 / Winning Coach U16", "img": "coach_hashan.jpg"},
+            {"name": "Shahzada Saleem", "role": "Senior Coach", "qual": "ACC Level 3", "img": "coach_shahzada.jpg"},
+            {"name": "Priyantha Ganegoda", "role": "Coach", "qual": "ICC Level 1", "img": "coach_priyantha.jpg"}
         ]
     },
     {
