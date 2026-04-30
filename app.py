@@ -114,6 +114,7 @@ BRANCHES = [
     },
     {
         "id": "apple-international-school",
+        "active": False,
         "name": "Apple Intl. School (AIS)",
         "area": "Al Karama, Dubai",
         "map_url": "https://maps.app.goo.gl/YKw7RVALgojj7K8a9?g_st=awb",
@@ -300,7 +301,6 @@ SPONSORS = {
         {"name": "Delhi Private School", "short": "DPS", "location": "Jebel Ali, Dubai"},
         {"name": "Deira International School", "short": "DIS", "location": "Festival City, Dubai"},
         {"name": "Star International School", "short": "SIS", "location": "Al Qusais, Dubai"},
-        {"name": "Apple International School", "short": "AIS", "location": "Al Karama, Dubai"},
         {"name": "Baseline Sports Academy", "short": "BSA", "location": "DIP, Dubai"},
     ],
     "cricket_bodies": [
