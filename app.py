@@ -41,16 +41,16 @@ BRANCHES = [
         "name": "Sharjah English School (SES)",
         "area": "Sharjah (Maliha Road)",
         "map_url": "https://maps.app.goo.gl/6SmMmAASK5GRcmwp9",
-        "img": "SES_Location.jpg",
-        "schedule_img": "SES_Schedule.jpg",
+        "img": "SES_Location.webp",
+        "schedule_img": "SES_Schedule.webp",
         "desc": "The crown jewel of our academy. Featuring a full natural grass ground and six natural grass turf center pitches with floodlights. We offer digital scoreboards, live streaming, and a viewing pavilion.",
         "facilities": ["Natural Grass Ground", "6 Center Turf Pitches", "Floodlights", "Video Analysis Room", "Gymnasium", "Digital Scoreboard"],
         "coaches": [
-            {"name": "Murali Sockalingam", "role": "Deputy Head Coach", "qual": "ICC Level 3 / ACC Level 2", "img": "coach_murali.jpg"},
-            {"name": "Aruna Bandaranayaka", "role": "Senior Coach", "qual": "ICC Level 3 / Cricket Aus Level 2", "img": "coach_aruna.jpg"},
-            {"name": "Vishwa Fernandopulle", "role": "Coach", "qual": "SL Level 1 / Umpire", "img": "coach_vishwa.jpg"},
-            {"name": "Janaka Senevirathna", "role": "Senior Coach", "qual": "ICC Level 2", "img": "coach_janaka.jpg"},
-            {"name": "Shanesh Weerawansha", "role": "Senior Coach", "qual": "ICC Level 2", "img": "coach_shanesh.jpg"}
+            {"name": "Murali Sockalingam", "role": "Deputy Head Coach", "qual": "ICC Level 3 / ACC Level 2", "img": "coach_murali.webp"},
+            {"name": "Aruna Bandaranayaka", "role": "Senior Coach", "qual": "ICC Level 3 / Cricket Aus Level 2", "img": "coach_aruna.webp"},
+            {"name": "Vishwa Fernandopulle", "role": "Coach", "qual": "SL Level 1 / Umpire", "img": "coach_vishwa.webp"},
+            {"name": "Janaka Senevirathna", "role": "Senior Coach", "qual": "ICC Level 2", "img": "coach_janaka.webp"},
+            {"name": "Shanesh Weerawansha", "role": "Senior Coach", "qual": "ICC Level 2", "img": "coach_shanesh.webp"}
         ]
     },
     {
@@ -58,15 +58,15 @@ BRANCHES = [
         "name": "Delhi Private School (DPS)",
         "area": "Jebel Ali, Dubai",
         "map_url": "https://maps.app.goo.gl/sojJP1fK8g18sFsE7",
-        "img": "DPS_Location.jpg",
-        "schedule_img": "DPS_Schedule.jpg",
+        "img": "DPS_Location.webp",
+        "schedule_img": "DPS_Schedule.webp",
         "desc": "A premium facility in The Gardens. Features a high-quality Astro turf ground with a center pitch and floodlights, perfect for evening high-performance training.",
         "facilities": ["Astro Turf Ground", "Floodlights", "3 Practice Nets", "Bowling Machine", "Pavilion"],
         "coaches": [
-            {"name": "Prosanta Chanda", "role": "Centre In-Charge", "qual": "ICC Level 3 / Cricket Aus Level 2", "img": "coach_prosanta.jpg"},
-            {"name": "Chanaka Ediriweerage", "role": "Coach", "qual": "SL Level 2", "img": "coach_chanaka.jpg"},
-            {"name": "Judith Jose Peter", "role": "Coach (Girls)", "qual": "ICC Level 1 / Ex-UAE Player", "img": "coach_judith.jpg"},
-            {"name": "Ruwan Jayakody", "role": "Coach", "qual": "ICC Level 2", "img": "coach_ruwan.jpg"}
+            {"name": "Prosanta Chanda", "role": "Centre In-Charge", "qual": "ICC Level 3 / Cricket Aus Level 2", "img": "coach_prosanta.webp"},
+            {"name": "Chanaka Ediriweerage", "role": "Coach", "qual": "SL Level 2", "img": "coach_chanaka.webp"},
+            {"name": "Judith Jose Peter", "role": "Coach (Girls)", "qual": "ICC Level 1 / Ex-UAE Player", "img": "coach_judith.webp"},
+            {"name": "Ruwan Jayakody", "role": "Coach", "qual": "ICC Level 2", "img": "coach_ruwan.webp"}
         ]
     },
     {
@@ -74,14 +74,14 @@ BRANCHES = [
         "name": "Star Intl. School (SIS)",
         "area": "Al Qusais 3, Dubai",
         "map_url": "https://g.co/kgs/wnL4YE",
-        "img": "SIS_Location.jpg",
-        "schedule_img": "SIS_Schedule.jpg",
+        "img": "SIS_Location.webp",
+        "schedule_img": "SIS_Schedule.webp",
         "desc": "A versatile sports hub in Al Qusais. Features an Astro turf ground, six practice nets with floodlights, and access to an indoor pool for cross-training.",
         "facilities": ["Astro Turf Ground", "6 Practice Nets", "Indoor Pool", "Floodlights"],
         "coaches": [
-            {"name": "Muhammad Ejaz", "role": "Centre In-Charge", "qual": "ICC Level 1 / PCB Level 1", "img": "coach_ejaz.jpg"},
-            {"name": "Manish Yadav", "role": "Coach", "qual": "SL Level 2", "img": "coach_manish.jpg"},
-            {"name": "Nipuna Ratnayake", "role": "Senior Coach", "qual": "ICC Level 2", "img": "coach_nipuna.jpg"}
+            {"name": "Muhammad Ejaz", "role": "Centre In-Charge", "qual": "ICC Level 1 / PCB Level 1", "img": "coach_ejaz.webp"},
+            {"name": "Manish Yadav", "role": "Coach", "qual": "SL Level 2", "img": "coach_manish.webp"},
+            {"name": "Nipuna Ratnayake", "role": "Senior Coach", "qual": "ICC Level 2", "img": "coach_nipuna.webp"}
         ]
     },
     {
@@ -89,14 +89,14 @@ BRANCHES = [
         "name": "Deira Intl. School (DIS)",
         "area": "Dubai Festival City",
         "map_url": "https://maps.app.goo.gl/uuRBPjNs5UN61Nmw7",
-        "img": "DIS_Location.jpg",
-        "schedule_img": "DIS_Schedule.jpg",
+        "img": "DIS_Location.webp",
+        "schedule_img": "DIS_Schedule.webp",
         "desc": "Located in Festival City, this centre boasts a natural grass ground and an Astro turf center pitch. Equipped with four side practice nets and modern bowling machines.",
         "facilities": ["Natural Grass Ground", "Astro Center Pitch", "4 Side Nets", "Bowling Machine"],
         "coaches": [
-            {"name": "Hashan Silva", "role": "Centre In-Charge", "qual": "ICC Level 1 / Winning Coach U16", "img": "coach_hashan.jpg"},
-            {"name": "Shahzada Saleem", "role": "Senior Coach", "qual": "ACC Level 3", "img": "coach_shahzada.jpg"},
-            {"name": "Priyantha Ganegoda", "role": "Coach", "qual": "ICC Level 1", "img": "coach_priyantha.jpg"}
+            {"name": "Hashan Silva", "role": "Centre In-Charge", "qual": "ICC Level 1 / Winning Coach U16", "img": "coach_hashan.webp"},
+            {"name": "Shahzada Saleem", "role": "Senior Coach", "qual": "ACC Level 3", "img": "coach_shahzada.webp"},
+            {"name": "Priyantha Ganegoda", "role": "Coach", "qual": "ICC Level 1", "img": "coach_priyantha.webp"}
         ]
     },
     {
@@ -104,13 +104,13 @@ BRANCHES = [
         "name": "Baseline Sports Academy (BSA)",
         "area": "Dubai Investment Park (DIP)",
         "map_url": "https://maps.app.goo.gl/K5Azn4sgXpHTkJo8A",
-        "img": "BSA_Location.jpg",
-        "schedule_img": "BSA_Schedule.jpg",
+        "img": "BSA_Location.webp",
+        "schedule_img": "BSA_Schedule.webp",
         "desc": "State-of-the-art indoor cricket facility — one of a kind in the UAE. Perfect for summer training, equipped with 5 specialized cricket lanes and video analysis technology.",
         "facilities": ["Indoor Facility", "5 Cricket Lanes", "Video Analysis", "AC Controlled", "Year-Round Training"],
         "coaches": [
-            {"name": "Manju Abeysekera", "role": "Coach", "qual": "ICC Level 1", "img": "coach_manju.jpg"},
-            {"name": "Anjalo Silva", "role": "Centre In-Charge", "qual": "SL Level 1", "img": "coach_anjalo.jpg"},
+            {"name": "Manju Abeysekera", "role": "Coach", "qual": "ICC Level 1", "img": "coach_manju.webp"},
+            {"name": "Anjalo Silva", "role": "Centre In-Charge", "qual": "SL Level 1", "img": "coach_anjalo.webp"},
             {"name": "Tiran Wijesuriya", "role": "Coach", "qual": "ICC Level 1", "img": "coach_tiran.webp"}
         ]
     },
@@ -120,13 +120,13 @@ BRANCHES = [
         "name": "Apple Intl. School (AIS)",
         "area": "Al Karama, Dubai",
         "map_url": "https://maps.app.goo.gl/YKw7RVALgojj7K8a9?g_st=awb",
-        "img": "AIS_Location.jpg",
-        "schedule_img": "AIS_Schedule.jpg",
+        "img": "AIS_Location.webp",
+        "schedule_img": "AIS_Schedule.webp",
         "desc": "Serving the heart of Dubai in Karama. Features three side practice nets with Astro turf pitches and a dedicated fielding and fitness area.",
         "facilities": ["3 Astro Nets", "Fielding Area", "Floodlights", "Bowling Machine"],
         "coaches": [
-            {"name": "Ruwan Jayakody", "role": "Centre In-Charge", "qual": "ICC Level 2", "img": "coach_ruwan.jpg"},
-            {"name": "Moin Sabir", "role": "Coach", "qual": "PCB Level 1", "img": "coach_moin.jpg"}
+            {"name": "Ruwan Jayakody", "role": "Centre In-Charge", "qual": "ICC Level 2", "img": "coach_ruwan.webp"},
+            {"name": "Moin Sabir", "role": "Coach", "qual": "PCB Level 1", "img": "coach_moin.webp"}
         ]
     },
 ]
