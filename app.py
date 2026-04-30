@@ -110,7 +110,8 @@ BRANCHES = [
         "facilities": ["Indoor Facility", "5 Cricket Lanes", "Video Analysis", "AC Controlled", "Year-Round Training"],
         "coaches": [
             {"name": "Manju Abeysekera", "role": "Coach", "qual": "ICC Level 1", "img": "coach_manju.jpg"},
-            {"name": "Anjalo Silva", "role": "Centre In-Charge", "qual": "SL Level 1", "img": "coach_anjalo.jpg"}
+            {"name": "Anjalo Silva", "role": "Centre In-Charge", "qual": "SL Level 1", "img": "coach_anjalo.jpg"},
+            {"name": "Tiran Wijesuriya", "role": "Coach", "qual": "ICC Level 1", "img": "coach_tiran.webp"}
         ]
     },
     {
