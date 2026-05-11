@@ -87,6 +87,10 @@
     border-radius: 2px;
     margin-bottom: 12px;
 }
+@media (min-width: 768px) {
+    .canterbury-text { order: 1; }
+    .canterbury-img  { order: 2; }
+}
 </style>
 {% endblock %}
 
@@ -94,6 +98,15 @@
 
 <!-- === HERO SECTION === -->
 <section class="hl-hero">
+    <!-- Port City decorative image — right side, transparent -->
+    <div style="position:absolute; inset:0; z-index:1; pointer-events:none; overflow:hidden;">
+        <div style="position:absolute; right:0; top:0; bottom:0; width:62%;">
+            <img src="{{ url_for('static', filename='img/homelands/portcity.webp') }}"
+                 alt="" aria-hidden="true"
+                 style="width:100%; height:100%; object-fit:cover; object-position:center; opacity:0.18;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to right, #001040 0%, rgba(0,16,64,0.4) 45%, rgba(0,16,64,0) 100%);"></div>
+        </div>
+    </div>
     <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 py-20">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
 
@@ -255,7 +268,12 @@
         <!-- Project 2: Canterbury -->
         <div class="project-card mb-8">
             <div class="grid md:grid-cols-2">
-                <div class="p-8 flex flex-col justify-center order-2 md:order-1">
+                <div class="overflow-hidden canterbury-img">
+                    <img src="{{ url_for('static', filename='img/homelands/canterbury.webp') }}"
+                         alt="Canterbury Lexus Golf Resort Piliyandala - Home Lands"
+                         class="project-img h-full" loading="lazy" width="600" height="400">
+                </div>
+                <div class="p-8 flex flex-col justify-center canterbury-text">
                     <span class="gold-badge mb-4">Piliyandala — Kahathuduwa</span>
                     <h3 class="font-display text-3xl font-black text-cubs-blue uppercase mb-3">Canterbury Lexus Golf Resort</h3>
                     <p class="text-gray-500 text-sm font-bold uppercase tracking-wide mb-4">Sri Lanka's First Victorian-Style Golf Resort — Phase 2 Now Available</p>
@@ -270,11 +288,6 @@
                        style="background:#001f66; color:#FFCC00; letter-spacing:0.06em;">
                         <i class="fas fa-envelope"></i> Enquire Now
                     </a>
-                </div>
-                <div class="overflow-hidden order-1 md:order-2">
-                    <img src="{{ url_for('static', filename='img/homelands/canterbury.webp') }}"
-                         alt="Canterbury Lexus Golf Resort Piliyandala - Home Lands"
-                         class="project-img h-full" loading="lazy" width="600" height="400">
                 </div>
             </div>
         </div>
@@ -309,22 +322,22 @@
         <!-- Projects 4 & 5 — 2 columns -->
         <div class="grid md:grid-cols-2 gap-8 mb-8">
 
-            <!-- Greendale Retirement -->
+            <!-- Pentara Residencies -->
             <div class="project-card flex flex-col">
                 <div class="overflow-hidden" style="height:220px;">
                     <img src="{{ url_for('static', filename='img/homelands/pentara.webp') }}"
-                         alt="Greendale Retirement Resort Sri Lanka - Home Lands"
-                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" width="600" height="220">
+                         alt="Pentara Residencies Colombo - Home Lands"
+                         class="w-full h-full object-cover transition-transform duration-700" loading="lazy" width="600" height="220">
                 </div>
                 <div class="p-7 flex flex-col flex-1">
-                    <span class="gold-badge mb-3">Senior Living</span>
-                    <h3 class="font-display text-2xl font-black text-cubs-blue uppercase mb-2">Greendale Retirement Resort</h3>
-                    <p class="text-gray-500 text-xs font-bold uppercase tracking-wide mb-3">Sri Lanka's First International Standard Retirement Village</p>
-                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">Comprising 260 Californian-style cottages and 96 apartment suites designed for premier senior citizens (55+). A complete resort lifestyle with on-site medical facilities, heated pools, and a vibrant community clubhouse.</p>
+                    <span class="gold-badge mb-3">Colombo — Thummulla Handiya</span>
+                    <h3 class="font-display text-2xl font-black text-cubs-blue uppercase mb-2">Pentara Residencies</h3>
+                    <p class="text-gray-500 text-xs font-bold uppercase tracking-wide mb-3">The Address in Colombo — Twin Towers Rising Over 40 Levels</p>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">Soaring twin towers bordering the elite neighbourhoods of Colombo 3, 4, 5, and 7. Home to Sri Lanka's first 5-Star Floating Sky Restaurant, a Cantilevered Sky Pool, Sky Bridge, and 45+ star-class amenities.</p>
                     <ul class="space-y-1 text-sm text-gray-600 mb-6 flex-1">
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold text-xs"></i> 260 Californian cottages + 96 suites</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold text-xs"></i> On-site medical & wellness center</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold text-xs"></i> 50+ resort-class facilities</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold text-xs"></i> Sri Lanka's first 5-Star Floating Sky Restaurant</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold text-xs"></i> Cantilevered Sky Pool & Sky Bridge</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold text-xs"></i> Sky Villas, Penthouses & Sky Mansions</li>
                     </ul>
                     <a href="#contact" class="inline-flex items-center gap-2 font-black uppercase text-sm px-5 py-3 rounded-xl self-start transition-all"
                        style="background:#001f66; color:#FFCC00; letter-spacing:0.06em; font-size:0.78rem;">
@@ -368,7 +381,7 @@
                 <div>
                     <span class="gold-badge mb-4">And Many More...</span>
                     <h3 class="font-display text-3xl font-black text-white uppercase mt-3 mb-2">Port City Colombo & More</h3>
-                    <p class="text-gray-300 text-sm max-w-md">Including Pentara Colombo, Serene Heights, and upcoming premium projects. As a Desert Cubs member, you get access to the full Home Lands portfolio with exclusive benefits.</p>
+                    <p class="text-gray-300 text-sm max-w-md">Including Greendale Retirement Resort, Serene Heights, and upcoming premium projects. As a Desert Cubs member, you get access to the full Home Lands portfolio with exclusive benefits.</p>
                     <a href="#contact" class="inline-flex items-center gap-2 font-black uppercase text-sm px-6 py-3 rounded-xl mt-5 transition-all"
                        style="background:#FFCC00; color:#001f66; letter-spacing:0.06em;">
                         <i class="fas fa-list"></i> See All Projects
