@@ -1,0 +1,492 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": "{{ meta.title }}",
+      "description": "{{ meta.description }}",
+      "url": "{{ meta.canonical }}",
+      "provider": {
+        "@type": "Organization",
+        "name": "Desert Cubs Cricket Academy",
+        "url": "https://www.desertcubs.com"
+      }
+    }
+  ]
+}
+</script>
+<style>
+.hl-hero {
+    background: linear-gradient(135deg, #001f66 0%, #001040 50%, #001f66 100%);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.hl-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%23FFCC00" opacity="0.08"/><circle cx="80" cy="40" r="1.5" fill="%23FFCC00" opacity="0.05"/><circle cx="50" cy="70" r="1" fill="%23FFCC00" opacity="0.06"/><circle cx="10" cy="80" r="2" fill="%23FFCC00" opacity="0.04"/><circle cx="90" cy="90" r="1" fill="%23FFCC00" opacity="0.07"/></svg>') repeat;
+    opacity: 0.6;
+}
+.project-card {
+    background: #ffffff;
+    border: 1.5px solid #e8ecf4;
+    border-radius: 22px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(.16,1,.3,1), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,51,153,0.12);
+    border-color: #FFCC00;
+}
+.project-img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    transition: transform 0.65s cubic-bezier(.16,1,.3,1);
+}
+.project-card:hover .project-img {
+    transform: scale(1.04);
+}
+.gold-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #FFCC00;
+    color: #001f66;
+    font-weight: 900;
+    font-size: 0.7rem;
+    padding: 5px 14px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+.benefit-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,204,0,0.2);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+.benefit-card:hover {
+    background: rgba(255,255,255,0.12);
+}
+.section-gold-bar {
+    width: 48px;
+    height: 4px;
+    background: #FFCC00;
+    border-radius: 2px;
+    margin-bottom: 12px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- === HERO SECTION === -->
+<section class="hl-hero">
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 py-20">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+            <div>
+                <!-- Partnership badge -->
+                <div class="flex items-center gap-4 mb-6">
+                    <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}"
+                         alt="Desert Cubs Cricket Academy" class="w-14 h-14 object-contain">
+                    <div class="w-8 h-px bg-cubs-gold opacity-60"></div>
+                    <img src="{{ url_for('static', filename='img/homelands/homeland_logo.webp') }}"
+                         alt="Home Lands Real Estate" class="h-10 object-contain brightness-200">
+                </div>
+
+                <!-- Eyebrow -->
+                <span class="gold-badge mb-5 inline-flex">
+                    <i class="fas fa-handshake"></i> Exclusive Partnership
+                </span>
+
+                <!-- Headline -->
+                <h1 class="font-display text-5xl md:text-6xl font-black text-white uppercase leading-none mb-5 drop-shadow-lg">
+                    Secure Your<br>
+                    <span style="color:#FFCC00;">Future</span> in<br>
+                    Sri Lanka
+                </h1>
+
+                <p class="text-gray-300 text-lg leading-relaxed mb-8">
+                    Desert Cubs Cricket Academy has partnered with <strong class="text-white">Home Lands — Sri Lanka's #1 Real Estate Developer</strong>. As a Desert Cubs member, you get exclusive access to some of the most prestigious property investments in Sri Lanka, with special member-only discounts unavailable to the public.
+                </p>
+
+                <!-- Quick stats -->
+                <div class="grid grid-cols-3 gap-4 mb-8">
+                    <div style="background:rgba(255,204,0,0.1); border:1px solid rgba(255,204,0,0.3); border-radius:14px; padding:16px; text-align:center;">
+                        <p class="font-black text-3xl" style="color:#FFCC00;">#1</p>
+                        <p class="text-gray-300 text-xs mt-1 font-bold uppercase tracking-wide">Sri Lanka<br>Developer</p>
+                    </div>
+                    <div style="background:rgba(255,204,0,0.1); border:1px solid rgba(255,204,0,0.3); border-radius:14px; padding:16px; text-align:center;">
+                        <p class="font-black text-3xl" style="color:#FFCC00;">600+</p>
+                        <p class="text-gray-300 text-xs mt-1 font-bold uppercase tracking-wide">Luxury<br>Units</p>
+                    </div>
+                    <div style="background:rgba(255,204,0,0.1); border:1px solid rgba(255,204,0,0.3); border-radius:14px; padding:16px; text-align:center;">
+                        <p class="font-black text-3xl" style="color:#FFCC00;">5+</p>
+                        <p class="text-gray-300 text-xs mt-1 font-bold uppercase tracking-wide">Premium<br>Projects</p>
+                    </div>
+                </div>
+
+                <a href="#contact" class="inline-flex items-center gap-3 font-black uppercase text-sm px-8 py-4 rounded-xl transition-all"
+                   style="background:#FFCC00; color:#001f66; letter-spacing:0.06em;">
+                    <i class="fas fa-phone"></i> Enquire as a Member
+                </a>
+            </div>
+
+            <!-- Partnership photos -->
+            <div class="hidden lg:grid grid-cols-2 gap-4">
+                <div class="rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                    <img src="{{ url_for('static', filename='img/homelands/partnership_1.webp') }}"
+                         alt="Desert Cubs and Home Lands partnership signing"
+                         class="w-full h-64 object-cover" width="450" height="256">
+                </div>
+                <div class="rounded-2xl overflow-hidden shadow-2xl border border-white/10 mt-8">
+                    <img src="{{ url_for('static', filename='img/homelands/partnership_2.webp') }}"
+                         alt="Desert Cubs and Home Lands partnership team"
+                         class="w-full h-64 object-cover" width="450" height="256">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- === MOBILE PARTNERSHIP PHOTOS === -->
+<section class="lg:hidden bg-cubs-blue py-8">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 gap-4">
+        <div class="rounded-2xl overflow-hidden shadow-xl">
+            <img src="{{ url_for('static', filename='img/homelands/partnership_1.webp') }}"
+                 alt="Desert Cubs and Home Lands partnership" class="w-full h-48 object-cover" width="400" height="192" loading="lazy">
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-xl">
+            <img src="{{ url_for('static', filename='img/homelands/partnership_2.webp') }}"
+                 alt="Desert Cubs and Home Lands team" class="w-full h-48 object-cover" width="400" height="192" loading="lazy">
+        </div>
+    </div>
+</section>
+
+
+<!-- === EXCLUSIVE MEMBER BENEFITS === -->
+<section style="background:#f8fafc; padding:80px 0;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+            <div class="section-gold-bar mx-auto"></div>
+            <span class="gold-badge mb-4">Member Benefits</span>
+            <h2 class="font-display text-4xl font-black text-cubs-blue uppercase mt-4">Why This Partnership<br>Benefits You</h2>
+            <p class="text-gray-600 mt-4 max-w-2xl mx-auto">As a Desert Cubs member, you have access to investment benefits that are simply not available to the general public. We have negotiated directly with Home Lands Dubai so our community can invest with confidence.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center">
+                <div class="w-16 h-16 bg-cubs-blue rounded-2xl flex items-center justify-center mx-auto mb-5">
+                    <i class="fas fa-percent text-cubs-gold text-2xl"></i>
+                </div>
+                <h3 class="font-black text-cubs-blue uppercase text-base mb-3">Exclusive Member Discounts</h3>
+                <p class="text-gray-600 text-sm">Special discounted pricing on selected Home Lands projects — exclusive to Desert Cubs members. Savings unavailable to the general public.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center">
+                <div class="w-16 h-16 bg-cubs-blue rounded-2xl flex items-center justify-center mx-auto mb-5">
+                    <i class="fas fa-star text-cubs-gold text-2xl"></i>
+                </div>
+                <h3 class="font-black text-cubs-blue uppercase text-base mb-3">Priority Access</h3>
+                <p class="text-gray-600 text-sm">First access to new project launches and premium unit selections before public release. Limited units available — members get first choice.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center">
+                <div class="w-16 h-16 bg-cubs-blue rounded-2xl flex items-center justify-center mx-auto mb-5">
+                    <i class="fas fa-shield-alt text-cubs-gold text-2xl"></i>
+                </div>
+                <h3 class="font-black text-cubs-blue uppercase text-base mb-3">Guided by Desert Cubs</h3>
+                <p class="text-gray-600 text-sm">You deal with Desert Cubs — we deal with Home Lands. Our team manages your enquiry end-to-end, giving you the confidence of a trusted intermediary.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- === FEATURED INVESTMENT PROJECTS === -->
+<section style="background:#ffffff; padding:80px 0;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+            <div class="section-gold-bar mx-auto"></div>
+            <span class="gold-badge mb-4">Featured Projects</span>
+            <h2 class="font-display text-4xl font-black text-cubs-blue uppercase mt-4">Exclusive Sri Lankan<br>Investment Opportunities</h2>
+            <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Home Lands has built a reputation as Sri Lanka's most trusted developer through decades of delivering excellence. These are their flagship projects, now available to Desert Cubs members with exclusive benefits.</p>
+        </div>
+
+        <!-- Project 1: BayFonte Marina -->
+        <div class="project-card mb-8">
+            <div class="grid md:grid-cols-2">
+                <div class="overflow-hidden">
+                    <img src="{{ url_for('static', filename='img/homelands/bayfonte_marina.webp') }}"
+                         alt="BayFonte Marina Resort Negombo - Home Lands"
+                         class="project-img h-full" loading="lazy" width="600" height="400">
+                </div>
+                <div class="p-8 flex flex-col justify-center">
+                    <span class="gold-badge mb-4">Negombo Lagoon</span>
+                    <h3 class="font-display text-3xl font-black text-cubs-blue uppercase mb-3">BayFonte Marina Resort & Apartments</h3>
+                    <p class="text-gray-500 text-sm font-bold uppercase tracking-wide mb-4">Sri Lanka's First Luxury Tourist Resort with Private Yacht & Jet Ski Club</p>
+                    <p class="text-gray-600 mb-5 leading-relaxed">Nestled along the scenic Negombo Lagoon, BayFonte Marina is a first-of-its-kind concept in Sri Lanka — resort-style living with a private yacht and jet ski club, breathtaking lagoon views, and a lifestyle inspired by the area's rich seafaring heritage.</p>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold"></i> Private yacht & jet ski club — unique in Sri Lanka</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold"></i> Breathtaking Negombo Lagoon views</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold"></i> Ideal for high-yield holiday rental investment</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold"></i> Serene second home opportunity</li>
+                    </ul>
+                    <a href="#contact" class="inline-flex items-center gap-2 font-black uppercase text-sm px-6 py-3 rounded-xl self-start transition-all"
+                       style="background:#001f66; color:#FFCC00; letter-spacing:0.06em;">
+                        <i class="fas fa-envelope"></i> Enquire Now
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2: Canterbury -->
+        <div class="project-card mb-8">
+            <div class="grid md:grid-cols-2">
+                <div class="p-8 flex flex-col justify-center order-2 md:order-1">
+                    <span class="gold-badge mb-4">Piliyandala — Kahathuduwa</span>
+                    <h3 class="font-display text-3xl font-black text-cubs-blue uppercase mb-3">Canterbury Lexus Golf Resort</h3>
+                    <p class="text-gray-500 text-sm font-bold uppercase tracking-wide mb-4">Sri Lanka's First Victorian-Style Golf Resort — Phase 2 Now Available</p>
+                    <p class="text-gray-600 mb-5 leading-relaxed">Set within the sprawling greens of a 9-hole golf course, Canterbury Lexus is a revolutionary development unlike anything Sri Lanka has seen before. Following the record-breaking success of Phase 1, Phase 2 offers a rare second chance to own in this prestigious development.</p>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold"></i> 9-hole golf course with pro training center</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold"></i> Over 50 world-class resort facilities</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold"></i> Swimming pools, tennis courts, wellness center</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold"></i> Victorian architecture — unique lifestyle concept</li>
+                    </ul>
+                    <a href="#contact" class="inline-flex items-center gap-2 font-black uppercase text-sm px-6 py-3 rounded-xl self-start transition-all"
+                       style="background:#001f66; color:#FFCC00; letter-spacing:0.06em;">
+                        <i class="fas fa-envelope"></i> Enquire Now
+                    </a>
+                </div>
+                <div class="overflow-hidden order-1 md:order-2">
+                    <img src="{{ url_for('static', filename='img/homelands/canterbury.webp') }}"
+                         alt="Canterbury Lexus Golf Resort Piliyandala - Home Lands"
+                         class="project-img h-full" loading="lazy" width="600" height="400">
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3: Oceana -->
+        <div class="project-card mb-8">
+            <div class="grid md:grid-cols-2">
+                <div class="overflow-hidden">
+                    <img src="{{ url_for('static', filename='img/homelands/oceana.webp') }}"
+                         alt="Oceana Beach Resort Apartments Wadduwa - Home Lands"
+                         class="project-img h-full" loading="lazy" width="600" height="400">
+                </div>
+                <div class="p-8 flex flex-col justify-center">
+                    <span class="gold-badge mb-4">Wadduwa Beachfront</span>
+                    <h3 class="font-display text-3xl font-black text-cubs-blue uppercase mb-3">Oceana Beach Resort Apartments</h3>
+                    <p class="text-gray-500 text-sm font-bold uppercase tracking-wide mb-4">Ultimate Beachfront Luxury on Sri Lanka's Pristine South-West Coast</p>
+                    <p class="text-gray-600 mb-5 leading-relaxed">Designed for those who seek the tranquil sound of the ocean and the luxury of a world-class resort. Oceana's apartments offer premium finishes, direct beach access, and resort amenities that make these a top choice for discerning luxury investors.</p>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold"></i> Direct beachfront — Wadduwa, South-West Sri Lanka</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold"></i> World-class resort amenities included</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold"></i> Premium finishes and interior design</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold"></i> Strong holiday rental yield potential</li>
+                    </ul>
+                    <a href="#contact" class="inline-flex items-center gap-2 font-black uppercase text-sm px-6 py-3 rounded-xl self-start transition-all"
+                       style="background:#001f66; color:#FFCC00; letter-spacing:0.06em;">
+                        <i class="fas fa-envelope"></i> Enquire Now
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects 4 & 5 — 2 columns -->
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+
+            <!-- Greendale Retirement -->
+            <div class="project-card flex flex-col">
+                <div class="overflow-hidden" style="height:220px;">
+                    <img src="{{ url_for('static', filename='img/homelands/pentara.webp') }}"
+                         alt="Greendale Retirement Resort Sri Lanka - Home Lands"
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" width="600" height="220">
+                </div>
+                <div class="p-7 flex flex-col flex-1">
+                    <span class="gold-badge mb-3">Senior Living</span>
+                    <h3 class="font-display text-2xl font-black text-cubs-blue uppercase mb-2">Greendale Retirement Resort</h3>
+                    <p class="text-gray-500 text-xs font-bold uppercase tracking-wide mb-3">Sri Lanka's First International Standard Retirement Village</p>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">Comprising 260 Californian-style cottages and 96 apartment suites designed for premier senior citizens (55+). A complete resort lifestyle with on-site medical facilities, heated pools, and a vibrant community clubhouse.</p>
+                    <ul class="space-y-1 text-sm text-gray-600 mb-6 flex-1">
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold text-xs"></i> 260 Californian cottages + 96 suites</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold text-xs"></i> On-site medical & wellness center</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold text-xs"></i> 50+ resort-class facilities</li>
+                    </ul>
+                    <a href="#contact" class="inline-flex items-center gap-2 font-black uppercase text-sm px-5 py-3 rounded-xl self-start transition-all"
+                       style="background:#001f66; color:#FFCC00; letter-spacing:0.06em; font-size:0.78rem;">
+                        <i class="fas fa-envelope"></i> Enquire Now
+                    </a>
+                </div>
+            </div>
+
+            <!-- Waterdale Colombo -->
+            <div class="project-card flex flex-col">
+                <div class="overflow-hidden" style="height:220px;">
+                    <img src="{{ url_for('static', filename='img/homelands/waterdale.webp') }}"
+                         alt="Waterdale Colombo Luxury Apartments - Home Lands"
+                         class="w-full h-full object-cover transition-transform duration-700" loading="lazy" width="600" height="220">
+                </div>
+                <div class="p-7 flex flex-col flex-1">
+                    <span class="gold-badge mb-3">Colombo City</span>
+                    <h3 class="font-display text-2xl font-black text-cubs-blue uppercase mb-2">Waterdale Colombo</h3>
+                    <p class="text-gray-500 text-xs font-bold uppercase tracking-wide mb-3">Urban Luxury at Its Absolute Peak</p>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">High-rise apartments in the heart of Colombo, offering unmatched urban convenience and modern architectural elegance. Waterdale is the choice for those who want to be at the centre of Sri Lanka's most dynamic city.</p>
+                    <ul class="space-y-1 text-sm text-gray-600 mb-6 flex-1">
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold text-xs"></i> Prime Colombo city centre location</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold text-xs"></i> Modern high-rise architectural design</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-cubs-gold text-xs"></i> Strong capital appreciation potential</li>
+                    </ul>
+                    <a href="#contact" class="inline-flex items-center gap-2 font-black uppercase text-sm px-5 py-3 rounded-xl self-start transition-all"
+                       style="background:#001f66; color:#FFCC00; letter-spacing:0.06em; font-size:0.78rem;">
+                        <i class="fas fa-envelope"></i> Enquire Now
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Port City teaser -->
+        <div class="rounded-2xl overflow-hidden relative" style="height:280px;">
+            <img src="{{ url_for('static', filename='img/homelands/portcity.webp') }}"
+                 alt="Port City Colombo - Home Lands Projects"
+                 class="w-full h-full object-cover" loading="lazy" width="1200" height="280">
+            <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(0,31,102,0.95) 0%, rgba(0,31,102,0.6) 60%, transparent 100%);"></div>
+            <div class="absolute inset-0 flex items-center px-10">
+                <div>
+                    <span class="gold-badge mb-4">And Many More...</span>
+                    <h3 class="font-display text-3xl font-black text-white uppercase mt-3 mb-2">Port City Colombo & More</h3>
+                    <p class="text-gray-300 text-sm max-w-md">Including Pentara Colombo, Serene Heights, and upcoming premium projects. As a Desert Cubs member, you get access to the full Home Lands portfolio with exclusive benefits.</p>
+                    <a href="#contact" class="inline-flex items-center gap-2 font-black uppercase text-sm px-6 py-3 rounded-xl mt-5 transition-all"
+                       style="background:#FFCC00; color:#001f66; letter-spacing:0.06em;">
+                        <i class="fas fa-list"></i> See All Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- === WHY INVEST NOW === -->
+<section style="background:#001f66; padding:80px 0;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+            <div class="section-gold-bar mx-auto"></div>
+            <h2 class="font-display text-4xl font-black text-white uppercase mt-4">Why Invest in Sri Lanka<br><span style="color:#FFCC00;">Right Now?</span></h2>
+            <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Sri Lanka's real estate market is experiencing a strong resurgence. For NRI investors and the UAE diaspora community, now is one of the most strategic windows to enter the market.</p>
+        </div>
+        <div class="grid md:grid-cols-4 gap-6">
+            <div class="benefit-card">
+                <i class="fas fa-chart-line text-cubs-gold text-3xl mb-4"></i>
+                <h4 class="font-black text-white uppercase text-sm mb-2">Market Resurgence</h4>
+                <p class="text-gray-400 text-sm">Sri Lanka's property market is rebounding strongly, creating ideal conditions for early investors to secure premium assets at competitive prices.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-shield-alt text-cubs-gold text-3xl mb-4"></i>
+                <h4 class="font-black text-white uppercase text-sm mb-2">Proven Track Record</h4>
+                <p class="text-gray-400 text-sm">Home Lands is Sri Lanka's #1 developer with over 600 luxury units delivered. Their completion record speaks for itself — your investment is in safe hands.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-home text-cubs-gold text-3xl mb-4"></i>
+                <h4 class="font-black text-white uppercase text-sm mb-2">Holiday Rental Yields</h4>
+                <p class="text-gray-400 text-sm">Sri Lanka's growing tourism sector creates strong holiday rental demand. Projects like BayFonte and Oceana are designed to maximise rental returns.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-users text-cubs-gold text-3xl mb-4"></i>
+                <h4 class="font-black text-white uppercase text-sm mb-2">Member-Only Access</h4>
+                <p class="text-gray-400 text-sm">Through Desert Cubs, you access terms and discounts negotiated exclusively for our community — terms not available to any other investor group in the UAE.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- === CONTACT SECTION === -->
+<section id="contact" style="background:#f8fafc; padding:80px 0;">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10">
+            <div class="section-gold-bar mx-auto"></div>
+            <span class="gold-badge mb-4">Get In Touch</span>
+            <h2 class="font-display text-4xl font-black text-cubs-blue uppercase mt-4">Ready to Explore<br>Your Investment?</h2>
+            <p class="text-gray-600 mt-4 max-w-xl mx-auto">Contact Desert Cubs directly. Mention your membership and the project you're interested in — we'll speak to Home Lands on your behalf and arrange an exclusive consultation for you.</p>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100">
+            <!-- How it works -->
+            <div class="bg-gray-50 rounded-2xl p-6 mb-8 border border-gray-100">
+                <h3 class="font-black text-cubs-blue uppercase text-sm mb-4 flex items-center gap-2">
+                    <i class="fas fa-info-circle text-cubs-gold"></i> How It Works
+                </h3>
+                <div class="grid sm:grid-cols-3 gap-4 text-center">
+                    <div>
+                        <div class="w-10 h-10 bg-cubs-blue rounded-full flex items-center justify-center mx-auto mb-3">
+                            <span class="text-cubs-gold font-black text-sm">1</span>
+                        </div>
+                        <p class="text-gray-700 text-sm font-bold">Contact Desert Cubs</p>
+                        <p class="text-gray-500 text-xs mt-1">Reach out via phone, WhatsApp, or email below</p>
+                    </div>
+                    <div>
+                        <div class="w-10 h-10 bg-cubs-blue rounded-full flex items-center justify-center mx-auto mb-3">
+                            <span class="text-cubs-gold font-black text-sm">2</span>
+                        </div>
+                        <p class="text-gray-700 text-sm font-bold">We Speak to Home Lands</p>
+                        <p class="text-gray-500 text-xs mt-1">Our team handles all communication with Home Lands Dubai on your behalf</p>
+                    </div>
+                    <div>
+                        <div class="w-10 h-10 bg-cubs-blue rounded-full flex items-center justify-center mx-auto mb-3">
+                            <span class="text-cubs-gold font-black text-sm">3</span>
+                        </div>
+                        <p class="text-gray-700 text-sm font-bold">You Get Exclusive Access</p>
+                        <p class="text-gray-500 text-xs mt-1">Member discounts, priority selection, and guided investment support</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact options -->
+            <div class="grid md:grid-cols-3 gap-5">
+                <a href="https://wa.me/971588274266?text=Hi%20Desert%20Cubs%2C%20I'm%20a%20member%20interested%20in%20the%20Home%20Lands%20investment%20opportunity."
+                   target="_blank" rel="noopener"
+                   class="flex flex-col items-center text-center rounded-2xl p-6 transition-all hover:shadow-lg"
+                   style="background:linear-gradient(135deg,#25D366,#128C7E); color:#ffffff; text-decoration:none;">
+                    <i class="fab fa-whatsapp text-4xl mb-3"></i>
+                    <p class="font-black text-sm uppercase tracking-wide mb-1">WhatsApp Us</p>
+                    <p class="text-green-100 text-xs">+971 58 827 4266</p>
+                    <p class="text-green-200 text-xs mt-1">Fastest response</p>
+                </a>
+                <a href="tel:+971588274266"
+                   class="flex flex-col items-center text-center rounded-2xl p-6 transition-all hover:shadow-lg"
+                   style="background:#001f66; color:#ffffff; text-decoration:none;">
+                    <i class="fas fa-phone text-4xl mb-3" style="color:#FFCC00;"></i>
+                    <p class="font-black text-sm uppercase tracking-wide mb-1" style="color:#FFCC00;">Call Us</p>
+                    <p class="text-gray-300 text-xs">+971 58 827 4266</p>
+                    <p class="text-gray-400 text-xs mt-1">Mon–Sat, 9am–7pm</p>
+                </a>
+                <a href="mailto:admin@desertcubs.com?subject=Home%20Lands%20Investment%20Enquiry&body=Hi%20Desert%20Cubs%2C%20I%20am%20a%20member%20and%20I%20am%20interested%20in%20learning%20more%20about%20the%20Home%20Lands%20investment%20opportunities."
+                   class="flex flex-col items-center text-center rounded-2xl p-6 transition-all hover:shadow-lg"
+                   style="background:#003399; color:#ffffff; text-decoration:none;">
+                    <i class="fas fa-envelope text-4xl mb-3" style="color:#FFCC00;"></i>
+                    <p class="font-black text-sm uppercase tracking-wide mb-1" style="color:#FFCC00;">Email Us</p>
+                    <p class="text-gray-300 text-xs">admin@desertcubs.com</p>
+                    <p class="text-gray-400 text-xs mt-1">Mention your membership</p>
+                </a>
+            </div>
+
+            <p class="text-center text-gray-400 text-xs mt-6">Desert Cubs acts as an authorised intermediary for this partnership. All investment decisions should be made after independent financial consultation.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -568,6 +568,18 @@ def legends():
     return render_template('legends.html', meta=meta)
 
 
+@app.route('/homelands')
+def homelands():
+    meta = seo(
+        title="Sri Lanka Property Investment | Desert Cubs x Home Lands Exclusive Partnership | UAE",
+        description="Desert Cubs Cricket Academy has partnered with Home Lands — Sri Lanka's #1 real estate developer. Exclusive member-only discounts and priority access to premium Sri Lankan properties including BayFonte Marina, Canterbury Golf Resort, and Oceana Beach. UAE-based investors.",
+        keywords="Sri Lanka property investment UAE, Home Lands real estate Dubai, Sri Lanka real estate for expats UAE, buy property Sri Lanka from Dubai, Desert Cubs Homelands partnership, BayFonte Marina Negombo, Canterbury Golf Resort Piliyandala, Oceana Wadduwa apartments, Sri Lanka luxury apartments UAE investors",
+        canonical="https://www.desertcubs.com/homelands",
+        og_image="https://www.desertcubs.com/static/img/homelands/homelands_flyer.webp"
+    )
+    return render_template('homelands.html', meta=meta)
+
+
 # ---------------------------------------------------------
 # N8N WEBHOOK ENDPOINTS
 # Secure with WEBHOOK_SECRET env var (set X-Webhook-Token header in N8N)
@@ -675,6 +687,7 @@ def sitemap():
         ('/girls-cricket', '0.9', 'monthly', today),
         ('/summer-camp', '0.9', 'monthly', today),
         ('/legends', '0.9', 'monthly', today),
+        ('/homelands', '0.8', 'monthly', today),
         ('/tournaments', '0.8', 'weekly', today),
         ('/tours', '0.8', 'monthly', today),
         ('/events', '0.8', 'monthly', today),
