@@ -5,6 +5,7 @@ import math
 import json
 import re
 import hmac
+import glob
 from datetime import datetime
 
 app = Flask(__name__)
@@ -313,8 +314,281 @@ SPONSORS = {
 }
 
 # ---------------------------------------------------------
+# DATA: HOME LANDS SKYLINE PROJECTS
+# Gallery images auto-loaded from static/img/homelands/{project_id}/
+# Add 1.webp, 2.webp... (up to 10) to a project directory to add gallery images.
+# ---------------------------------------------------------
+HOMELANDS_PROJECTS = [
+    {
+        "id": "bayfonte_marina",
+        "name": "BayFonte Marina Resort",
+        "subtitle": "Sri Lanka's First Luxury Lagoon-Front Resort Living",
+        "location": "Negombo Lagoon, Negombo",
+        "badge": "Negombo Lagoon",
+        "featured": True,
+        "status": "Under Construction",
+        "status_class": "construction",
+        "units": "280 apartments + villas",
+        "bedrooms": "2BR & 3BR",
+        "price_aed": "From AED 556,000",
+        "award": "Best Waterfront Condo Development — PropertyGuru Asia Property Awards 2025",
+        "description": "Sri Lanka's first tourist resort-style residential complex on the Negombo Lagoon. BayFonte Marina combines private yacht, jet ski and seaplane facilities with elegant lagoon-facing residences — a lifestyle concept unprecedented in Sri Lanka. Just 7 minutes from Bandaranaike International Airport.",
+        "highlights": [
+            "Sri Lanka's first lagoon-front resort residential complex",
+            "Private yacht, jet ski & seaplane club",
+            "7 min from Bandaranaike International Airport",
+            "Best Waterfront Condo — PropertyGuru Asia 2025",
+            "280 units + marina villas | 7 floors | 392 parking spaces",
+        ],
+        "also_includes": "Also includes BayFonte Marina Villas — private lagoon-front villa living within the same resort complex.",
+    },
+    {
+        "id": "canterbury_lexus",
+        "name": "Canterbury Lexus Golf Resort Apartments",
+        "subtitle": "Sri Lanka's First 9-Hole Golf Resort — Part of Canterbury Golf City",
+        "location": "Piliyandala, Colombo District",
+        "badge": "Piliyandala Golf City",
+        "featured": True,
+        "img_right": True,
+        "status": "Under Construction",
+        "status_class": "construction",
+        "units": "146 apartments",
+        "bedrooms": "2BR & 3BR",
+        "price_aed": "From AED 171,000",
+        "award": "",
+        "description": "Sri Lanka's first-ever Golf Resort Apartments, set within a 9-hole day-and-night golf course inside the 55-acre Canterbury Golf City. Victorian architecture throughout, overlooking lush greens. 20 minutes to Colombo, 5 minutes to Kahathuduwa Southern Expressway interchange. Part of Sri Lanka's largest residential community.",
+        "highlights": [
+            "Sri Lanka's first Golf Resort Apartments",
+            "9-hole day & night golf course within 55-acre Canterbury Golf City",
+            "50+ luxury resort amenities including golf training & daycare",
+            "2BR from AED 171,000 | 3BR from AED 233,000",
+            "Gateway College daycare centre on-site",
+        ],
+        "also_includes": "Canterbury Golf City also includes Canterbury Crest (Phase 3) and the completed Canterbury Golf Villas — Sri Lanka's first Victorian-style golf resort.",
+    },
+    {
+        "id": "oceana",
+        "name": "Oceana Beach Resort",
+        "subtitle": "Sri Lanka's First Integrated Luxury Beach Resort Apartments & Villas",
+        "location": "Galle Road, Wadduwa",
+        "badge": "Wadduwa Beachfront",
+        "featured": True,
+        "status": "Under Construction",
+        "status_class": "construction",
+        "units": "321 apartments + 91 villas",
+        "bedrooms": "1BR, 2BR & 3BR",
+        "price_aed": "From AED 210,000",
+        "award": "Sri Lanka's first integrated beach resort apartment complex",
+        "description": "Sri Lanka's first luxury beach resort apartments & villas project on 17 acres with 400 metres of pristine Wadduwa beachfront. Buildings occupy only 15% of the land — 85% is open resort zones. 321 apartments and 91 premium Balinese-architecture villas, all with Indian Ocean views. Architect: Philip Weeraratne.",
+        "highlights": [
+            "400m pristine beachfront on 17 acres",
+            "321 apartments + 91 Balinese beach villas",
+            "Only 15% built — 85% open resort zones",
+            "Apartments from AED 210,000 | 3BR villas available",
+            "50+ amenities: beach club, water sports, spa, restaurant",
+        ],
+        "also_includes": "Oceana Beach Villas offer private Balinese-style villa living within the same 17-acre resort compound.",
+    },
+    {
+        "id": "pentara",
+        "name": "Pentara Residencies",
+        "subtitle": "The Address in Colombo — Twin Towers Rising 40+ Storeys",
+        "location": "Thummulla Handiya, Colombo (bordering Col. 3, 4, 5 & 7)",
+        "badge": "Colombo City Centre",
+        "featured": True,
+        "img_right": True,
+        "status": "Under Construction",
+        "status_class": "construction",
+        "units": "Twin towers, 40+ floors",
+        "bedrooms": "2BR, 3BR, Sky Villas, Penthouses & Sky Mansions",
+        "price_aed": "On request",
+        "award": "Sri Lanka's largest-ever single real estate investment by a Sri Lankan developer",
+        "description": "Sri Lanka's most iconic ultra-luxury high-rise twin-tower development. Launched at Cinnamon Life Colombo on 21 June 2025 as 'Signature Night: Beyond the Skyline'. BOI-approved. 75% sales achieved within 5 months of launch. Land valued at Rs. 4.5 Billion. Structural engineer: Prof. Priyan Mendis (Eureka Tower, Melbourne).",
+        "highlights": [
+            "Sri Lanka's first 5-Star Floating Sky Restaurant",
+            "Cantilevered Sky Pool & Sky Bridge at Level 30",
+            "Sri Lanka's first Sky Mansions (6,000 sq.ft at Level 41)",
+            "BOI approved | 75% sold within 5 months of launch",
+            "Bordering Colombo 3, 4, 5 and 7 — most central location",
+        ],
+        "also_includes": "",
+    },
+    {
+        "id": "waterdale",
+        "name": "Waterdale Residencies",
+        "subtitle": "Super Luxury High-Rise Bordering Colombo 7 — Borella",
+        "location": "Tickle Road, Borella, Colombo 7 Border",
+        "badge": "Colombo 7 Border",
+        "featured": True,
+        "status": "Under Construction",
+        "status_class": "construction",
+        "units": "204 units",
+        "bedrooms": "2BR, 3BR, Penthouses & Duplexes",
+        "price_aed": "From AED 897,000",
+        "award": "BOI-approved USD 61.56 million project | Completion December 2027",
+        "description": "A 26-storey ultra-luxury flagship set on Tickle Road, Borella — bordering the most prestigious Colombo 7 neighbourhood. BOI-approved project valued at USD 61.56 million. LED panel fittings, fire-rated engineering timber doors with smart locks, and 10-year waterproofing warranty. Target completion: December 2027.",
+        "highlights": [
+            "USD 61.56 million BOI-approved project",
+            "26 storeys | 2 exclusive amenity floors",
+            "Penthouses to 2,300 sq.ft | Duplexes to 3,600 sq.ft",
+            "Infinity pool, spa, rooftop garden, EV charging points",
+            "Bordering Colombo 7 — most prestigious address",
+        ],
+        "also_includes": "",
+    },
+    {
+        "id": "serene_heights",
+        "name": "Serene Heights Resort Apartments",
+        "subtitle": "Architectural Sanctuary Overlooking Endless Paddy Fields",
+        "location": "Thalawathugoda, Sri Lanka",
+        "badge": "Thalawathugoda",
+        "featured": False,
+        "status": "Under Construction",
+        "status_class": "construction",
+        "units": "300 apartments",
+        "bedrooms": "2BR & 3BR",
+        "price_aed": "On request",
+        "description": "300 elegantly designed apartments in the serene heart of Thalawathugoda with sweeping paddy field views. 45+ international-standard amenities. Minutes from Colombo and the Outer Circular Expressway.",
+        "highlights": [
+            "300 units | 7 floors | 45+ amenities",
+            "Sweeping paddy field views",
+            "Minutes from Colombo & Outer Circular Expressway",
+        ],
+    },
+    {
+        "id": "nova",
+        "name": "Nova Resort Apartments",
+        "subtitle": "Urban Resort Living Across Four Contemporary Towers",
+        "location": "Rajagiriya, Colombo",
+        "badge": "Rajagiriya",
+        "featured": False,
+        "status": "Under Construction",
+        "status_class": "construction",
+        "units": "224 apartments",
+        "bedrooms": "2BR & 3BR",
+        "price_aed": "On request",
+        "description": "Premium residential development across 4 contemporary towers in Rajagiriya — close to Colombo, Battaramulla, Nawala and Borella. 224 spacious apartments with modern resort-style amenities.",
+        "highlights": [
+            "224 units across 4 towers | 7 floors each",
+            "Swimming pools, gym, sports courts",
+            "Central to Colombo's key commercial hubs",
+        ],
+    },
+    {
+        "id": "canterbury_crest",
+        "name": "Canterbury Crest Resort Apartments",
+        "subtitle": "The Final Phase of Canterbury Golf City — Phase 3",
+        "location": "Kahathuduwa, Piliyandala",
+        "badge": "Canterbury Golf City",
+        "featured": False,
+        "status": "Under Construction",
+        "status_class": "construction",
+        "units": "96 apartments",
+        "bedrooms": "2BR & 3BR",
+        "price_aed": "On request",
+        "description": "The third and final phase of the prestigious Canterbury Golf City development. 96 elegantly designed apartments surrounded by a world-class 9-hole golf course and 55+ Canterbury facilities. Victorian-inspired architecture.",
+        "highlights": [
+            "96 units | 5 floors | 2 towers",
+            "Access to full Canterbury Golf City (55+ facilities)",
+            "20 min to Colombo | 5 min to Southern Expressway",
+        ],
+    },
+    {
+        "id": "fedora",
+        "name": "Fedora Resort Apartments",
+        "subtitle": "Your Personal Sanctuary — Resort Living in Athurugiriya",
+        "location": "Athurugiriya, Sri Lanka",
+        "badge": "Athurugiriya",
+        "featured": False,
+        "status": "Under Construction",
+        "status_class": "construction",
+        "units": "150 apartments",
+        "bedrooms": "2BR & 3BR",
+        "price_aed": "On request",
+        "description": "150 apartments in a serene Athurugiriya setting — 15 minutes to Colombo. Contemporary architecture, spacious interiors, and 50+ resort amenities designed for peace, relaxation, and everyday comfort.",
+        "highlights": [
+            "150 units | 6 floors | 50+ amenities",
+            "Swimming pool, yoga deck, sauna, outdoor gym",
+            "15 min to Colombo | Near Southern Expressway",
+        ],
+    },
+    {
+        "id": "cressida",
+        "name": "Cressida Resort Apartments",
+        "subtitle": "Next-Generation Resort Living in Athurugiriya",
+        "location": "Athurugiriya, Sri Lanka",
+        "badge": "Athurugiriya",
+        "featured": False,
+        "status": "Under Construction",
+        "status_class": "construction",
+        "units": "392 apartments",
+        "bedrooms": "2BR & 3BR",
+        "price_aed": "From AED 443,000",
+        "description": "392 luxury apartments in Athurugiriya with 50+ resort living facilities. Holistic lifestyle emphasising physical, mental and emotional wellbeing. Real estate hot spot with excellent expressway access.",
+        "highlights": [
+            "392 units | 6 floors | 392 parking spaces",
+            "Cricket nets, tennis, basketball, spa, mini market",
+            "From AED 443,000 | Easy expressway access",
+        ],
+    },
+    {
+        "id": "greendale",
+        "name": "Greendale Retirement Resort",
+        "subtitle": "Sri Lanka's First International-Standard Retirement Village",
+        "location": "Athurugiriya, Sri Lanka",
+        "badge": "Senior Living — 50+ Years",
+        "featured": False,
+        "status": "Under Construction",
+        "status_class": "construction",
+        "units": "96 apartment suites + 250 cottages",
+        "bedrooms": "1BR & 2BR suites | Californian cottages",
+        "price_aed": "Suites from AED 134,000",
+        "description": "Sri Lanka's first international standard retirement village across 20 acres in Athurugiriya. 250 fully furnished Californian-style luxury cottages and 96 apartment suites, exclusively for senior citizens aged 50+. Designed by architect Philip Weeraratne.",
+        "highlights": [
+            "250 Californian cottages + 96 apartment suites",
+            "Exclusively for 50+ senior citizens",
+            "24/7 care, butler service, medical centre on-site",
+            "Suites from AED 134,000 | Cottages on request",
+        ],
+    },
+    {
+        "id": "santorini",
+        "name": "Santorini Resort Apartments",
+        "subtitle": "Sri Lanka's First Theme Park-Style Resort — Negombo",
+        "location": "Baseline Road, Negombo",
+        "badge": "Negombo — Completed",
+        "featured": False,
+        "status": "Completed",
+        "status_class": "completed",
+        "units": "240 apartments",
+        "bedrooms": "2BR & 3BR",
+        "price_aed": "From AED 150,000",
+        "award": "Best Completed Condo Development — PropertyGuru Asia Property Awards 2025",
+        "description": "Sri Lanka's first Santorini-themed resort apartments — stark white walls with vivid blue architectural details inspired by Greece. 9 theme parks, 50+ luxury facilities, diplomatic zone with butler service. 7 min from Bandaranaike Airport. Launched and opened 2021.",
+        "highlights": [
+            "9 theme parks within the complex",
+            "Best Completed Condo — PropertyGuru Asia 2025",
+            "7 min from Bandaranaike International Airport",
+            "Apartments from AED 150,000",
+        ],
+    },
+]
+
+# ---------------------------------------------------------
 # HELPER FUNCTIONS
 # ---------------------------------------------------------
+
+def get_homelands_gallery(project_id):
+    """Scan static/img/homelands/{project_id}/ and return sorted list of image numbers."""
+    pattern = os.path.join(os.path.dirname(__file__), 'static', 'img', 'homelands', project_id, '*.webp')
+    files = glob.glob(pattern)
+    nums = []
+    for f in files:
+        name = os.path.basename(f).replace('.webp', '')
+        if name.isdigit():
+            nums.append(int(name))
+    return sorted(nums)
+
 
 def extract_post_meta(content):
     """Extract SEO metadata embedded by N8N as an HTML comment at the top of the post.
@@ -571,13 +845,17 @@ def legends():
 @app.route('/homelands')
 def homelands():
     meta = seo(
-        title="Sri Lanka Property Investment | Desert Cubs x Home Lands Exclusive Partnership | UAE",
-        description="Desert Cubs Cricket Academy has partnered with Home Lands — Sri Lanka's #1 real estate developer. Exclusive member-only discounts and priority access to premium Sri Lankan properties including BayFonte Marina, Canterbury Golf Resort, and Oceana Beach. UAE-based investors.",
-        keywords="Sri Lanka property investment UAE, Home Lands real estate Dubai, Sri Lanka real estate for expats UAE, buy property Sri Lanka from Dubai, Desert Cubs Homelands partnership, BayFonte Marina Negombo, Canterbury Golf Resort Piliyandala, Oceana Wadduwa apartments, Sri Lanka luxury apartments UAE investors",
+        title="Sri Lanka Property Investment | Desert Cubs × Home Lands Skyline | UAE Exclusive",
+        description="Invest in Sri Lanka's finest luxury properties through Desert Cubs' exclusive partnership with Home Lands Skyline — Sri Lanka's #1 developer (23+ years, 3,700+ units). Desert Cubs members get exclusive discounts on BayFonte Marina, Canterbury Golf Resort, Oceana Beach, Pentara Residencies, Waterdale & 10+ more premium projects. UAE-based investors.",
+        keywords="Sri Lanka property investment UAE, Home Lands Skyline Dubai, buy apartment Sri Lanka from UAE, best property investment Sri Lanka 2025, Desert Cubs Home Lands partnership, BayFonte Marina Negombo lagoon, Canterbury Golf Resort Piliyandala, Oceana Beach Resort Wadduwa, Pentara Residencies Colombo, Waterdale Colombo 7, Sri Lanka luxury apartments expats, Cressida Athurugiriya, Greendale retirement resort Sri Lanka, Serene Heights Thalawathugoda, Nova Rajagiriya, Fedora Athurugiriya, Santorini Negombo, Canterbury Crest Kahathuduwa, PropertyGuru award winner Sri Lanka developer",
         canonical="https://www.desertcubs.com/homelands",
         og_image="https://www.desertcubs.com/static/img/homelands/homelands_flyer.webp"
     )
-    return render_template('homelands.html', meta=meta)
+    import copy
+    projects = copy.deepcopy(HOMELANDS_PROJECTS)
+    for p in projects:
+        p['gallery'] = get_homelands_gallery(p['id'])
+    return render_template('homelands.html', meta=meta, projects=projects)
 
 
 # ---------------------------------------------------------
