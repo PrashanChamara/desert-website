@@ -305,6 +305,22 @@
             <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Home Lands Skyline has built Sri Lanka's most iconic residential portfolio over 23+ years. Every project below is available to Desert Cubs members with exclusive negotiated benefits.</p>
         </div>
 
+        <!-- ── PRICING BANNER ── -->
+        <div style="background:linear-gradient(135deg,#FFCC00 0%,#e6b800 100%);border-radius:18px;padding:20px 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-bottom:40px;">
+            <div class="flex items-center gap-4">
+                <div style="background:rgba(0,31,102,0.12);border-radius:12px;width:52px;height:52px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <i class="fas fa-tag text-2xl" style="color:#001f66;"></i>
+                </div>
+                <div>
+                    <p style="color:#001f66;font-size:0.7rem;font-weight:900;text-transform:uppercase;letter-spacing:0.12em;opacity:0.7;margin-bottom:2px;">Desert Cubs Member Pricing</p>
+                    <p style="color:#001f66;font-weight:900;font-size:1.35rem;line-height:1.1;" class="font-display uppercase">Prices Starting from <span style="font-size:1.6rem;">AED 400,000/-</span></p>
+                </div>
+            </div>
+            <a href="#contact" style="background:#001f66;color:#FFCC00;text-decoration:none;font-weight:900;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;padding:12px 22px;border-radius:12px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;">
+                <i class="fas fa-phone"></i> Enquire for Member Discount
+            </a>
+        </div>
+
         <!-- ── FEATURED PROJECTS (full-width alternating) ── -->
         {% for project in projects if project.featured %}
         <div class="project-card mb-10" id="proj-{{ project.id }}">
@@ -336,9 +352,6 @@
                 <div class="feat-text-col p-8 flex flex-col justify-center">
                     <div class="flex items-center gap-3 mb-4 flex-wrap">
                         <span class="gold-badge"><i class="fas fa-map-marker-alt"></i> {{ project.badge }}</span>
-                        <span class="status-badge status-{{ project.status_class }}">
-                            <i class="fas fa-circle" style="font-size:0.45rem;"></i> {{ project.status }}
-                        </span>
                     </div>
                     <h3 class="font-display text-3xl font-black text-cubs-blue uppercase mb-2 leading-tight">{{ project.name }}</h3>
                     <p class="text-gray-500 text-sm font-bold uppercase tracking-wide mb-4 leading-snug">{{ project.subtitle }}</p>
@@ -357,12 +370,6 @@
                     <div class="flex items-start gap-2 text-xs text-amber-700 font-bold bg-amber-50 border border-amber-200 rounded-xl px-4 py-2 mb-5">
                         <i class="fas fa-award text-amber-500 flex-shrink-0 mt-0.5"></i>
                         <span>{{ project.award }}</span>
-                    </div>
-                    {% endif %}
-                    {% if project.price_aed and project.price_aed != 'On request' %}
-                    <div class="mb-5">
-                        <span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Starting Price</span>
-                        <p class="font-black text-cubs-blue text-xl">{{ project.price_aed }}</p>
                     </div>
                     {% endif %}
                     {% if project.also_includes %}
@@ -417,9 +424,6 @@
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex items-center gap-2 flex-wrap mb-3">
                         <span class="gold-badge" style="font-size:0.65rem;padding:4px 10px;">{{ project.badge }}</span>
-                        <span class="status-badge status-{{ project.status_class }}" style="font-size:0.62rem;">
-                            <i class="fas fa-circle" style="font-size:0.38rem;"></i> {{ project.status }}
-                        </span>
                     </div>
                     <h3 class="font-display text-xl font-black text-cubs-blue uppercase mb-1 leading-tight">{{ project.name }}</h3>
                     <p class="text-gray-500 text-xs font-bold uppercase tracking-wide mb-3 leading-snug">{{ project.subtitle }}</p>
@@ -439,10 +443,6 @@
                         <i class="fas fa-trophy text-amber-500 flex-shrink-0 mt-0.5"></i>
                         <span>{{ project.award }}</span>
                     </div>
-                    {% endif %}
-                    {% if project.price_aed and project.price_aed != 'On request' %}
-                    <p class="text-xs text-gray-400 font-bold uppercase tracking-wide mb-0.5">Starting Price</p>
-                    <p class="font-black text-cubs-blue text-lg mb-4">{{ project.price_aed }}</p>
                     {% endif %}
                     <a href="#contact" class="inline-flex items-center gap-2 font-black uppercase text-xs px-4 py-2.5 rounded-xl self-start transition-all mt-auto"
                        style="background:#001f66;color:#FFCC00;letter-spacing:0.05em;">
