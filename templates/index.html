@@ -44,6 +44,15 @@
 /* Hero image — hidden on mobile, visible desktop */
 .hero-img{display:none}
 @media(min-width:1024px){.hero-img{display:block;position:relative}}
+.hero-slide{position:absolute;inset:0;opacity:0;visibility:hidden;animation:heroAlumniSwap 12s infinite;will-change:opacity}
+.hero-slide[href]{cursor:pointer}
+.hero-slide:nth-child(1){animation-delay:0s}
+.hero-slide:nth-child(2){animation-delay:6s}
+.hero-slide img.hero-person{width:100%;height:100%;object-fit:cover;display:block}
+.hero-alumni-card{position:absolute;bottom:20px;left:20px;right:20px;
+                  background:rgba(255,255,255,.08);backdrop-filter:blur(12px);
+                  border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:15px 18px;z-index:3}
+@keyframes heroAlumniSwap{0%,43%{opacity:1;visibility:visible}50%,93%{opacity:0;visibility:hidden}100%{opacity:1;visibility:visible}}
 
 /* ── TRUST STRIP GRID ─────────────────────────────────────── */
 .trust-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -353,31 +362,59 @@
             <div style="border-radius:28px;overflow:hidden;height:520px;
                         box-shadow:0 40px 100px rgba(0,0,0,.6);
                         border:2px solid rgba(255,204,0,.2);position:relative;">
-                <img src="{{ url_for('static', filename='img/hero-bg.jpg') }}"
-                     alt="Junior cricket training at Desert Cubs Academy Dubai UAE"
-                     width="700" height="520"
-                     fetchpriority="high" loading="eager"
-                     style="width:100%;height:100%;object-fit:cover;">
-                <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 50%);"></div>
-                <!-- Esha Oza badge -->
-                <div style="position:absolute;bottom:20px;left:20px;right:20px;
-                            background:rgba(255,255,255,.08);backdrop-filter:blur(12px);
-                            border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:15px 18px;">
-                    <div style="display:flex;align-items:center;gap:13px;">
-                        <div style="width:42px;height:42px;background:#FFCC00;border-radius:50%;
-                                    display:flex;align-items:center;justify-content:center;flex-shrink:0;
-                                    animation:goldGlow 2s ease infinite;">
-                            <i class="fas fa-trophy" style="color:#001f66;font-size:1rem;" aria-hidden="true"></i>
-                        </div>
-                        <div>
-                            <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.25rem;
-                                       color:#fff;text-transform:uppercase;line-height:1;">Esha Oza</p>
-                            <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;
-                                       color:#FFCC00;text-transform:uppercase;letter-spacing:.1em;">
-                                Desert Cubs Alumni · UAE Women's Captain</p>
+                <div class="hero-slide">
+                    <img class="hero-person"
+                         src="{{ url_for('static', filename='img/hero-bg.jpg') }}"
+                         alt="Esha Oza Desert Cubs alumna and UAE Women's Cricket Captain"
+                         width="700" height="520"
+                         fetchpriority="high" loading="eager">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 50%);"></div>
+                    <!-- Esha Oza badge -->
+                    <div class="hero-alumni-card">
+                        <div style="display:flex;align-items:center;gap:13px;">
+                            <div style="width:42px;height:42px;background:#FFCC00;border-radius:50%;
+                                        display:flex;align-items:center;justify-content:center;flex-shrink:0;
+                                        animation:goldGlow 2s ease infinite;">
+                                <i class="fas fa-trophy" style="color:#001f66;font-size:1rem;" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.25rem;
+                                           color:#fff;text-transform:uppercase;line-height:1;">Esha Oza</p>
+                                <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;
+                                           color:#FFCC00;text-transform:uppercase;letter-spacing:.1em;">
+                                    Desert Cubs Alumni · UAE Women's Captain</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <a href="/legends/macneil-noronha" class="hero-slide" aria-label="Read Macneil Hadley Noronha's Desert Cubs to IPL story">
+                    <img class="hero-person"
+                         src="{{ url_for('static', filename='img/macneil-noronha/macneil-main.webp') }}"
+                         alt="Macneil Hadley Noronha Desert Cubs alumnus selected by Chennai Super Kings for IPL 2026"
+                         width="700" height="520"
+                         loading="eager"
+                         style="object-position:center top;">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.88) 0%,transparent 54%);"></div>
+                    <!-- Macneil Noronha badge -->
+                    <div class="hero-alumni-card">
+                        <div style="display:flex;align-items:center;gap:13px;">
+                            <div style="width:42px;height:42px;background:#FFCC00;border-radius:50%;
+                                        display:flex;align-items:center;justify-content:center;flex-shrink:0;
+                                        animation:goldGlow 2s ease infinite;">
+                                <img src="{{ url_for('static', filename='img/macneil-noronha/csk-logo.webp') }}"
+                                     alt="" width="30" height="25" style="width:30px;height:25px;object-fit:contain;">
+                            </div>
+                            <div>
+                                <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.25rem;
+                                           color:#fff;text-transform:uppercase;line-height:1;">Macneil Noronha</p>
+                                <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;
+                                           color:#FFCC00;text-transform:uppercase;letter-spacing:.1em;">
+                                    Desert Cubs Alumni · Chennai Super Kings IPL 2026</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
 
             <!-- ECB badge -->

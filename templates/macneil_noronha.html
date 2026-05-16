@@ -1,0 +1,328 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "url": "https://www.desertcubs.com/legends/macneil-noronha",
+      "name": "Macneil Hadley Noronha | Desert Cubs to Chennai Super Kings IPL 2026",
+      "description": "Macneil Hadley Noronha, Desert Cubs alumnus and Karnataka all-rounder, was selected by Chennai Super Kings as an IPL 2026 replacement player.",
+      "about": {
+        "@type": "Person",
+        "name": "Macneil Hadley Noronha",
+        "alternateName": ["Macneil Noronha", "Macneil H. Noronha"],
+        "jobTitle": "Cricketer",
+        "sport": "Cricket",
+        "image": "https://www.desertcubs.com/static/img/macneil-noronha/macneil-main.webp",
+        "alumniOf": {
+          "@type": "SportsOrganization",
+          "name": "Desert Cubs Cricket Academy",
+          "url": "https://www.desertcubs.com"
+        },
+        "memberOf": [
+          {
+            "@type": "SportsTeam",
+            "name": "Chennai Super Kings",
+            "sport": "Cricket"
+          },
+          {
+            "@type": "SportsTeam",
+            "name": "Karnataka Cricket Team",
+            "sport": "Cricket"
+          }
+        ],
+        "knowsAbout": ["Indian Premier League", "Chennai Super Kings", "Karnataka cricket", "UAE junior cricket", "Desert Cubs Cricket Academy"]
+      },
+      "mainEntity": {
+        "@type": "SportsOrganization",
+        "name": "Desert Cubs Cricket Academy",
+        "sport": "Cricket",
+        "areaServed": ["Dubai", "Sharjah", "UAE"]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who is Macneil Hadley Noronha?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Macneil Hadley Noronha is a Desert Cubs Cricket Academy alumnus and Karnataka all-rounder who was selected by Chennai Super Kings as an IPL 2026 replacement player."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Did Macneil Noronha train at Desert Cubs Cricket Academy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Macneil trained with Desert Cubs as a junior cricketer, including the Under 13 and Under 15 squads at the Sharjah English School centre."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://www.desertcubs.com"},
+        {"@type":"ListItem","position":2,"name":"Legends of the Future","item":"https://www.desertcubs.com/legends"},
+        {"@type":"ListItem","position":3,"name":"Macneil Hadley Noronha","item":"https://www.desertcubs.com/legends/macneil-noronha"}
+      ]
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+<style>
+.mn-page{background:#f8fafc;color:#0f172a;}
+.mn-wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 20px;}
+@media(min-width:768px){.mn-wrap{padding:0 34px;}}
+.mn-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#001045 0%,#001f66 45%,#071a05 100%);padding:96px 0 76px;}
+.mn-hero:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 76% 36%,rgba(255,204,0,.16),transparent 34%),linear-gradient(90deg,rgba(0,0,0,.34),transparent);pointer-events:none;}
+.mn-hero-grid{position:relative;z-index:1;display:grid;gap:42px;align-items:center;}
+@media(min-width:980px){.mn-hero-grid{grid-template-columns:1fr .88fr;}}
+.mn-kicker{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,204,0,.42);background:rgba(255,204,0,.08);border-radius:999px;padding:9px 16px;color:#FFCC00;font-family:'Nunito',sans-serif;font-size:.68rem;font-weight:900;letter-spacing:.22em;text-transform:uppercase;}
+.mn-title{font-family:'Teko',sans-serif;font-size:clamp(3.3rem,8vw,7.2rem);font-weight:900;line-height:.9;text-transform:uppercase;color:#fff;margin:22px 0 14px;}
+.mn-title span{color:#FFCC00;}
+.mn-lede{font-family:'Nunito',sans-serif;font-size:1.04rem;line-height:1.85;color:#dbe4ff;max-width:660px;}
+.mn-actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:30px;}
+.mn-btn{display:inline-flex;align-items:center;gap:9px;border-radius:999px;padding:13px 24px;font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;}
+.mn-btn-gold{background:#FFCC00;color:#001f66;box-shadow:0 10px 30px rgba(255,204,0,.32);}
+.mn-btn-outline{border:2px solid rgba(255,255,255,.28);color:#fff;}
+.mn-card{background:#fff;border:1px solid #e5e7eb;border-radius:20px;box-shadow:0 18px 48px rgba(0,31,102,.08);}
+.mn-photo{position:relative;border-radius:26px;overflow:hidden;border:2px solid rgba(255,204,0,.36);box-shadow:0 40px 100px rgba(0,0,0,.55);background:#001045;}
+.mn-photo img{display:block;width:100%;height:min(620px,70vh);object-fit:cover;object-position:center top;}
+.mn-photo:after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.82),transparent 48%);pointer-events:none;}
+.mn-nameplate{position:absolute;left:20px;right:20px;bottom:20px;z-index:2;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(14px);border-radius:16px;padding:16px 18px;display:flex;align-items:center;gap:14px;}
+.mn-csk{width:58px;height:58px;border-radius:14px;background:#FFCC00;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.mn-csk img{width:44px;height:38px;object-fit:contain;}
+.mn-section{padding:76px 0;}
+.mn-section-dark{background:linear-gradient(135deg,#001f66,#003399);}
+.mn-head{text-align:center;margin-bottom:42px;}
+.mn-tag{font-family:'Nunito',sans-serif;font-weight:900;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:#003399;display:block;margin-bottom:10px;}
+.mn-section-dark .mn-tag{color:#FFCC00;}
+.mn-head h2{font-family:'Teko',sans-serif;font-size:clamp(2.2rem,4.8vw,4rem);font-weight:800;text-transform:uppercase;line-height:1;color:#001f66;margin:0;}
+.mn-section-dark .mn-head h2{color:#fff;}
+.mn-head h2 span{color:#FFCC00;}
+.mn-rule{width:58px;height:4px;background:#FFCC00;border-radius:4px;margin:14px auto 0;}
+.mn-grid-3{display:grid;gap:20px;}
+@media(min-width:800px){.mn-grid-3{grid-template-columns:repeat(3,1fr);}}
+.mn-stat{padding:24px;border-radius:18px;background:#fff;border:1px solid #e5e7eb;}
+.mn-stat strong{display:block;font-family:'Teko',sans-serif;font-size:2.2rem;line-height:1;color:#001f66;text-transform:uppercase;}
+.mn-stat span{font-family:'Nunito',sans-serif;font-size:.78rem;font-weight:900;color:#64748b;text-transform:uppercase;letter-spacing:.08em;}
+.mn-story{display:grid;gap:34px;align-items:start;}
+@media(min-width:940px){.mn-story{grid-template-columns:.95fr 1.05fr;}}
+.mn-prose{font-family:'Nunito',sans-serif;color:#374151;font-size:.98rem;line-height:1.85;}
+.mn-prose p{margin-bottom:16px;}
+.mn-prose strong{color:#001f66;}
+.mn-feature-list{display:grid;gap:14px;margin-top:22px;}
+.mn-feature{display:flex;gap:13px;align-items:flex-start;background:#fff;border:1px solid #e5e7eb;border-left:4px solid #FFCC00;border-radius:14px;padding:16px;}
+.mn-feature i{color:#FFCC00;background:#001f66;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.mn-gallery{display:grid;grid-template-columns:1fr;gap:16px;}
+@media(min-width:680px){.mn-gallery{grid-template-columns:repeat(3,1fr);}}
+.mn-gallery button{border:0;padding:0;background:none;border-radius:16px;overflow:hidden;cursor:pointer;box-shadow:0 10px 28px rgba(0,31,102,.1);}
+.mn-gallery img{width:100%;height:230px;object-fit:cover;display:block;transition:transform .35s ease;}
+.mn-gallery img.mn-fit-contain{object-fit:contain;background:#001f66;padding:8px;}
+.mn-gallery button:hover img{transform:scale(1.04);}
+.mn-doc{display:grid;gap:28px;align-items:center;}
+@media(min-width:920px){.mn-doc{grid-template-columns:.82fr 1.18fr;}}
+.mn-doc img{width:100%;border-radius:18px;border:1px solid rgba(0,31,102,.12);box-shadow:0 18px 44px rgba(0,31,102,.14);}
+.mn-faq{display:grid;gap:16px;max-width:900px;margin:0 auto;}
+.mn-faq article{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-left:4px solid #FFCC00;border-radius:16px;padding:22px;}
+.mn-faq h3{font-family:'Teko',sans-serif;color:#FFCC00;font-size:1.45rem;text-transform:uppercase;margin:0 0 8px;}
+.mn-faq p{font-family:'Nunito',sans-serif;color:#dbe4ff;line-height:1.7;margin:0;}
+</style>
+
+<div class="mn-page">
+
+<section class="mn-hero">
+    <div class="mn-wrap mn-hero-grid">
+        <div>
+            <nav style="display:flex;align-items:center;gap:8px;font-family:'Nunito',sans-serif;font-size:.76rem;color:#94a3b8;margin-bottom:20px;">
+                <a href="/" style="color:#94a3b8;text-decoration:none;">Home</a>
+                <i class="fas fa-chevron-right" style="font-size:.58rem;color:#64748b;" aria-hidden="true"></i>
+                <a href="/legends" style="color:#94a3b8;text-decoration:none;">Legends</a>
+                <i class="fas fa-chevron-right" style="font-size:.58rem;color:#64748b;" aria-hidden="true"></i>
+                <span style="color:#FFCC00;">Macneil Hadley Noronha</span>
+            </nav>
+            <span class="mn-kicker"><i class="fas fa-crown" aria-hidden="true"></i> Desert Cubs to IPL 2026</span>
+            <h1 class="mn-title">Macneil Hadley <span>Noronha</span></h1>
+            <p class="mn-lede">
+                Macneil Hadley Noronha is the first Desert Cubs Cricket Academy alumnus to be selected for the Indian Premier League, joining Chennai Super Kings in IPL 2026 as a replacement player. His journey began in Dubai and Sharjah training sessions and now reaches one of cricket's biggest stages.
+            </p>
+            <div class="mn-actions">
+                <a href="#journey" class="mn-btn mn-btn-gold"><i class="fas fa-route" aria-hidden="true"></i> Read His Journey</a>
+                <a href="/legends" class="mn-btn mn-btn-outline"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Legends</a>
+            </div>
+        </div>
+
+        <div class="mn-photo">
+            <img src="{{ url_for('static', filename='img/macneil-noronha/macneil-main.webp') }}"
+                 alt="Macneil Hadley Noronha Desert Cubs alumnus selected by Chennai Super Kings for IPL 2026"
+                 width="720" height="900" loading="eager" fetchpriority="high">
+            <div class="mn-nameplate">
+                <div class="mn-csk">
+                    <img src="{{ url_for('static', filename='img/macneil-noronha/csk-logo.webp') }}"
+                     alt="Chennai Super Kings logo" width="44" height="38">
+                </div>
+                <div>
+                    <p style="font-family:'Teko',sans-serif;font-weight:800;font-size:1.4rem;color:#fff;text-transform:uppercase;line-height:1;margin:0;">Chennai Super Kings</p>
+                    <p style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.68rem;color:#FFCC00;text-transform:uppercase;letter-spacing:.1em;margin:4px 0 0;">IPL 2026 selection · Desert Cubs alumnus</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mn-section" id="journey">
+    <div class="mn-wrap">
+        <div class="mn-head">
+            <span class="mn-tag">Why This Matters</span>
+            <h2>First Desert Cub <span>Selected For IPL</span></h2>
+            <div class="mn-rule"></div>
+        </div>
+
+        <div class="mn-grid-3" aria-label="Macneil Noronha quick facts">
+            <div class="mn-stat"><strong>CSK</strong><span>Chennai Super Kings IPL 2026</span></div>
+            <div class="mn-stat"><strong>1st</strong><span>Desert Cubs player selected for IPL</span></div>
+            <div class="mn-stat"><strong>2014</strong><span>Joined Desert Cubs as a junior</span></div>
+        </div>
+
+        <div class="mn-story" style="margin-top:46px;">
+            <div class="mn-card" style="padding:24px;">
+                <img src="{{ url_for('static', filename='img/macneil-noronha/macneil-csk-flyer.webp') }}"
+                     alt="Desert Cubs announcement flyer for Macneil Hadley Noronha selected by Chennai Super Kings IPL 2026"
+                     width="1024" height="1536" loading="lazy"
+                     style="width:100%;border-radius:16px;display:block;">
+            </div>
+            <div class="mn-prose">
+                <p>
+                    Macneil's selection by Chennai Super Kings for IPL 2026 marks a historic milestone for Desert Cubs Cricket Academy. For families searching for <strong>Macneil Noronha Desert Cubs</strong>, <strong>Macneil Noronha CSK</strong>, or <strong>Macneil Hadley Noronha IPL 2026</strong>, this page records the academy connection behind that achievement.
+                </p>
+                <p>
+                    Public cricket reports describe Macneil as a Karnataka all-rounder and state that Chennai Super Kings selected him as the replacement for injured all-rounder Ramakrishna Ghosh during IPL 2026. For Desert Cubs, the story is deeper: he was once a young player learning the game in our programme.
+                </p>
+                <p>
+                    His archived Desert Cubs article from the 2015 Australia tour souvenir says he joined Desert Cubs Cricket Academy in September 2014, trained with the Under 13 and Under 15 squads at the Sharjah English School centre, and credited regular training, one-on-one coaching, wicketkeeping guidance, fitness work, and match opportunities for accelerating his development.
+                </p>
+
+                <div class="mn-feature-list">
+                    <div class="mn-feature">
+                        <i class="fas fa-shirt" aria-hidden="true"></i>
+                        <div><strong>IPL 2026 recognition</strong><br>Selected by Chennai Super Kings, one of the Indian Premier League's most successful franchises.</div>
+                    </div>
+                    <div class="mn-feature">
+                        <i class="fas fa-school" aria-hidden="true"></i>
+                        <div><strong>Desert Cubs foundation</strong><br>Developed through junior academy training at the Sharjah English School centre.</div>
+                    </div>
+                    <div class="mn-feature">
+                        <i class="fas fa-trophy" aria-hidden="true"></i>
+                        <div><strong>Pathway proof</strong><br>A powerful example for UAE-based junior cricketers training in Dubai and Sharjah.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mn-section mn-section-dark">
+    <div class="mn-wrap">
+        <div class="mn-head">
+            <span class="mn-tag">From The Archives</span>
+            <h2>Macneil's Own <span>Desert Cubs Words</span></h2>
+            <div class="mn-rule"></div>
+        </div>
+
+        <div class="mn-doc">
+            <div>
+                <button type="button"
+                        onclick="openModal('{{ url_for('static', filename='img/macneil-noronha/macneil-article.webp') }}', 'Macneil Hadley Noronha — Desert Cubs Australia Tour 2015 article')"
+                        aria-label="Open Macneil Hadley Noronha 2015 Desert Cubs Australia tour article"
+                        style="border:0;background:none;padding:0;cursor:pointer;width:100%;display:block;">
+                    <img src="{{ url_for('static', filename='img/macneil-noronha/macneil-article.webp') }}"
+                         alt="Macneil Hadley Noronha 2015 Desert Cubs Australia tour article about his academy training experience"
+                         width="1086" height="1448" loading="lazy">
+                </button>
+            </div>
+            <div class="mn-prose" style="color:#dbe4ff;">
+                <p style="color:#dbe4ff;">
+                    Before the IPL headlines, Macneil documented what Desert Cubs meant to him as a junior player. In the 2015 Desert Cubs Tour of Australia souvenir, he wrote about joining the academy in September 2014 and training four days a week.
+                </p>
+                <p style="color:#dbe4ff;">
+                    The article mentions technical training, regular match opportunities, one-on-one coaching, wicketkeeping work, fitness guidance, and support from coaches and family. That archive now sits beside his CSK selection as evidence of a long player-development journey.
+                </p>
+                <p style="color:#dbe4ff;">
+                    This is the kind of pathway Desert Cubs aims to build: a young player starts with structured fundamentals, competes regularly, receives detailed coaching, and keeps progressing until larger opportunities arrive.
+                </p>
+                <a href="https://wa.me/971588274266?text=Hello%20Desert%20Cubs!%20I%20would%20like%20to%20know%20about%20cricket%20training%20for%20my%20child."
+                   target="_blank" rel="noopener" class="mn-btn mn-btn-gold" style="margin-top:12px;">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i> Start Your Child's Journey
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mn-section">
+    <div class="mn-wrap">
+        <div class="mn-head">
+            <span class="mn-tag">Gallery</span>
+            <h2>Desert Cubs <span>Memories</span></h2>
+            <div class="mn-rule"></div>
+        </div>
+
+        <div class="mn-gallery">
+            {% for file, caption, fit in [
+                ('macneil-award-1.webp', 'Macneil Noronha Desert Cubs award memory', 'cover'),
+                ('macneil-award-2.webp', 'Macneil Noronha junior cricket recognition', 'contain'),
+                ('macneil-award-3.webp', 'Macneil Noronha Desert Cubs cricket achievement', 'cover'),
+                ('macneil-gallery-1.webp', 'Macneil Noronha Desert Cubs team gallery photo', 'cover'),
+                ('macneil-gallery-3.webp', 'Macneil Noronha academy cricket gallery photo', 'cover'),
+                ('macneil-gallery-7.webp', 'Macneil Noronha junior Desert Cubs tour memory', 'contain')
+            ] %}
+            <button type="button"
+                    onclick="openModal('{{ url_for('static', filename='img/macneil-noronha/' + file) }}', '{{ caption }}')"
+                    aria-label="Open {{ caption }}">
+                <img src="{{ url_for('static', filename='img/macneil-noronha/' + file) }}"
+                     alt="{{ caption }}" width="500" height="330" loading="lazy"
+                     class="{{ 'mn-fit-contain' if fit == 'contain' else '' }}">
+            </button>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="mn-section mn-section-dark">
+    <div class="mn-wrap">
+        <div class="mn-head">
+            <span class="mn-tag">AI Search Summary</span>
+            <h2>Macneil Noronha <span>Quick Answers</span></h2>
+            <div class="mn-rule"></div>
+        </div>
+
+        <div class="mn-faq">
+            <article>
+                <h3>Who is Macneil Hadley Noronha?</h3>
+                <p>Macneil Hadley Noronha is a Desert Cubs Cricket Academy alumnus and Karnataka all-rounder selected by Chennai Super Kings as an IPL 2026 replacement player.</p>
+            </article>
+            <article>
+                <h3>What is Macneil Noronha's Desert Cubs connection?</h3>
+                <p>Macneil trained at Desert Cubs as a junior cricketer, including Under 13 and Under 15 squad training at the Sharjah English School centre after joining the academy in September 2014.</p>
+            </article>
+            <article>
+                <h3>Why is this important for Desert Cubs?</h3>
+                <p>Macneil's CSK selection is the first IPL selection connected to Desert Cubs history, giving UAE families a visible example of how strong junior cricket foundations can support long-term player development.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+</div>
+
+{% endblock %}

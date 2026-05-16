@@ -801,7 +801,7 @@ def about():
         description="Desert Cubs Cricket Academy — UAE's largest junior cricket academy, established 2007 by Presley Polonnowita. 15,000+ alumni, 6 training centres, ECB-affiliated. Meet our executive team and discover our 18-year journey.",
         keywords="Desert Cubs Cricket Academy history, Presley Polonnowita cricket coach UAE, best cricket academy UAE founded 2007, cricket academy Dubai about, GCCA UAE, ECB affiliated cricket academy UAE, Kunal Seth cricket UAE",
         canonical="https://www.desertcubs.com/about",
-        og_image="https://www.desertcubs.com/static/img/mgmt_presley.webp"
+        og_image="https://www.desertcubs.com/static/img/mgmt_presley.jpg"
     )
     return render_template('about.html', meta=meta)
 
@@ -834,12 +834,24 @@ def summer_camp():
 def legends():
     meta = seo(
         title="Legends of the Future | Desert Cubs Cricket Academy Alumni | UAE Cricket Stars",
-        description="Desert Cubs Cricket Academy alumni who represent UAE nationally and internationally. ACC U16 West Zone Cup 2025 winners, UAE U19 World Cup qualifiers, ECB Women's League champions — see our proof of excellence.",
-        keywords="UAE cricket academy success stories, Desert Cubs alumni achievements, UAE national cricket players academy, cricket academy Dubai results, UAE U19 cricket stars, ACC cricket champions UAE, ECB cricket league champions UAE, Akshat Rai cricket UAE, Mohamed Nafees cricket, Kavisha Kumari world record cricket, cricket academy Dubai legends, best cricket results UAE",
+        description="Desert Cubs Cricket Academy alumni who represent UAE nationally and internationally. Macneil Hadley Noronha, Esha Oza, ACC U16 winners, UAE U19 World Cup qualifiers and ECB Women's League champions.",
+        keywords="Macneil Noronha Desert Cubs, Macneil Hadley Noronha IPL 2026, Chennai Super Kings Desert Cubs, UAE cricket academy success stories, Desert Cubs alumni achievements, UAE national cricket players academy, cricket academy Dubai results, UAE U19 cricket stars, ACC cricket champions UAE, ECB cricket league champions UAE, Akshat Rai cricket UAE, Mohamed Nafees cricket, Kavisha Kumari world record cricket, Esha Oza Desert Cubs",
         canonical="https://www.desertcubs.com/legends",
-        og_image="https://www.desertcubs.com/static/img/player_akshat.webp"
+        og_image="https://www.desertcubs.com/static/img/macneil-noronha/macneil-csk-flyer.jpg"
     )
     return render_template('legends.html', meta=meta)
+
+
+@app.route('/legends/macneil-noronha')
+def macneil_noronha():
+    meta = seo(
+        title="Macneil Hadley Noronha | Desert Cubs to Chennai Super Kings IPL 2026",
+        description="Macneil Hadley Noronha, Desert Cubs alumnus and Karnataka all-rounder, was selected by Chennai Super Kings as an IPL 2026 replacement player. Read his Desert Cubs journey.",
+        keywords="Macneil Noronha, Macneil Hadley Noronha, Macneil Noronha IPL 2026, Macneil Noronha Chennai Super Kings, Macneil Noronha CSK, Desert Cubs IPL player, Desert Cubs Cricket Academy alumni, Dubai cricket academy IPL, UAE cricket academy IPL player, Karnataka all-rounder Macneil Noronha, Chennai Super Kings replacement player 2026",
+        canonical="https://www.desertcubs.com/legends/macneil-noronha",
+        og_image="https://www.desertcubs.com/static/img/macneil-noronha/macneil-csk-flyer.jpg"
+    )
+    return render_template('macneil_noronha.html', meta=meta)
 
 
 @app.route('/homelands')
@@ -849,7 +861,7 @@ def homelands():
         description="Invest in Sri Lanka's finest luxury properties through Desert Cubs' exclusive partnership with Home Lands Skyline — Sri Lanka's #1 developer (23+ years, 3,700+ units). Desert Cubs members get exclusive discounts on BayFonte Marina, Canterbury Golf Resort, Oceana Beach, Pentara Residencies, Waterdale & 10+ more premium projects. UAE-based investors.",
         keywords="Sri Lanka property investment UAE, Home Lands Skyline Dubai, buy apartment Sri Lanka from UAE, best property investment Sri Lanka 2025, Desert Cubs Home Lands partnership, BayFonte Marina Negombo lagoon, Canterbury Golf Resort Piliyandala, Oceana Beach Resort Wadduwa, Pentara Residencies Colombo, Waterdale Colombo 7, Sri Lanka luxury apartments expats, Cressida Athurugiriya, Greendale retirement resort Sri Lanka, Serene Heights Thalawathugoda, Nova Rajagiriya, Fedora Athurugiriya, Santorini Negombo, Canterbury Crest Kahathuduwa, PropertyGuru award winner Sri Lanka developer",
         canonical="https://www.desertcubs.com/homelands",
-        og_image="https://www.desertcubs.com/static/img/homelands/homelands_flyer.webp"
+        og_image="https://www.desertcubs.com/static/img/homelands/homelands_flyer.jpg"
     )
     import copy
     projects = copy.deepcopy(HOMELANDS_PROJECTS)
@@ -965,6 +977,7 @@ def sitemap():
         ('/girls-cricket', '0.9', 'monthly', today),
         ('/summer-camp', '0.9', 'monthly', today),
         ('/legends', '0.9', 'monthly', today),
+        ('/legends/macneil-noronha', '0.9', 'monthly', today),
         ('/homelands', '0.8', 'monthly', today),
         ('/tournaments', '0.8', 'weekly', today),
         ('/tours', '0.8', 'monthly', today),
