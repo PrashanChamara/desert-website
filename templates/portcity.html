@@ -8,6 +8,7 @@
   "name": "{{ meta.title }}",
   "description": "{{ meta.description }}",
   "url": "{{ meta.canonical }}",
+  "primaryImageOfPage": "https://www.desertcubs.com/static/img/homelands/portcity/hero.webp",
   "provider": {
     "@type": "Organization",
     "name": "Desert Cubs Cricket Academy",
@@ -20,7 +21,10 @@
 }
 </script>
 <style>
-.pc-simple {
+.pc-page {
+    background:#f8fafc;
+}
+.pc-hero {
     position:relative;
     min-height:calc(100vh - 116px);
     display:flex;
@@ -28,32 +32,37 @@
     overflow:hidden;
     background:linear-gradient(135deg,#000d1a 0%,#001040 42%,#001f66 100%);
 }
-.pc-simple::before {
+.pc-hero::before {
     content:'';
     position:absolute;
     inset:0;
     background-image:linear-gradient(rgba(255,204,0,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,204,0,.035) 1px,transparent 1px);
     background-size:64px 64px;
 }
-.pc-simple::after {
+.pc-hero::after {
     content:'';
     position:absolute;
-    right:-180px;
-    top:-180px;
-    width:620px;
-    height:620px;
-    background:radial-gradient(circle,rgba(255,204,0,.14) 0%,rgba(255,204,0,.02) 48%,transparent 70%);
+    right:-160px;
+    top:-160px;
+    width:560px;
+    height:560px;
+    background:radial-gradient(circle,rgba(255,204,0,.15) 0%,transparent 68%);
 }
 .pc-wrap {
     position:relative;
     z-index:2;
     width:100%;
-    max-width:1120px;
+    max-width:1180px;
     margin:0 auto;
-    padding:80px 16px;
+    padding-left:16px;
+    padding-right:16px;
 }
-.pc-announcement {
-    max-width:860px;
+.pc-hero-grid {
+    display:grid;
+    grid-template-columns:1fr minmax(360px,520px);
+    gap:56px;
+    align-items:center;
+    padding:76px 0 58px;
 }
 .pc-kicker {
     display:inline-flex;
@@ -72,11 +81,11 @@
 .pc-title {
     font-family:'Teko',sans-serif;
     color:#fff;
-    font-size:clamp(4.2rem,10vw,9rem);
+    font-size:clamp(4.1rem,9vw,8.7rem);
     font-weight:900;
     line-height:.82;
     text-transform:uppercase;
-    text-shadow:0 18px 54px rgba(0,0,0,.36);
+    text-shadow:0 18px 54px rgba(0,0,0,.38);
     margin:0 0 24px;
 }
 .pc-title span {
@@ -85,58 +94,61 @@
 }
 .pc-lead {
     color:rgba(255,255,255,.86);
-    font-size:1.18rem;
-    line-height:1.8;
-    max-width:720px;
-    margin:0 0 18px;
+    font-size:1.12rem;
+    line-height:1.78;
+    max-width:690px;
+    margin:0 0 14px;
 }
 .pc-statement {
     color:#FFCC00;
     font-family:'Teko',sans-serif;
-    font-size:clamp(2.25rem,5vw,4.7rem);
+    font-size:clamp(2.25rem,5vw,4.55rem);
     font-weight:800;
     line-height:.92;
     text-transform:uppercase;
-    margin:34px 0 28px;
+    margin:32px 0 0;
 }
-.pc-project {
-    display:grid;
-    grid-template-columns:1fr auto;
-    gap:28px;
-    align-items:end;
-    border-top:1px solid rgba(255,255,255,.16);
-    margin-top:42px;
-    padding-top:32px;
+.pc-hero-card {
+    position:relative;
+    overflow:hidden;
+    border-radius:24px;
+    aspect-ratio:1 / 1;
+    border:1px solid rgba(255,204,0,.38);
+    background:#001040;
+    box-shadow:0 30px 82px rgba(0,0,0,.34);
 }
-.pc-project-label {
-    color:rgba(255,255,255,.58);
-    font-size:.78rem;
+.pc-hero-card img,
+.pc-image-card img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+.pc-hero-card::after {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,rgba(0,16,64,.52),rgba(0,16,64,0) 54%);
+}
+.pc-hero-badge {
+    position:absolute;
+    left:18px;
+    bottom:18px;
+    z-index:2;
+    background:#FFCC00;
+    color:#001f66;
+    border-radius:999px;
+    padding:8px 14px;
+    font-size:.68rem;
     font-weight:900;
-    letter-spacing:.16em;
+    letter-spacing:.12em;
     text-transform:uppercase;
-    margin-bottom:8px;
-}
-.pc-project-name {
-    color:#fff;
-    font-family:'Teko',sans-serif;
-    font-size:clamp(2.4rem,6vw,4.6rem);
-    font-weight:900;
-    line-height:.9;
-    text-transform:uppercase;
-}
-.pc-values {
-    color:#FFCC00;
-    font-size:.78rem;
-    font-weight:900;
-    letter-spacing:.16em;
-    text-transform:uppercase;
-    margin-top:10px;
 }
 .pc-actions {
     display:flex;
     flex-wrap:wrap;
     gap:12px;
-    justify-content:flex-end;
+    margin-top:28px;
 }
 .pc-btn {
     display:inline-flex;
@@ -165,58 +177,204 @@
     border:1px solid rgba(255,255,255,.28);
     background:rgba(255,255,255,.08);
 }
-.pc-call {
+.pc-section {
+    padding:74px 0;
+}
+.pc-section-white {
+    background:#fff;
+}
+.pc-section-dark {
+    background:#001040;
+    color:#fff;
+}
+.pc-section-title {
+    font-family:'Teko',sans-serif;
+    color:#003399;
+    font-size:clamp(3rem,6vw,5.5rem);
+    font-weight:900;
+    line-height:.86;
+    text-transform:uppercase;
+    margin:0 0 18px;
+}
+.pc-section-dark .pc-section-title {
+    color:#fff;
+}
+.pc-section-title span {
+    color:#FFCC00;
+    display:block;
+}
+.pc-copy {
+    color:#475569;
+    line-height:1.85;
+    font-size:1rem;
+    max-width:760px;
+}
+.pc-section-dark .pc-copy {
+    color:rgba(255,255,255,.78);
+}
+.pc-gallery {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
     margin-top:34px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
+}
+.pc-image-card {
+    overflow:hidden;
+    border-radius:22px;
+    aspect-ratio:1 / 1;
+    background:#001040;
+    border:1px solid rgba(0,51,153,.1);
+    box-shadow:0 22px 52px rgba(0,31,102,.12);
+}
+.pc-contact-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:34px;
+}
+.pc-contact-card {
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,204,0,.24);
+    border-radius:18px;
+    padding:24px;
+}
+.pc-contact-name {
+    font-family:'Teko',sans-serif;
+    color:#FFCC00;
+    font-size:2rem;
+    font-weight:800;
+    line-height:1;
+    text-transform:uppercase;
+    margin-bottom:8px;
+}
+.pc-contact-number {
     color:#fff;
     font-weight:900;
-}
-.pc-call a {
-    color:#fff;
     text-decoration:none;
 }
+.pc-contact-actions {
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:18px;
+}
+.pc-small-btn {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border-radius:999px;
+    padding:10px 14px;
+    font-size:.72rem;
+    font-weight:900;
+    letter-spacing:.07em;
+    text-transform:uppercase;
+    text-decoration:none;
+}
+.pc-small-btn-call {
+    background:#FFCC00;
+    color:#001f66;
+}
+.pc-small-btn-whatsapp {
+    background:#25D366;
+    color:#001f66;
+}
+@media (max-width:1023px) {
+    .pc-hero-grid {
+        grid-template-columns:1fr;
+        gap:34px;
+        padding:56px 0 48px;
+    }
+    .pc-hero-card {
+        max-width:560px;
+    }
+}
 @media (max-width:760px) {
-    .pc-simple { min-height:auto; }
-    .pc-wrap { padding:58px 16px; }
-    .pc-project { grid-template-columns:1fr; align-items:start; }
-    .pc-actions { justify-content:flex-start; }
-    .pc-btn { width:100%; }
+    .pc-hero { min-height:auto; }
+    .pc-gallery,
+    .pc-contact-grid {
+        grid-template-columns:1fr;
+    }
+    .pc-actions,
+    .pc-contact-actions {
+        flex-direction:column;
+    }
+    .pc-btn,
+    .pc-small-btn {
+        width:100%;
+    }
+    .pc-section {
+        padding:58px 0;
+    }
 }
 </style>
 {% endblock %}
 
 {% block content %}
-<section class="pc-simple">
-    <div class="pc-wrap">
-        <div class="pc-announcement">
-            <span class="pc-kicker"><i class="fas fa-star"></i> Port City Homeland</span>
-            <h1 class="pc-title">The Indian Ocean's <span>Next Wonder</span></h1>
-            <p class="pc-lead">An iconic twin-tower destination. A globally inspired resort lifestyle.</p>
-            <p class="pc-lead">The future address in South Asia overlooking the Park, Ocean &amp; Skyline.</p>
-            <div class="pc-statement">Be Among the First to Experience What's Next</div>
-
-            <div class="pc-project">
+<div class="pc-page">
+    <section class="pc-hero">
+        <div class="pc-wrap">
+            <div class="pc-hero-grid">
                 <div>
-                    <div class="pc-project-label">A Project by</div>
-                    <div class="pc-project-name">Home Lands</div>
-                    <div class="pc-values">Trust | Innovation | Excellence</div>
+                    <span class="pc-kicker"><i class="fas fa-star"></i> Port City Homeland</span>
+                    <h1 class="pc-title">The Indian Ocean's <span>Next Wonder</span></h1>
+                    <p class="pc-lead">An iconic twin-tower destination. A globally inspired resort lifestyle.</p>
+                    <p class="pc-lead">The future address in South Asia overlooking the Park, Ocean &amp; Skyline.</p>
+                    <div class="pc-statement">Be Among the First to Experience What's Next</div>
+                    <div class="pc-actions">
+                        <a href="#contact" class="pc-btn pc-btn-gold"><i class="fas fa-phone"></i> Call Us</a>
+                        <a href="{{ url_for('static', filename='docs/port-city-homelands-brochure.pdf') }}" class="pc-btn pc-btn-outline" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i> View PDF</a>
+                        <a href="{{ url_for('homelands') }}" class="pc-btn pc-btn-outline"><i class="fas fa-arrow-left"></i> Back To Home Lands</a>
+                    </div>
                 </div>
-                <div class="pc-actions">
-                    <a href="tel:+971553414555" class="pc-btn pc-btn-gold"><i class="fas fa-phone"></i> Call +971 55 341 4555</a>
-                    <a href="tel:+971588274266" class="pc-btn pc-btn-outline"><i class="fas fa-phone"></i> Call +971 58 827 4266</a>
-                    <a href="{{ url_for('homelands') }}" class="pc-btn pc-btn-outline"><i class="fas fa-arrow-left"></i> Back To Home Lands</a>
+                <div class="pc-hero-card">
+                    <img src="{{ url_for('static', filename='img/homelands/portcity/hero.webp') }}" alt="Port City Homeland project visual">
+                    <div class="pc-hero-badge">A Project by Home Lands</div>
                 </div>
-            </div>
-
-            <div class="pc-call">
-                <span>Call us</span>
-                <a href="tel:+971553414555">+971 55 341 4555</a>
-                <span>|</span>
-                <a href="tel:+971588274266">+971 58 827 4266</a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <section class="pc-section pc-section-white">
+        <div class="pc-wrap">
+            <h2 class="pc-section-title">A Project by <span>Home Lands</span></h2>
+            <p class="pc-copy">Trust | Innovation | Excellence</p>
+            <div class="pc-gallery">
+                <div class="pc-image-card">
+                    <img src="{{ url_for('static', filename='img/homelands/portcity/1.webp') }}" alt="Port City Homeland visual 1" loading="lazy">
+                </div>
+                <div class="pc-image-card">
+                    <img src="{{ url_for('static', filename='img/homelands/portcity/2.webp') }}" alt="Port City Homeland visual 2" loading="lazy">
+                </div>
+                <div class="pc-image-card">
+                    <img src="{{ url_for('static', filename='img/homelands/portcity/3.webp') }}" alt="Port City Homeland visual 3" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="pc-section pc-section-dark">
+        <div class="pc-wrap">
+            <h2 class="pc-section-title">Call <span>Us</span></h2>
+            <p class="pc-copy">+971 55 341 4555 | +971 58 827 4266</p>
+            <div class="pc-contact-grid">
+                <div class="pc-contact-card">
+                    <div class="pc-contact-name">Presley</div>
+                    <a class="pc-contact-number" href="tel:+971553414555">+971 55 341 4555</a>
+                    <div class="pc-contact-actions">
+                        <a href="tel:+971553414555" class="pc-small-btn pc-small-btn-call"><i class="fas fa-phone"></i> Call Presley</a>
+                        <a href="https://wa.me/971553414555" class="pc-small-btn pc-small-btn-whatsapp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp Presley</a>
+                    </div>
+                </div>
+                <div class="pc-contact-card">
+                    <div class="pc-contact-name">Prashan</div>
+                    <a class="pc-contact-number" href="tel:+971588274266">+971 58 827 4266</a>
+                    <div class="pc-contact-actions">
+                        <a href="tel:+971588274266" class="pc-small-btn pc-small-btn-call"><i class="fas fa-phone"></i> Call Prashan</a>
+                        <a href="https://wa.me/971588274266" class="pc-small-btn pc-small-btn-whatsapp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp Prashan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock %}

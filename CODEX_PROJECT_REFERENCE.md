@@ -78,9 +78,9 @@ Port City project announcement is handled by:
 - Template: `templates/portcity.html`
 - Sitemap entry: added in `/sitemap.xml`
 - Brochure: `static/docs/port-city-homelands-brochure.pdf`
-- Source PDF: `PORT CITY HOMELAND.pdf`
+- Images: `static/img/homelands/portcity/`
 
-The Port City page must only use details present in `PORT CITY HOMELAND.pdf` unless the user provides approved replacement copy. Current allowed public copy:
+The Port City page must only use details present in the approved Port City PDF unless the user provides approved replacement copy. Current allowed public copy:
 
 ```text
 THE INDIAN OCEAN'S NEXT WONDER
@@ -96,11 +96,11 @@ Do not add Port City unit details, prices, payment plans, dates, floor counts, o
 
 Recommended future image sizes when the user supplies new artwork:
 
-- Homelands hero / Port City hero banner: `1920x1280` or `1800x1200` (`3:2`)
-- Port City content/gallery images: `1920x1080` or `1600x900` (`16:9`)
+- Homelands hero link image: square `1080x1080`
+- Port City content/gallery images: square `1080x1080`
 - Keep important embedded text away from image edges.
 
-Port City source/staging folder was temporary and has been removed. Do not recreate or deploy a root `Portcity/` folder.
+Port City source/staging folder is temporary and should be removed after copying/compressing approved assets. Do not deploy a root `portcity/` or `Portcity/` folder.
 
 ## Production Cautions
 

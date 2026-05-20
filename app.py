@@ -877,7 +877,7 @@ def homelands_portcity():
         description="Home Lands Port City is an iconic twin-tower destination and globally inspired resort lifestyle. The future address in South Asia overlooking the park, ocean and skyline.",
         keywords="Home Lands Port City, Indian Ocean next wonder, twin tower destination, resort lifestyle South Asia, Home Lands",
         canonical="https://www.desertcubs.com/homelands/portcity",
-        og_image="https://www.desertcubs.com/static/img/Desert_cubs_logo.png"
+        og_image="https://www.desertcubs.com/static/img/homelands/portcity/hero.webp"
     )
     return render_template('portcity.html', meta=meta)
 

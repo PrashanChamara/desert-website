@@ -184,8 +184,8 @@
 .portcity-hero-card {
     display:block;
     position:relative;
-    aspect-ratio:3 / 2;
-    width:min(100%,820px);
+    aspect-ratio:1 / 1;
+    width:min(100%,560px);
     border-radius:24px;
     overflow:hidden;
     border:1px solid rgba(255,204,0,0.35);
@@ -194,7 +194,7 @@
     isolation:isolate;
     transform:translateZ(0);
     background:linear-gradient(135deg,#000d1a 0%,#001040 45%,#001f66 100%);
-    margin:-72px 0 0 auto;
+    margin:-26px 0 0 auto;
 }
 .portcity-hero-card img {
     position:absolute;
@@ -202,6 +202,7 @@
     width:100%;
     height:100%;
     object-fit:contain;
+    background:#001040;
     transition:transform 0.6s cubic-bezier(.16,1,.3,1);
 }
 .portcity-hero-card::before {
@@ -209,20 +210,19 @@
     position:absolute;
     inset:0;
     z-index:1;
-    background-image:linear-gradient(rgba(255,204,0,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,204,0,.05) 1px,transparent 1px),radial-gradient(circle at 78% 16%,rgba(255,204,0,.16),transparent 38%);
-    background-size:48px 48px,48px 48px,100% 100%;
+    background:linear-gradient(to top,rgba(0,16,64,.86) 0%,rgba(0,16,64,.42) 34%,rgba(0,16,64,.04) 72%);
 }
 .portcity-hero-card:hover img { transform:scale(1.018); }
 .portcity-hero-content {
     position:absolute;
-    inset:0;
-    padding:30px;
+    left:20px;
+    right:20px;
+    bottom:20px;
     z-index:2;
     display:flex;
     flex-direction:column;
-    justify-content:center;
     align-items:flex-start;
-    gap:14px;
+    gap:11px;
 }
 .portcity-launch-tag {
     display:inline-flex;
@@ -241,18 +241,18 @@
 .portcity-card-title {
     font-family:'Teko',sans-serif;
     color:#fff;
-    font-size:2.7rem;
+    font-size:2.55rem;
     font-weight:900;
-    line-height:0.95;
+    line-height:0.88;
     text-transform:uppercase;
     text-shadow:0 10px 32px rgba(0,0,0,0.38);
 }
 .portcity-card-title span { color:#FFCC00; display:block; }
 .portcity-card-copy {
     color:rgba(255,255,255,0.78);
-    font-size:0.9rem;
-    line-height:1.65;
-    max-width:420px;
+    font-size:0.84rem;
+    line-height:1.55;
+    max-width:460px;
     margin:0 0 6px;
 }
 .portcity-card-action {
@@ -276,8 +276,9 @@
 @media (max-width:640px) {
     .hl-hero { min-height:auto; }
     .portcity-hero-card { border-radius:18px; }
-    .portcity-card-title { font-size:2.05rem; }
-    .portcity-hero-content { padding:18px; align-items:flex-start; flex-direction:column; }
+    .portcity-card-title { font-size:1.95rem; }
+    .portcity-hero-content { left:14px; right:14px; bottom:14px; align-items:flex-start; flex-direction:column; }
+    .portcity-card-copy { font-size:0.78rem; }
     .portcity-launch-tag { font-size:0.6rem; padding:6px 10px; }
     .portcity-card-action { font-size:0.62rem; padding:7px 10px; }
 }
@@ -338,10 +339,11 @@
             <!-- Port City announcement — desktop hero link -->
             <div class="hidden lg:block">
                 <a href="{{ url_for('homelands_portcity') }}" class="portcity-hero-card" aria-label="Open Home Lands Port City project announcement">
+                    <img src="{{ url_for('static', filename='img/homelands/portcity/hero.webp') }}" alt="Home Lands Port City project announcement">
                     <div class="portcity-hero-content">
                         <span class="portcity-launch-tag"><i class="fas fa-star"></i> Port City Homeland</span>
                         <div class="portcity-card-title">The Indian Ocean's <span>Next Wonder</span></div>
-                        <p class="portcity-card-copy">An iconic twin-tower destination. A globally inspired resort lifestyle overlooking the Park, Ocean &amp; Skyline.</p>
+                        <p class="portcity-card-copy">An iconic twin-tower destination. A globally inspired resort lifestyle.</p>
                         <span class="portcity-card-action">View Project Announcement <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
@@ -349,10 +351,11 @@
         </div>
         <div class="lg:hidden mt-10">
             <a href="{{ url_for('homelands_portcity') }}" class="portcity-hero-card" aria-label="Open Home Lands Port City project announcement">
+                <img src="{{ url_for('static', filename='img/homelands/portcity/hero.webp') }}" alt="Home Lands Port City project announcement">
                 <div class="portcity-hero-content">
                     <span class="portcity-launch-tag"><i class="fas fa-star"></i> Port City Homeland</span>
                     <div class="portcity-card-title">The Indian Ocean's <span>Next Wonder</span></div>
-                    <p class="portcity-card-copy">An iconic twin-tower destination. A globally inspired resort lifestyle overlooking the Park, Ocean &amp; Skyline.</p>
+                    <p class="portcity-card-copy">An iconic twin-tower destination. A globally inspired resort lifestyle.</p>
                     <span class="portcity-card-action">View Project Announcement <i class="fas fa-arrow-right"></i></span>
                 </div>
             </a>
@@ -578,8 +581,11 @@
         </div>
 
         <!-- Port City / Full Portfolio Teaser -->
-        <div class="rounded-2xl overflow-hidden relative" style="height:300px;background:linear-gradient(135deg,#000d1a 0%,#001040 48%,#001f66 100%);">
-            <div class="absolute inset-0" style="background-image:linear-gradient(rgba(255,204,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,204,0,.04) 1px,transparent 1px),radial-gradient(circle at 78% 16%,rgba(255,204,0,.16),transparent 42%);background-size:54px 54px,54px 54px,100% 100%;"></div>
+        <div class="rounded-2xl overflow-hidden relative" style="height:300px;background:#001040;">
+            <img src="{{ url_for('static', filename='img/homelands/portcity/hero.webp') }}"
+                 alt="Home Lands Port City project announcement"
+                 class="w-full h-full object-cover" loading="lazy" width="1080" height="1080">
+            <div class="absolute inset-0" style="background:linear-gradient(to right,rgba(0,16,64,.96) 0%,rgba(0,16,64,.72) 48%,rgba(0,16,64,.08) 100%);"></div>
             <div class="absolute inset-0 flex items-center px-8 md:px-12">
                 <div>
                     <span class="gold-badge mb-4 inline-flex"><i class="fas fa-star"></i> Port City Homeland</span>
