@@ -873,11 +873,11 @@ def homelands():
 @app.route('/homelands/portcity')
 def homelands_portcity():
     meta = seo(
-        title="Home Lands Port City Colombo | The Indian Ocean's Next Wonder | Desert Cubs",
-        description="Home Lands Port City Colombo is a landmark twin-tower luxury development at Central Park District, Port City Colombo. Desert Cubs members can request private presentations, flexible payment details, and exclusive launch privileges.",
-        keywords="Home Lands Port City Colombo, Port City Colombo apartments, Sri Lanka biggest real estate investment, luxury apartments Port City Colombo, buy apartment Sri Lanka from UAE, Desert Cubs Home Lands Port City, Indian Ocean next wonder, Port City Colombo twin tower",
+        title="Home Lands Port City | The Indian Ocean's Next Wonder | Desert Cubs",
+        description="Home Lands Port City is an iconic twin-tower destination and globally inspired resort lifestyle. The future address in South Asia overlooking the park, ocean and skyline.",
+        keywords="Home Lands Port City, Indian Ocean next wonder, twin tower destination, resort lifestyle South Asia, Home Lands",
         canonical="https://www.desertcubs.com/homelands/portcity",
-        og_image="https://www.desertcubs.com/static/img/homelands/portcity/banner.webp"
+        og_image="https://www.desertcubs.com/static/img/Desert_cubs_logo.png"
     )
     return render_template('portcity.html', meta=meta)
 

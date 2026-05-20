@@ -72,26 +72,29 @@ Home Lands is handled by:
 - Data: `HOMELANDS_PROJECTS` in `app.py`
 - Gallery helper: `get_homelands_gallery(project_id)`
 
-Port City Colombo project announcement is handled by:
+Port City project announcement is handled by:
 
 - Route: `/homelands/portcity`
 - Template: `templates/portcity.html`
 - Sitemap entry: added in `/sitemap.xml`
 - Brochure: `static/docs/port-city-homelands-brochure.pdf`
-- Images: `static/img/homelands/portcity/`
+- Source PDF: `PORT CITY HOMELAND.pdf`
 
-Current Port City image set:
+The Port City page must only use details present in `PORT CITY HOMELAND.pdf` unless the user provides approved replacement copy. Current allowed public copy:
 
 ```text
-static/img/homelands/portcity/banner.webp  1920x1280
-static/img/homelands/portcity/1.webp       1600x878
-static/img/homelands/portcity/2.webp       1600x876
-static/img/homelands/portcity/3.webp       1600x965
-static/img/homelands/portcity/4.webp       1600x983
-static/img/homelands/portcity/5.webp       1600x978
+THE INDIAN OCEAN'S NEXT WONDER
+An iconic twin-tower destination. A globally inspired resort lifestyle.
+The future address in South Asia overlooking the Park, Ocean & Skyline.
+Be Among the First to Experience What's Next
+A Project by HOME LANDS
+TRUST | INNOVATION | EXCELLENCE
+Call us +971 55 341 4555 | +971 58 827 4266
 ```
 
-Recommended future image sizes:
+Do not add Port City unit details, prices, payment plans, dates, floor counts, ownership rules, or investment notes unless they are provided again by the user as approved source material.
+
+Recommended future image sizes when the user supplies new artwork:
 
 - Homelands hero / Port City hero banner: `1920x1280` or `1800x1200` (`3:2`)
 - Port City content/gallery images: `1920x1080` or `1600x900` (`16:9`)

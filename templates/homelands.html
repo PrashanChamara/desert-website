@@ -193,7 +193,7 @@
     text-decoration:none;
     isolation:isolate;
     transform:translateZ(0);
-    background:#001040;
+    background:linear-gradient(135deg,#000d1a 0%,#001040 45%,#001f66 100%);
     margin:-72px 0 0 auto;
 }
 .portcity-hero-card img {
@@ -209,19 +209,20 @@
     position:absolute;
     inset:0;
     z-index:1;
-    background:linear-gradient(to top,rgba(0,16,64,0.68) 0%,rgba(0,16,64,0.12) 28%,rgba(0,16,64,0) 62%);
+    background-image:linear-gradient(rgba(255,204,0,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,204,0,.05) 1px,transparent 1px),radial-gradient(circle at 78% 16%,rgba(255,204,0,.16),transparent 38%);
+    background-size:48px 48px,48px 48px,100% 100%;
 }
 .portcity-hero-card:hover img { transform:scale(1.018); }
 .portcity-hero-content {
     position:absolute;
-    left:18px;
-    right:18px;
-    bottom:16px;
+    inset:0;
+    padding:30px;
     z-index:2;
     display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    gap:12px;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    gap:14px;
 }
 .portcity-launch-tag {
     display:inline-flex;
@@ -235,7 +236,7 @@
     font-weight:900;
     letter-spacing:0.12em;
     text-transform:uppercase;
-    margin-bottom:0;
+    margin-bottom:4px;
 }
 .portcity-card-title {
     font-family:'Teko',sans-serif;
@@ -246,12 +247,13 @@
     text-transform:uppercase;
     text-shadow:0 10px 32px rgba(0,0,0,0.38);
 }
+.portcity-card-title span { color:#FFCC00; display:block; }
 .portcity-card-copy {
     color:rgba(255,255,255,0.78);
     font-size:0.9rem;
     line-height:1.65;
     max-width:420px;
-    margin:10px 0 18px;
+    margin:0 0 6px;
 }
 .portcity-card-action {
     display:inline-flex;
@@ -275,7 +277,7 @@
     .hl-hero { min-height:auto; }
     .portcity-hero-card { border-radius:18px; }
     .portcity-card-title { font-size:2.05rem; }
-    .portcity-hero-content { left:12px; right:12px; bottom:12px; align-items:flex-start; flex-direction:column; }
+    .portcity-hero-content { padding:18px; align-items:flex-start; flex-direction:column; }
     .portcity-launch-tag { font-size:0.6rem; padding:6px 10px; }
     .portcity-card-action { font-size:0.62rem; padding:7px 10px; }
 }
@@ -335,20 +337,22 @@
             </div>
             <!-- Port City announcement — desktop hero link -->
             <div class="hidden lg:block">
-                <a href="{{ url_for('homelands_portcity') }}" class="portcity-hero-card" aria-label="Open Home Lands Port City Colombo project announcement">
-                    <img src="{{ url_for('static', filename='img/homelands/portcity/banner.webp') }}" alt="Home Lands Port City Colombo twin tower luxury development">
+                <a href="{{ url_for('homelands_portcity') }}" class="portcity-hero-card" aria-label="Open Home Lands Port City project announcement">
                     <div class="portcity-hero-content">
-                        <span class="portcity-launch-tag"><i class="fas fa-star"></i> New Landmark Project</span>
+                        <span class="portcity-launch-tag"><i class="fas fa-star"></i> Port City Homeland</span>
+                        <div class="portcity-card-title">The Indian Ocean's <span>Next Wonder</span></div>
+                        <p class="portcity-card-copy">An iconic twin-tower destination. A globally inspired resort lifestyle overlooking the Park, Ocean &amp; Skyline.</p>
                         <span class="portcity-card-action">View Project Announcement <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
             </div>
         </div>
         <div class="lg:hidden mt-10">
-            <a href="{{ url_for('homelands_portcity') }}" class="portcity-hero-card" aria-label="Open Home Lands Port City Colombo project announcement">
-                <img src="{{ url_for('static', filename='img/homelands/portcity/banner.webp') }}" alt="Home Lands Port City Colombo twin tower luxury development">
+            <a href="{{ url_for('homelands_portcity') }}" class="portcity-hero-card" aria-label="Open Home Lands Port City project announcement">
                 <div class="portcity-hero-content">
-                    <span class="portcity-launch-tag"><i class="fas fa-star"></i> New Landmark Project</span>
+                    <span class="portcity-launch-tag"><i class="fas fa-star"></i> Port City Homeland</span>
+                    <div class="portcity-card-title">The Indian Ocean's <span>Next Wonder</span></div>
+                    <p class="portcity-card-copy">An iconic twin-tower destination. A globally inspired resort lifestyle overlooking the Park, Ocean &amp; Skyline.</p>
                     <span class="portcity-card-action">View Project Announcement <i class="fas fa-arrow-right"></i></span>
                 </div>
             </a>
@@ -574,16 +578,13 @@
         </div>
 
         <!-- Port City / Full Portfolio Teaser -->
-        <div class="rounded-2xl overflow-hidden relative" style="height:300px;">
-            <img src="{{ url_for('static', filename='img/homelands/portcity/banner.webp') }}"
-                 alt="Port City Colombo Sri Lanka — Home Lands Skyline full property portfolio"
-                 class="w-full h-full object-cover" loading="lazy" width="1200" height="300">
-            <div class="absolute inset-0" style="background:linear-gradient(to right,rgba(0,31,102,0.96) 0%,rgba(0,31,102,0.65) 55%,rgba(0,31,102,0.1) 100%);"></div>
+        <div class="rounded-2xl overflow-hidden relative" style="height:300px;background:linear-gradient(135deg,#000d1a 0%,#001040 48%,#001f66 100%);">
+            <div class="absolute inset-0" style="background-image:linear-gradient(rgba(255,204,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,204,0,.04) 1px,transparent 1px),radial-gradient(circle at 78% 16%,rgba(255,204,0,.16),transparent 42%);background-size:54px 54px,54px 54px,100% 100%;"></div>
             <div class="absolute inset-0 flex items-center px-8 md:px-12">
                 <div>
-                    <span class="gold-badge mb-4 inline-flex"><i class="fas fa-star"></i> Major Project Announcement</span>
-                    <h3 class="font-display text-3xl md:text-4xl font-black text-white uppercase mt-3 mb-3">Home Lands<br>Port City Colombo</h3>
-                    <p class="text-gray-300 text-sm max-w-md leading-relaxed">A new landmark twin-tower luxury development at the heart of Port City Colombo. View the dedicated project page for unit details, payment plans, investor notes, and Desert Cubs member enquiry access.</p>
+                    <span class="gold-badge mb-4 inline-flex"><i class="fas fa-star"></i> Port City Homeland</span>
+                    <h3 class="font-display text-3xl md:text-4xl font-black text-white uppercase mt-3 mb-3">Home Lands<br>Port City</h3>
+                    <p class="text-gray-300 text-sm max-w-md leading-relaxed">The Indian Ocean's Next Wonder. An iconic twin-tower destination and globally inspired resort lifestyle overlooking the Park, Ocean &amp; Skyline.</p>
                     <a href="{{ url_for('homelands_portcity') }}" class="inline-flex items-center gap-2 font-black uppercase text-sm px-6 py-3 rounded-xl mt-5 transition-all"
                        style="background:#FFCC00;color:#001f66;letter-spacing:0.06em;">
                         <i class="fas fa-arrow-right"></i> Open Port City Page
