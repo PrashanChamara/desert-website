@@ -41,8 +41,8 @@
 <style>
 /* ── Hero ──────────────────────────────────────────────── */
 .hl-hero {
-    background: linear-gradient(135deg,#001f66 0%,#001040 50%,#001f66 100%);
-    min-height: 80vh;
+    background: linear-gradient(135deg,#000d1a 0%,#001045 40%,#001f66 75%,#001a55 100%);
+    min-height: calc(100vh - 116px);
     display: flex;
     align-items: center;
     position: relative;
@@ -52,8 +52,19 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%23FFCC00" opacity="0.08"/><circle cx="80" cy="40" r="1.5" fill="%23FFCC00" opacity="0.05"/><circle cx="50" cy="70" r="1" fill="%23FFCC00" opacity="0.06"/><circle cx="10" cy="80" r="2" fill="%23FFCC00" opacity="0.04"/><circle cx="90" cy="90" r="1" fill="%23FFCC00" opacity="0.07"/></svg>') repeat;
-    opacity: 0.6;
+    background-image:linear-gradient(rgba(255,204,0,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,204,0,.025) 1px,transparent 1px);
+    background-size:64px 64px;
+    opacity:1;
+}
+.hl-hero::after {
+    content:'';
+    position:absolute;
+    top:-130px;
+    right:-130px;
+    width:520px;
+    height:520px;
+    background:radial-gradient(circle,rgba(255,204,0,.09) 0%,transparent 65%);
+    pointer-events:none;
 }
 /* ── Common ────────────────────────────────────────────── */
 .section-gold-bar { width:48px; height:4px; background:#FFCC00; border-radius:2px; margin-bottom:12px; }
@@ -169,6 +180,105 @@
 .hl-lb-side:hover { background:rgba(255,204,0,0.3); }
 #hl-lb-close { position:fixed; top:16px; right:16px; background:rgba(255,255,255,0.12); color:#fff; border:none; width:42px; height:42px; border-radius:50%; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10000; }
 #hl-lb-counter { color:rgba(255,255,255,0.6); font-size:0.82rem; margin-top:14px; }
+/* ── Port City hero announcement ───────────────────────── */
+.portcity-hero-card {
+    display:block;
+    position:relative;
+    aspect-ratio:3 / 2;
+    width:min(100%,820px);
+    border-radius:24px;
+    overflow:hidden;
+    border:1px solid rgba(255,204,0,0.35);
+    box-shadow:0 28px 80px rgba(0,0,0,0.34);
+    text-decoration:none;
+    isolation:isolate;
+    transform:translateZ(0);
+    background:#001040;
+    margin:-72px 0 0 auto;
+}
+.portcity-hero-card img {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    transition:transform 0.6s cubic-bezier(.16,1,.3,1);
+}
+.portcity-hero-card::before {
+    content:'';
+    position:absolute;
+    inset:0;
+    z-index:1;
+    background:linear-gradient(to top,rgba(0,16,64,0.68) 0%,rgba(0,16,64,0.12) 28%,rgba(0,16,64,0) 62%);
+}
+.portcity-hero-card:hover img { transform:scale(1.018); }
+.portcity-hero-content {
+    position:absolute;
+    left:18px;
+    right:18px;
+    bottom:16px;
+    z-index:2;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:12px;
+}
+.portcity-launch-tag {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#FFCC00;
+    color:#001f66;
+    border-radius:999px;
+    padding:7px 14px;
+    font-size:0.68rem;
+    font-weight:900;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    margin-bottom:0;
+}
+.portcity-card-title {
+    font-family:'Teko',sans-serif;
+    color:#fff;
+    font-size:2.7rem;
+    font-weight:900;
+    line-height:0.95;
+    text-transform:uppercase;
+    text-shadow:0 10px 32px rgba(0,0,0,0.38);
+}
+.portcity-card-copy {
+    color:rgba(255,255,255,0.78);
+    font-size:0.9rem;
+    line-height:1.65;
+    max-width:420px;
+    margin:10px 0 18px;
+}
+.portcity-card-action {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:#FFCC00;
+    font-weight:900;
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    background:rgba(0,16,64,0.78);
+    border:1px solid rgba(255,204,0,0.28);
+    border-radius:999px;
+    padding:9px 13px;
+    white-space:nowrap;
+}
+@media (max-width:1023px) {
+    .portcity-hero-card { width:100%; margin:12px auto 0; }
+}
+@media (max-width:640px) {
+    .hl-hero { min-height:auto; }
+    .portcity-hero-card { border-radius:18px; }
+    .portcity-card-title { font-size:2.05rem; }
+    .portcity-hero-content { left:12px; right:12px; bottom:12px; align-items:flex-start; flex-direction:column; }
+    .portcity-launch-tag { font-size:0.6rem; padding:6px 10px; }
+    .portcity-card-action { font-size:0.62rem; padding:7px 10px; }
+}
 </style>
 {% endblock %}
 
@@ -184,7 +294,7 @@
             <div style="position:absolute;inset:0;background:linear-gradient(to right,#001040 0%,rgba(0,16,64,0.4) 45%,rgba(0,16,64,0) 100%);"></div>
         </div>
     </div>
-    <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 py-20">
+    <div class="relative z-10 w-full mx-auto px-4 sm:px-6 py-20" style="max-width:1280px;">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
             <div>
                 <div class="flex items-center gap-4 mb-6">
@@ -223,15 +333,25 @@
                     <i class="fas fa-phone"></i> Enquire as a Member
                 </a>
             </div>
-            <!-- Partnership photos — desktop -->
-            <div class="hidden lg:grid grid-cols-2 gap-4">
-                <div class="rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-                    <img src="{{ url_for('static', filename='img/homelands/partnership_1.webp') }}" alt="Desert Cubs and Home Lands partnership signing ceremony" class="w-full h-64 object-cover" width="450" height="256">
-                </div>
-                <div class="rounded-2xl overflow-hidden shadow-2xl border border-white/10 mt-8">
-                    <img src="{{ url_for('static', filename='img/homelands/partnership_2.webp') }}" alt="Desert Cubs and Home Lands Skyline team UAE" class="w-full h-64 object-cover" width="450" height="256">
-                </div>
+            <!-- Port City announcement — desktop hero link -->
+            <div class="hidden lg:block">
+                <a href="{{ url_for('homelands_portcity') }}" class="portcity-hero-card" aria-label="Open Home Lands Port City Colombo project announcement">
+                    <img src="{{ url_for('static', filename='img/homelands/portcity/banner.webp') }}" alt="Home Lands Port City Colombo twin tower luxury development">
+                    <div class="portcity-hero-content">
+                        <span class="portcity-launch-tag"><i class="fas fa-star"></i> New Landmark Project</span>
+                        <span class="portcity-card-action">View Project Announcement <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
             </div>
+        </div>
+        <div class="lg:hidden mt-10">
+            <a href="{{ url_for('homelands_portcity') }}" class="portcity-hero-card" aria-label="Open Home Lands Port City Colombo project announcement">
+                <img src="{{ url_for('static', filename='img/homelands/portcity/banner.webp') }}" alt="Home Lands Port City Colombo twin tower luxury development">
+                <div class="portcity-hero-content">
+                    <span class="portcity-launch-tag"><i class="fas fa-star"></i> New Landmark Project</span>
+                    <span class="portcity-card-action">View Project Announcement <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
         </div>
     </div>
 </section>
@@ -455,18 +575,18 @@
 
         <!-- Port City / Full Portfolio Teaser -->
         <div class="rounded-2xl overflow-hidden relative" style="height:300px;">
-            <img src="{{ url_for('static', filename='img/homelands/portcity.webp') }}"
+            <img src="{{ url_for('static', filename='img/homelands/portcity/banner.webp') }}"
                  alt="Port City Colombo Sri Lanka — Home Lands Skyline full property portfolio"
                  class="w-full h-full object-cover" loading="lazy" width="1200" height="300">
             <div class="absolute inset-0" style="background:linear-gradient(to right,rgba(0,31,102,0.96) 0%,rgba(0,31,102,0.65) 55%,rgba(0,31,102,0.1) 100%);"></div>
             <div class="absolute inset-0 flex items-center px-8 md:px-12">
                 <div>
-                    <span class="gold-badge mb-4 inline-flex"><i class="fas fa-plus"></i> And More Coming</span>
-                    <h3 class="font-display text-3xl md:text-4xl font-black text-white uppercase mt-3 mb-3">Port City Colombo<br>&amp; Upcoming Launches</h3>
-                    <p class="text-gray-300 text-sm max-w-md leading-relaxed">Contact Desert Cubs for the full Home Lands Skyline portfolio — including Port City Colombo and upcoming premium launches, with wonderful member discounts exclusively for Desert Cubs families.</p>
-                    <a href="#contact" class="inline-flex items-center gap-2 font-black uppercase text-sm px-6 py-3 rounded-xl mt-5 transition-all"
+                    <span class="gold-badge mb-4 inline-flex"><i class="fas fa-star"></i> Major Project Announcement</span>
+                    <h3 class="font-display text-3xl md:text-4xl font-black text-white uppercase mt-3 mb-3">Home Lands<br>Port City Colombo</h3>
+                    <p class="text-gray-300 text-sm max-w-md leading-relaxed">A new landmark twin-tower luxury development at the heart of Port City Colombo. View the dedicated project page for unit details, payment plans, investor notes, and Desert Cubs member enquiry access.</p>
+                    <a href="{{ url_for('homelands_portcity') }}" class="inline-flex items-center gap-2 font-black uppercase text-sm px-6 py-3 rounded-xl mt-5 transition-all"
                        style="background:#FFCC00;color:#001f66;letter-spacing:0.06em;">
-                        <i class="fas fa-phone"></i> Speak to Our Team
+                        <i class="fas fa-arrow-right"></i> Open Port City Page
                     </a>
                 </div>
             </div>

@@ -870,6 +870,18 @@ def homelands():
     return render_template('homelands.html', meta=meta, projects=projects)
 
 
+@app.route('/homelands/portcity')
+def homelands_portcity():
+    meta = seo(
+        title="Home Lands Port City Colombo | The Indian Ocean's Next Wonder | Desert Cubs",
+        description="Home Lands Port City Colombo is a landmark twin-tower luxury development at Central Park District, Port City Colombo. Desert Cubs members can request private presentations, flexible payment details, and exclusive launch privileges.",
+        keywords="Home Lands Port City Colombo, Port City Colombo apartments, Sri Lanka biggest real estate investment, luxury apartments Port City Colombo, buy apartment Sri Lanka from UAE, Desert Cubs Home Lands Port City, Indian Ocean next wonder, Port City Colombo twin tower",
+        canonical="https://www.desertcubs.com/homelands/portcity",
+        og_image="https://www.desertcubs.com/static/img/homelands/portcity/banner.webp"
+    )
+    return render_template('portcity.html', meta=meta)
+
+
 # ---------------------------------------------------------
 # N8N WEBHOOK ENDPOINTS
 # Secure with WEBHOOK_SECRET env var (set X-Webhook-Token header in N8N)
@@ -979,6 +991,7 @@ def sitemap():
         ('/legends', '0.9', 'monthly', today),
         ('/legends/macneil-noronha', '0.9', 'monthly', today),
         ('/homelands', '0.8', 'monthly', today),
+        ('/homelands/portcity', '0.8', 'monthly', today),
         ('/tournaments', '0.8', 'weekly', today),
         ('/tours', '0.8', 'monthly', today),
         ('/events', '0.8', 'monthly', today),

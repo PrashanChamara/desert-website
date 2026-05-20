@@ -1,0 +1,544 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ meta.title }}",
+  "description": "{{ meta.description }}",
+  "url": "{{ meta.canonical }}",
+  "primaryImageOfPage": "https://www.desertcubs.com/static/img/homelands/portcity/banner.webp",
+  "provider": {
+    "@type": "Organization",
+    "name": "Desert Cubs Cricket Academy",
+    "url": "https://www.desertcubs.com"
+  },
+  "about": {
+    "@type": "Residence",
+    "name": "Home Lands Port City Colombo",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Port City Colombo",
+      "addressCountry": "LK"
+    }
+  }
+}
+</script>
+<style>
+.pc-hero {
+    position:relative;
+    min-height:calc(100vh - 116px);
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    background:linear-gradient(135deg,#000d1a 0%,#001045 40%,#001f66 75%,#001a55 100%);
+}
+.pc-hero > img {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    transform:scale(1.02);
+    opacity:0.16;
+}
+.pc-hero::before {
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:linear-gradient(rgba(255,204,0,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,204,0,.025) 1px,transparent 1px);
+    background-size:64px 64px;
+    z-index:1;
+}
+.pc-hero::after {
+    content:'';
+    position:absolute;
+    top:-130px;
+    right:-130px;
+    width:520px;
+    height:520px;
+    background:radial-gradient(circle,rgba(255,204,0,.09) 0%,transparent 65%);
+    z-index:1;
+    pointer-events:none;
+}
+.pc-wrap { width:100%; max-width:1180px; margin:0 auto; padding-left:16px; padding-right:16px; }
+.pc-hero-grid { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:54px; align-items:center; padding:82px 0 58px; }
+.pc-hero-content { position:relative; z-index:2; max-width:690px; }
+.pc-hero-visual {
+    position:relative;
+    border:1px solid rgba(255,204,0,0.35);
+    border-radius:24px;
+    overflow:hidden;
+    background:#001040;
+    box-shadow:0 30px 86px rgba(0,0,0,0.36);
+    aspect-ratio:3 / 2;
+}
+.pc-hero-visual img {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+}
+.pc-hero-badge {
+    position:absolute;
+    left:18px;
+    bottom:18px;
+    z-index:2;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#FFCC00;
+    color:#001f66;
+    border-radius:999px;
+    padding:9px 14px;
+    font-size:0.68rem;
+    font-weight:900;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+}
+.pc-kicker {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#FFCC00;
+    color:#001f66;
+    border-radius:999px;
+    padding:8px 16px;
+    font-size:0.72rem;
+    font-weight:900;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+}
+.pc-h1 {
+    font-family:'Teko',sans-serif;
+    color:#fff;
+    font-size:clamp(4rem,9vw,8.5rem);
+    font-weight:900;
+    line-height:0.82;
+    text-transform:uppercase;
+    text-shadow:0 16px 54px rgba(0,0,0,0.42);
+    margin:0 0 20px;
+}
+.pc-h1 span { color:#FFCC00; display:block; }
+.pc-lead { color:rgba(255,255,255,0.84); font-size:1.08rem; line-height:1.8; max-width:640px; }
+.pc-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+.pc-btn {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    border-radius:999px;
+    padding:14px 24px;
+    font-size:0.78rem;
+    font-weight:900;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-decoration:none;
+    transition:transform .25s, box-shadow .25s, background .25s;
+}
+.pc-btn:hover { transform:translateY(-2px); }
+.pc-btn-gold { background:#FFCC00; color:#001f66; box-shadow:0 12px 34px rgba(255,204,0,0.32); }
+.pc-btn-blue { background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.28); backdrop-filter:blur(8px); }
+.pc-info-strip {
+    position:relative;
+    z-index:3;
+    background:#001f66;
+    border-top:3px solid #FFCC00;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.pc-info-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,0.1); }
+.pc-info-item { background:#001f66; padding:22px 18px; text-align:center; }
+.pc-info-value { color:#FFCC00; font-family:'Teko',sans-serif; font-size:2.05rem; font-weight:900; line-height:1; text-transform:uppercase; }
+.pc-info-label { color:rgba(255,255,255,0.75); font-size:0.72rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; margin-top:7px; }
+.pc-section { padding:78px 0; }
+.pc-section-dark { background:#001f66; color:#fff; }
+.pc-section-light { background:#f8fafc; }
+.pc-section-white { background:#fff; }
+.pc-eyebrow { color:#001f66; font-size:0.72rem; font-weight:900; letter-spacing:0.16em; text-transform:uppercase; display:flex; align-items:center; gap:8px; margin-bottom:12px; }
+.pc-section-dark .pc-eyebrow { color:#FFCC00; }
+.pc-title {
+    font-family:'Teko',sans-serif;
+    color:#003399;
+    font-size:clamp(2.8rem,5vw,4.8rem);
+    font-weight:900;
+    line-height:0.9;
+    text-transform:uppercase;
+    margin:0 0 18px;
+}
+.pc-section-dark .pc-title { color:#fff; }
+.pc-title span { color:#FFCC00; }
+.pc-copy { color:#475569; line-height:1.85; font-size:1rem; }
+.pc-section-dark .pc-copy { color:rgba(255,255,255,0.74); }
+.pc-two { display:grid; grid-template-columns:1fr 1fr; gap:42px; align-items:center; }
+.pc-card {
+    background:#fff;
+    border:1px solid #e8ecf4;
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 18px 46px rgba(0,51,153,0.07);
+}
+.pc-section-dark .pc-card {
+    background:rgba(255,255,255,0.08);
+    border-color:rgba(255,204,0,0.2);
+    box-shadow:none;
+}
+.pc-card-icon {
+    width:52px;
+    height:52px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#001f66;
+    color:#FFCC00;
+    font-size:1.25rem;
+    margin-bottom:16px;
+}
+.pc-card h3 {
+    color:#001f66;
+    font-weight:900;
+    text-transform:uppercase;
+    font-size:1rem;
+    letter-spacing:0.04em;
+    margin-bottom:9px;
+}
+.pc-section-dark .pc-card h3 { color:#fff; }
+.pc-card p, .pc-card li { color:#64748b; font-size:0.92rem; line-height:1.7; }
+.pc-section-dark .pc-card p, .pc-section-dark .pc-card li { color:rgba(255,255,255,0.72); }
+.pc-grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.pc-grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+.pc-image-frame {
+    position:relative;
+    overflow:hidden;
+    border-radius:22px;
+    aspect-ratio:16 / 9;
+    box-shadow:0 24px 70px rgba(0,31,102,0.18);
+    background:#001040;
+}
+.pc-image-frame img { width:100%; height:100%; object-fit:contain; position:absolute; inset:0; }
+.pc-image-frame::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(0,16,64,0.18),transparent 40%); pointer-events:none; }
+.pc-gallery { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+.pc-gallery-item { position:relative; overflow:hidden; border-radius:18px; background:#001f66; }
+.pc-gallery-item:first-child { grid-column:span 2; }
+.pc-gallery-item::before { content:''; display:block; aspect-ratio:16 / 9; }
+.pc-gallery-item img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:transform .45s; }
+.pc-gallery-item:hover img { transform:scale(1.018); }
+.pc-gallery-caption {
+    position:absolute;
+    left:14px;
+    right:14px;
+    bottom:14px;
+    background:rgba(0,16,64,0.78);
+    color:#fff;
+    border:1px solid rgba(255,204,0,0.24);
+    border-radius:12px;
+    padding:10px 12px;
+    font-size:0.78rem;
+    font-weight:800;
+}
+.pc-list { list-style:none; padding:0; margin:18px 0 0; display:grid; gap:12px; }
+.pc-list li { display:flex; align-items:flex-start; gap:10px; }
+.pc-list i { color:#FFCC00; margin-top:4px; flex-shrink:0; }
+.pc-payment { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.pc-payment-step { display:flex; gap:14px; padding:14px 0; border-bottom:1px solid rgba(15,23,42,0.08); }
+.pc-step-no {
+    width:34px;
+    height:34px;
+    border-radius:999px;
+    background:#FFCC00;
+    color:#001f66;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+    font-size:0.85rem;
+}
+.pc-quote {
+    background:linear-gradient(135deg,#001f66,#001040);
+    color:#fff;
+    border-radius:22px;
+    padding:42px;
+    text-align:center;
+    border:1px solid rgba(255,204,0,0.22);
+}
+.pc-quote p { font-family:'Teko',sans-serif; font-size:2.6rem; line-height:1; color:#FFCC00; text-transform:uppercase; }
+.pc-note {
+    background:#fff7d6;
+    border:1px solid rgba(255,204,0,0.45);
+    color:#533f00;
+    border-radius:16px;
+    padding:18px 20px;
+    font-size:0.9rem;
+    line-height:1.75;
+}
+.pc-cta {
+    position:relative;
+    overflow:hidden;
+    background:#001040;
+    color:#fff;
+}
+.pc-cta img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.26; }
+.pc-cta::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#001040 0%,rgba(0,31,102,0.9) 58%,rgba(0,31,102,0.42) 100%); }
+.pc-cta-inner { position:relative; z-index:2; padding:82px 0; }
+@media (max-width:1023px) {
+    .pc-hero-grid, .pc-two, .pc-payment { grid-template-columns:1fr; }
+    .pc-grid-4 { grid-template-columns:repeat(2,1fr); }
+    .pc-hero-grid { gap:30px; padding:58px 0 44px; }
+    .pc-hero-content { max-width:760px; }
+    .pc-info-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:640px) {
+    .pc-hero { min-height:auto; }
+    .pc-hero-grid { padding:48px 0 36px; }
+    .pc-hero-badge { left:12px; bottom:12px; font-size:0.58rem; padding:7px 10px; }
+    .pc-lead { font-size:0.96rem; }
+    .pc-actions { flex-direction:column; align-items:stretch; }
+    .pc-btn { width:100%; }
+    .pc-section { padding:58px 0; }
+    .pc-grid-3, .pc-grid-4, .pc-gallery, .pc-info-grid { grid-template-columns:1fr; }
+    .pc-gallery-item:first-child { grid-column:auto; }
+    .pc-quote { padding:30px 20px; }
+    .pc-quote p { font-size:2rem; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="pc-hero">
+    <img src="{{ url_for('static', filename='img/homelands/portcity/banner.webp') }}" alt="Home Lands Port City Colombo twin tower luxury living">
+    <div class="pc-wrap">
+        <div class="pc-hero-grid">
+            <div class="pc-hero-content">
+                <span class="pc-kicker"><i class="fas fa-crown"></i> Home Lands Port City Colombo</span>
+                <h1 class="pc-h1">The Indian Ocean's <span>Next Wonder</span></h1>
+                <p class="pc-lead">Luxury twin-tower living at the heart of Port City Colombo. A globally inspired resort lifestyle overlooking the park, ocean and skyline, created for future-focused investors, homeowners and professionals.</p>
+                <div class="pc-actions">
+                    <a href="#contact" class="pc-btn pc-btn-gold"><i class="fas fa-calendar-check"></i> Book Private Presentation</a>
+                    <a href="{{ url_for('static', filename='docs/port-city-homelands-brochure.pdf') }}" class="pc-btn pc-btn-blue" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i> Download Brochure</a>
+                    <a href="https://wa.me/971588274266?text=Hi%20Desert%20Cubs%2C%20I%27m%20interested%20in%20Home%20Lands%20Port%20City%20Colombo." class="pc-btn pc-btn-blue" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Reserve Your Unit</a>
+                </div>
+            </div>
+            <div class="pc-hero-visual">
+                <img src="{{ url_for('static', filename='img/homelands/portcity/banner.webp') }}" alt="Home Lands Port City Colombo project banner">
+                <span class="pc-hero-badge"><i class="fas fa-star"></i> New Landmark Project</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pc-info-strip">
+    <div class="pc-wrap">
+        <div class="pc-info-grid">
+            <div class="pc-info-item"><div class="pc-info-value">G+35</div><div class="pc-info-label">Twin-Tower Structure</div></div>
+            <div class="pc-info-item"><div class="pc-info-value">3 Acres</div><div class="pc-info-label">Central Park District</div></div>
+            <div class="pc-info-item"><div class="pc-info-value">Jul 2026</div><div class="pc-info-label">Planned Launch</div></div>
+            <div class="pc-info-item"><div class="pc-info-value">Oct 2029</div><div class="pc-info-label">Target Completion</div></div>
+        </div>
+    </div>
+</section>
+
+<section class="pc-section pc-section-white">
+    <div class="pc-wrap">
+        <div class="pc-two">
+            <div>
+                <div class="pc-eyebrow"><i class="fas fa-location-dot"></i> About The Development</div>
+                <h2 class="pc-title">A Future Address In <span>South Asia</span></h2>
+                <p class="pc-copy">Home Lands Port City Colombo is planned for Land Lot 77 at the Central Park District of Port City Colombo. The development brings a twin-tower luxury residential concept to one of Sri Lanka's most ambitious urban destinations, with ocean, park and financial district views.</p>
+                <ul class="pc-list">
+                    <li><i class="fas fa-check-circle"></i><span>3 acres total land with 2 acres development area and 1 acre dedicated park.</span></li>
+                    <li><i class="fas fa-check-circle"></i><span>Developed together with Port City Authority, with the project elevated 4 feet above ground level.</span></li>
+                    <li><i class="fas fa-check-circle"></i><span>Architecture and development planning by SOG + Philip Weerarathna.</span></li>
+                    <li><i class="fas fa-check-circle"></i><span>CS2 grading development company with a landmark G+35 tower structure.</span></li>
+                </ul>
+            </div>
+            <div class="pc-image-frame">
+                <img src="{{ url_for('static', filename='img/homelands/portcity/1.webp') }}" alt="Port City Colombo twin tower aerial luxury render" loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pc-section pc-section-light">
+    <div class="pc-wrap">
+        <div class="text-center mb-12">
+            <div class="pc-eyebrow" style="justify-content:center;"><i class="fas fa-images"></i> Project Visual Showcase</div>
+            <h2 class="pc-title">Waterfront Luxury, <span>Global Scale</span></h2>
+            <p class="pc-copy" style="max-width:720px;margin:0 auto;">The project imagery positions Port City Colombo as a premium high-rise lifestyle address: skyline residences, Indian Ocean outlooks, sky-level amenities, resort arrival experiences and modern luxury interiors.</p>
+        </div>
+        <div class="pc-gallery">
+            <div class="pc-gallery-item">
+                <img src="{{ url_for('static', filename='img/homelands/portcity/2.webp') }}" alt="Luxury Port City Colombo skyline and marina view" loading="lazy">
+                <div class="pc-gallery-caption">Panoramic ocean, park and skyline views</div>
+            </div>
+            <div class="pc-gallery-item">
+                <img src="{{ url_for('static', filename='img/homelands/portcity/3.webp') }}" alt="Port City Colombo luxury apartment interior" loading="lazy">
+                <div class="pc-gallery-caption">Premium residences with modern finishes</div>
+            </div>
+            <div class="pc-gallery-item">
+                <img src="{{ url_for('static', filename='img/homelands/portcity/4.webp') }}" alt="Port City Colombo rooftop pool and sky lounge" loading="lazy">
+                <div class="pc-gallery-caption">Sky-level lifestyle facilities</div>
+            </div>
+            <div class="pc-gallery-item">
+                <img src="{{ url_for('static', filename='img/homelands/portcity/5.webp') }}" alt="Port City Colombo night view luxury arrival" loading="lazy">
+                <div class="pc-gallery-caption">Luxury arrival and night-time presence</div>
+            </div>
+            <div class="pc-gallery-item">
+                <img src="{{ url_for('static', filename='img/homelands/portcity/banner.webp') }}" alt="Home Lands Port City Colombo banner" loading="lazy">
+                <div class="pc-gallery-caption">A twin-tower development by Home Lands</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pc-section pc-section-white">
+    <div class="pc-wrap">
+        <div class="text-center mb-12">
+            <div class="pc-eyebrow" style="justify-content:center;"><i class="fas fa-building"></i> Unit Collection</div>
+            <h2 class="pc-title">Residences For Every <span>Investor Profile</span></h2>
+            <p class="pc-copy" style="max-width:720px;margin:0 auto;">Apartment pricing varies by view, floor and square footage. Foreign investors should note that apartment ownership is the available route; villas are not offered for foreign ownership.</p>
+        </div>
+        <div class="pc-grid-3">
+            <div class="pc-card"><div class="pc-card-icon"><i class="fas fa-door-open"></i></div><h3>Studio Apartments</h3><p>525 sq.ft smart luxury living for efficient city investment.</p></div>
+            <div class="pc-card"><div class="pc-card-icon"><i class="fas fa-bed"></i></div><h3>1 Bedroom Apartments</h3><p>625 sq.ft modern investment lifestyle. Banner pricing guidance: USD 310-400 per sq.ft.</p></div>
+            <div class="pc-card"><div class="pc-card-icon"><i class="fas fa-house"></i></div><h3>2 Bedroom Apartments</h3><p>Spacious layouts with ocean, park and financial district view options.</p></div>
+            <div class="pc-card"><div class="pc-card-icon"><i class="fas fa-people-roof"></i></div><h3>3 Bedroom Apartments</h3><p>950 sq.ft+ premium family living with elevated high-rise outlooks.</p></div>
+            <div class="pc-card"><div class="pc-card-icon"><i class="fas fa-gem"></i></div><h3>4 Bedroom Residences</h3><p>Elite high-rise luxury residences for larger family and lifestyle requirements.</p></div>
+            <div class="pc-card"><div class="pc-card-icon"><i class="fas fa-city"></i></div><h3>Sky Villas &amp; Penthouses</h3><p>Two-story sky residences from Floor 26 upwards, with guide pricing from 200 million LKR.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="pc-section pc-section-dark">
+    <div class="pc-wrap">
+        <div class="pc-two">
+            <div>
+                <div class="pc-eyebrow"><i class="fas fa-layer-group"></i> Tower Structure</div>
+                <h2 class="pc-title">Designed For <span>Views, Arrival And Lifestyle</span></h2>
+                <p class="pc-copy">The building program separates parking, lifestyle amenity levels, luxury apartments and upper-floor sky residences, creating a full vertical resort experience in the heart of Port City Colombo.</p>
+            </div>
+            <div class="pc-grid-2">
+                <div class="pc-card">
+                    <h3>Floor Distribution</h3>
+                    <ul class="pc-list">
+                        <li><i class="fas fa-square-parking"></i><span>Floors 1-5: parking levels.</span></li>
+                        <li><i class="fas fa-utensils"></i><span>Central-view restaurant and gym facilities.</span></li>
+                        <li><i class="fas fa-building"></i><span>Floors 6-25: luxury apartments.</span></li>
+                        <li><i class="fas fa-crown"></i><span>Floors 26+: sky villas, penthouses and duplexes.</span></li>
+                    </ul>
+                </div>
+                <div class="pc-card">
+                    <h3>Project Positioning</h3>
+                    <ul class="pc-list">
+                        <li><i class="fas fa-water"></i><span>Ocean and park-facing lifestyle.</span></li>
+                        <li><i class="fas fa-chart-line"></i><span>Financial district view potential.</span></li>
+                        <li><i class="fas fa-key"></i><span>Tower A and Tower B collection.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pc-section pc-section-light">
+    <div class="pc-wrap">
+        <div class="text-center mb-12">
+            <div class="pc-eyebrow" style="justify-content:center;"><i class="fas fa-chart-line"></i> Why Port City Colombo?</div>
+            <h2 class="pc-title">A Landmark <span>Early Entry</span> Opportunity</h2>
+        </div>
+        <div class="pc-grid-3">
+            <div class="pc-card"><div class="pc-card-icon"><i class="fas fa-water"></i></div><h3>Ocean Views</h3><p>Direct panoramic Indian Ocean views from a future-facing city address.</p></div>
+            <div class="pc-card"><div class="pc-card-icon"><i class="fas fa-briefcase"></i></div><h3>Financial District Views</h3><p>Facing Sri Lanka's future business hub and an international investment zone.</p></div>
+            <div class="pc-card"><div class="pc-card-icon"><i class="fas fa-arrow-trend-up"></i></div><h3>Capital Appreciation</h3><p>Positioned for long-term value growth as Port City Colombo matures over the next 5-10 years.</p></div>
+            <div class="pc-card"><div class="pc-card-icon"><i class="fas fa-globe"></i></div><h3>Global Investment Hub</h3><p>A South Asian destination designed for international businesses, residents and investors.</p></div>
+            <div class="pc-card"><div class="pc-card-icon"><i class="fas fa-umbrella-beach"></i></div><h3>Resort Lifestyle</h3><p>World-class amenities, waterfront living, modern interiors and elevated sky facilities.</p></div>
+            <div class="pc-card"><div class="pc-card-icon"><i class="fas fa-passport"></i></div><h3>Residency Benefits</h3><p>5-10 year residence visa eligibility may apply based on property value and applicable terms.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="pc-section pc-section-white">
+    <div class="pc-wrap">
+        <div class="pc-two">
+            <div>
+                <div class="pc-eyebrow"><i class="fas fa-credit-card"></i> Flexible Payment Options</div>
+                <h2 class="pc-title">Payment Plans Built For <span>Early Investors</span></h2>
+                <p class="pc-copy">The available plans are structured around a holding fee, reservation payment and monthly installments. USD, AED, LKR and EURO payment support is listed in the source project notes.</p>
+                <div class="pc-note mt-5">Important: prices, unit availability, discounts, payment plans and residence visa eligibility are subject to project terms and developer confirmation. Contact Desert Cubs for current details.</div>
+            </div>
+            <div class="pc-payment">
+                <div class="pc-card">
+                    <h3>Plan 01</h3>
+                    <div class="pc-payment-step"><div class="pc-step-no">1</div><p><strong>Holding fee:</strong> 5 million LKR total. Pay 2 million today and remaining 3 million next day.</p></div>
+                    <div class="pc-payment-step"><div class="pc-step-no">2</div><p><strong>Reservation:</strong> within 1 month, 10% payment. Holding fee deducted from reservation.</p></div>
+                    <div class="pc-payment-step"><div class="pc-step-no">3</div><p><strong>Remaining:</strong> 90% through 40 monthly installments.</p></div>
+                </div>
+                <div class="pc-card">
+                    <h3>Plan 02</h3>
+                    <div class="pc-payment-step"><div class="pc-step-no">1</div><p><strong>Initial holding:</strong> 5 million LKR.</p></div>
+                    <div class="pc-payment-step"><div class="pc-step-no">2</div><p><strong>After 1 month:</strong> 30% payment.</p></div>
+                    <div class="pc-payment-step"><div class="pc-step-no">3</div><p><strong>Installments:</strong> 60% across 39 months, with 10% final payment at handover.</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pc-section pc-section-dark">
+    <div class="pc-wrap">
+        <div class="pc-quote">
+            <p>In real estate, wealth is created by entering early.</p>
+            <div class="pc-grid-4 mt-8">
+                <div><div class="pc-info-value">No</div><div class="pc-info-label">Downpayment Option</div></div>
+                <div><div class="pc-info-value">40</div><div class="pc-info-label">Monthly Installments</div></div>
+                <div><div class="pc-info-value">4</div><div class="pc-info-label">Currency Options</div></div>
+                <div><div class="pc-info-value">1M</div><div class="pc-info-label">LKR USD Payment Discount</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pc-section pc-section-white">
+    <div class="pc-wrap">
+        <div class="pc-two">
+            <div>
+                <div class="pc-eyebrow"><i class="fas fa-circle-info"></i> Investor Notes</div>
+                <h2 class="pc-title">Clear Details Before You <span>Reserve</span></h2>
+                <p class="pc-copy">Desert Cubs will coordinate enquiries with Home Lands so members receive the correct current information before making any investment decision.</p>
+            </div>
+            <div class="pc-card">
+                <ul class="pc-list">
+                    <li><i class="fas fa-check-circle"></i><span>Foreigners can purchase apartments only.</span></li>
+                    <li><i class="fas fa-check-circle"></i><span>Villas are not available for foreign ownership.</span></li>
+                    <li><i class="fas fa-check-circle"></i><span>Approximate maintenance fee: 20-25 LKR per sq.ft.</span></li>
+                    <li><i class="fas fa-check-circle"></i><span>Prices vary based on view, floor and square footage.</span></li>
+                    <li><i class="fas fa-check-circle"></i><span>Special discounts and investment privileges may be available during investor events and launch windows.</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="pc-cta">
+    <img src="{{ url_for('static', filename='img/homelands/portcity/5.webp') }}" alt="" aria-hidden="true" loading="lazy">
+    <div class="pc-wrap pc-cta-inner">
+        <div style="max-width:720px;">
+            <div class="pc-eyebrow"><i class="fas fa-champagne-glasses"></i> Exclusive Investor Access</div>
+            <h2 class="pc-title">Own A Piece Of <span>South Asia's Future</span></h2>
+            <p class="pc-copy">Be among the first investors to secure a luxury residence in Sri Lanka's most ambitious property development. Contact Desert Cubs to reserve a private presentation, request current unit availability, or confirm event privileges.</p>
+            <div class="pc-actions">
+                <a href="https://wa.me/971588274266?text=Hi%20Desert%20Cubs%2C%20please%20send%20me%20details%20for%20Home%20Lands%20Port%20City%20Colombo." class="pc-btn pc-btn-gold" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp Prashan</a>
+                <a href="tel:+971553414555" class="pc-btn pc-btn-blue"><i class="fas fa-phone"></i> Call Presley</a>
+                <a href="tel:+971588274266" class="pc-btn pc-btn-blue"><i class="fas fa-phone"></i> Call Prashan</a>
+                <a href="{{ url_for('homelands') }}" class="pc-btn pc-btn-blue"><i class="fas fa-arrow-left"></i> Back To Home Lands</a>
+            </div>
+            <p style="color:rgba(255,255,255,0.55);font-size:0.8rem;line-height:1.7;margin-top:22px;">Contacts: Presley +971 55 341 4555 | Prashan +971 58 827 4266. Investment decisions should be made after independent financial and legal advice.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
