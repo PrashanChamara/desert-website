@@ -39,20 +39,29 @@
 
 /* ── HERO GRID ────────────────────────────────────────────── */
 .hero-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
+.hero-grid>*{min-width:0}
 @media(min-width:1024px){.hero-grid{grid-template-columns:1fr 1fr;gap:60px}}
 
-/* Hero image — hidden on mobile, visible desktop */
+/* Hero image — desktop slideshow */
 .hero-img{display:none}
 @media(min-width:1024px){.hero-img{display:block;position:relative}}
-.hero-slide{position:absolute;inset:0;opacity:0;visibility:hidden;animation:heroAlumniSwap 12s infinite;will-change:opacity}
+.hero-slide{position:absolute;inset:0;opacity:0;visibility:hidden;animation:heroAlumniSwap 18s infinite;will-change:opacity}
 .hero-slide[href]{cursor:pointer}
 .hero-slide:nth-child(1){animation-delay:0s}
 .hero-slide:nth-child(2){animation-delay:6s}
+.hero-slide:nth-child(3){animation-delay:12s}
 .hero-slide img.hero-person{width:100%;height:100%;object-fit:cover;display:block}
 .hero-alumni-card{position:absolute;bottom:20px;left:20px;right:20px;
                   background:rgba(255,255,255,.08);backdrop-filter:blur(12px);
                   border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:15px 18px;z-index:3}
-@keyframes heroAlumniSwap{0%,43%{opacity:1;visibility:visible}50%,93%{opacity:0;visibility:hidden}100%{opacity:1;visibility:visible}}
+@keyframes heroAlumniSwap{0%,27%{opacity:1;visibility:visible}33%,100%{opacity:0;visibility:hidden}}
+.hero-mobile-showcase{display:block;margin-top:30px;animation:fadeUp .8s .5s ease both}
+.hero-mobile-scroll{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,82%);gap:14px;overflow-x:auto;padding:2px 2px 12px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#FFCC00 #001045}
+.hero-mobile-card{position:relative;display:block;min-height:330px;border-radius:22px;overflow:hidden;border:1.5px solid rgba(255,204,0,.28);background:#001f66;scroll-snap-align:start;text-decoration:none;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.hero-mobile-card img{width:100%;height:330px;object-fit:cover;display:block}
+.hero-mobile-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.9) 0%,transparent 56%);pointer-events:none}
+.hero-mobile-badge{position:absolute;left:14px;right:14px;bottom:14px;z-index:2;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px);border-radius:14px;padding:12px 14px}
+@media(min-width:1024px){.hero-mobile-showcase{display:none}}
 
 /* ── TRUST STRIP GRID ─────────────────────────────────────── */
 .trust-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -86,6 +95,11 @@
 
 /* ── HERO CTA ROW ─────────────────────────────────────────── */
 .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:36px}
+@media(max-width:520px){
+    .hero-ctas{flex-direction:column;align-items:stretch}
+    .hero-ctas .btn-shimmer,.hero-ctas .btn-outline{width:100%;justify-content:center}
+    .stat-bar{gap:8px}
+}
 
 /* ── SHIMMER BUTTON (GPU-composited: pseudo-element translateX) */
 .btn-shimmer{position:relative;overflow:hidden;
@@ -189,43 +203,6 @@
            transition:transform .3s ease}
 .trust-ico:hover{transform:scale(1.1)}
 
-/* ── FIRE BUTTON (GPU-composited: opacity+transform only) ─── */
-@keyframes fireFlicker{0%,100%{opacity:.9;transform:scale(1)}
-                       50%{opacity:1;transform:scale(1.02)}}
-@keyframes fireRise{0%{opacity:.85;transform:translateY(0) scale(1)}
-                    100%{opacity:0;transform:translateY(-30px) scale(.2)}}
-.btn-fire-wrap{position:relative;display:inline-block}
-.fire-dot{position:absolute;bottom:calc(100% - 4px);width:5px;border-radius:50% 50% 30% 30%;
-          pointer-events:none;animation:fireRise .7s ease-out infinite;will-change:transform,opacity}
-.btn-fire{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px;
-          background:linear-gradient(135deg,#ff4500 0%,#ff7000 55%,#ffcc00 100%);
-          color:#fff!important;font-family:'Nunito',sans-serif;font-weight:900;
-          font-size:.95rem;letter-spacing:.1em;text-transform:uppercase;
-          border:none;cursor:pointer;border-radius:999px;padding:14px 38px;
-          animation:fireFlicker 1.8s ease-in-out infinite;will-change:transform,opacity;
-          transition:transform .25s;box-shadow:0 6px 28px rgba(255,80,0,.55)}
-.btn-fire:hover{transform:translateY(-3px) scale(1.05);color:#fff!important;
-                box-shadow:0 12px 40px rgba(255,80,0,.6)}
-
-/* ── IPL PREDICTION MODAL ────────────────────────────────── */
-@keyframes modalPop{from{opacity:0;transform:scale(.9) translateY(30px)}
-                    to{opacity:1;transform:scale(1) translateY(0)}}
-#iplModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);
-          backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-          z-index:2000;align-items:center;justify-content:center;padding:16px}
-#iplModal.open{display:flex}
-.ipl-box{background:linear-gradient(160deg,#001045 0%,#000d1a 100%);
-         border:2px solid rgba(255,204,0,.5);border-radius:24px;
-         max-width:700px;width:100%;max-height:90vh;overflow-y:auto;
-         position:relative;animation:modalPop .4s cubic-bezier(.16,1,.3,1);
-         box-shadow:0 40px 100px rgba(0,0,0,.9),0 0 80px rgba(255,100,0,.18)}
-.ipl-close{position:absolute;top:14px;right:14px;width:38px;height:38px;
-           background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
-           border-radius:50%;display:flex;align-items:center;justify-content:center;
-           cursor:pointer;color:#fff;font-size:.95rem;transition:all .2s;z-index:10;
-           line-height:1}
-.ipl-close:hover{background:rgba(255,60,0,.45);border-color:rgba(255,80,0,.6)}
-
 </style>
 
 
@@ -278,10 +255,10 @@
             <h1 style="font-family:'Teko',sans-serif;font-weight:700;text-transform:uppercase;
                        line-height:.95;margin-bottom:20px;letter-spacing:.01em;
                        animation:fadeUp .8s .1s ease both;">
-                <span style="color:#ffffff;font-size:clamp(2.6rem,6vw,5rem);display:block;">Build The</span>
-                <span style="color:#FFCC00;font-size:clamp(3.2rem,8.5vw,6.5rem);display:block;
+                <span style="color:#ffffff;font-size:clamp(2.45rem,6vw,5rem);display:block;">Build The</span>
+                <span style="color:#FFCC00;font-size:clamp(2.55rem,10vw,6.5rem);display:block;
                              text-shadow:0 0 60px rgba(255,204,0,.2);">Next Champion</span>
-                <span style="color:rgba(255,255,255,.72);font-size:clamp(1.9rem,4.5vw,3.6rem);display:block;">In UAE Cricket</span>
+                <span style="color:rgba(255,255,255,.72);font-size:clamp(1.75rem,4.5vw,3.6rem);display:block;">In UAE Cricket</span>
             </h1>
 
             <!-- Sub-copy -->
@@ -290,7 +267,7 @@
                       animation:fadeUp .8s .2s ease both;">
                 The UAE's largest junior cricket academy.
                 <strong style="color:#fff;font-weight:800;">Est. 2007.</strong>
-                Six world-class training centres across
+                Five world-class training centres across
                 <strong style="color:#fff;font-weight:800;">Dubai &amp; Sharjah.</strong>
                 15,000+ alumni, 100+ qualified coaches.
             </p>
@@ -318,7 +295,7 @@
                 </div>
                 <div>
                     <p style="font-family:'Teko',sans-serif;font-size:2.8rem;font-weight:700;color:#FFCC00;line-height:1;"
-                       class="counter" data-target="6" data-suffix="">6</p>
+                       class="counter" data-target="5" data-suffix="">5</p>
                     <p style="font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:800;
                                color:#4d6b94;text-transform:uppercase;letter-spacing:.14em;margin-top:3px;">Training Centres</p>
                 </div>
@@ -330,23 +307,38 @@
                 </div>
             </div>
 
-            <!-- 🔥 IPL GUESS & WIN FIRE BUTTON -->
-            <div style="margin-top:28px;animation:fadeUp .8s .5s ease both;">
-                <div class="btn-fire-wrap">
-                    <span class="fire-dot" style="left:12%;height:18px;background:linear-gradient(to top,#ff4500,#ffaa00,transparent);animation-delay:0s;animation-duration:.68s;"></span>
-                    <span class="fire-dot" style="left:28%;height:22px;background:linear-gradient(to top,#ff6000,#ffcc00,transparent);animation-delay:.2s;animation-duration:.6s;"></span>
-                    <span class="fire-dot" style="left:48%;height:20px;background:linear-gradient(to top,#ff4500,#ffe000,transparent);animation-delay:.38s;animation-duration:.75s;"></span>
-                    <span class="fire-dot" style="left:66%;height:17px;background:linear-gradient(to top,#ff5500,#ffbb00,transparent);animation-delay:.12s;animation-duration:.64s;"></span>
-                    <span class="fire-dot" style="left:84%;height:21px;background:linear-gradient(to top,#ff6500,#ffcc00,transparent);animation-delay:.28s;animation-duration:.72s;"></span>
-                    <button onclick="document.getElementById('iplModal').classList.add('open');document.body.style.overflow='hidden';"
-                            class="btn-fire"
-                            aria-label="IPL 2026 Prediction — Guess the Winner and Win a Prize">
-                        🔥 Guess &amp; WIN
-                    </button>
+            <!-- Mobile alumni image showcase -->
+            <div class="hero-mobile-showcase" aria-label="Desert Cubs alumni and legend highlights">
+                <div class="hero-mobile-scroll">
+                    <div class="hero-mobile-card">
+                        <img src="{{ url_for('static', filename='img/hero-bg.jpg') }}"
+                             alt="Esha Oza Desert Cubs alumna and UAE Women's Cricket Captain"
+                             width="420" height="420" loading="eager">
+                        <div class="hero-mobile-badge">
+                            <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.25rem;color:#fff;text-transform:uppercase;line-height:1;margin:0;">Esha Oza</p>
+                            <p style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.65rem;color:#FFCC00;text-transform:uppercase;letter-spacing:.1em;margin:5px 0 0;">UAE Women's Captain</p>
+                        </div>
+                    </div>
+                    <a href="/legends/macneil-noronha" class="hero-mobile-card" aria-label="Read Macneil Hadley Noronha's Desert Cubs to IPL story">
+                        <img src="{{ url_for('static', filename='img/macneil-noronha/macneil-main.webp') }}"
+                             alt="Macneil Hadley Noronha Desert Cubs alumnus selected by Chennai Super Kings for IPL 2026"
+                             width="420" height="420" loading="eager"
+                             style="object-position:center top;">
+                        <div class="hero-mobile-badge">
+                            <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.25rem;color:#fff;text-transform:uppercase;line-height:1;margin:0;">Macneil Noronha</p>
+                            <p style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.65rem;color:#FFCC00;text-transform:uppercase;letter-spacing:.1em;margin:5px 0 0;">Chennai Super Kings IPL 2026</p>
+                        </div>
+                    </a>
+                    <a href="/events#robin-uthappa" class="hero-mobile-card" aria-label="View Robin Uthappa visit at Desert Cubs">
+                        <img src="{{ url_for('static', filename='img/robin-uthappa/robin-uthappa-main.webp') }}"
+                             alt="Robin Uthappa visiting Desert Cubs Cricket Academy"
+                             width="420" height="420" loading="eager">
+                        <div class="hero-mobile-badge">
+                            <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.25rem;color:#fff;text-transform:uppercase;line-height:1;margin:0;">Robin Uthappa</p>
+                            <p style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.65rem;color:#FFCC00;text-transform:uppercase;letter-spacing:.1em;margin:5px 0 0;">India International Visit</p>
+                        </div>
+                    </a>
                 </div>
-                <p style="font-family:'Nunito',sans-serif;font-size:.66rem;font-weight:700;
-                           color:rgba(255,255,255,.38);letter-spacing:.14em;text-transform:uppercase;
-                           margin-top:10px;">IPL 2026 · Predict the Champion · Win a Prize</p>
             </div>
 
         </div><!-- /.left col -->
@@ -411,6 +403,31 @@
                                 <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;
                                            color:#FFCC00;text-transform:uppercase;letter-spacing:.1em;">
                                     Desert Cubs Alumni · Chennai Super Kings IPL 2026</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/events#robin-uthappa" class="hero-slide" aria-label="View Robin Uthappa's visit to Desert Cubs">
+                    <img class="hero-person"
+                         src="{{ url_for('static', filename='img/robin-uthappa/robin-uthappa-main.webp') }}"
+                         alt="Robin Uthappa visiting Desert Cubs Cricket Academy"
+                         width="700" height="520"
+                         loading="eager">
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.88) 0%,transparent 54%);"></div>
+                    <div class="hero-alumni-card">
+                        <div style="display:flex;align-items:center;gap:13px;">
+                            <div style="width:42px;height:42px;background:#FFCC00;border-radius:50%;
+                                        display:flex;align-items:center;justify-content:center;flex-shrink:0;
+                                        animation:goldGlow 2s ease infinite;">
+                                <i class="fas fa-star" style="color:#001f66;font-size:1rem;" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.25rem;
+                                           color:#fff;text-transform:uppercase;line-height:1;">Robin Uthappa</p>
+                                <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;
+                                           color:#FFCC00;text-transform:uppercase;letter-spacing:.1em;">
+                                    India International · Desert Cubs Visit</p>
                             </div>
                         </div>
                     </div>
@@ -488,10 +505,10 @@
 <div style="background:#000d1a;overflow:hidden;padding:15px 0;border-bottom:1px solid rgba(255,204,0,.1);">
     <div style="display:flex;width:max-content;animation:trustMrq 30s linear infinite;">
         {% for item in ['ICC Certified Coaches','Ages 4–19','Est. 2007','15,000+ Alumni',
-                        '6 Training Centres','100+ Qualified Coaches','UK Tours',
+                        '5 Training Centres','100+ Qualified Coaches','UK Tours',
                         'Australia Tours','Sri Lanka Tours','Best Cricket Academy UAE',
                         'Dubai & Sharjah','ICC Certified Coaches','Ages 4–19','Est. 2007',
-                        '15,000+ Alumni','6 Training Centres','100+ Qualified Coaches',
+                        '15,000+ Alumni','5 Training Centres','100+ Qualified Coaches',
                         'UK Tours','Australia Tours','Sri Lanka Tours',
                         'Best Cricket Academy UAE','Dubai & Sharjah'] %}
         <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.75rem;
@@ -1261,204 +1278,5 @@
 })();
 </script>
 
-
-<!-- ============================================================
-     IPL 2026 PREDICTION MODAL
-============================================================= -->
-<div id="iplModal" role="dialog" aria-modal="true" aria-labelledby="iplModalTitle"
-     onclick="if(event.target===this){this.classList.remove('open');document.body.style.overflow='';}">
-    <div class="ipl-box">
-
-        <!-- Close button -->
-        <button class="ipl-close"
-                onclick="document.getElementById('iplModal').classList.remove('open');document.body.style.overflow='';"
-                aria-label="Close prediction form">
-            <i class="fas fa-times"></i>
-        </button>
-
-        <!-- Flame header -->
-        <div style="background:linear-gradient(135deg,#c43600 0%,#ff5500 35%,#ff8800 70%,#ffcc00 100%);
-                    padding:32px 40px 28px;border-radius:22px 22px 0 0;
-                    text-align:center;position:relative;overflow:hidden;">
-            <!-- Glow blob -->
-            <div aria-hidden="true"
-                 style="position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);
-                        width:300px;height:80px;border-radius:50%;
-                        background:rgba(255,255,0,.18);filter:blur(24px);pointer-events:none;"></div>
-            <p style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.68rem;
-                      letter-spacing:.3em;text-transform:uppercase;
-                      color:rgba(255,255,255,.85);margin-bottom:8px;position:relative;">
-                🏏 Desert Cubs × Siraj Finance Present
-            </p>
-            <h2 id="iplModalTitle"
-                style="font-family:'Teko',sans-serif;font-weight:700;line-height:.92;
-                       font-size:clamp(2.2rem,6vw,3.4rem);text-transform:uppercase;
-                       color:#ffffff;letter-spacing:.03em;
-                       text-shadow:0 3px 24px rgba(0,0,0,.45);position:relative;">
-                Who Takes<br>The Cup? 🏆
-            </h2>
-            <p style="font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:700;
-                      color:rgba(255,255,255,.9);margin-top:10px;position:relative;">
-                Drop your IPL 2026 prediction &amp; win big!
-            </p>
-        </div>
-
-        <!-- UK Tour 2026 Promo Banner -->
-        <div style="background:linear-gradient(135deg,#001f66 0%,#003399 60%,#001a55 100%);
-                    padding:20px 28px;border-bottom:1px solid rgba(255,204,0,.18);
-                    display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
-            <!-- Flag + text -->
-            <div style="flex:1;min-width:200px;">
-                <p style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.65rem;
-                           letter-spacing:.28em;text-transform:uppercase;
-                           color:#FFCC00;margin-bottom:4px;">
-                    🌍 International Cricket Experience
-                </p>
-                <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.35rem;
-                           color:#ffffff;text-transform:uppercase;letter-spacing:.03em;
-                           line-height:1.1;margin-bottom:4px;">
-                    🇬🇧 UK Tour 2026 — Registrations Open!
-                </p>
-                <p style="font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;
-                           color:rgba(255,255,255,.7);line-height:1.5;">
-                    Want to experience international cricket? Take your game to the UK this summer.
-                </p>
-            </div>
-            <!-- CTA button -->
-            <a href="/tours"
-               onclick="document.getElementById('iplModal').classList.remove('open');document.body.style.overflow='';"
-               style="display:inline-flex;align-items:center;gap:8px;
-                      background:linear-gradient(135deg,#FFCC00,#e6b800);
-                      color:#001f66!important;font-family:'Nunito',sans-serif;
-                      font-weight:900;font-size:.78rem;letter-spacing:.07em;
-                      text-transform:uppercase;text-decoration:none;
-                      border-radius:999px;padding:11px 22px;white-space:nowrap;
-                      box-shadow:0 4px 18px rgba(255,204,0,.4);
-                      transition:all .25s;flex-shrink:0;"
-               onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(255,204,0,.55)'"
-               onmouseout="this.style.transform='';this.style.boxShadow='0 4px 18px rgba(255,204,0,.4)'"
-               aria-label="View UK Tour 2026 details and register">
-                <i class="fas fa-plane" style="font-size:.72rem;"></i>
-                View Tour &amp; Register
-            </a>
-        </div>
-
-        <!-- Embedded Google Form -->
-        <div style="background:#ffffff;border-radius:0 0 22px 22px;overflow:hidden;">
-            <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLSd3jriNMbzujl7ctFMvVu7NQ_ff30EzAubFSOi24xZdgzB0Tw/viewform?embedded=true"
-                width="100%" height="640" frameborder="0"
-                marginheight="0" marginwidth="0"
-                style="display:block;width:100%;min-height:600px;border:none;"
-                title="IPL 2026 Prediction Contest Entry Form">
-                Loading form…
-            </iframe>
-            <!-- T&C link -->
-            <p style="text-align:center;padding:10px 16px 14px;margin:0;font-size:0.78rem;color:#475569;">
-                By submitting you agree to our
-                <button onclick="document.getElementById('iplTncModal').style.display='flex'"
-                        style="background:none;border:none;padding:0;color:#003399;font-weight:700;font-size:0.78rem;cursor:pointer;text-decoration:underline;">
-                    Terms &amp; Conditions
-                </button>
-            </p>
-        </div>
-
-    </div><!-- /.ipl-box -->
-</div><!-- /#iplModal -->
-
-<!-- ── IPL T&C Modal ──────────────────────────────────────────────────── -->
-<div id="iplTncModal" role="dialog" aria-modal="true" aria-labelledby="iplTncTitle"
-     style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.80);z-index:9999;align-items:center;justify-content:center;padding:1rem;">
-<style>
-#iplTncModal.open{display:flex}
-.tnc-box{background:#fff;border-radius:16px;width:100%;max-width:680px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.5);overflow:hidden;}
-.tnc-header{background:linear-gradient(135deg,#003399,#001f66);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-.tnc-body{overflow-y:auto;padding:24px 28px;color:#1e293b;font-family:'Nunito',sans-serif;font-size:0.92rem;line-height:1.7;}
-.tnc-body h3{font-family:'Teko',sans-serif;font-size:1.15rem;font-weight:700;color:#003399;text-transform:uppercase;margin:1.4rem 0 .3rem;}
-.tnc-body h3:first-child{margin-top:0;}
-.tnc-body p{margin:0 0 .6rem;}
-.tnc-body ul{margin:.3rem 0 .8rem 1.2rem;padding:0;}
-.tnc-body ul li{margin-bottom:.3rem;}
-.tnc-close-btn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0;}
-.tnc-close-btn:hover{background:rgba(255,255,255,.32);}
-</style>
-    <div class="tnc-box">
-        <div class="tnc-header">
-            <div>
-                <p style="color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin:0 0 2px;">Desert Cubs IPL 2026 Prediction Contest</p>
-                <h2 id="iplTncTitle" style="font-family:'Teko',sans-serif;font-size:1.5rem;font-weight:800;color:#FFCC00;text-transform:uppercase;margin:0;">Terms &amp; Conditions</h2>
-            </div>
-            <button class="tnc-close-btn" onclick="document.getElementById('iplTncModal').style.display='none'" aria-label="Close terms and conditions">✕</button>
-        </div>
-        <div class="tnc-body">
-            <h3>1. Organizer</h3>
-            <p>This promotional contest ("Contest") is organized by Desert Cubs Cricket Academy LLC, United Arab Emirates ("Desert Cubs" / "Organizer").</p>
-
-            <h3>2. Eligibility</h3>
-            <ul>
-                <li>The Contest is open to residents of the UAE.</li>
-                <li>Participants under the age of 18 must have prior consent from a parent or legal guardian to participate and to redeem any prize.</li>
-                <li>Employees of Desert Cubs and their immediate family members are not eligible to participate.</li>
-            </ul>
-
-            <h3>3. Contest Period</h3>
-            <ul>
-                <li><strong>Start Date:</strong> 16th April 2026</li>
-                <li><strong>Closing Date:</strong> 29th May 2026 (11:59 PM UAE time)</li>
-                <li>Entries received after the closing date will not be considered.</li>
-            </ul>
-
-            <h3>4. How to Enter</h3>
-            <p>To participate, entrants must:</p>
-            <ul>
-                <li>Like the official contest post on Desert Cubs' social media page</li>
-                <li>Tag at least one individual (parent/player) in the comments</li>
-                <li>Submit their prediction of the IPL 2026 winning team via the official Desert Cubs website</li>
-            </ul>
-            <p>Only entries fulfilling all the above criteria will be considered valid.</p>
-
-            <h3>5. Winner Selection Method</h3>
-            <ul>
-                <li>Participants who correctly predict the IPL 2026 winning team will be shortlisted.</li>
-                <li>If multiple correct entries are received, winners will be selected through a random draw conducted by Desert Cubs.</li>
-                <li>In the event of fewer correct entries, Desert Cubs reserves the right to select winners based on timing of submission or conduct a draw at its discretion.</li>
-                <li>The Organizer's decision shall be final and binding, and no correspondence will be entertained.</li>
-            </ul>
-
-            <h3>6. Prizes</h3>
-            <ul>
-                <li>🥇 <strong>1st Prize:</strong> Two (2) months of free coaching</li>
-                <li>🥈 <strong>2nd Prize:</strong> One (1) month of free coaching</li>
-                <li>🥉 <strong>3rd Prize:</strong> 50% discount on one (1) month coaching fee</li>
-            </ul>
-            <p><strong>Prize Conditions:</strong> Prizes are non-transferable, non-exchangeable, and not redeemable for cash. Coaching is subject to availability, scheduling, and standard academy policies. Non-members who win must purchase the official Desert Cubs training uniform to commence training.</p>
-
-            <h3>7. Winner Announcement</h3>
-            <ul>
-                <li>Winners will be announced on 1st June 2026 via Desert Cubs' official social media channels and/or website.</li>
-                <li>Winners must respond within 5 days of notification; failing which, the Organizer reserves the right to select an alternate winner.</li>
-            </ul>
-
-            <h3>8. Parental Consent (For Minors)</h3>
-            <p>For participants under 18 years of age, participation and prize redemption is subject to written or verbal consent from a parent or legal guardian. Desert Cubs reserves the right to request proof of such consent at any stage.</p>
-
-            <h3>9. General Conditions</h3>
-            <ul>
-                <li>Desert Cubs reserves the right to verify the validity of entries and disqualify any participant found to be tampering with the entry process or acting in violation of these terms.</li>
-                <li>The Organizer reserves the right to modify, suspend, or cancel the Contest at any time without prior notice.</li>
-                <li>By participating, entrants agree to allow Desert Cubs to use their name and/or likeness for promotional purposes without additional compensation.</li>
-            </ul>
-
-            <h3>10. Liability</h3>
-            <p>Desert Cubs shall not be held responsible for any technical issues, lost entries, or delays in submission. Participation is at the entrant's own risk.</p>
-
-            <h3>11. Governing Law</h3>
-            <p>These Terms &amp; Conditions shall be governed by and construed in accordance with the laws of the United Arab Emirates.</p>
-
-            <h3>12. Platform Disclaimer</h3>
-            <p>This promotion is in no way sponsored, endorsed, administered by, or associated with Instagram, Facebook, or any other social media platform.</p>
-        </div>
-    </div>
-</div><!-- /#iplTncModal -->
 
 {% endblock %}

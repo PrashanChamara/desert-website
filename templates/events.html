@@ -31,13 +31,13 @@
         </h1>
         <p class="text-gray-300 text-lg max-w-xl mx-auto font-light leading-relaxed">
             Our students don't just train — they learn directly from international cricket legends. 
-            From Jonty Rhodes to Ravichandran Ashwin, we bring the world's best to our cubs.
+            From Jonty Rhodes to Robin Uthappa, we bring the world's best to our cubs.
         </p>
 
         <!-- Quick stats -->
         <div class="flex justify-center gap-8 mt-10 pt-10 border-t border-white/10">
             <div class="text-center">
-                <p class="font-display text-3xl font-black text-cubs-gold">8+</p>
+                <p class="font-display text-3xl font-black text-cubs-gold">9+</p>
                 <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">World Legends</p>
             </div>
             <div class="text-center">
@@ -66,6 +66,79 @@
             former international cricketers and world-class coaches. These exclusive masterclasses give our junior 
             cricketers in the UAE a rare opportunity to train alongside some of the greatest names in the sport.
         </p>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     ROBIN UTHAPPA FEATURE VISIT
+============================================================= -->
+<section id="robin-uthappa" class="py-20 bg-cubs-blue overflow-hidden relative">
+    <div class="absolute inset-0 cricket-field-pattern opacity-20"></div>
+    <div class="absolute top-10 right-8 w-72 h-72 border border-cubs-gold/10 rounded-full"></div>
+    <div class="absolute bottom-10 left-8 w-44 h-44 border border-white/10 rounded-full"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+                <div class="inline-flex items-center gap-2 bg-cubs-gold/10 border border-cubs-gold/30 rounded-full px-4 py-2 mb-5">
+                    <span class="text-lg">🇮🇳</span>
+                    <span class="text-cubs-gold font-black text-xs uppercase tracking-wider">23–24 May 2026 • Desert Cubs Centres</span>
+                </div>
+                <h2 class="font-display text-5xl md:text-7xl font-black text-white uppercase leading-none mb-5">
+                    Robin <span class="text-cubs-gold">Uthappa</span>
+                </h2>
+                <p class="text-gray-300 text-sm font-bold uppercase tracking-wider mb-4">
+                    Indian International Cricketer • Academy Visit
+                </p>
+                <p class="text-gray-200 text-lg leading-relaxed mb-5 max-w-xl">
+                    Former Indian cricketer Robin Uthappa visited Desert Cubs Cricket Academy on 23rd and 24th May 2026, meeting our young players across Desert Cubs centres.
+                </p>
+                <p class="text-gray-300 leading-relaxed mb-7 max-w-xl">
+                    He shared thoughts from his cricket journey, answered questions from the kids, spent time with players and families, took photos, and passed on important lessons for the next generation.
+                </p>
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <span class="bg-white/10 text-cubs-gold border border-white/10 text-xs font-black px-4 py-2 rounded-full uppercase tracking-wider"><i class="fas fa-comments mr-1.5"></i> Player Q&amp;A</span>
+                    <span class="bg-white/10 text-cubs-gold border border-white/10 text-xs font-black px-4 py-2 rounded-full uppercase tracking-wider"><i class="fas fa-camera mr-1.5"></i> Photos With Kids</span>
+                    <span class="bg-white/10 text-cubs-gold border border-white/10 text-xs font-black px-4 py-2 rounded-full uppercase tracking-wider"><i class="fas fa-lightbulb mr-1.5"></i> Cricket Lessons</span>
+                </div>
+                <button onclick="openGallery('robin-uthappa', 'robin-uthappa', 27)"
+                        class="btn-gold px-8 py-3 rounded-full text-sm flex items-center gap-2 w-fit">
+                    <i class="fas fa-images"></i> View Visit Gallery
+                </button>
+            </div>
+
+            <div class="relative">
+                <div class="rounded-3xl overflow-hidden border-2 border-cubs-gold/40 shadow-2xl bg-cubs-blue-dark">
+                    <img src="{{ url_for('static', filename='img/robin-uthappa/robin-uthappa-main.webp') }}"
+                         alt="Robin Uthappa visiting Desert Cubs Cricket Academy"
+                         width="720" height="720" loading="lazy"
+                         class="w-full aspect-square object-cover">
+                </div>
+                <div class="absolute -bottom-5 left-5 right-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-cubs-gold flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-star text-cubs-blue"></i>
+                    </div>
+                    <div>
+                        <p class="font-display font-black text-white text-2xl uppercase leading-none">Special Visit</p>
+                        <p class="text-cubs-gold text-xs font-black uppercase tracking-wider mt-1">Learning from an Indian cricket star</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14">
+            {% for i in range(1, 5) %}
+            <button type="button"
+                    onclick="openGallery('robin-uthappa', 'robin-uthappa', 27)"
+                    class="rounded-2xl overflow-hidden aspect-square bg-cubs-blue-dark border border-white/10 group shadow-xl">
+                <img src="{{ url_for('static', filename='img/robin-uthappa/robin-uthappa' + i|string + '.webp') }}"
+                     alt="Robin Uthappa visit gallery photo {{ i }}"
+                     width="320" height="320" loading="lazy"
+                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            </button>
+            {% endfor %}
+        </div>
     </div>
 </section>
 

@@ -34,7 +34,7 @@ WEBHOOK_SECRET = os.environ.get('WEBHOOK_SECRET', '')
 
 # ---------------------------------------------------------
 # DATA: BRANCH NETWORK
-# (6 centres across Dubai and Sharjah)
+# (5 active centres across Dubai and Sharjah)
 # ---------------------------------------------------------
 BRANCHES = [
     {
@@ -672,7 +672,7 @@ def seo(title=None, description=None, keywords=None, canonical=None, og_image=No
     
     return {
         'title': title or global_seo.get('title', 'Desert Cubs Cricket Academy UAE | Junior Cricket Dubai & Sharjah | Est. 2007'),
-        'description': description or global_seo.get('description', "UAE's largest junior cricket academy. 15,000+ alumni. 6 training centres across Dubai & Sharjah. ICC-certified coaches. Ages 4–19. Enroll today!"),
+        'description': description or global_seo.get('description', "UAE's largest junior cricket academy. 15,000+ alumni. 5 training centres across Dubai & Sharjah. ICC-certified coaches. Ages 4–19. Enroll today!"),
         'keywords': keywords or global_seo.get('keywords', 'cricket academy UAE, junior cricket Dubai, cricket coaching Sharjah, kids cricket UAE, Desert Cubs'),
         'canonical': canonical or 'https://www.desertcubs.com',
         'og_image': og_image or 'https://www.desertcubs.com/static/img/Desert_cubs_logo.png'
@@ -687,7 +687,7 @@ def index():
     active_tournament = get_active_tournament()
     meta = seo(
         title="Desert Cubs — UAE's Best Cricket Academy | Dubai & Sharjah | Est. 2007",
-        description="Desert Cubs is the best cricket academy in UAE & Dubai. 15,000+ alumni. 6 training centres across Dubai & Sharjah. ICC-certified coaches. UAE junior cricket coaching for ages 4–19. Enroll today!",
+        description="Desert Cubs is the best cricket academy in UAE & Dubai. 15,000+ alumni. 5 training centres across Dubai & Sharjah. ICC-certified coaches. UAE junior cricket coaching for ages 4–19. Enroll today!",
         keywords="best cricket academy UAE, best cricket academy Dubai, UAE junior cricket coaching, junior cricket Dubai, Sharjah junior cricket coaching, cricket academy UAE, cricket coaching UAE, kids cricket UAE, youth cricket academy Dubai, UAE national cricket player pathway",
         canonical="https://www.desertcubs.com/"
     )
@@ -787,8 +787,8 @@ def tournaments():
 def events():
     meta = seo(
         title="Cricket Master Classes & Events UAE | Advanced Player Analysis | Desert Cubs Legends Program",
-        description="Desert Cubs hosted world cricket legends for advanced player analysis sessions: Jonty Rhodes, Marvan Atapattu, Dinesh Karthik, R. Ashwin, Chaminda Vaas. Best cricket coaching in UAE.",
-        keywords="cricket master class UAE, advanced player analysis UAE, cricket legends UAE, Jonty Rhodes Dubai, cricket events Dubai, junior cricket masterclass UAE, best cricket coaching UAE",
+        description="Desert Cubs hosted world cricket legends including Robin Uthappa, Jonty Rhodes, Marvan Atapattu, Dinesh Karthik, R. Ashwin and Chaminda Vaas. Best cricket coaching in UAE.",
+        keywords="Robin Uthappa Desert Cubs, cricket master class UAE, advanced player analysis UAE, cricket legends UAE, Jonty Rhodes Dubai, cricket events Dubai, junior cricket masterclass UAE, best cricket coaching UAE",
         canonical="https://www.desertcubs.com/events"
     )
     return render_template('events.html', meta=meta, master_classes=MASTER_CLASSES, events=EVENTS)
@@ -798,7 +798,7 @@ def events():
 def about():
     meta = seo(
         title="About Desert Cubs Cricket Academy UAE | Founded 2007 | Presley Polonnowita",
-        description="Desert Cubs Cricket Academy — UAE's largest junior cricket academy, established 2007 by Presley Polonnowita. 15,000+ alumni, 6 training centres, ECB-affiliated. Meet our executive team and discover our 18-year journey.",
+        description="Desert Cubs Cricket Academy — UAE's largest junior cricket academy, established 2007 by Presley Polonnowita. 15,000+ alumni, 5 training centres, ECB-affiliated. Meet our executive team and discover our 18-year journey.",
         keywords="Desert Cubs Cricket Academy history, Presley Polonnowita cricket coach UAE, best cricket academy UAE founded 2007, cricket academy Dubai about, GCCA UAE, ECB affiliated cricket academy UAE, Kunal Seth cricket UAE",
         canonical="https://www.desertcubs.com/about",
         og_image="https://www.desertcubs.com/static/img/mgmt_presley.jpg"

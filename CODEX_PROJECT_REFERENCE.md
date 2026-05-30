@@ -1,6 +1,6 @@
 # Codex Project Reference
 
-Last updated: 2026-05-20
+Last updated: 2026-05-30
 
 ## Project At A Glance
 
@@ -62,6 +62,14 @@ python3 -m json.tool n8n_workflow.json >/tmp/n8n_check.json
 - Font Awesome is the icon system.
 - Keep new pages visually consistent with the existing dark blue and gold premium sports brand.
 - Many pages use inline CSS in templates; match the local pattern unless doing a deliberate cleanup.
+
+## Current Academy Facts
+
+- Public headline count: 15,000+ alumni.
+- Active training centres: 5 across Dubai and Sharjah. AIS is closed/inactive and should not be shown as an active branch.
+- The expired IPL Guess & Win competition must not be shown on the homepage.
+- Robin Uthappa visited Desert Cubs on 23-24 May 2026. The feature lives on `/events#robin-uthappa`, using gallery assets in `static/img/robin-uthappa/`.
+- Homepage alumni/hero slideshow includes Esha Oza, Macneil Noronha, and Robin Uthappa. Robin and Macneil slides are clickable.
 
 ## Home Lands And Port City
 
