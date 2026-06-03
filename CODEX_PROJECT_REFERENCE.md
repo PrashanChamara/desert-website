@@ -71,6 +71,17 @@ python3 -m json.tool n8n_workflow.json >/tmp/n8n_check.json
 - Robin Uthappa visited Desert Cubs on 23-24 May 2026. The feature lives on `/events#robin-uthappa`, using gallery assets in `static/img/robin-uthappa/`.
 - Homepage alumni/hero slideshow includes Esha Oza, Macneil Noronha, and Robin Uthappa. Robin and Macneil slides are clickable.
 
+## Summer Camp 2026
+
+- Route/template: `/summer-camp`, `templates/summer_camp.html`.
+- Current public details: ages 8-16, 14 July to 23 August 2026, 24 sessions.
+- Locations and times:
+  - DPS (Gardens): Tue, Thu, Sat & Sun, 6:00-8:30 PM
+  - BSA (DIP): Wed, Fri, Sat & Sun, 5:30-7:30 PM
+  - SIS (Al Qusais): Wed, Fri, Sat & Sun, 6:00-8:30 PM
+- Packages: 24 sessions AED 1950 + VAT, 18 sessions AED 1790 + VAT, 12 sessions AED 1390 + VAT, single session AED 150.
+- Registration form URL: `https://docs.google.com/forms/d/e/1FAIpQLSfmjvWy7msDpCOaG2IxGeu3NS9NypMJBvqxCJohQt8m0RHEZg/viewform`.
+
 ## Home Lands And Port City
 
 Home Lands is handled by:

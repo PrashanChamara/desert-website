@@ -822,8 +822,8 @@ def girls_cricket():
 def summer_camp():
     meta = seo(
         title="Cricket Summer Camp Dubai 2026 | Holiday Cricket Camp UAE | Desert Cubs",
-        description="Desert Cubs cricket summer camps in Dubai 2026. Indoor air-conditioned facility at Baseline Sports Academy, DIP. Ages 4–19. Batting, bowling, fielding & match play. Limited spots — register now!",
-        keywords="cricket summer camp Dubai 2026, cricket holiday camp UAE, kids cricket camp Dubai, summer cricket camp Sharjah, indoor cricket camp Dubai, cricket camp UAE ages 4-19, best cricket summer camp Dubai, cricket camp school holidays UAE",
+        description="Desert Cubs cricket summer camp 2026 for ages 8-16 from 14 July to 23 August at DPS Gardens, BSA DIP and SIS Al Qusais. Packages from AED 150. Register online now!",
+        keywords="cricket summer camp Dubai 2026, cricket holiday camp UAE, kids cricket camp Dubai, summer cricket camp Sharjah, DPS Gardens cricket camp, BSA DIP cricket camp, SIS Al Qusais cricket camp, cricket camp UAE ages 8-16, best cricket summer camp Dubai",
         canonical="https://www.desertcubs.com/summer-camp",
         og_image="https://www.desertcubs.com/static/img/Desert_cubs_logo.png"
     )
