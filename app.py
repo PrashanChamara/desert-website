@@ -6,6 +6,7 @@ import json
 import re
 import hmac
 import glob
+import time
 from datetime import datetime
 
 app = Flask(__name__)
@@ -31,10 +32,23 @@ def add_performance_headers(response):
 BLOG_DIR = 'content/posts'
 POSTS_PER_PAGE = 6
 WEBHOOK_SECRET = os.environ.get('WEBHOOK_SECRET', '')
+SEASON_REGISTRATION_URL = "https://www.desertcubs-admin.app/kiosk/register?utm_source=desertcubs.com&utm_medium=website&utm_campaign=season_2026_27"
+NEXT_TOUR_GUESSES_FILE = os.environ.get(
+    'NEXT_TOUR_GUESSES_FILE',
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'next_tour_guesses.jsonl')
+)
+NEXT_TOUR_GUESS_LIMIT = 5
+NEXT_TOUR_GUESS_WINDOW = 60 * 60
+_next_tour_guess_hits = {}
+
+
+@app.context_processor
+def inject_site_links():
+    return {'season_registration_url': SEASON_REGISTRATION_URL}
 
 # ---------------------------------------------------------
 # DATA: BRANCH NETWORK
-# (5 active centres across Dubai and Sharjah)
+# (5 active centres across Dubai and Sharjah for 2026/27)
 # ---------------------------------------------------------
 BRANCHES = [
     {
@@ -57,7 +71,7 @@ BRANCHES = [
     {
         "id": "delhi-private-school",
         "name": "Delhi Private School (DPS)",
-        "area": "Jebel Ali, Dubai",
+        "area": "The Gardens / Jebel Ali, Dubai",
         "map_url": "https://maps.app.goo.gl/sojJP1fK8g18sFsE7",
         "img": "DPS_Location.webp",
         "schedule_img": "DPS_Schedule.webp",
@@ -88,7 +102,7 @@ BRANCHES = [
     {
         "id": "deira-international-school",
         "name": "Deira Intl. School (DIS)",
-        "area": "Dubai Festival City",
+        "area": "Dubai Festival City, Dubai",
         "map_url": "https://maps.app.goo.gl/uuRBPjNs5UN61Nmw7",
         "img": "DIS_Location.webp",
         "schedule_img": "DIS_Schedule.webp",
@@ -103,7 +117,7 @@ BRANCHES = [
     {
         "id": "baseline-sports-academy",
         "name": "Baseline Sports Academy (BSA)",
-        "area": "Dubai Investment Park (DIP)",
+        "area": "Dubai Investment Park (DIP), Dubai",
         "map_url": "https://maps.app.goo.gl/K5Azn4sgXpHTkJo8A",
         "img": "BSA_Location.webp",
         "schedule_img": "BSA_Schedule.webp",
@@ -115,39 +129,24 @@ BRANCHES = [
             {"name": "Tiran Wijesuriya", "role": "Coach", "qual": "ICC Level 1", "img": "coach_tiran.webp"}
         ]
     },
-    {
-        "id": "apple-international-school",
-        "active": False,
-        "name": "Apple Intl. School (AIS)",
-        "area": "Al Karama, Dubai",
-        "map_url": "https://maps.app.goo.gl/YKw7RVALgojj7K8a9?g_st=awb",
-        "img": "AIS_Location.webp",
-        "schedule_img": "AIS_Schedule.webp",
-        "desc": "Serving the heart of Dubai in Karama. Features three side practice nets with Astro turf pitches and a dedicated fielding and fitness area.",
-        "facilities": ["3 Astro Nets", "Fielding Area", "Floodlights", "Bowling Machine"],
-        "coaches": [
-            {"name": "Ruwan Jayakody", "role": "Centre In-Charge", "qual": "ICC Level 2", "img": "coach_ruwan.webp"},
-            {"name": "Moin Sabir", "role": "Coach", "qual": "PCB Level 1", "img": "coach_moin.webp"}
-        ]
-    },
 ]
 
 # ---------------------------------------------------------
 # DATA: TOURS
 # ---------------------------------------------------------
 TOURS = {
-    "upcoming": [
+    "upcoming": [],
+    "history": [
         {
             "year": "2026",
             "dest": "United Kingdom",
-            "type": "Elite Exposure Tour",
-            "status": "Registration Open",
-            "desc": "Join us for the ultimate cricketing experience. Play against top English counties, train at historic venues, and experience the home of cricket. Open for U10 to U19 squads.",
-            "reg_link": "https://forms.gle/CzHzU4WhzkvwAYBx5",
-            "pdf": "DC_UK_2026.pdf"
-        }
-    ],
-    "history": [
+            "desc": "Siraj Finance Desert Cubs completed an unforgettable UK 2026 cricket tour across England, combining competitive matches, elite exposure, historic venues and a celebration at Heathrow.",
+            "gallery": {
+                "folder": "DC_UK_2026",
+                "prefix": "DC_UK_2026_",
+                "count": 12
+            }
+        },
         {
             "year": "2025",
             "dest": "Sri Lanka",
@@ -667,12 +666,37 @@ def verify_webhook(req):
     token = req.headers.get('X-Webhook-Token', '')
     return hmac.compare_digest(token, WEBHOOK_SECRET)
 
+
+def sanitize_text(value, max_length):
+    value = re.sub(r'\s+', ' ', str(value or '')).strip()
+    return value[:max_length]
+
+
+def normalize_phone(value):
+    value = str(value or '').strip()
+    has_plus = value.startswith('+')
+    digits = re.sub(r'\D', '', value)
+    if not 7 <= len(digits) <= 16:
+        return ''
+    return ('+' if has_plus else '+') + digits
+
+
+def rate_limited(key):
+    now = time.time()
+    hits = [ts for ts in _next_tour_guess_hits.get(key, []) if now - ts < NEXT_TOUR_GUESS_WINDOW]
+    if len(hits) >= NEXT_TOUR_GUESS_LIMIT:
+        _next_tour_guess_hits[key] = hits
+        return True
+    hits.append(now)
+    _next_tour_guess_hits[key] = hits
+    return False
+
 def seo(title=None, description=None, keywords=None, canonical=None, og_image=None):
     global_seo = get_global_seo()
     
     return {
         'title': title or global_seo.get('title', 'Desert Cubs Cricket Academy UAE | Junior Cricket Dubai & Sharjah | Est. 2007'),
-        'description': description or global_seo.get('description', "UAE's largest junior cricket academy. 15,000+ alumni. 5 training centres across Dubai & Sharjah. ICC-certified coaches. Ages 4–19. Enroll today!"),
+        'description': description or global_seo.get('description', "UAE's largest junior cricket academy. 15,000+ alumni. 5 training centres across Dubai & Sharjah. Junior players across age-group pathways. Register today!"),
         'keywords': keywords or global_seo.get('keywords', 'cricket academy UAE, junior cricket Dubai, cricket coaching Sharjah, kids cricket UAE, Desert Cubs'),
         'canonical': canonical or 'https://www.desertcubs.com',
         'og_image': og_image or 'https://www.desertcubs.com/static/img/Desert_cubs_logo.png'
@@ -686,23 +710,70 @@ def seo(title=None, description=None, keywords=None, canonical=None, og_image=No
 def index():
     active_tournament = get_active_tournament()
     meta = seo(
-        title="Desert Cubs — UAE's Best Cricket Academy | Dubai & Sharjah | Est. 2007",
-        description="Desert Cubs is the best cricket academy in UAE & Dubai. 15,000+ alumni. 5 training centres across Dubai & Sharjah. ICC-certified coaches. UAE junior cricket coaching for ages 4–19. Enroll today!",
+        title="Cricket Academy Dubai & Sharjah | 2026/27 Registration | Desert Cubs",
+        description="Register for the Desert Cubs 2026/27 junior cricket season starting 05 September 2026. Five cricket coaching centres across Dubai and Sharjah for boys and girls.",
         keywords="best cricket academy UAE, best cricket academy Dubai, UAE junior cricket coaching, junior cricket Dubai, Sharjah junior cricket coaching, cricket academy UAE, cricket coaching UAE, kids cricket UAE, youth cricket academy Dubai, UAE national cricket player pathway",
         canonical="https://www.desertcubs.com/"
     )
-    return render_template('index.html', meta=meta, branches=BRANCHES, active_tournament=active_tournament, sponsors=SPONSORS, tours=TOURS)
+    return render_template('index.html', meta=meta, branches=BRANCHES, active_tournament=active_tournament, sponsors=SPONSORS, tours=TOURS, season_registration_url=SEASON_REGISTRATION_URL)
 
 
 @app.route('/tours')
 def tours():
     meta = seo(
-        title="Junior International Cricket Tours UAE | UAE National Cricket Player Pathway | Desert Cubs",
-        description="Desert Cubs runs junior international cricket tours to UK, Australia, Sri Lanka & South Africa. Build your child's UAE national cricket player pathway. First UAE academy to tour Australia. 2026 UK tour open!",
+        title="UK Tour 2026 Gallery | Junior International Cricket Tours UAE | Desert Cubs",
+        description="View the successfully completed Desert Cubs UK Tour 2026 gallery and explore our junior international cricket tour history across UK, Australia, Sri Lanka and South Africa.",
         keywords="junior international cricket tour UAE, UAE national cricket player pathway, cricket tour UAE, junior cricket tour Dubai, international cricket UAE, cricket tour UK UAE, UAE cricket development pathway, cricket academy tour",
         canonical="https://www.desertcubs.com/tours"
     )
     return render_template('tours.html', meta=meta, tours=TOURS)
+
+
+@app.route('/api/next-tour-guess', methods=['POST'])
+def next_tour_guess():
+    data = request.get_json(silent=True) or request.form
+    ip_key = request.headers.get('X-Forwarded-For', request.remote_addr or 'unknown').split(',')[0].strip()
+    if rate_limited(ip_key):
+        return {'ok': False, 'error': 'Too many submissions. Please try again later.'}, 429
+
+    country_name = sanitize_text(data.get('country_name') or data.get('country'), 80)
+    country_code = sanitize_text(data.get('country_code'), 2).upper()
+    full_name = sanitize_text(data.get('full_name'), 100)
+    phone = normalize_phone(data.get('contact_number'))
+    comment = sanitize_text(data.get('comment'), 500)
+
+    errors = {}
+    if not re.fullmatch(r'[A-Z]{2}', country_code) or len(country_name) < 2:
+        errors['country'] = 'Select a valid country.'
+    if not 2 <= len(full_name) <= 100 or not re.search(r'[A-Za-z]', full_name):
+        errors['full_name'] = 'Enter your full name.'
+    if not phone:
+        errors['contact_number'] = 'Enter a valid contact number with country code.'
+    if not 5 <= len(comment) <= 500:
+        errors['comment'] = 'Comment must be 5 to 500 characters.'
+    if re.search(r'https?://|www\.', comment, re.IGNORECASE):
+        errors['comment'] = 'Links are not allowed in comments.'
+
+    if errors:
+        return {'ok': False, 'errors': errors}, 400
+
+    entry = {
+        'submitted_at': datetime.utcnow().isoformat(timespec='seconds') + 'Z',
+        'country_code': country_code,
+        'country_name': country_name,
+        'full_name': full_name,
+        'contact_number': phone,
+        'comment': comment,
+        'status': 'pending_review',
+    }
+    try:
+        os.makedirs(os.path.dirname(NEXT_TOUR_GUESSES_FILE), exist_ok=True)
+        with open(NEXT_TOUR_GUESSES_FILE, 'a', encoding='utf-8') as f:
+            f.write(json.dumps(entry, ensure_ascii=True) + '\n')
+    except OSError:
+        return {'ok': False, 'error': 'Could not save your submission. Please call the academy team.'}, 500
+
+    return {'ok': True, 'message': 'Thank you. Your tour destination guess has been received.'}, 201
 
 
 @app.route('/blog')
@@ -765,7 +836,7 @@ def location_detail(branch_id):
     city = 'Sharjah' if 'Sharjah' in branch['area'] else 'Dubai'
     meta = seo(
         title=f"Best Cricket Academy in {city} | {clean_area} Junior Cricket Coaching | {branch['name']}",
-        description=f"Junior cricket training at {branch['name']}, {clean_area}. {branch['desc']} UAE junior cricket coaching for ages 4–19. Enroll at Desert Cubs today.",
+        description=f"Junior cricket training at {branch['name']}, {clean_area}. {branch['desc']} UAE junior cricket coaching across structured age-group pathways. Register at Desert Cubs today.",
         keywords=f"junior cricket coaching {clean_area}, best cricket academy {city}, cricket classes {clean_area}, {clean_area} cricket coaching, {branch['name']} cricket, best cricket ground UAE, UAE junior cricket coaching, cricket training {city}",
         canonical=f"https://www.desertcubs.com/locations/{branch_id}"
     )
@@ -798,7 +869,7 @@ def events():
 def about():
     meta = seo(
         title="About Desert Cubs Cricket Academy UAE | Founded 2007 | Presley Polonnowita",
-        description="Desert Cubs Cricket Academy — UAE's largest junior cricket academy, established 2007 by Presley Polonnowita. 15,000+ alumni, 5 training centres, ECB-affiliated. Meet our executive team and discover our 18-year journey.",
+        description="Desert Cubs Cricket Academy — UAE's largest junior cricket academy, established 2007 by Presley Polonnowita. 15,000+ alumni, 5 training centres, ECB-affiliated. Meet our executive team and discover our journey.",
         keywords="Desert Cubs Cricket Academy history, Presley Polonnowita cricket coach UAE, best cricket academy UAE founded 2007, cricket academy Dubai about, GCCA UAE, ECB affiliated cricket academy UAE, Kunal Seth cricket UAE",
         canonical="https://www.desertcubs.com/about",
         og_image="https://www.desertcubs.com/static/img/mgmt_presley.jpg"

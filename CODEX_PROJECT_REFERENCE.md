@@ -1,6 +1,6 @@
 # Codex Project Reference
 
-Last updated: 2026-05-30
+Last updated: 2026-08-06
 
 ## Project At A Glance
 
@@ -38,6 +38,7 @@ python3 -m json.tool n8n_workflow.json >/tmp/n8n_check.json
 - `/`
 - `/locations/<branch_id>`
 - `/tours`
+- `/api/next-tour-guess`
 - `/blog`
 - `/blog/<slug>`
 - `/tournaments`
@@ -66,10 +67,15 @@ python3 -m json.tool n8n_workflow.json >/tmp/n8n_check.json
 ## Current Academy Facts
 
 - Public headline count: 15,000+ alumni.
-- Active training centres: 5 across Dubai and Sharjah. AIS is closed/inactive and should not be shown as an active branch.
+- Active training centres for 2026/27: 5 across Dubai and Sharjah. AIS (Apple International School, Al Karama) is closed and must not be shown as an active branch.
+- 2026/27 season registration starts Saturday, 05 September 2026.
+- Official season registration URL: `https://www.desertcubs-admin.app/kiosk/register?utm_source=desertcubs.com&utm_medium=website&utm_campaign=season_2026_27`
+- Do not publish unverified global age ranges or coach counts. Use "junior players across age-group pathways" unless the user provides approved details.
 - The expired IPL Guess & Win competition must not be shown on the homepage.
 - Robin Uthappa visited Desert Cubs on 23-24 May 2026. The feature lives on `/events#robin-uthappa`, using gallery assets in `static/img/robin-uthappa/`.
-- Homepage alumni/hero slideshow includes Esha Oza, Macneil Noronha, and Robin Uthappa. Robin and Macneil slides are clickable.
+- Homepage hero uses the UK Tour 2026 Lord's team photo and 2026/27 registration copy.
+- UK Tour 2026 is a completed-tour story, not an open registration campaign. Gallery assets live in `static/img/DC_UK_2026/` and use `DC_UK_2026_1.webp` through `DC_UK_2026_12.webp`.
+- The `/tours` page has a "Guess Our Next International Tour Destination" form with exactly four public fields: country, full name, contact number, comment. Server submissions are stored as JSONL at `data/next_tour_guesses.jsonl` unless `NEXT_TOUR_GUESSES_FILE` overrides it.
 
 ## Summer Camp 2026
 
@@ -123,8 +129,8 @@ Port City source/staging folder is temporary and should be removed after copying
 
 ## Production Cautions
 
-- `base.html` owns global SEO, nav, footer, WhatsApp button, modals, and splash screen. Edits there affect the whole site.
-- The UK Tour splash screen uses `sessionStorage` key `dcSplash` and auto-disables after July 2026.
+- `base.html` owns global SEO, nav, footer, WhatsApp button, modals, gallery modal, and analytics hooks. Edits there affect the whole site.
+- The expired UK Tour countdown/splash was removed for the 2026/27 relaunch. Do not reintroduce old UK 2026 signup messaging or obsolete external form links.
 - `verify_webhook()` allows webhook writes when `WEBHOOK_SECRET` is empty. Set `WEBHOOK_SECRET` in production.
 - Blog content under `content/posts/` is automation-managed; avoid broad manual rewrites.
 - `static/css/style.css` is minified into one line, so manual edits may be noisy.

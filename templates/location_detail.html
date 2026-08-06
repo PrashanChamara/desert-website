@@ -44,11 +44,13 @@
         <div class="flex flex-col sm:flex-row gap-3">
             <a href="{{ branch.map_url }}" target="_blank" rel="noopener"
                class="btn-gold px-7 py-3 rounded-full text-sm flex items-center gap-2 w-fit"
-               aria-label="Get directions to {{ branch.name }}">
+               aria-label="Get directions to {{ branch.name }}"
+               data-track-event="directions_click" data-track-label="{{ branch.id }}">
                 <i class="fas fa-location-arrow"></i> Get Directions
             </a>
             <button onclick="openSchedule('{{ url_for('static', filename='img/' + branch.schedule_img.replace('.jpg','.webp')) }}', '{{ branch.name }}')"
-                    class="border-2 border-white text-white px-7 py-3 rounded-full font-display font-bold text-sm uppercase tracking-wider hover:bg-white hover:text-cubs-blue transition-all flex items-center gap-2 w-fit">
+                    class="border-2 border-white text-white px-7 py-3 rounded-full font-display font-bold text-sm uppercase tracking-wider hover:bg-white hover:text-cubs-blue transition-all flex items-center gap-2 w-fit"
+                    data-track-event="schedule_view" data-track-label="{{ branch.id }}">
                 <i class="fas fa-calendar-alt"></i> View Schedule
             </button>
         </div>
@@ -138,8 +140,8 @@
                         Junior Cricket Training in {{ branch.area }}
                     </h2>
                     <p class="text-gray-600 leading-relaxed mb-4">
-                        Desert Cubs {{ branch.name }} provides structured cricket coaching programs for children aged 4 to 19 
-                        in {{ branch.area }}. Our experienced, ICC-certified coaches offer age-appropriate training covering 
+                        Desert Cubs {{ branch.name }} provides structured cricket coaching programs for junior players
+                        in {{ branch.area }}. Our experienced academy team offers age-appropriate training covering
                         batting, bowling, fielding, and cricket strategy.
                     </p>
                     <p class="text-gray-600 leading-relaxed">
@@ -155,20 +157,23 @@
                 <!-- Enrollment CTA Card -->
                 <div class="bg-white rounded-2xl shadow-xl border-t-4 border-cubs-gold p-8 sticky top-28">
                     <h3 class="font-display text-2xl font-black text-cubs-blue uppercase mb-2">Join This Centre</h3>
-                    <p class="text-gray-500 text-sm mb-6">Enroll your child today. Programs for all ages & skill levels.</p>
+                    <p class="text-gray-500 text-sm mb-6">Register for the 2026/27 season. Boys and girls across all skill levels are welcome.</p>
                     
                     <div class="space-y-4">
-                        <a href="tel:+971588274266" 
-                           class="btn-gold w-full py-3 rounded-full text-sm flex items-center justify-center gap-2">
-                            <i class="fas fa-phone"></i> Call +971-58-8274266
+                        <a href="{{ season_registration_url }}" target="_blank" rel="noopener"
+                           class="btn-gold w-full py-3 rounded-full text-sm flex items-center justify-center gap-2"
+                           data-track-event="season_register_click" data-track-label="Branch {{ branch.id }}">
+                            <i class="fas fa-user-plus"></i> Register Now
                         </a>
                         <a href="mailto:info@desertcubs.com?subject=Enrollment Enquiry — {{ branch.name }}"
-                           class="btn-blue w-full py-3 rounded-full text-sm flex items-center justify-center gap-2">
+                           class="btn-blue w-full py-3 rounded-full text-sm flex items-center justify-center gap-2"
+                           data-track-event="email_click" data-track-label="Branch {{ branch.id }}">
                             <i class="fas fa-envelope"></i> Email Us
                         </a>
                         <a href="https://wa.me/971588274266?text=Hi!%20I%20am%20interested%20in%20enrolling%20at%20{{ branch.name | urlencode }}"
                            target="_blank"
-                           class="w-full py-3 rounded-full text-sm flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-display font-bold uppercase tracking-wider transition-colors">
+                           class="w-full py-3 rounded-full text-sm flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-display font-bold uppercase tracking-wider transition-colors"
+                           data-track-event="whatsapp_click" data-track-label="Branch {{ branch.id }}">
                             <i class="fab fa-whatsapp"></i> WhatsApp Us
                         </a>
                     </div>
@@ -177,11 +182,11 @@
                     <div class="mt-6 pt-6 border-t border-gray-100 space-y-3">
                         <div class="flex items-center gap-3 text-sm text-gray-600">
                             <i class="fas fa-users text-cubs-gold w-4"></i>
-                            <span><strong class="text-cubs-blue">{{ branch.coaches | length }} coaches</strong> at this centre</span>
+                            <span><strong class="text-cubs-blue">Centre team</strong> available for guidance</span>
                         </div>
                         <div class="flex items-center gap-3 text-sm text-gray-600">
                             <i class="fas fa-child text-cubs-gold w-4"></i>
-                            <span><strong class="text-cubs-blue">Ages 4–19</strong> welcome</span>
+                            <span><strong class="text-cubs-blue">Age-group pathways</strong> available</span>
                         </div>
                         <div class="flex items-center gap-3 text-sm text-gray-600">
                             <i class="fas fa-calendar text-cubs-gold w-4"></i>

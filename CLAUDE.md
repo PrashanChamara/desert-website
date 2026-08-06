@@ -6,7 +6,7 @@ Project-level guidance for all Claude sessions. These instructions OVERRIDE defa
 
 ## 1. Project Summary
 
-**Desert Cubs Cricket Academy** — SEO-first marketing website for a UAE cricket academy with 6 centres (Dubai + Sharjah). Built on Flask with AI-powered weekly content automation via n8n.
+**Desert Cubs Cricket Academy** — SEO-first marketing website for a UAE cricket academy with 5 centres (Dubai + Sharjah). Built on Flask with AI-powered weekly content automation via n8n.
 
 **Core purpose:** Drive parent/student leads through high local SEO ranking. Every code decision should be measured against: does this help SEO, UX, or lead conversion?
 
@@ -71,7 +71,7 @@ n8n_workflow.json         # n8n automation workflow definition
 
 ### Key sections (in order):
 1. **CONFIGURATION** — constants: `BLOG_DIR`, `POSTS_PER_PAGE`, `WEBHOOK_SECRET`
-2. **DATA: BRANCHES** — `BRANCHES` list of dicts (6 centres, hardcoded)
+2. **DATA: BRANCHES** — `BRANCHES` list of dicts (5 centres, hardcoded)
 3. **DATA: TOURS / TOURNAMENTS / MASTER_CLASSES / EVENTS / SPONSORS** — hardcoded Python dicts
 4. **HELPERS** — `get_blog_posts()`, `extract_post_meta()`, `get_active_tournament()`, `verify_webhook()`, `seo()`
 5. **ROUTES** — all Flask route handlers
@@ -130,7 +130,7 @@ if not verify_webhook(request):
 ### Branch images (static/img/)
 - Location: `{ABBREVIATION}_Location.jpg` — e.g. `SES_Location.jpg`
 - Schedule: `{ABBREVIATION}_Schedule.jpg` — e.g. `DPS_Schedule.jpg`
-- Abbreviations: `SES`, `DPS`, `DIS`, `SIS`, `BSA`, `SBS`
+- Abbreviations: `SES`, `DPS`, `DIS`, `SIS`, `BSA`
 
 ### Tour galleries (static/img/)
 - Folder: `DC_{Country}_{Year}/`
@@ -368,5 +368,4 @@ When making changes that need to go live quickly, commit to `main` and the serve
 | DPS | Delhi Private School | Jebel Ali, Dubai |
 | DIS | Deira International School | Dubai Festival City |
 | SIS | Star International School | Al Qusais 3, Dubai |
-| BSA | British School Al Khubairat | Khalidiyah, Abu Dhabi |
-| SBS | Sharjah Boys School | Sharjah |
+| BSA | Baseline Sports Academy | Dubai Investment Park (DIP), Dubai |
