@@ -67,7 +67,7 @@ python3 -m json.tool n8n_workflow.json >/tmp/n8n_check.json
 ## Current Academy Facts
 
 - Public headline count: 15,000+ alumni.
-- Active training centres for 2026/27: 5 across Dubai and Sharjah. AIS (Apple International School, Al Karama) is closed and must not be shown as an active branch.
+- Active training centres for 2026/27: 5 across Dubai and Sharjah. The former Karama centre is closed and must not be shown as an active branch.
 - 2026/27 season registration starts Saturday, 05 September 2026.
 - Official season registration URL: `https://www.desertcubs-admin.app/kiosk/register?utm_source=desertcubs.com&utm_medium=website&utm_campaign=season_2026_27`
 - Do not publish unverified global age ranges or coach counts. Use "junior players across age-group pathways" unless the user provides approved details.
@@ -75,6 +75,7 @@ python3 -m json.tool n8n_workflow.json >/tmp/n8n_check.json
 - Robin Uthappa visited Desert Cubs on 23-24 May 2026. The feature lives on `/events#robin-uthappa`, using gallery assets in `static/img/robin-uthappa/`.
 - Homepage hero uses the UK Tour 2026 Lord's team photo and 2026/27 registration copy.
 - UK Tour 2026 is a completed-tour story, not an open registration campaign. Gallery assets live in `static/img/DC_UK_2026/` and use `DC_UK_2026_1.webp` through `DC_UK_2026_12.webp`.
+- The official UK Tour 2026 annual magazine PDF lives at `static/docs/uk-tour-2026-annual-magazine.pdf`; its lightweight cover preview is `static/img/DC_UK_2026/uk-tour-magazine-cover.webp`.
 - The `/tours` page has a "Guess Our Next International Tour Destination" form with exactly four public fields: country, full name, contact number, comment. Server submissions are stored as JSONL at `data/next_tour_guesses.jsonl` unless `NEXT_TOUR_GUESSES_FILE` overrides it.
 
 ## Summer Camp 2026

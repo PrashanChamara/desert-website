@@ -140,6 +140,12 @@
                                     aria-label="View the UK Tour 2026 gallery">
                                 <i class="fas fa-images"></i> View UK Tour Gallery
                             </button>
+                            <a href="{{ url_for('static', filename='docs/uk-tour-2026-annual-magazine.pdf') }}"
+                               target="_blank" rel="noopener"
+                               class="border-2 border-cubs-gold/70 text-cubs-gold px-8 py-4 rounded-full font-display font-black text-base uppercase tracking-wider hover:bg-cubs-gold hover:text-cubs-blue transition-all flex items-center gap-2"
+                               aria-label="Open the UK Tour 2026 annual magazine PDF">
+                                <i class="fas fa-book-open"></i> View Magazine
+                            </a>
                             <a href="#next-tour-guess"
                                class="border-2 border-white/50 text-white px-8 py-4 rounded-full font-display font-black text-base uppercase tracking-wider hover:bg-white hover:text-cubs-blue transition-all flex items-center gap-2">
                                 <i class="fas fa-map-signs"></i> Guess Our Next Tour
@@ -157,6 +163,82 @@
                              style="width:100%;height:420px;object-fit:cover;object-position:center 42%;">
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     UK TOUR 2026 — ANNUAL MAGAZINE
+============================================================= -->
+<section class="py-20 bg-slate-50 relative overflow-hidden">
+    <div class="absolute inset-0 cricket-field-pattern opacity-20"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-5">
+                <div class="relative max-w-sm mx-auto lg:mx-0">
+                    <div class="absolute -inset-4 bg-cubs-gold/20 rounded-[2rem] blur-2xl"></div>
+                    <a href="{{ url_for('static', filename='docs/uk-tour-2026-annual-magazine.pdf') }}"
+                       target="_blank" rel="noopener"
+                       class="relative block bg-white rounded-2xl p-3 shadow-2xl border-2 border-cubs-gold transform hover:-translate-y-1 transition-all duration-300"
+                       aria-label="Open the Siraj Finance Desert Cubs UK Tour 2026 annual magazine">
+                        <img src="{{ url_for('static', filename='img/DC_UK_2026/uk-tour-magazine-cover.webp') }}"
+                             alt="Cover of the Siraj Finance Desert Cubs Cricket Tour of UK 2026 annual magazine"
+                             width="900" height="1277" loading="lazy"
+                             class="w-full rounded-xl border border-slate-200">
+                        <div class="absolute -bottom-4 left-6 right-6 bg-cubs-blue text-white rounded-2xl px-5 py-4 shadow-xl border border-cubs-gold/40">
+                            <p class="font-display text-2xl font-black uppercase leading-none">120 Pages</p>
+                            <p class="text-cubs-gold text-xs font-black uppercase tracking-widest mt-1">Official Tour Magazine</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7">
+                <p class="section-tag mb-3">Annual Magazine</p>
+                <h2 class="font-display text-4xl md:text-6xl font-black text-cubs-blue uppercase leading-none mb-5">
+                    Siraj Finance Desert Cubs<br>
+                    <span class="text-cubs-gold">UK Tour 2026 Magazine</span>
+                </h2>
+                <p class="text-gray-600 text-lg leading-relaxed mb-8 max-w-2xl">
+                    Read the official annual magazine from the UK Tour 2026 campaign: leadership messages, academy profile, tour squads, itinerary, season achievements, previous tours, tournaments, awards, charity work, photo memories and sponsor acknowledgements.
+                </p>
+
+                <div class="grid sm:grid-cols-2 gap-4 mb-8">
+                    {% set magazine_points = [
+                        ('fa-users', 'Tour Squads & Officials'),
+                        ('fa-route', 'UK Itinerary & Schedules'),
+                        ('fa-trophy', '2025/26 Achievements'),
+                        ('fa-heart', 'Charity & Community Work'),
+                    ] %}
+                    {% for icon, text in magazine_points %}
+                    <div class="bg-white rounded-2xl px-5 py-4 border border-slate-200 shadow-sm flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-xl bg-cubs-blue text-cubs-gold flex items-center justify-center flex-shrink-0">
+                            <i class="fas {{ icon }}"></i>
+                        </span>
+                        <span class="font-bold text-cubs-blue text-sm uppercase tracking-wide">{{ text }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="{{ url_for('static', filename='docs/uk-tour-2026-annual-magazine.pdf') }}"
+                       target="_blank" rel="noopener"
+                       class="btn-gold px-9 py-4 rounded-full text-base flex items-center gap-2"
+                       aria-label="Open the UK Tour 2026 annual magazine PDF">
+                        <i class="fas fa-book-open"></i> View Magazine
+                    </a>
+                    <a href="{{ url_for('static', filename='docs/uk-tour-2026-annual-magazine.pdf') }}"
+                       download
+                       class="border-2 border-cubs-blue text-cubs-blue px-9 py-4 rounded-full font-display font-black text-base uppercase tracking-wider hover:bg-cubs-blue hover:text-white transition-all flex items-center gap-2"
+                       aria-label="Download the UK Tour 2026 annual magazine PDF">
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                </div>
+                <p class="text-xs text-gray-500 mt-4 font-semibold">
+                    PDF size: 34 MB. Opens in a new tab for the best reading experience.
+                </p>
             </div>
         </div>
     </div>

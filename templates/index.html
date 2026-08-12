@@ -648,11 +648,19 @@
                                line-height:1.75;margin-bottom:20px;">
                         Siraj Finance Desert Cubs completed an unforgettable cricket journey across England, combining competitive matches, elite exposure, historic venues and a celebration at Heathrow.
                     </p>
-                    <button onclick="openGallery('DC_UK_2026','DC_UK_2026_',12)" class="btn-gold"
-                            style="padding:11px 24px;font-size:.82rem;">
-                        <i class="fas fa-images" style="font-size:.78rem;" aria-hidden="true"></i>
-                        View UK Tour Gallery
-                    </button>
+                    <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                        <button onclick="openGallery('DC_UK_2026','DC_UK_2026_',12)" class="btn-gold"
+                                style="padding:11px 22px;font-size:.82rem;">
+                            <i class="fas fa-images" style="font-size:.78rem;" aria-hidden="true"></i>
+                            View Gallery
+                        </button>
+                        <a href="{{ url_for('static', filename='docs/uk-tour-2026-annual-magazine.pdf') }}"
+                           target="_blank" rel="noopener" class="btn-outline"
+                           style="padding:10px 20px;font-size:.8rem;border-color:rgba(255,204,0,.55);color:#FFCC00;">
+                            <i class="fas fa-book-open" style="font-size:.78rem;" aria-hidden="true"></i>
+                            Tour Magazine
+                        </a>
+                    </div>
                 </div>
             </div>
 
