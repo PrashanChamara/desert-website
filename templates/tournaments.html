@@ -54,6 +54,137 @@
     </div>
 </section>
 
+<!-- ============================================================
+     ECB NATIONAL LEAGUE REGISTRATION
+============================================================= -->
+{% if show_ecb_registration %}
+<section id="ecb-national-league-registration" class="relative overflow-hidden" style="background:#001045;">
+    <div class="absolute inset-0">
+        <img src="{{ url_for('static', filename='img/ecb/ecb-national-league-hero.webp') }}"
+             alt="Desert Cubs ECB National League Tournament 2026/27 player selection"
+             width="1400" height="788" loading="lazy"
+             class="w-full h-full object-cover object-center opacity-35">
+        <div class="absolute inset-0" style="background:linear-gradient(90deg,rgba(0,16,69,.98),rgba(0,31,102,.86) 54%,rgba(0,16,69,.62));"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 items-center">
+            <div>
+                <div class="flex flex-wrap items-center gap-4 mb-5">
+                    <img src="{{ url_for('static', filename='img/ecb/emirates-cricket-board-logo.webp') }}"
+                         alt="Emirates Cricket Board logo"
+                         width="160" height="75" loading="lazy"
+                         class="h-12 w-auto rounded-xl bg-white px-3 py-1.5">
+                    <span class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-black uppercase tracking-widest"
+                          style="background:rgba(255,204,0,.14);color:#FFCC00;border:1px solid rgba(255,204,0,.35);">
+                        <i class="fas fa-trophy"></i> UAE National Level League
+                    </span>
+                </div>
+
+                <p class="text-cubs-gold text-xs font-black uppercase tracking-[0.28em] mb-3">Preliminary Trials & Player Selection</p>
+                <h2 class="font-display text-4xl md:text-6xl font-black text-white uppercase leading-none mb-5">
+                    ECB National League<br>
+                    <span class="text-cubs-gold">Tournament 2026/27</span>
+                </h2>
+                <p class="text-gray-200 text-base md:text-lg leading-relaxed max-w-2xl mb-7">
+                    Desert Cubs is opening registration for ECB National League team selections. Players must register with the button below and attend the preliminary trials to be considered for our ECB tournament squads.
+                </p>
+
+                <div class="grid sm:grid-cols-2 gap-3 mb-7">
+                    {% set ecb_categories = [
+                        ('U16 Girls', 'Born on/after 01/09/2010'),
+                        ('U12 Boys', 'Born on/after 01/09/2014'),
+                        ('U15 Boys', 'Born on/after 01/09/2011'),
+                        ('U18 Boys', 'Born on/after 01/09/2008')
+                    ] %}
+                    {% for label, detail in ecb_categories %}
+                    <div class="rounded-2xl px-5 py-4" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);">
+                        <p class="font-display text-2xl font-black uppercase leading-none text-white">{{ label }}</p>
+                        <p class="text-cubs-gold text-xs font-bold mt-1">{{ detail }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <button type="button"
+                            onclick="openEcbRegistration()"
+                            class="btn-gold px-9 py-4 rounded-full text-base flex items-center gap-2"
+                            aria-label="Register for ECB National League team selection trials">
+                        <i class="fas fa-clipboard-check"></i> Register Now
+                    </button>
+                    <a href="#ecb-trial-schedule"
+                       class="border-2 border-white/50 text-white px-9 py-4 rounded-full font-display font-black text-base uppercase tracking-wider hover:bg-white hover:text-cubs-blue transition-all flex items-center gap-2">
+                        <i class="fas fa-calendar-days"></i> Trial Schedule
+                    </a>
+                </div>
+            </div>
+
+            <div class="rounded-3xl overflow-hidden shadow-2xl" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,204,0,.35);">
+                <img src="{{ url_for('static', filename='img/ecb/ecb-national-league-flyer.webp') }}"
+                     alt="ECB National League Tournament 2026/27 preliminary trials and player selection flyer"
+                     width="720" height="1279" loading="lazy"
+                     class="w-full max-h-[620px] object-contain bg-[#001045]">
+            </div>
+        </div>
+
+        <div id="ecb-trial-schedule" class="mt-10 rounded-3xl p-6 md:p-8" style="background:rgba(255,255,255,.96);border:1px solid rgba(255,204,0,.55);">
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-6">
+                <div>
+                    <p class="text-xs font-black uppercase tracking-widest mb-2" style="color:#003399;">ECB Preliminary Trial Schedule</p>
+                    <h3 class="font-display text-3xl md:text-4xl font-black uppercase leading-none" style="color:#001f66;">
+                        Register First, Then Attend Trials
+                    </h3>
+                </div>
+                <p class="text-sm font-bold" style="color:#475569;">Trial participation is compulsory for player selection.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-4 gap-4 mb-6">
+                {% set ecb_trials = [
+                    ('U18 Boys', '30th Aug', '6:30 PM - 8:30 PM', 'Star International School Nets (SIS), Al Qusais'),
+                    ('U15 Boys', '30th Aug', '6:00 PM - 8:00 PM', 'Deira International School Grounds & Nets'),
+                    ('U12 Boys', '6th Sep', 'During Practice', 'Respective branches: DPS, SES, DIS, SIS & BSA'),
+                    ('U16 Girls', '6th Sep', '4:45 PM - 6:45 PM', 'Sharjah English School (SES)')
+                ] %}
+                {% for category, date, time, venue in ecb_trials %}
+                <article class="rounded-2xl p-5" style="background:#f8fafc;border:1px solid #e2e8f0;">
+                    <p class="font-display text-2xl font-black uppercase leading-none mb-3" style="color:#003399;">{{ category }}</p>
+                    <div class="space-y-2 text-sm" style="color:#475569;">
+                        <p><i class="fas fa-calendar text-cubs-gold mr-2"></i><strong>{{ date }}</strong></p>
+                        <p><i class="fas fa-clock text-cubs-gold mr-2"></i>{{ time }}</p>
+                        <p><i class="fas fa-location-dot text-cubs-gold mr-2"></i>{{ venue }}</p>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="rounded-2xl p-5" style="background:#001f66;color:#ffffff;">
+                    <p class="font-black uppercase tracking-wide text-cubs-gold mb-2">Important Tournament Notes</p>
+                    <ul class="space-y-2 text-sm text-gray-200">
+                        <li><i class="fas fa-check text-cubs-gold mr-2"></i>Teams will be finalised by 15th September.</li>
+                        <li><i class="fas fa-check text-cubs-gold mr-2"></i>The tournament starts on 3rd October for boys' and girls' categories.</li>
+                        <li><i class="fas fa-check text-cubs-gold mr-2"></i>Trials are open to both members and non-members.</li>
+                        <li><i class="fas fa-check text-cubs-gold mr-2"></i>Trials will be considered practice sessions and charged accordingly.</li>
+                    </ul>
+                </div>
+                <div class="rounded-2xl p-5 flex flex-col justify-between gap-5" style="background:#FFCC00;color:#001f66;">
+                    <div>
+                        <p class="font-display text-3xl font-black uppercase leading-none mb-2">Selection Registration</p>
+                        <p class="text-sm font-bold">Players need to register using the button below before attending ECB preliminary trials.</p>
+                    </div>
+                    <button type="button"
+                            onclick="openEcbRegistration()"
+                            class="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 font-black uppercase text-sm"
+                            style="background:#001f66;color:#ffffff;">
+                        Register Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
 
 <!-- ============================================================
      FILTER TABS
@@ -250,6 +381,30 @@
     </div>
 </section>
 
+{% if show_ecb_registration %}
+<!-- ECB REGISTRATION FORM MODAL -->
+<div id="ecbRegistrationModal" class="modal-overlay" onclick="closeEcbRegistration()">
+    <div style="position:relative;width:min(94vw,760px);height:min(88vh,820px);margin:20px;background:#ffffff;border-radius:18px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.55);"
+         onclick="event.stopPropagation()">
+        <button onclick="closeEcbRegistration()" aria-label="Close ECB registration form"
+                style="position:absolute;top:12px;right:12px;width:38px;height:38px;background:#FFCC00;color:#001f66;border:none;border-radius:50%;cursor:pointer;font-size:.9rem;font-weight:900;z-index:10;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.25);">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        <div style="height:68px;background:#001f66;color:#ffffff;display:flex;align-items:center;padding:0 62px 0 22px;border-bottom:3px solid #FFCC00;">
+            <div>
+                <p class="font-display font-black uppercase leading-none text-xl">ECB Team Selection Registration</p>
+                <p class="text-xs text-cubs-gold font-bold uppercase tracking-wider mt-1">Desert Cubs 2026/27 Season</p>
+            </div>
+        </div>
+        <iframe id="ecbRegistrationFrame"
+                title="ECB National League Tournament Selection Registration Form"
+                width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0"
+                style="display:block;width:100%;height:calc(100% - 68px);border:0;"
+                loading="lazy">Loading...</iframe>
+    </div>
+</div>
+{% endif %}
+
 
 <!-- ============================================================
      FILTER JAVASCRIPT
@@ -284,6 +439,36 @@ function filterTournaments(type) {
     // Show/hide no results
     document.getElementById('noResults').classList.toggle('hidden', visibleCount > 0);
 }
+
+{% if show_ecb_registration %}
+const ecbRegistrationUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfefVP6GfnP_RvkfqTCGBLTic-hm0FF_xSq8sWXfkkZvm-mUA/viewform?embedded=true';
+
+function openEcbRegistration() {
+    const modal = document.getElementById('ecbRegistrationModal');
+    const frame = document.getElementById('ecbRegistrationFrame');
+    if (!modal || !frame) return;
+    if (frame.dataset.loaded !== 'true') {
+        frame.src = ecbRegistrationUrl;
+        frame.dataset.loaded = 'true';
+    }
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (typeof trackEvent === 'function') {
+        trackEvent('ecb_registration_open', { event_category: 'registration', event_label: 'ECB National League Tournament' });
+    }
+}
+
+function closeEcbRegistration() {
+    const modal = document.getElementById('ecbRegistrationModal');
+    if (modal) modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('ecbRegistrationModal');
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) closeEcbRegistration();
+});
+{% endif %}
 </script>
 
 {% endblock %}

@@ -7,7 +7,7 @@ import re
 import hmac
 import glob
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 Compress(app)
@@ -33,6 +33,7 @@ BLOG_DIR = 'content/posts'
 POSTS_PER_PAGE = 6
 WEBHOOK_SECRET = os.environ.get('WEBHOOK_SECRET', '')
 SEASON_REGISTRATION_URL = "https://www.desertcubs-admin.app/kiosk/register?utm_source=desertcubs.com&utm_medium=website&utm_campaign=season_2026_27"
+ECB_SELECTION_VISIBLE_UNTIL = datetime.strptime("2026-09-06", "%Y-%m-%d").date()
 NEXT_TOUR_GUESSES_FILE = os.environ.get(
     'NEXT_TOUR_GUESSES_FILE',
     os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'next_tour_guesses.jsonl')
@@ -40,6 +41,10 @@ NEXT_TOUR_GUESSES_FILE = os.environ.get(
 NEXT_TOUR_GUESS_LIMIT = 5
 NEXT_TOUR_GUESS_WINDOW = 60 * 60
 _next_tour_guess_hits = {}
+
+
+def dubai_today():
+    return (datetime.utcnow() + timedelta(hours=4)).date()
 
 
 @app.context_processor
@@ -861,7 +866,12 @@ def tournaments():
         keywords="most cricket tournaments UAE, junior cricket tournament UAE, junior international cricket tournament UAE, cricket league Dubai, ECB national junior tournament UAE, Gulf Cup cricket UAE, kids cricket competition UAE, cricket season UAE",
         canonical="https://www.desertcubs.com/tournaments"
     )
-    return render_template('tournaments.html', meta=meta, tournaments=TOURNAMENTS)
+    return render_template(
+        'tournaments.html',
+        meta=meta,
+        tournaments=TOURNAMENTS,
+        show_ecb_registration=dubai_today() <= ECB_SELECTION_VISIBLE_UNTIL
+    )
 
 
 @app.route('/events')
