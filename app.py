@@ -589,6 +589,16 @@ def get_homelands_gallery(project_id):
     return sorted(nums)
 
 
+def get_blog_image_filename(slug):
+    """Return the best available blog image filename for a slug, preferring WebP."""
+    blog_img_dir = os.path.join(os.path.dirname(__file__), 'static', 'img', 'blog')
+    for ext in ('webp', 'jpg', 'jpeg', 'png'):
+        filename = f"{slug}.{ext}"
+        if os.path.exists(os.path.join(blog_img_dir, filename)):
+            return filename
+    return f"{slug}.jpg"
+
+
 def extract_post_meta(content):
     """Extract SEO metadata embedded by N8N as an HTML comment at the top of the post.
     N8N writes: <!-- DC_META: {"seo_title":"...","seo_description":"...","blog_title":"..."} -->
@@ -633,7 +643,7 @@ def get_blog_posts():
                     'date': date_part,
                     'slug': slug,
                     'filename': filename,
-                    'image': f"{slug}.jpg",
+                    'image': get_blog_image_filename(slug),
                     'category': meta.get('category', 'Cricket Tips') if meta else 'Cricket Tips'
                 })
             except Exception:
@@ -821,9 +831,9 @@ def blog_post(slug):
         title=post_meta.get('seo_title', f"{display_title} | Desert Cubs Cricket Blog") if post_meta else f"{display_title} | Desert Cubs Cricket Blog",
         description=post_meta.get('seo_description', f"Read: {display_title} — Cricket training tips from Desert Cubs Academy UAE.") if post_meta else f"Read: {display_title} — Cricket training tips from Desert Cubs Academy UAE.",
         canonical=f"https://www.desertcubs.com/blog/{slug}",
-        og_image=f"https://www.desertcubs.com/static/img/blog/{safe_slug}.jpg"
+        og_image=f"https://www.desertcubs.com/static/img/blog/{get_blog_image_filename(safe_slug)}"
     )
-    return render_template('post.html', content=content, title=display_title, meta=meta, slug=slug)
+    return render_template('post.html', content=content, title=display_title, meta=meta, slug=slug, blog_image=get_blog_image_filename(safe_slug))
 
 
 @app.route('/locations/<branch_id>')

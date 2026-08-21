@@ -82,7 +82,9 @@
                 <!-- Thumbnail -->
                 <a href="/blog/{{ post.slug }}" class="block h-52 bg-gray-200 relative overflow-hidden flex-shrink-0">
                     <picture>
+                        {% if post.image.endswith('.webp') %}
                         <source srcset="{{ url_for('static', filename='img/blog/' + post.slug + '.webp') }}" type="image/webp">
+                        {% endif %}
                         <img src="{{ url_for('static', filename='img/blog/' + post.image) }}"
                              alt="{{ post.title }} — Desert Cubs Cricket Academy Blog"
                              width="800" height="400"

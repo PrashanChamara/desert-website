@@ -60,7 +60,7 @@
           },
           "areaServed": ["Dubai", "Sharjah", "UAE", "United Arab Emirates"],
           "sport": "Cricket",
-          "numberOfLocations": 6,
+          "numberOfLocations": 5,
           "knowsAbout": [
             "UAE Junior Cricket Coaching",
             "Sharjah Junior Cricket Coaching",
@@ -1058,11 +1058,29 @@
     </div>
 </div>
 
+<!-- VIDEO MODAL -->
+<div id="videoModal" class="modal-overlay" onclick="closeVideoModal()">
+    <div style="position:relative; width:min(92vw,980px); max-height:88vh; margin:20px;"
+         onclick="event.stopPropagation()">
+        <button onclick="closeVideoModal()" aria-label="Close video"
+                style="position:absolute; top:-14px; right:-14px; width:36px; height:36px;
+                       background:#FFCC00; color:#001f66; border:none; border-radius:50%;
+                       cursor:pointer; font-size:0.9rem; font-weight:900; z-index:10; display:flex; align-items:center; justify-content:center;
+                       box-shadow:0 10px 30px rgba(0,0,0,0.45);">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        <video id="videoModalPlayer"
+               controls playsinline preload="none"
+               style="display:block; width:100%; max-height:88vh; background:#000000; border-radius:14px; box-shadow:0 18px 70px rgba(0,0,0,0.7);"
+               aria-label="Desert Cubs video"></video>
+    </div>
+</div>
+
 
 <!-- ============================================================
      JAVASCRIPT
 ============================================================= -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 <script>
 function trackEvent(name, params) {
     if (typeof gtag === 'function') {
@@ -1181,6 +1199,40 @@ function closeSchedule() {
     document.getElementById('scheduleModal').classList.remove('active');
     document.body.style.overflow = ''; // Restores background scrolling
 }
+
+/* ── Video modal ── */
+function openVideoModal(src, title) {
+    const modal = document.getElementById('videoModal');
+    const player = document.getElementById('videoModalPlayer');
+    if (!modal || !player || !src) return;
+    player.pause();
+    player.removeAttribute('src');
+    player.load();
+    player.src = src;
+    player.setAttribute('aria-label', title || 'Desert Cubs video');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    const playback = player.play();
+    if (playback && typeof playback.catch === 'function') playback.catch(() => {});
+    trackEvent('video_open', { event_category: 'video', event_label: title || src });
+}
+
+function closeVideoModal() {
+    const modal = document.getElementById('videoModal');
+    const player = document.getElementById('videoModalPlayer');
+    if (player) {
+        player.pause();
+        player.removeAttribute('src');
+        player.load();
+    }
+    if (modal) modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+    const videoModal = document.getElementById('videoModal');
+    if (e.key === 'Escape' && videoModal && videoModal.classList.contains('active')) closeVideoModal();
+});
 </script>
 
 </body>
