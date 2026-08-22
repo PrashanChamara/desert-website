@@ -145,6 +145,96 @@ BRANCHES = [
     },
 ]
 
+COACH_PROFILE_UPDATES = {
+    "Murali Sockalingam": {
+        "extra": [
+            "Head Coach - UAE Women's National Cricket Team (2016-2019)",
+            "First Aid Certified",
+        ]
+    },
+    "Prosanta Chanda": {
+        "extra": [
+            "Head Coach - Ajman Cricket Council (2024-2026)",
+            "Recipient of Best School Coach Award 2018/19 in UAE",
+            "ISSA Certified Fitness Trainer",
+            "Master of Physical Education",
+            "UAE Girls Team Founder Member",
+            "First Aid Certified",
+        ]
+    },
+    "Shanesh Weerawansha": {"extra": ["First Aid Certified"]},
+    "Aruna Bandaranayaka": {
+        "extra": [
+            "Winning Coach - ECB U19 National Academy League (2019/2020)",
+            "Certified Umpire",
+            "First Aid Certified",
+        ]
+    },
+    "Kelum Fernando": {"extra": ["First Aid Certified"]},
+    "Priyantha Ganegoda": {"extra": ["First Aid Certified"]},
+    "Lasantha Balasuriya": {"extra": ["First Aid Certified"]},
+    "Hashan Wickrama Silva": {
+        "extra": [
+            "Winning Coach - ECB U16 National Academy League",
+            "First Aid Certified",
+        ]
+    },
+    "Chanaka Ediriweerage": {"extra": ["First Aid Certified"]},
+    "Muhammad Ejaz": {"extra": ["First Aid Certified"]},
+    "Moin Sabir": {"extra": ["First Aid Certified"]},
+    "Vishwa Fernandopulle": {
+        "role": "Operation Officer & Coordinator / Cricket Coach",
+        "extra": [
+            "Certified Umpire & Scorer",
+            "First Aid Certified",
+        ]
+    },
+    "Ruwan Jayakody": {"extra": ["First Aid Certified"]},
+    "Shahzada Saleem (Qasim)": {
+        "extra": [
+            "ECB Coach - U13, U16 & U19 Development Squads",
+            "Head Coach - Al Ain Cricket Club (2014-2022)",
+            "Fielding Coach - UAE U19 Team (World Cup 2018)",
+            "Assistant Coach - UAE National Team (World Cup 2015)",
+            "First Aid Certified",
+        ]
+    },
+    "Janaka Senevirathne": {
+        "extra": [
+            "Certified Umpire",
+            "First Aid Certified",
+        ]
+    },
+    "Manish Yadav": {"extra": ["Master of Physical Education"]},
+    "Pasindu Dayananda": {"extra": ["First Aid Certified"]},
+    "Nipuna Rathnayaka": {"extra": ["First Aid Certified"]},
+    "Judith Jose Peter": {
+        "extra": [
+            "ECB Coach - Girls Development Squads",
+            "Represented UAE Women's National Cricket Team (2015-2023)",
+            "Master of Physical Education",
+            "First Aid Certified",
+        ]
+    },
+    "Anjalo Silva": {"extra": ["First Aid Certified"]},
+    "Tiran Wijesuriya": {"extra": ["First Aid Certified"]},
+    "Asanga Aluthgedara": {
+        "extra": [
+            "3-Dimensional Coaching",
+            "First Aid Certified",
+        ]
+    },
+}
+
+
+for branch in BRANCHES:
+    for coach in branch["coaches"]:
+        update = COACH_PROFILE_UPDATES.get(coach["name"])
+        if not update:
+            continue
+        coach["role"] = update.get("role", coach["role"])
+        coach["extra"] = update.get("extra", [])
+
 # ---------------------------------------------------------
 # DATA: TOURS
 # ---------------------------------------------------------
@@ -164,7 +254,7 @@ TOURS = {
         {
             "year": "2025",
             "dest": "Sri Lanka",
-            "desc": "High Performance Tour featuring 40/50 Overs format games & GCCA T20 Championship.",
+            "desc": "GCCA International Academy T20 Championship.",
             "gallery": {
                 "folder": "DC_Srilanka_2025",
                 "prefix": "DC_Srilanka",
@@ -174,7 +264,7 @@ TOURS = {
         {
             "year": "2024",
             "dest": "Brisbane, Australia",
-            "desc": "ICCA Global Academy Championship with Queensland Cricket.",
+            "desc": "High performance coaching at Bupa National Cricket Centre.",
             "gallery": {
                 "folder": "DC_Australia_2024",
                 "prefix": "DC_Australia",
@@ -184,7 +274,7 @@ TOURS = {
         {
             "year": "2023",
             "dest": "UK & Wales",
-            "desc": "Largest ever academy tour: 220 players & parents, 10 teams.",
+            "desc": "ICCA Global Academy Championship.",
             "gallery": {
                 "folder": "DC_UK_2023",
                 "prefix": "DC_UK",
@@ -194,7 +284,7 @@ TOURS = {
         {
             "year": "2022",
             "dest": "South Africa",
-            "desc": "Pretoria, Johannesburg & Rustenburg tour.",
+            "desc": "High performance coaching at HPC.",
             "gallery": None
         },
         {
@@ -227,69 +317,154 @@ TOURNAMENTS = [
 # ---------------------------------------------------------
 MASTER_CLASSES = [
     {
-        "legend": "Jonty Rhodes",
-        "date": "Nov 2019",
-        "desc": "South African fielding legend. 3-day masterclass at SES and DPS centres.",
-        "folder": None,
-        "count": 0,
-        "id": "jonty"
-    },
-    {
-        "legend": "Dinesh Karthik",
-        "date": "Oct 2021",
-        "desc": "India's elite wicketkeeper-batsman. 1-day session at DPS centre.",
-        "folder": None,
-        "count": 0,
-        "id": "dk"
-    },
-    {
         "legend": "Marvan Atapattu",
         "date": "Sept 2022",
-        "desc": "Former Sri Lankan Captain & Head Coach. Technical batting masterclass.",
+        "desc": "Former Sri Lanka captain and head coach. Technical batting masterclass.",
         "folder": "master_class",
         "prefix": "marven_atapattu",
         "count": 10,
-        "id": "marvan"
+        "id": "marvan",
+        "type": "Masterclass"
     },
     {
         "legend": "Chaminda Vaas",
         "date": "Feb 2022",
-        "desc": "Sri Lankan swing bowling legend — mastering the art of seam and swing.",
-        "folder": None,
-        "count": 0,
-        "id": "vaas"
+        "desc": "Sri Lankan swing bowling legend. Seam, swing and fast-bowling masterclass.",
+        "folder": "master_class",
+        "prefix": "chaminda_vaas",
+        "count": 21,
+        "id": "vaas",
+        "type": "Masterclass"
+    },
+    {
+        "legend": "Dilshan Munaweera & Malinda Pushpakumara",
+        "date": "Jan 2022",
+        "desc": "Sri Lankan internationals. Batting, spin-bowling and all-round cricket development session.",
+        "folder": "master_class",
+        "prefix": "dilshan_malinda",
+        "count": 7,
+        "id": "dilshan-malinda",
+        "type": "Masterclass"
+    },
+    {
+        "legend": "Dinesh Karthik",
+        "date": "Oct 2021",
+        "desc": "Indian wicketkeeper-batsman. Wicketkeeping and power-hitting session at DPS centre.",
+        "folder": "master_class",
+        "prefix": "dinesh_karthik",
+        "count": 10,
+        "id": "dk",
+        "type": "Masterclass"
+    },
+    {
+        "legend": "Jonty Rhodes",
+        "date": "Nov 2019",
+        "desc": "South African fielding legend. 3-day masterclass at SES and DPS centres.",
+        "folder": "master_class",
+        "prefix": "jonty_rhodes",
+        "count": 17,
+        "id": "jonty",
+        "type": "Masterclass"
+    },
+    {
+        "legend": "Chamara Kapugedara",
+        "date": "Nov 2019",
+        "desc": "Sri Lankan international batter. Academy visit with Desert Cubs players.",
+        "folder": "master_class",
+        "prefix": "chamara_kapugedara_visit",
+        "count": 7,
+        "id": "chamara",
+        "type": "Visit"
+    },
+    {
+        "legend": "Upul Chandana",
+        "date": "2019",
+        "desc": "Sri Lankan all-rounder. Academy visit and player interaction.",
+        "folder": "master_class",
+        "prefix": "upul_chandana_visit",
+        "count": 7,
+        "id": "upul",
+        "type": "Visit"
     },
     {
         "legend": "Ravichandran Ashwin",
         "date": "Nov 2018",
-        "desc": "India's world-class off-spinner. Spin wizardry and tactical analysis at SES & DIS.",
-        "folder": None,
-        "count": 0,
-        "id": "ashwin"
-    },
-    {
-        "legend": "Dav Whatmore",
-        "date": "Nov 2017",
-        "desc": "World Cup winning coach — tactical and technical coaching masterclass.",
-        "folder": None,
-        "count": 0,
-        "id": "whatmore"
+        "desc": "Indian off-spinner. Spin bowling and tactical cricket insights for Desert Cubs players.",
+        "folder": "master_class",
+        "prefix": "ravichandran_ashwin",
+        "count": 1,
+        "id": "ashwin",
+        "type": "Masterclass"
     },
     {
         "legend": "Romesh Kaluwitharana",
         "date": "Mar 2018",
-        "desc": "World Cup winning Sri Lanka opener. High performance batting program.",
-        "folder": None,
-        "count": 0,
-        "id": "kalu"
+        "desc": "World Cup-winning Sri Lanka opener. High-performance batting programme.",
+        "folder": "master_class",
+        "prefix": "romesh_kaluwitharana",
+        "count": 7,
+        "id": "kalu",
+        "type": "Masterclass"
+    },
+    {
+        "legend": "Dav Whatmore",
+        "date": "Nov 2017",
+        "desc": "World Cup-winning coach. Tactical and technical coaching masterclass.",
+        "folder": "master_class",
+        "prefix": "dav_whatmore",
+        "count": 6,
+        "id": "whatmore",
+        "type": "Masterclass"
     },
     {
         "legend": "Rumesh Ratnayake",
         "date": "Oct 2016",
-        "desc": "Pace Foundation program by Sri Lanka fast bowling legend & ACC official.",
-        "folder": None,
-        "count": 0,
-        "id": "rumesh"
+        "desc": "Sri Lankan fast-bowling legend and ACC official. Pace foundation programme.",
+        "folder": "master_class",
+        "prefix": "rumesh_ratnayake",
+        "count": 9,
+        "id": "rumesh",
+        "type": "Masterclass"
+    },
+    {
+        "legend": "Aravinda de Silva",
+        "date": "May 2016",
+        "desc": "Sri Lankan batting great. Academy visit with Desert Cubs players.",
+        "folder": "master_class",
+        "prefix": "aravinda_de_silva_visit",
+        "count": 2,
+        "id": "aravinda",
+        "type": "Visit"
+    },
+    {
+        "legend": "Graeme Smith",
+        "date": "Dec 2015",
+        "desc": "South African captain and batting legend. Academy visit with Desert Cubs players.",
+        "folder": "master_class",
+        "prefix": "graeme_smith_visit",
+        "count": 5,
+        "id": "graeme",
+        "type": "Visit"
+    },
+    {
+        "legend": "Kevin Pietersen",
+        "date": "2015",
+        "desc": "England batting star. Academy visit and player interaction.",
+        "folder": "master_class",
+        "prefix": "kevin_pietersen_visit",
+        "count": 5,
+        "id": "kp",
+        "type": "Visit"
+    },
+    {
+        "legend": "Aaqib Javed",
+        "date": "Oct 2015",
+        "desc": "Pakistan fast-bowling great. Academy visit with Desert Cubs players.",
+        "folder": "master_class",
+        "prefix": "aaqib_javed_visit",
+        "count": 3,
+        "id": "aaqib",
+        "type": "Visit"
     },
 ]
 

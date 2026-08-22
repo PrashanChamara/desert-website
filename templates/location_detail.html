@@ -121,13 +121,23 @@
                             </div>
 
                             <!-- Coach info -->
-                            <div>
-                                <h3 class="font-display text-xl font-black text-cubs-blue leading-tight" itemprop="name">{{ coach.name }}</h3>
-                                <p class="text-cubs-gold font-bold text-xs uppercase tracking-wider mb-2">{{ coach.role }}</p>
+                            <div class="min-w-0 flex-1">
+                                <h3 class="font-display text-xl font-black text-gray-900 leading-tight" itemprop="name">{{ coach.name }}</h3>
+                                <p class="text-cubs-blue font-bold text-xs uppercase tracking-wider mb-2">{{ coach.role }}</p>
                                 <div class="inline-flex items-center gap-2 bg-slate-50 rounded-lg px-3 py-1.5 border border-gray-200">
                                     <i class="fas fa-certificate text-cubs-gold text-xs"></i>
                                     <p class="text-xs text-gray-600 font-semibold">{{ coach.qual }}</p>
                                 </div>
+                                {% if coach.extra %}
+                                <ul class="mt-3 space-y-1.5">
+                                    {% for item in coach.extra %}
+                                    <li class="flex items-start gap-2 text-xs text-gray-600 leading-snug">
+                                        <i class="fas fa-check-circle text-cubs-gold text-[10px] mt-0.5 flex-shrink-0"></i>
+                                        <span>{{ item }}</span>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
                                 {% if coach.exp %}
                                 <div class="mt-2 inline-flex items-center gap-2 bg-cubs-gold/10 rounded-lg px-3 py-1.5 border border-cubs-gold/30">
                                     <i class="fas fa-stopwatch text-cubs-gold text-xs"></i>
@@ -151,8 +161,8 @@
                         batting, bowling, fielding, and cricket strategy.
                     </p>
                     <p class="text-gray-600 leading-relaxed">
-                        Students at this centre compete in our 10-tournament season calendar including the DC Premier League, 
-                        ECB National Junior Tournament, and Gulf Cup. They also get access to international cricket tours.
+                        Players at this centre compete in our 10-tournament season calendar including the DC Premier League, 
+                        DC Super League and ECB National Academy League. In addition, they get access to international cricket tours.
                     </p>
                 </div>
             </div>
@@ -188,7 +198,7 @@
                     <div class="mt-6 pt-6 border-t border-gray-100 space-y-3">
                         <div class="flex items-center gap-3 text-sm text-gray-600">
                             <i class="fas fa-users text-cubs-gold w-4"></i>
-                            <span><strong class="text-cubs-blue">Centre team</strong> available for guidance</span>
+                            <span><strong class="text-cubs-blue">Qualified team</strong> available for guidance</span>
                         </div>
                         <div class="flex items-center gap-3 text-sm text-gray-600">
                             <i class="fas fa-child text-cubs-gold w-4"></i>
@@ -200,7 +210,11 @@
                         </div>
                         <div class="flex items-center gap-3 text-sm text-gray-600">
                             <i class="fas fa-certificate text-cubs-gold w-4"></i>
-                            <span>ICC-certified coaching</span>
+                            <span>ICC/ACC qualified coaches</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-gray-600">
+                            <i class="fas fa-kit-medical text-cubs-gold w-4"></i>
+                            <span>First aid certified</span>
                         </div>
                     </div>
                 </div>

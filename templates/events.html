@@ -30,23 +30,23 @@
             Events & <span class="text-cubs-gold">Legends</span>
         </h1>
         <p class="text-gray-300 text-lg max-w-xl mx-auto font-light leading-relaxed">
-            Our students don't just train — they learn directly from international cricket legends. 
-            From Jonty Rhodes to Robin Uthappa, we bring the world's best to our cubs.
+            Our players don't just train — they learn directly from international cricket legends. 
+            From Jonty Rhodes to Ravichandran Ashwin, we bring the world's best to our cubs.
         </p>
 
         <!-- Quick stats -->
         <div class="flex justify-center gap-8 mt-10 pt-10 border-t border-white/10">
             <div class="text-center">
-                <p class="font-display text-3xl font-black text-cubs-gold">9+</p>
+                <p class="font-display text-3xl font-black text-cubs-gold">15+</p>
                 <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">World Legends</p>
             </div>
             <div class="text-center">
-                <p class="font-display text-3xl font-black text-cubs-gold">2016</p>
+                <p class="font-display text-3xl font-black text-cubs-gold">2015</p>
                 <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Program Since</p>
             </div>
             <div class="text-center">
                 <p class="font-display text-3xl font-black text-cubs-gold">5,000+</p>
-                <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Students Benefited</p>
+                <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Players Benefited</p>
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@
         <p class="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto">
             Desert Cubs Cricket Academy has hosted multiple <strong class="text-cubs-blue">High Performance Programs</strong> conducted by 
             former international cricketers and world-class coaches. These exclusive masterclasses give our junior 
-            cricketers in the UAE a rare opportunity to train alongside some of the greatest names in the sport.
+            players in the UAE a rare opportunity to train alongside some of the greatest names in the sport.
         </p>
     </div>
 </section>
@@ -95,11 +95,11 @@
                     Former Indian cricketer Robin Uthappa visited Desert Cubs Cricket Academy on 23rd and 24th May 2026, meeting our young players across Desert Cubs centres.
                 </p>
                 <p class="text-gray-300 leading-relaxed mb-7 max-w-xl">
-                    He shared thoughts from his cricket journey, answered questions from the kids, spent time with players and families, took photos, and passed on important lessons for the next generation.
+                    He shared thoughts from his cricket journey, answered questions from players, spent time with players and families, took photos, and passed on important lessons for the next generation.
                 </p>
                 <div class="flex flex-wrap gap-3 mb-8">
                     <span class="bg-white/10 text-cubs-gold border border-white/10 text-xs font-black px-4 py-2 rounded-full uppercase tracking-wider"><i class="fas fa-comments mr-1.5"></i> Player Q&amp;A</span>
-                    <span class="bg-white/10 text-cubs-gold border border-white/10 text-xs font-black px-4 py-2 rounded-full uppercase tracking-wider"><i class="fas fa-camera mr-1.5"></i> Photos With Kids</span>
+                    <span class="bg-white/10 text-cubs-gold border border-white/10 text-xs font-black px-4 py-2 rounded-full uppercase tracking-wider"><i class="fas fa-camera mr-1.5"></i> Photos With Players</span>
                     <span class="bg-white/10 text-cubs-gold border border-white/10 text-xs font-black px-4 py-2 rounded-full uppercase tracking-wider"><i class="fas fa-lightbulb mr-1.5"></i> Cricket Lessons</span>
                 </div>
                 <button onclick="openGallery('robin-uthappa', 'robin-uthappa', 27)"
@@ -171,7 +171,14 @@
                         'Dinesh Karthik': '🇮🇳',
                         'Dav Whatmore': '🇦🇺',
                         'Romesh Kaluwitharana': '🇱🇰',
-                        'Rumesh Ratnayake': '🇱🇰'
+                        'Rumesh Ratnayake': '🇱🇰',
+                        'Dilshan Munaweera & Malinda Pushpakumara': '🇱🇰',
+                        'Chamara Kapugedara': '🇱🇰',
+                        'Upul Chandana': '🇱🇰',
+                        'Aravinda de Silva': '🇱🇰',
+                        'Graeme Smith': '🇿🇦',
+                        'Kevin Pietersen': '🇬🇧',
+                        'Aaqib Javed': '🇵🇰'
                     } %}
                     <div class="relative z-10 text-center">
                         <span class="text-4xl block mb-1">{{ country_map.get(mc.legend, '🌍') }}</span>
@@ -185,6 +192,7 @@
                         {{ mc.legend }}
                     </h3>
                     <p class="text-gray-500 text-xs leading-relaxed flex-grow" itemprop="description">{{ mc.desc }}</p>
+                    <p class="text-cubs-blue text-[10px] font-black uppercase tracking-wider mt-3">{{ mc.type }}</p>
 
                     <!-- Gallery button if photos exist -->
                     {% if mc.folder and mc.count > 0 %}
@@ -244,15 +252,13 @@
                 </div>
             </div>
             <div class="grid grid-cols-3 gap-3">
-                {% for i in range(1, 4) %}
-                <div class="rounded-xl overflow-hidden aspect-square bg-gray-200 group cursor-pointer shadow-sm hover:shadow-lg transition-shadow"
-                     onclick="openGallery('master_class', 'jonty_rhodes', 9)">
-                    <div class="w-full h-full bg-gradient-to-br from-cubs-blue to-cubs-blue-dark flex items-center justify-center group-hover:opacity-80 transition-opacity">
-                        <div class="text-center">
-                            <i class="fas fa-images text-cubs-gold text-2xl block mb-1"></i>
-                            <span class="text-white text-xs font-bold">Photo {{ i }}</span>
-                        </div>
-                    </div>
+                {% for i in range(1, 7) %}
+                <div class="rounded-xl overflow-hidden aspect-square bg-gray-200 group cursor-pointer shadow-sm hover:shadow-lg transition-all hover:-translate-y-1"
+                     onclick="openGallery('master_class', 'jonty_rhodes', 17)">
+                    <img src="{{ url_for('static', filename='img/master_class/jonty_rhodes' + i|string + '.webp') }}"
+                         alt="Jonty Rhodes masterclass at Desert Cubs Cricket Academy"
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-cubs-blue to-cubs-blue-dark flex items-center justify-center\'><i class=\'fas fa-images text-cubs-gold text-xl\'></i></div>'">
                 </div>
                 {% endfor %}
             </div>
@@ -271,7 +277,7 @@
                 <p class="text-gray-500 text-sm font-bold uppercase tracking-wider mb-3">India's Elite Wicketkeeper-Batsman • 1-Day Program</p>
                 <p class="text-gray-600 leading-relaxed mb-4">
                     Indian international Dinesh Karthik brought his elite wicketkeeping and power-hitting expertise 
-                    to Desert Cubs' DPS centre in October 2021. This exclusive 1-day program gave our students 
+                    to Desert Cubs' DPS centre in October 2021. This exclusive 1-day program gave our players 
                     direct access to one of India's most skilled specialist batsmen and wicketkeepers.
                 </p>
                 <div class="flex flex-wrap gap-3">
@@ -281,14 +287,13 @@
                 </div>
             </div>
             <div class="lg:order-1 grid grid-cols-3 gap-3">
-                {% for i in range(1, 4) %}
-                <div class="rounded-xl overflow-hidden aspect-square bg-gray-200 group cursor-pointer shadow-sm hover:shadow-lg transition-shadow">
-                    <div class="w-full h-full bg-gradient-to-br from-cubs-blue-dark to-cubs-blue flex items-center justify-center group-hover:opacity-80 transition-opacity">
-                        <div class="text-center">
-                            <i class="fas fa-images text-cubs-gold text-2xl block mb-1"></i>
-                            <span class="text-white text-xs font-bold">Photo {{ i }}</span>
-                        </div>
-                    </div>
+                {% for i in range(1, 7) %}
+                <div class="rounded-xl overflow-hidden aspect-square bg-gray-200 group cursor-pointer shadow-sm hover:shadow-lg transition-all hover:-translate-y-1"
+                     onclick="openGallery('master_class', 'dinesh_karthik', 10)">
+                    <img src="{{ url_for('static', filename='img/master_class/dinesh_karthik' + i|string + '.webp') }}"
+                         alt="Dinesh Karthik masterclass at Desert Cubs Cricket Academy"
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-cubs-blue to-cubs-blue-dark flex items-center justify-center\'><i class=\'fas fa-images text-cubs-gold text-xl\'></i></div>'">
                 </div>
                 {% endfor %}
             </div>

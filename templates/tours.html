@@ -27,7 +27,7 @@
             <span class="text-cubs-gold">International Tours</span>
         </nav>
 
-        <p class="section-tag mb-3">Since 2008 • 15+ Countries</p>
+        <p class="section-tag mb-3">Since 2008 • 10 Countries</p>
         <h1 class="font-display text-5xl md:text-7xl font-black text-white uppercase leading-none mb-4">
             Global Cricket <span class="text-cubs-gold block md:inline">Expeditions</span>
         </h1>
@@ -39,8 +39,8 @@
         <!-- Country flags marquee -->
         <div class="flex justify-center flex-wrap gap-3 mb-10">
             {% set countries = [
-                ('🇬🇧', 'England'), ('🇦🇺', 'Australia'), ('🇱🇰', 'Sri Lanka'),
-                ('🇿🇦', 'South Africa'), ('🇮🇳', 'India'), ('🇲🇾', 'Malaysia'),
+                ('🇬🇧', 'England'), ('🇦🇺', 'Australia'), ('🇿🇦', 'South Africa'),
+                ('🇱🇰', 'Sri Lanka'), ('🇮🇳', 'India'), ('🇲🇾', 'Malaysia'),
                 ('🇳🇵', 'Nepal'), ('🇶🇦', 'Qatar'), ('🇴🇲', 'Oman'), ('🇿🇼', 'Zimbabwe')
             ] %}
             {% for flag, name in countries %}
@@ -54,11 +54,11 @@
         <!-- Quick stats -->
         <div class="flex justify-center gap-8 pt-8 border-t border-white/10">
             <div class="text-center">
-                <p class="font-display text-3xl font-black text-cubs-gold">17+</p>
+                <p class="font-display text-3xl font-black text-cubs-gold">30+</p>
                 <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Tours Completed</p>
             </div>
             <div class="text-center">
-                <p class="font-display text-3xl font-black text-cubs-gold">15+</p>
+                <p class="font-display text-3xl font-black text-cubs-gold">10</p>
                 <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Countries Visited</p>
             </div>
             <div class="text-center">
@@ -138,7 +138,7 @@
                             <button onclick="openGallery('DC_UK_2026','DC_UK_2026_',12)"
                                     class="btn-gold px-8 py-4 rounded-full text-base flex items-center gap-2"
                                     aria-label="View the UK Tour 2026 gallery">
-                                <i class="fas fa-images"></i> View UK Tour Gallery
+                                <i class="fas fa-images"></i> View Our UK Tour Gallery
                             </button>
                             <a href="{{ url_for('static', filename='docs/uk-tour-2026-annual-magazine.pdf') }}"
                                target="_blank" rel="noopener"
@@ -317,18 +317,19 @@
                 <div class="grid md:grid-cols-2 gap-2">
                     {% set all_tours = [
                         ('2026', '🇬🇧', 'United Kingdom', 'Successfully completed England tour • Official gallery'),
-                        ('2025', '🇱🇰', 'Sri Lanka', 'GCCA T20 Championship • High Performance Series'),
-                        ('2024', '🇦🇺', 'Brisbane, Australia', 'ICCA Global Academy Championship'),
-                        ('2023', '🇬🇧', 'UK & Wales', '220 Players • 10 Teams • Historic venues'),
-                        ('2022', '🇿🇦', 'South Africa', 'Pretoria, Johannesburg & Rustenburg'),
-                        ('2019', '🇿🇼🇮🇳🇳🇵', 'Zimbabwe, India & Nepal', 'Multi-destination tour'),
+                        ('2025', '🇱🇰', 'Sri Lanka', 'GCCA International Academy T20 Championship'),
+                        ('2024', '🇦🇺', 'Brisbane, Australia', 'High performance coaching at Bupa National Cricket Centre'),
+                        ('2023', '🇬🇧', 'UK & Wales', 'ICCA Global Academy Championship'),
+                        ('2023', '🇱🇰', 'Sri Lanka', 'ICCA Champions Trophy'),
+                        ('2022', '🇿🇦', 'South Africa', 'High performance coaching at HPC'),
+                        ('2019', '🇿🇼🇮🇳🇳🇵', 'Harare, Chennai and Kathmandu', 'Zimbabwe, India and Nepal tour'),
                         ('2018', '🇦🇺🇮🇳🇲🇾', 'Australia, India & Malaysia', 'Gold Coast & Mumbai'),
                         ('2017', '🇬🇧🇮🇳🇱🇰', 'UK, India & Sri Lanka', 'Chennai & England tour'),
                         ('2016', '🇱🇰🇮🇳', 'Sri Lanka & India', 'Bangalore series'),
                         ('2015', '🇦🇺', 'Australia (Brisbane)', 'First UAE academy to tour Australia!'),
                         ('2014', '🇿🇦🇬🇧🇱🇰🇮🇳', 'South Africa, UK, Sri Lanka & India', 'Cape Town & New Delhi'),
-                        ('2013', '🇬🇧🇶🇦', 'United Kingdom & Qatar', 'Doha series'),
-                        ('2012', '🇱🇰🇲🇾🇮🇳', 'Sri Lanka, Malaysia & India', 'Bangalore'),
+                        ('2013', '🇬🇧🇶🇦', 'England, Wales and Doha', 'United Kingdom and Qatar tour'),
+                        ('2012', '🇱🇰🇲🇾🇮🇳', 'Colombo, Kuala Lumpur and Bangalore', 'Sri Lanka, Malaysia and India tour'),
                         ('2011', '🇬🇧', 'United Kingdom', 'England series'),
                         ('2010', '🇬🇧🇴🇲', 'United Kingdom & Oman', 'Multi-city tour'),
                         ('2009', '🇱🇰', 'Sri Lanka', 'Island cricket series'),
