@@ -105,7 +105,7 @@
                             
                             <!-- Coach photo -->
                             <div class="w-20 h-20 rounded-xl bg-gray-100 overflow-hidden flex-shrink-0 cursor-pointer group relative border-2 border-gray-200 hover:border-cubs-gold transition-colors"
-                                 onclick="openModal('{{ url_for('static', filename='img/' + coach.img) }}', '{{ coach.name }}')">
+                                 onclick="openModal('{{ url_for('static', filename='img/' + (coach.modal_img if coach.modal_img else coach.img)) }}', '{{ coach.name }}')">
                                 <picture>
                                     <source srcset="{{ url_for('static', filename='img/' + coach.img.replace('.jpg','.webp')) }}" type="image/webp">
                                     <img src="{{ url_for('static', filename='img/' + coach.img) }}"
@@ -128,6 +128,12 @@
                                     <i class="fas fa-certificate text-cubs-gold text-xs"></i>
                                     <p class="text-xs text-gray-600 font-semibold">{{ coach.qual }}</p>
                                 </div>
+                                {% if coach.exp %}
+                                <div class="mt-2 inline-flex items-center gap-2 bg-cubs-gold/10 rounded-lg px-3 py-1.5 border border-cubs-gold/30">
+                                    <i class="fas fa-stopwatch text-cubs-gold text-xs"></i>
+                                    <p class="text-xs text-cubs-blue font-bold">{{ coach.exp }}</p>
+                                </div>
+                                {% endif %}
                             </div>
                         </div>
                         {% endfor %}

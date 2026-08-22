@@ -66,11 +66,14 @@ BRANCHES = [
         "desc": "The crown jewel of our academy. Featuring a full natural grass ground and six natural grass turf center pitches with floodlights. We offer digital scoreboards, live streaming, and a viewing pavilion.",
         "facilities": ["Natural Grass Ground", "6 Center Turf Pitches", "Floodlights", "Video Analysis Room", "Gymnasium", "Digital Scoreboard"],
         "coaches": [
-            {"name": "Murali Sockalingam", "role": "Deputy Head Coach", "qual": "ICC Level 3 / ACC Level 2", "img": "coach_murali.webp"},
-            {"name": "Aruna Bandaranayaka", "role": "Senior Coach", "qual": "ICC Level 3 / Cricket Aus Level 2", "img": "coach_aruna.webp"},
-            {"name": "Vishwa Fernandopulle", "role": "Coach", "qual": "SL Level 1 / Umpire", "img": "coach_vishwa.webp"},
-            {"name": "Janaka Senevirathna", "role": "Senior Coach", "qual": "ICC Level 2", "img": "coach_janaka.webp"},
-            {"name": "Shanesh Weerawansha", "role": "Senior Coach", "qual": "ICC Level 2", "img": "coach_shanesh.webp"}
+            {"name": "Janaka Senevirathne", "role": "SES Centre In-Charge / Senior Cricket Coach", "qual": "ICC Global Level 2 / Sri Lanka Cricket Level 1", "exp": "19+ years coaching", "img": "coach_janaka.webp"},
+            {"name": "Murali Sockalingam", "role": "Deputy Head Coach", "qual": "ICC Global Level 3 / ACC Level 2", "exp": "16+ years coaching", "img": "coach_murali.webp"},
+            {"name": "Aruna Bandaranayaka", "role": "Senior Cricket Coach", "qual": "ICC Global Level 3 / Cricket Australia Level 2", "exp": "17+ years coaching", "img": "coach_aruna.webp"},
+            {"name": "Shanesh Weerawansha", "role": "Senior Cricket Coach", "qual": "ICC Global Level 2", "exp": "18+ years coaching", "img": "coach_shanesh.webp"},
+            {"name": "Kelum Fernando", "role": "Senior Cricket Coach", "qual": "ICC Global Level 2", "exp": "14+ years coaching", "img": "coach_kelum.webp"},
+            {"name": "Vishwa Fernandopulle", "role": "Tournament Coordinator / Cricket Coach", "qual": "ICC Global Level 2 / Sri Lanka Cricket Level 1", "exp": "8+ years coaching", "img": "coach_vishwa.webp"},
+            {"name": "Moin Sabir", "role": "Cricket Coach", "qual": "PCB Level 1", "exp": "7+ years coaching", "img": "coach_moin.webp"},
+            {"name": "Asanga Aluthgedara", "role": "Fitness Trainer", "qual": "Diploma in Sports Medicine / AIBA 1-Star Coach", "exp": "22+ years coaching", "img": "coach_asanga.webp"}
         ]
     },
     {
@@ -83,10 +86,14 @@ BRANCHES = [
         "desc": "A premium facility in The Gardens. Features a high-quality Astro turf ground with a center pitch and floodlights, perfect for evening high-performance training.",
         "facilities": ["Astro Turf Ground", "Floodlights", "3 Practice Nets", "Bowling Machine", "Pavilion"],
         "coaches": [
-            {"name": "Prosanta Chanda", "role": "Centre In-Charge", "qual": "ICC Level 3 / Cricket Aus Level 2", "img": "coach_prosanta.webp"},
-            {"name": "Chanaka Ediriweerage", "role": "Coach", "qual": "SL Level 2", "img": "coach_chanaka.webp"},
-            {"name": "Judith Jose Peter", "role": "Coach (Girls)", "qual": "ICC Level 1 / Ex-UAE Player", "img": "coach_judith.webp"},
-            {"name": "Ruwan Jayakody", "role": "Coach", "qual": "ICC Level 2", "img": "coach_ruwan.webp"}
+            {"name": "Prosanta Chanda", "role": "DPS Centre In-Charge / Senior Cricket Coach", "qual": "ICC Global Level 3 / Cricket Australia Level 2", "exp": "31+ years coaching", "img": "coach_prosanta.webp"},
+            {"name": "Ruwan Jayakody", "role": "Senior Cricket Coach", "qual": "ICC Global Level 2 / Sri Lanka Cricket Level 1", "exp": "24+ years coaching", "img": "coach_ruwan.webp"},
+            {"name": "Chanaka Ediriweerage", "role": "Senior Cricket Coach", "qual": "Sri Lanka Cricket Level 2", "exp": "14+ years coaching", "img": "coach_chanaka.webp"},
+            {"name": "Lasantha Balasuriya", "role": "Cricket Coach", "qual": "ICC Global Level 2", "exp": "14+ years coaching", "img": "coach_lasantha.webp"},
+            {"name": "Judith Jose Peter", "role": "Cricket Coach", "qual": "ICC Global Level 2 / Ex-UAE Women's Player", "exp": "10+ years coaching", "img": "coach_judith.webp"},
+            {"name": "Anjalo Silva", "role": "Cricket Coach", "qual": "Sri Lanka Cricket Level 1", "exp": "12+ years coaching", "img": "coach_anjalo.webp"},
+            {"name": "Tiran Wijesuriya", "role": "Cricket Coach", "qual": "Sri Lanka Cricket Level 1", "exp": "8+ years coaching", "img": "coach_tiran.webp"},
+            {"name": "Moin Sabir", "role": "Cricket Coach", "qual": "PCB Level 1", "exp": "7+ years coaching", "img": "coach_moin.webp"}
         ]
     },
     {
@@ -99,9 +106,9 @@ BRANCHES = [
         "desc": "A versatile sports hub in Al Qusais. Features an Astro turf ground, six practice nets with floodlights, and access to an indoor pool for cross-training.",
         "facilities": ["Astro Turf Ground", "6 Practice Nets", "Indoor Pool", "Floodlights"],
         "coaches": [
-            {"name": "Muhammad Ejaz", "role": "Centre In-Charge", "qual": "ICC Level 1 / PCB Level 1", "img": "coach_ejaz.webp"},
-            {"name": "Manish Yadav", "role": "Coach", "qual": "SL Level 2", "img": "coach_manish.webp"},
-            {"name": "Nipuna Ratnayake", "role": "Senior Coach", "qual": "ICC Level 2", "img": "coach_nipuna.webp"}
+            {"name": "Muhammad Ejaz", "role": "SIS Centre In-Charge / Senior Cricket Coach", "qual": "ICC Global Level 2 / PCB Level 1", "exp": "12+ years coaching", "img": "coach_ejaz.webp"},
+            {"name": "Nipuna Rathnayaka", "role": "Cricket Coach", "qual": "Sri Lanka Cricket Level 2", "exp": "13+ years coaching", "img": "coach_nipuna.webp"},
+            {"name": "Manish Yadav", "role": "Cricket Coach", "qual": "ICC Global Level 1", "exp": "14+ years coaching", "img": "coach_manish.webp"}
         ]
     },
     {
@@ -114,9 +121,11 @@ BRANCHES = [
         "desc": "Located in Festival City, this centre boasts a natural grass ground and an Astro turf center pitch. Equipped with four side practice nets and modern bowling machines.",
         "facilities": ["Natural Grass Ground", "Astro Center Pitch", "4 Side Nets", "Bowling Machine"],
         "coaches": [
-            {"name": "Hashan Silva", "role": "Centre In-Charge", "qual": "ICC Level 1 / Winning Coach U16", "img": "coach_hashan.webp"},
-            {"name": "Shahzada Saleem", "role": "Senior Coach", "qual": "ACC Level 3", "img": "coach_shahzada.webp"},
-            {"name": "Priyantha Ganegoda", "role": "Coach", "qual": "ICC Level 1", "img": "coach_priyantha.webp"}
+            {"name": "Hashan Wickrama Silva", "role": "DIS Centre In-Charge / Senior Cricket Coach", "qual": "ICC Global Level 2", "exp": "13+ years coaching", "img": "coach_hashan.webp"},
+            {"name": "Shahzada Saleem (Qasim)", "role": "Senior Cricket Coach", "qual": "ACC Level 3", "exp": "30+ years coaching", "img": "coach_shahzada.webp"},
+            {"name": "Lasantha Balasuriya", "role": "Cricket Coach", "qual": "ICC Global Level 2", "exp": "14+ years coaching", "img": "coach_lasantha.webp"},
+            {"name": "Priyantha Ganegoda", "role": "Senior Cricket Coach", "qual": "ICC Global Level 1", "exp": "14+ years coaching", "img": "coach_priyantha.webp"},
+            {"name": "Pasindu Dayananda", "role": "Cricket Coach", "qual": "Sri Lanka Cricket Level 1", "exp": "8+ years coaching", "img": "coach_pasindu.webp"}
         ]
     },
     {
@@ -129,9 +138,9 @@ BRANCHES = [
         "desc": "State-of-the-art indoor cricket facility — one of a kind in the UAE. Perfect for summer training, equipped with 5 specialized cricket lanes and video analysis technology.",
         "facilities": ["Indoor Facility", "5 Cricket Lanes", "Video Analysis", "AC Controlled", "Year-Round Training"],
         "coaches": [
-            {"name": "Manju Abeysekera", "role": "Coach", "qual": "ICC Level 1", "img": "coach_manju.webp"},
-            {"name": "Anjalo Silva", "role": "Centre In-Charge", "qual": "SL Level 1", "img": "coach_anjalo.webp"},
-            {"name": "Tiran Wijesuriya", "role": "Coach", "qual": "ICC Level 1", "img": "coach_tiran.webp"}
+            {"name": "Anjalo Silva", "role": "BSA Centre In-Charge / Cricket Coach", "qual": "Sri Lanka Cricket Level 1", "exp": "12+ years coaching", "img": "coach_anjalo.webp"},
+            {"name": "Lasantha Balasuriya", "role": "Cricket Coach", "qual": "ICC Global Level 2", "exp": "14+ years coaching", "img": "coach_lasantha.webp"},
+            {"name": "Tiran Wijesuriya", "role": "Cricket Coach", "qual": "Sri Lanka Cricket Level 1", "exp": "8+ years coaching", "img": "coach_tiran.webp"}
         ]
     },
 ]
