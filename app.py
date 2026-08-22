@@ -478,7 +478,7 @@ EVENTS = [
         "desc": "Our biggest annual gathering. Parents vs Coaches, Fun Games, Talent Shows, and Awards Night.",
         "folder": "event",
         "prefix": "dc_sports_day",
-        "count": 10,
+        "count": 55,
         "id": "sportsday25"
     }
 ]
