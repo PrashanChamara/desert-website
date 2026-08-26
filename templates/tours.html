@@ -251,6 +251,12 @@
                                class="border-2 border-white/50 text-white px-8 py-4 rounded-full font-display font-black text-base uppercase tracking-wider hover:bg-white hover:text-cubs-blue transition-all flex items-center gap-2">
                                 <i class="fas fa-map-signs"></i> Guess Our Next Tour
                             </a>
+                            <button type="button"
+                                    onclick="openUkTourFeedback()"
+                                    class="border-2 border-cubs-gold/70 text-cubs-gold px-8 py-4 rounded-full font-display font-black text-base uppercase tracking-wider hover:bg-cubs-gold hover:text-cubs-blue transition-all flex items-center gap-2"
+                                    aria-label="Submit UK Tour 2026 feedback">
+                                <i class="fas fa-comment-dots"></i> Submit Your Feedback
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -596,8 +602,31 @@
     </div>
 </div>
 
+<!-- UK TOUR 2026 FEEDBACK MODAL -->
+<div id="ukTourFeedbackModal" class="modal-overlay" onclick="closeUkTourFeedback()">
+    <div style="position:relative;width:min(94vw,780px);height:min(88vh,860px);margin:20px;background:#ffffff;border-radius:18px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.55);"
+         onclick="event.stopPropagation()">
+        <button onclick="closeUkTourFeedback()" aria-label="Close UK Tour feedback form"
+                style="position:absolute;top:12px;right:12px;width:38px;height:38px;background:#FFCC00;color:#001f66;border:none;border-radius:50%;cursor:pointer;font-size:.9rem;font-weight:900;z-index:10;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.25);">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        <div style="height:76px;background:#001f66;color:#ffffff;display:flex;align-items:center;padding:0 62px 0 22px;border-bottom:3px solid #FFCC00;">
+            <div>
+                <p class="font-display font-black uppercase leading-none text-xl">UK Tour 2026 Feedback</p>
+                <p class="text-xs text-cubs-gold font-bold uppercase tracking-wider mt-1">Siraj Finance Desert Cubs tour experience</p>
+            </div>
+        </div>
+        <iframe id="ukTourFeedbackFrame"
+                title="UK Tour 2026 feedback form"
+                width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0"
+                style="display:block;width:100%;height:calc(100% - 76px);border:0;"
+                loading="lazy">Loading...</iframe>
+    </div>
+</div>
+
 <script>
 const t20RegistrationUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdl8IOYs-LGJY_Xjl7QEgBESoaf831TiBpH11W4V250Jj-ZJA/viewform?embedded=true';
+const ukTourFeedbackUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSd1jHCB99BNBtfpX0Y1PdXSjX3Uk-yR8bSBq6IOTrdRRSHIXw/viewform?embedded=true';
 
 function openT20Registration() {
     const modal = document.getElementById('t20RegistrationModal');
@@ -623,6 +652,32 @@ function closeT20Registration() {
 document.addEventListener('keydown', function(e) {
     const modal = document.getElementById('t20RegistrationModal');
     if (e.key === 'Escape' && modal && modal.classList.contains('active')) closeT20Registration();
+});
+
+function openUkTourFeedback() {
+    const modal = document.getElementById('ukTourFeedbackModal');
+    const frame = document.getElementById('ukTourFeedbackFrame');
+    if (!modal || !frame) return;
+    if (frame.dataset.loaded !== 'true') {
+        frame.src = ukTourFeedbackUrl;
+        frame.dataset.loaded = 'true';
+    }
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (typeof trackEvent === 'function') {
+        trackEvent('uk_tour_feedback_open', { event_category: 'feedback', event_label: 'UK Tour 2026' });
+    }
+}
+
+function closeUkTourFeedback() {
+    const modal = document.getElementById('ukTourFeedbackModal');
+    if (modal) modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('ukTourFeedbackModal');
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) closeUkTourFeedback();
 });
 
 (function(){
