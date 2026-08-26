@@ -920,10 +920,11 @@ def index():
 @app.route('/tours')
 def tours():
     meta = seo(
-        title="UK Tour 2026 Gallery | Junior International Cricket Tours UAE | Desert Cubs",
-        description="View the successfully completed Desert Cubs UK Tour 2026 gallery and explore our junior international cricket tour history across UK, Australia, Sri Lanka and South Africa.",
-        keywords="junior international cricket tour UAE, UAE national cricket player pathway, cricket tour UAE, junior cricket tour Dubai, international cricket UAE, cricket tour UK UAE, UAE cricket development pathway, cricket academy tour",
-        canonical="https://www.desertcubs.com/tours"
+        title="Global Academy T20 Championship 2026 Sri Lanka | Desert Cubs Tours",
+        description="Register international players for the Global Academy T20 Championship 2026 in Colombo, Sri Lanka, from 19 to 28 December. Explore Desert Cubs junior international cricket tours.",
+        keywords="Global Academy T20 Championship 2026, Sri Lanka cricket tournament 2026, Colombo T20 tournament, junior international cricket tour UAE, UAE national cricket player pathway, cricket tour UAE, junior cricket tour Dubai, international cricket UAE",
+        canonical="https://www.desertcubs.com/tours",
+        og_image="https://www.desertcubs.com/static/img/DC_Srilanka_2026/t20-global-academy-championship-2026.webp"
     )
     return render_template('tours.html', meta=meta, tours=TOURS)
 
