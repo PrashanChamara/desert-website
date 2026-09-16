@@ -7,7 +7,9 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-G4SVWFK56S');
+        gtag('config', 'G-G4SVWFK56S'{% if meta is defined and meta.cross_domain %}, {
+            'linker': {'domains': ['desertcubs.com', 'desertcubs-admin.app']}
+        }{% endif %});
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +37,8 @@
     <meta name="twitter:description" content="{{ meta.description }}">
     <meta name="twitter:image"       content="{{ meta.og_image | default('https://www.desertcubs.com/static/img/Desert_cubs_logo.png') }}">
 
-    <!-- Structured Data -->
+    {% if not (meta is defined and meta.suppress_global_schema) %}
+    <!-- Global structured data (replaced by location-specific schema where required) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -192,6 +195,7 @@
       ]
     }
     </script>
+    {% endif %}
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}">
@@ -587,9 +591,9 @@
                    aria-label="Pay online via Desert Cubs payment portal">
                     <i class="fas fa-credit-card" aria-hidden="true"></i> Pay Online
                 </a>
-                <a href="{{ season_registration_url }}" target="_blank" rel="noopener"
+                <a href="{{ season_registration_url }}"{% if not (meta is defined and meta.ses_page) %} target="_blank" rel="noopener"{% endif %}
                    class="btn-gold" style="padding:10px 22px; font-size:0.8rem;"
-                   data-track-event="season_register_click" data-track-label="Header register now">
+                   data-track-event="{{ 'start_ses_lead' if meta is defined and meta.ses_page else 'season_register_click' }}" data-track-label="Header register now">
                     <i class="fas fa-user-plus" style="font-size:0.78rem;" aria-hidden="true"></i>Register Now
                 </a>
             </div>
@@ -651,9 +655,9 @@
             </a>
 
             <div style="padding:10px 0 4px;">
-                <a href="{{ season_registration_url }}" target="_blank" rel="noopener" class="btn-gold"
+                <a href="{{ season_registration_url }}"{% if not (meta is defined and meta.ses_page) %} target="_blank" rel="noopener"{% endif %} class="btn-gold"
                    style="width:100%; justify-content:center; font-size:0.88rem;"
-                   data-track-event="season_register_click" data-track-label="Mobile register">
+                   data-track-event="{{ 'start_ses_lead' if meta is defined and meta.ses_page else 'season_register_click' }}" data-track-label="Mobile register">
                     <i class="fas fa-user-plus" style="font-size:0.8rem;" aria-hidden="true"></i>Register Now
                 </a>
             </div>
@@ -954,9 +958,9 @@
                         </span>
                     </li>
                 </ul>
-                <a href="{{ season_registration_url }}" target="_blank" rel="noopener" class="btn-gold"
+                <a href="{{ season_registration_url }}"{% if not (meta is defined and meta.ses_page) %} target="_blank" rel="noopener"{% endif %} class="btn-gold"
                    style="margin-top:16px; width:100%; justify-content:center; font-size:0.82rem; padding:10px 20px;"
-                   data-track-event="season_register_click" data-track-label="Footer register">
+                   data-track-event="{{ 'start_ses_lead' if meta is defined and meta.ses_page else 'season_register_click' }}" data-track-label="Footer register">
                     <i class="fas fa-user-plus" style="font-size:0.78rem;"></i>Register Now
                 </a>
             </div>
@@ -980,6 +984,7 @@
 <!-- ============================================================
      WHATSAPP FLOATING BUTTON
 ============================================================= -->
+{% if not (meta is defined and meta.ses_page) %}
 <a href="https://wa.me/971588274266?text=Hello%20Desert%20Cubs!%20I%20am%20interested%20in%20enrolling%20my%20child."
    target="_blank" rel="noopener"
    class="whatsapp-float"
@@ -987,6 +992,7 @@
    aria-label="Chat with Desert Cubs on WhatsApp">
     <i class="fab fa-whatsapp"></i>
 </a>
+{% endif %}
 
 
 <!-- ============================================================

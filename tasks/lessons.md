@@ -1,0 +1,1 @@
+[2026-09-16] | Added a hardcoded SES timetable beside a schedule image that is expected to be replaced regularly | For frequently updated schedule artwork, keep the image as the single source of truth unless the text schedule is driven from the same editable data source

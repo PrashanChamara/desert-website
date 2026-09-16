@@ -7,7 +7,7 @@ import re
 import hmac
 import glob
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 app = Flask(__name__)
 Compress(app)
@@ -1034,13 +1034,33 @@ def location_detail(branch_id):
 
     clean_area = branch['area'].split('(')[0].strip()
     city = 'Sharjah' if 'Sharjah' in branch['area'] else 'Dubai'
-    meta = seo(
-        title=f"Best Cricket Academy in {city} | {clean_area} Junior Cricket Coaching | {branch['name']}",
-        description=f"Junior cricket training at {branch['name']}, {clean_area}. {branch['desc']} UAE junior cricket coaching across structured age-group pathways. Register at Desert Cubs today.",
-        keywords=f"junior cricket coaching {clean_area}, best cricket academy {city}, cricket classes {clean_area}, {clean_area} cricket coaching, {branch['name']} cricket, best cricket ground UAE, UAE junior cricket coaching, cricket training {city}",
-        canonical=f"https://www.desertcubs.com/locations/{branch_id}"
+    if branch_id == 'sharjah-english-school':
+        meta = seo(
+            title="Kids Cricket Academy in Sharjah | Desert Cubs SES",
+            description="Beginner to U19 cricket coaching at Sharjah English School. Natural turf, qualified coaches, matches and facility hire. Plans from AED 360 per month.",
+            keywords="cricket academy Sharjah, kids cricket academy Sharjah, junior cricket coaching Sharjah, beginner cricket coaching Sharjah, girls cricket coaching Sharjah, cricket ground hire Sharjah, cricket coaching Maliha Road",
+            canonical="https://www.desertcubs.com/locations/sharjah-english-school",
+            og_image="https://www.desertcubs.com/static/img/ses/ses-kids-cricket-academy-sharjah-social.jpg"
+        )
+        meta.update({
+            'suppress_global_schema': True,
+            'cross_domain': True,
+            'ses_page': True,
+        })
+    else:
+        meta = seo(
+            title=f"Best Cricket Academy in {city} | {clean_area} Junior Cricket Coaching | {branch['name']}",
+            description=f"Junior cricket training at {branch['name']}, {clean_area}. {branch['desc']} UAE junior cricket coaching across structured age-group pathways. Register at Desert Cubs today.",
+            keywords=f"junior cricket coaching {clean_area}, best cricket academy {city}, cricket classes {clean_area}, {clean_area} cricket coaching, {branch['name']} cricket, best cricket ground UAE, UAE junior cricket coaching, cricket training {city}",
+            canonical=f"https://www.desertcubs.com/locations/{branch_id}"
+        )
+    page_registration_url = '#ses-enquiry' if branch_id == 'sharjah-english-school' else SEASON_REGISTRATION_URL
+    return render_template(
+        'location_detail.html',
+        branch=branch,
+        meta=meta,
+        season_registration_url=page_registration_url,
     )
-    return render_template('location_detail.html', branch=branch, meta=meta)
 
 
 @app.route('/tournaments')
@@ -1256,7 +1276,7 @@ def legacy_redirect():
 # ---------------------------------------------------------
 @app.route('/sitemap.xml')
 def sitemap():
-    today = datetime.utcnow().strftime('%Y-%m-%d')
+    today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
     # (path, priority, changefreq, lastmod)
     pages = [
         ('/', '1.0', 'daily', today),
@@ -1303,6 +1323,9 @@ Disallow: /index.php
 Disallow: /component/k2/
 
 # Explicitly allow AI crawlers to cite our content
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 
