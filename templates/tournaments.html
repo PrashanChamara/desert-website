@@ -5,7 +5,7 @@
 <!-- ============================================================
      HERO SECTION
 ============================================================= -->
-<section class="relative bg-cubs-blue overflow-hidden py-28 text-center">
+<section id="tournament-season-hero" class="relative bg-cubs-blue overflow-hidden py-28 text-center">
     <!-- Background pattern -->
     <div class="absolute inset-0 cricket-field-pattern opacity-40"></div>
     <!-- Decorative elements -->
@@ -50,6 +50,31 @@
                 <p class="font-display text-3xl font-black text-cubs-gold">U10–U19</p>
                 <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Age Groups</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     ECB CONCERN FORM CTA
+============================================================= -->
+<section id="ecb-concern-cta" class="relative overflow-hidden" style="background:linear-gradient(135deg,#f8fafc 0%,#ffffff 55%,#fff8d9 100%);border-bottom:1px solid #e2e8f0;">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 rounded-3xl p-6 sm:p-7 shadow-lg" style="background:#ffffff;border:1px solid rgba(0,51,153,.12);">
+            <div class="flex items-start gap-4">
+                <span class="w-12 h-12 shrink-0 rounded-2xl flex items-center justify-center" style="background:#001f66;color:#FFCC00;">
+                    <i class="fas fa-file-signature text-xl" aria-hidden="true"></i>
+                </span>
+                <div>
+                    <p class="text-xs font-black uppercase tracking-widest mb-1" style="color:#003399;">ECB National League 2026/27</p>
+                    <h2 class="font-display text-3xl sm:text-4xl font-black uppercase leading-none" style="color:#001f66;">Tournament Concern Form</h2>
+                    <p class="text-sm text-gray-600 mt-2 leading-relaxed">Read the participation commitments, then continue to the official ECB concern form.</p>
+                </div>
+            </div>
+            <button id="openEcbConcernForm" type="button" onclick="openEcbConcernForm(this)"
+                    class="btn-gold px-7 py-4 rounded-full text-sm flex items-center justify-center gap-2 shrink-0"
+                    aria-haspopup="dialog" aria-controls="ecbConcernModal">
+                <i class="fas fa-clipboard-list" aria-hidden="true"></i> ECB Concern Form 2026/27
+            </button>
         </div>
     </div>
 </section>
@@ -381,6 +406,100 @@
     </div>
 </section>
 
+<!-- ECB CONCERN FORM MODAL -->
+<div id="ecbConcernModal" class="modal-overlay ecb-concern-modal" role="dialog" aria-modal="true"
+     aria-labelledby="ecbConcernModalTitle" aria-describedby="ecbConcernModalDescription" hidden
+     onclick="closeEcbConcernOnBackdrop(event)">
+    <div class="ecb-concern-card" role="document" onclick="event.stopPropagation()">
+        <div class="ecb-concern-header">
+            <div>
+                <p id="ecbConcernModalTitle" class="font-display font-black uppercase leading-none text-xl" tabindex="-1">ECB Concern Form 2026/27</p>
+                <p class="text-xs text-cubs-gold font-bold uppercase tracking-wider mt-1">Desert Cubs Cricket Academy</p>
+            </div>
+            <div class="ecb-concern-header-actions">
+                <button id="ecbConcernBackToTerms" type="button" class="ecb-concern-back" onclick="returnToEcbConcernTerms()" hidden>
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i> Terms
+                </button>
+                <button id="ecbConcernClose" type="button" onclick="closeEcbConcernForm()" aria-label="Close ECB Concern Form"
+                        class="ecb-concern-close">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <section id="ecb-concern-terms" class="ecb-concern-step" aria-labelledby="ecbConcernTermsHeading">
+            <div class="ecb-concern-step-inner">
+                <p id="ecbConcernModalDescription" class="text-sm text-gray-600 leading-relaxed mb-5">Please read these participation commitments before continuing to the official ECB Concern Form. Your acknowledgement gives access to the Google Form; it does not submit the form.</p>
+                <h2 id="ecbConcernTermsHeading" class="font-display text-3xl font-black uppercase leading-none mb-4" style="color:#001f66;" tabindex="-1">Guidelines &amp; Commitment Form</h2>
+
+                <div class="ecb-concern-terms-copy" tabindex="0" aria-label="ECB National League Tournament commitments and special notes">
+                    <h3>Commitments &amp; Responsibilities</h3>
+                    <ol>
+                        <li>Each player must attend and pay for a minimum of two (2) practice sessions per week throughout the tournament period.</li>
+                        <li>Players are required to participate in all ECB tournament matches as per the ECB-confirmed schedule or as per the discussed plan with the coach in charge.</li>
+                        <li>Players must work closely with their assigned coaches, while respecting guidelines, roles and responsibilities, and prepare themselves accordingly.</li>
+                        <li>No arguments or disputes with coaches, captains, or academy management will be tolerated during the matches or practices.</li>
+                        <li>Players and parents are not permitted to interfere with or influence coach’s decisions during training sessions or matches.</li>
+                        <li>ECB tournament fees must be paid in full upfront, prior to the commencement of the tournament and prior to collecting the tournament kit.</li>
+                        <li>Players are required to wear the proper dress code (as instructed by the academy) during both practices and matches to maintain discipline and professionalism.</li>
+                    </ol>
+                    <aside>
+                        <strong>Special note</strong>
+                        <p>For U16 &amp; U19 Emirates Cricket Board–National pool players, special requests will be considered on a case-by-case basis for different scenarios after reviewing their official requests.</p>
+                    </aside>
+                </div>
+
+                <label class="ecb-concern-consent" for="ecbConcernAcknowledgement">
+                    <input id="ecbConcernAcknowledgement" type="checkbox">
+                    <span>I have read and understood the ECB National League Tournament commitments and wish to continue to the ECB Concern Form.</span>
+                </label>
+                <div class="ecb-concern-actions">
+                    <button id="ecbConcernContinue" type="button" class="btn-gold" disabled onclick="continueToEcbConcernForm()">
+                        Continue to the Concern Form <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="ecb-concern-text-button" onclick="closeEcbConcernForm()">Cancel</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="ecb-concern-form-step" class="ecb-concern-step ecb-concern-form-step" aria-labelledby="ecbConcernFormHeading" hidden>
+            <h2 id="ecbConcernFormHeading" class="sr-only" tabindex="-1">ECB Concern Form 2026/27</h2>
+            <p id="ecbConcernLoadingStatus" class="sr-only" role="status" aria-live="polite">Loading the ECB Concern Form…</p>
+            <div class="ecb-concern-form-wrap">
+                <iframe id="ecbConcernFormFrame" title="ECB Concern Form 2026/27" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" loading="lazy">Loading…</iframe>
+            </div>
+            <p class="sr-only">If the form does not appear, <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyjvE0itOx97iA7GWBal8LXnzhsvSlVd8D74EWgh3W1qLVvA/viewform" target="_blank" rel="noopener">open the ECB Concern Form in a new tab</a>.</p>
+        </section>
+    </div>
+</div>
+
+<style>
+    .ecb-concern-modal { z-index:1200; padding:16px; }
+    .ecb-concern-card { position:relative; display:flex; flex-direction:column; width:min(94vw,780px); height:min(88vh,840px); max-height:calc(100vh - 32px); background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 24px 80px rgba(0,0,0,.55); }
+    .ecb-concern-header { flex:0 0 auto; min-height:76px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 18px 14px 22px; background:#001f66; color:#fff; border-bottom:3px solid #FFCC00; }
+    .ecb-concern-header-actions { display:flex; align-items:center; gap:10px; }
+    .ecb-concern-close { width:38px; height:38px; flex:0 0 38px; border:0; border-radius:50%; background:#FFCC00; color:#001f66; cursor:pointer; font-size:.9rem; font-weight:900; box-shadow:0 8px 24px rgba(0,0,0,.25); }
+    .ecb-concern-back { border:1px solid rgba(255,255,255,.65); border-radius:999px; background:transparent; color:#fff; cursor:pointer; font-family:'Nunito',sans-serif; font-size:.75rem; font-weight:900; padding:8px 11px; }
+    .ecb-concern-step { flex:1 1 auto; min-height:0; overflow-y:auto; background:#fff; }
+    .ecb-concern-step-inner { padding:24px; }
+    .ecb-concern-terms-copy { max-height:min(42vh,420px); overflow-y:auto; padding:18px; border:1px solid #e2e8f0; border-radius:14px; background:#f8fafc; color:#334155; line-height:1.6; outline-offset:3px; }
+    .ecb-concern-terms-copy h3 { margin:0 0 12px; color:#003399; font-family:'Teko',sans-serif; font-size:1.5rem; font-weight:800; text-transform:uppercase; }
+    .ecb-concern-terms-copy ol { margin:0; padding-left:1.35rem; }
+    .ecb-concern-terms-copy li { margin-bottom:.72rem; font-size:.9rem; }
+    .ecb-concern-terms-copy aside { margin-top:16px; padding:14px; border-radius:12px; background:#fff4c4; border-left:4px solid #FFCC00; }
+    .ecb-concern-terms-copy aside strong { display:block; color:#001f66; text-transform:uppercase; letter-spacing:.06em; font-size:.78rem; }
+    .ecb-concern-terms-copy aside p { margin:.35rem 0 0; font-size:.88rem; }
+    .ecb-concern-consent { display:flex; align-items:flex-start; gap:10px; margin-top:18px; color:#334155; font-size:.9rem; font-weight:800; cursor:pointer; }
+    .ecb-concern-consent input { width:19px; height:19px; flex:0 0 19px; margin-top:2px; accent-color:#003399; }
+    .ecb-concern-actions { display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:18px; }
+    .ecb-concern-actions .btn-gold:disabled { cursor:not-allowed; opacity:.48; transform:none; box-shadow:none; }
+    .ecb-concern-text-button { display:inline-flex; align-items:center; gap:7px; border:0; background:transparent; color:#003399; cursor:pointer; font-family:'Nunito',sans-serif; font-size:.82rem; font-weight:900; text-decoration:underline; text-underline-offset:3px; }
+    .ecb-concern-form-step { display:flex; flex-direction:column; overflow:hidden; }
+    .ecb-concern-form-wrap { flex:1 1 auto; min-height:0; background:#f8fafc; }
+    .ecb-concern-form-wrap iframe { display:block; width:100%; height:100%; border:0; }
+    @media (max-width:640px) { .ecb-concern-modal { padding:8px; } .ecb-concern-card { width:100%; height:calc(100vh - 16px); max-height:calc(100vh - 16px); border-radius:14px; } .ecb-concern-header { min-height:68px; padding:12px 14px 12px 18px; } .ecb-concern-step-inner { padding:18px; } .ecb-concern-terms-copy { max-height:36vh; padding:14px; } }
+</style>
+
 {% if show_ecb_registration %}
 <!-- ECB REGISTRATION FORM MODAL -->
 <div id="ecbRegistrationModal" class="modal-overlay" onclick="closeEcbRegistration()">
@@ -439,6 +558,131 @@ function filterTournaments(type) {
     // Show/hide no results
     document.getElementById('noResults').classList.toggle('hidden', visibleCount > 0);
 }
+
+const ecbConcernFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSeyjvE0itOx97iA7GWBal8LXnzhsvSlVd8D74EWgh3W1qLVvA/viewform?embedded=true';
+let ecbConcernTrigger = null;
+
+function getEcbConcernElements() {
+    return {
+        modal: document.getElementById('ecbConcernModal'),
+        card: document.querySelector('#ecbConcernModal .ecb-concern-card'),
+        terms: document.getElementById('ecb-concern-terms'),
+        form: document.getElementById('ecb-concern-form-step'),
+        acknowledgement: document.getElementById('ecbConcernAcknowledgement'),
+        continueButton: document.getElementById('ecbConcernContinue'),
+        frame: document.getElementById('ecbConcernFormFrame'),
+        termsHeading: document.getElementById('ecbConcernTermsHeading'),
+        formHeading: document.getElementById('ecbConcernFormHeading'),
+        loadingStatus: document.getElementById('ecbConcernLoadingStatus'),
+        backToTerms: document.getElementById('ecbConcernBackToTerms')
+    };
+}
+
+function trackEcbConcernEvent(name) {
+    if (typeof trackEvent === 'function') {
+        trackEvent(name, { event_category: 'ecb_concern', event_label: 'ECB Concern Form 2026/27' });
+    }
+}
+
+function showEcbConcernTerms(shouldFocus) {
+    const elements = getEcbConcernElements();
+    elements.terms.hidden = false;
+    elements.form.hidden = true;
+    elements.backToTerms.hidden = true;
+    if (shouldFocus) elements.termsHeading.focus();
+}
+
+function resetEcbConcernModal() {
+    const elements = getEcbConcernElements();
+    elements.acknowledgement.checked = false;
+    elements.continueButton.disabled = true;
+    elements.frame.removeAttribute('src');
+    elements.loadingStatus.textContent = 'Loading the ECB Concern Form…';
+    showEcbConcernTerms(false);
+}
+
+function openEcbConcernForm(trigger) {
+    const elements = getEcbConcernElements();
+    if (!elements.modal) return;
+    ecbConcernTrigger = trigger || document.activeElement;
+    resetEcbConcernModal();
+    elements.modal.hidden = false;
+    elements.modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    elements.termsHeading.focus();
+    trackEcbConcernEvent('ecb_concern_form_open');
+}
+
+function closeEcbConcernForm() {
+    const elements = getEcbConcernElements();
+    if (!elements.modal || elements.modal.hidden) return;
+    elements.modal.classList.remove('active');
+    elements.modal.hidden = true;
+    document.body.style.overflow = '';
+    resetEcbConcernModal();
+    if (ecbConcernTrigger && typeof ecbConcernTrigger.focus === 'function') ecbConcernTrigger.focus();
+}
+
+function closeEcbConcernOnBackdrop(event) {
+    if (event.target === event.currentTarget) closeEcbConcernForm();
+}
+
+function continueToEcbConcernForm() {
+    const elements = getEcbConcernElements();
+    if (!elements.acknowledgement.checked || elements.continueButton.disabled) return;
+    elements.terms.hidden = true;
+    elements.form.hidden = false;
+    elements.backToTerms.hidden = false;
+    elements.loadingStatus.textContent = 'Loading the ECB Concern Form…';
+    elements.formHeading.focus();
+    elements.frame.src = ecbConcernFormUrl;
+    trackEcbConcernEvent('ecb_concern_form_continue');
+}
+
+function returnToEcbConcernTerms() {
+    const elements = getEcbConcernElements();
+    elements.frame.removeAttribute('src');
+    showEcbConcernTerms(true);
+}
+
+(function initialiseEcbConcernForm() {
+    const elements = getEcbConcernElements();
+    if (!elements.modal) return;
+
+    elements.acknowledgement.addEventListener('change', function() {
+        elements.continueButton.disabled = !this.checked;
+        if (this.checked) trackEcbConcernEvent('ecb_concern_terms_acknowledged');
+    });
+
+    elements.frame.addEventListener('load', function() {
+        if (this.getAttribute('src')) {
+            elements.loadingStatus.textContent = 'The ECB Concern Form is ready below.';
+        }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (elements.modal.hidden || !elements.modal.classList.contains('active')) return;
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            closeEcbConcernForm();
+            return;
+        }
+        if (event.key !== 'Tab') return;
+        const focusable = Array.from(elements.card.querySelectorAll(
+            'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )).filter((element) => !element.hidden && element.offsetParent !== null);
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    });
+})();
 
 {% if show_ecb_registration %}
 const ecbRegistrationUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfefVP6GfnP_RvkfqTCGBLTic-hm0FF_xSq8sWXfkkZvm-mUA/viewform?embedded=true';
