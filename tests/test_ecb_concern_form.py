@@ -42,6 +42,7 @@ class EcbConcernFormTestCase(unittest.TestCase):
     def test_concern_cta_is_unconditional_and_directly_follows_hero(self):
         for markup in (self.html_with_registration, self.html_without_registration):
             self.assertIn('id="ecb-concern-cta"', markup)
+            self.assertIn("ECB Consent Form 2026/27", markup)
             self.assertRegex(
                 markup,
                 r'id="tournament-season-hero"[\s\S]*?</section>(?:\s*<!--[\s\S]*?-->\s*)*<section id="ecb-concern-cta"',
