@@ -34,6 +34,7 @@ POSTS_PER_PAGE = 6
 WEBHOOK_SECRET = os.environ.get('WEBHOOK_SECRET', '')
 SEASON_REGISTRATION_URL = "https://www.desertcubs-admin.app/kiosk/register?utm_source=desertcubs.com&utm_medium=website&utm_campaign=season_2026_27"
 ECB_SELECTION_VISIBLE_UNTIL = datetime.strptime("2026-09-06", "%Y-%m-%d").date()
+SHOW_ECB_CONCERN_FORM = False
 NEXT_TOUR_GUESSES_FILE = os.environ.get(
     'NEXT_TOUR_GUESSES_FILE',
     os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'next_tour_guesses.jsonl')
@@ -1075,7 +1076,8 @@ def tournaments():
         'tournaments.html',
         meta=meta,
         tournaments=TOURNAMENTS,
-        show_ecb_registration=dubai_today() <= ECB_SELECTION_VISIBLE_UNTIL
+        show_ecb_registration=dubai_today() <= ECB_SELECTION_VISIBLE_UNTIL,
+        show_ecb_concern_form=SHOW_ECB_CONCERN_FORM,
     )
 
 

@@ -57,6 +57,7 @@
 <!-- ============================================================
      ECB CONCERN FORM CTA
 ============================================================= -->
+{% if show_ecb_concern_form %}
 <section id="ecb-concern-cta" class="relative overflow-hidden" style="background:linear-gradient(135deg,#f8fafc 0%,#ffffff 55%,#fff8d9 100%);border-bottom:1px solid #e2e8f0;">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 rounded-3xl p-6 sm:p-7 shadow-lg" style="background:#ffffff;border:1px solid rgba(0,51,153,.12);">
@@ -78,6 +79,7 @@
         </div>
     </div>
 </section>
+{% endif %}
 
 <!-- ============================================================
      ECB NATIONAL LEAGUE REGISTRATION
@@ -406,6 +408,7 @@
     </div>
 </section>
 
+{% if show_ecb_concern_form %}
 <!-- ECB CONCERN FORM MODAL -->
 <div id="ecbConcernModal" class="modal-overlay ecb-concern-modal" role="dialog" aria-modal="true"
      aria-labelledby="ecbConcernModalTitle" aria-describedby="ecbConcernModalDescription" hidden
@@ -499,6 +502,7 @@
     .ecb-concern-form-wrap iframe { display:block; width:100%; height:100%; border:0; }
     @media (max-width:640px) { .ecb-concern-modal { padding:8px; } .ecb-concern-card { width:100%; height:calc(100vh - 16px); max-height:calc(100vh - 16px); border-radius:14px; } .ecb-concern-header { min-height:68px; padding:12px 14px 12px 18px; } .ecb-concern-step-inner { padding:18px; } .ecb-concern-terms-copy { max-height:36vh; padding:14px; } }
 </style>
+{% endif %}
 
 {% if show_ecb_registration %}
 <!-- ECB REGISTRATION FORM MODAL -->
@@ -559,6 +563,7 @@ function filterTournaments(type) {
     document.getElementById('noResults').classList.toggle('hidden', visibleCount > 0);
 }
 
+{% if show_ecb_concern_form %}
 const ecbConcernFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSeyjvE0itOx97iA7GWBal8LXnzhsvSlVd8D74EWgh3W1qLVvA/viewform?embedded=true';
 let ecbConcernTrigger = null;
 
@@ -683,6 +688,7 @@ function returnToEcbConcernTerms() {
         }
     });
 })();
+{% endif %}
 
 {% if show_ecb_registration %}
 const ecbRegistrationUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfefVP6GfnP_RvkfqTCGBLTic-hm0FF_xSq8sWXfkkZvm-mUA/viewform?embedded=true';

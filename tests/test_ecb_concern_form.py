@@ -39,58 +39,13 @@ class EcbConcernFormTestCase(unittest.TestCase):
         self.html_with_registration = render_tournaments(True)
         self.html_without_registration = render_tournaments(False)
 
-    def test_concern_cta_is_unconditional_and_directly_follows_hero(self):
+    def test_concern_form_is_hidden_from_the_tournaments_page(self):
         for markup in (self.html_with_registration, self.html_without_registration):
-            self.assertIn('id="ecb-concern-cta"', markup)
-            self.assertIn("ECB Consent Form 2026/27", markup)
-            self.assertRegex(
-                markup,
-                r'id="tournament-season-hero"[\s\S]*?</section>(?:\s*<!--[\s\S]*?-->\s*)*<section id="ecb-concern-cta"',
-            )
-        self.assertLess(
-            self.html_with_registration.index('id="ecb-concern-cta"'),
-            self.html_with_registration.index('id="ecb-national-league-registration"'),
-        )
-
-    def test_terms_gate_contains_pdf_content_and_no_initial_iframe_source(self):
-        self.assertIn(CONCERN_EMBED_URL, self.html_without_registration)
-        self.assertIn(CONCERN_FALLBACK_URL, self.html_without_registration)
-        text = visible_text(self.html_without_registration)
-        for commitment in PDF_COMMITMENTS:
-            self.assertIn(commitment, text)
-        self.assertIn(PDF_SPECIAL_NOTE, text)
-        self.assertRegex(
-            self.html_without_registration,
-            r'<iframe id="ecbConcernFormFrame"(?![^>]*\bsrc=)',
-        )
-
-    def test_modal_has_accessible_consent_controls_and_tracking(self):
-        markup = self.html_without_registration
-        for fragment in (
-            'id="ecbConcernModal"',
-            'role="dialog"',
-            'aria-modal="true"',
-            'aria-describedby="ecbConcernModalDescription"',
-            'id="ecbConcernModalDescription"',
-            'id="ecbConcernAcknowledgement"',
-            'for="ecbConcernAcknowledgement"',
-            'id="ecbConcernContinue"',
-            'id="ecbConcernLoadingStatus"',
-            "ecb_concern_form_open",
-            "ecb_concern_terms_acknowledged",
-            "ecb_concern_form_continue",
-        ):
-            self.assertIn(fragment, markup)
-        self.assertRegex(markup, r'id="ecbConcernContinue"[^>]*\bdisabled\b')
-        self.assertRegex(markup, r'id="ecbConcernTermsHeading"[^>]*\btabindex="-1"')
-        self.assertRegex(markup, r'id="ecbConcernFormHeading"[^>]*\btabindex="-1"')
-
-    def test_google_form_step_uses_the_tour_style_full_height_frame(self):
-        markup = self.html_without_registration
-        self.assertIn("height:min(88vh,840px)", markup)
-        self.assertNotIn('class="ecb-concern-form-toolbar"', markup)
-        self.assertNotIn('class="ecb-concern-fallback"', markup)
-        self.assertRegex(markup, r'\.ecb-concern-form-wrap \{[^}]*flex:1 1 auto;[^}]*min-height:0;')
+            self.assertNotIn('id="ecb-concern-cta"', markup)
+            self.assertNotIn('id="ecbConcernModal"', markup)
+            self.assertNotIn(CONCERN_EMBED_URL, markup)
+            self.assertNotIn(CONCERN_FALLBACK_URL, markup)
+            self.assertNotIn("ECB Consent Form 2026/27", markup)
 
     def test_existing_registration_and_tournament_filters_are_preserved(self):
         for markup in (self.html_with_registration, self.html_without_registration):
