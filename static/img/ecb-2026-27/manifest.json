@@ -1,0 +1,1121 @@
+{
+  "assets": [
+    {
+      "path": "static/img/ecb-2026-27/dsc-6943-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 31152
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-6943-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 76676
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-6943-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 147416
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-6953-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 30314
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-6953-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 74804
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-6953-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 146080
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-6972-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 26524
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-6972-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 68108
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-6972-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 130306
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7033-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 34398
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7033-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 105742
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7033-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 221742
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7039-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 37336
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7039-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 112944
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7039-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 248446
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7127-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 38370
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7127-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 114758
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7127-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 247536
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7169-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 35476
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7169-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 107800
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7169-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 233030
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7196-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 32400
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7196-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 100278
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7196-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 215162
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7238-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 35248
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7238-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 109410
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7238-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 234194
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7269-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 34370
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7269-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 105024
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7269-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 226416
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7272-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 41542
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7272-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 125728
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7272-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 275022
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7296-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 31920
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7296-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 96158
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7296-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 206046
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7329-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 33852
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7329-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 102706
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7329-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 217952
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7355-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 32796
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7355-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 98596
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7355-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 212684
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7380-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 33218
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7380-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 99200
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7380-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 212446
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7409-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 32950
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7409-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 98348
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7409-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 212410
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7433-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 33232
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7433-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 101140
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7433-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 217344
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7457-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 34682
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7457-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 104188
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7457-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 226800
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7481-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 35078
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7481-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 105388
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7481-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 225228
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7510-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 34160
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7510-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 104958
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7510-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 223666
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7514-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 29634
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7514-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 86334
+    },
+    {
+      "path": "static/img/ecb-2026-27/dsc-7514-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 181802
+    },
+    {
+      "path": "static/img/ecb-2026-27/ecb-17-teams-cover-480.webp",
+      "width": 480,
+      "height": 319,
+      "bytes": 39884
+    },
+    {
+      "path": "static/img/ecb-2026-27/ecb-17-teams-cover-960.webp",
+      "width": 960,
+      "height": 639,
+      "bytes": 122688
+    },
+    {
+      "path": "static/img/ecb-2026-27/ecb-17-teams-cover-1600.webp",
+      "width": 1600,
+      "height": 1065,
+      "bytes": 268100
+    },
+    {
+      "path": "static/img/ecb-2026-27/ecb-17-teams-cover-800.webp",
+      "width": 800,
+      "height": 450,
+      "bytes": 82622
+    },
+    {
+      "path": "static/img/ecb-2026-27/ecb-17-teams-og.webp",
+      "width": 1200,
+      "height": 630,
+      "bytes": 148610
+    },
+    {
+      "path": "static/img/ecb-2026-27/ecb-17-teams-og.jpg",
+      "width": 1200,
+      "height": 630,
+      "bytes": 197772
+    },
+    {
+      "path": "static/img/ecb-2026-27/player.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 117376
+    },
+    {
+      "path": "static/img/ecb-2026-27/logo-desert-cubs.webp",
+      "width": 600,
+      "height": 600,
+      "bytes": 303218
+    },
+    {
+      "path": "static/img/ecb-2026-27/logo-siraj-finance.webp",
+      "width": 600,
+      "height": 291,
+      "bytes": 22996
+    },
+    {
+      "path": "static/img/ecb-2026-27/logo-ecb.webp",
+      "width": 600,
+      "height": 282,
+      "bytes": 26952
+    },
+    {
+      "path": "static/img/ecb-2026-27/logo-slay.webp",
+      "width": 490,
+      "height": 268,
+      "bytes": 5506
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-01-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 39160
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-01-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 106362
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-01-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 206032
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-02-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 43454
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-02-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 118292
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-02-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 225440
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-03-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 39964
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-03-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 108516
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-03-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 209616
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-04-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 39900
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-04-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 107148
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-04-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 208110
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-05-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 39490
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-05-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 106796
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-05-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 205816
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-06-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 39420
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-06-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 107088
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-06-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 205480
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-07-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 42448
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-07-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 115172
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-07-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 219952
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-08-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 40368
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-08-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 109156
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-08-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 209460
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-09-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 40334
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-09-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 108320
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-09-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 209114
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-10-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 40608
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-10-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 109192
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-10-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 208814
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-11-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 41030
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-11-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 111034
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-11-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 214610
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-12-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 43460
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-12-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 118934
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-12-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 228160
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-13-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 40836
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-13-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 109782
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-13-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 212144
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-14-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 40584
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-14-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 109008
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-14-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 209200
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-15-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 40376
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-15-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 107682
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-15-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 205878
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-16-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 41094
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-16-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 111154
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-16-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 215370
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-17-480.webp",
+      "width": 480,
+      "height": 270,
+      "bytes": 40972
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-17-960.webp",
+      "width": 960,
+      "height": 541,
+      "bytes": 110670
+    },
+    {
+      "path": "static/img/ecb-2026-27/roster-17-1600.webp",
+      "width": 1600,
+      "height": 901,
+      "bytes": 212766
+    }
+  ],
+  "gallery": [
+    {
+      "source": "DSC_6943.jpg",
+      "stem": "dsc-6943",
+      "alt": "Speaker on stage at the Desert Cubs ECB capping ceremony \u2014 photograph 6943"
+    },
+    {
+      "source": "DSC_6953.jpg",
+      "stem": "dsc-6953",
+      "alt": "Speaker on stage at the Desert Cubs ECB capping ceremony \u2014 photograph 6953"
+    },
+    {
+      "source": "DSC_6972.jpg",
+      "stem": "dsc-6972",
+      "alt": "Speaker on stage at the Desert Cubs ECB capping ceremony \u2014 photograph 6972"
+    },
+    {
+      "source": "DSC_7033.jpg",
+      "stem": "dsc-7033",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7033"
+    },
+    {
+      "source": "DSC_7039.jpg",
+      "stem": "dsc-7039",
+      "alt": "Players and attendees in the auditorium at the Desert Cubs capping ceremony \u2014 photograph 7039"
+    },
+    {
+      "source": "DSC_7127.jpg",
+      "stem": "dsc-7127",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7127"
+    },
+    {
+      "source": "DSC_7169.jpg",
+      "stem": "dsc-7169",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7169"
+    },
+    {
+      "source": "DSC_7196.jpg",
+      "stem": "dsc-7196",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7196"
+    },
+    {
+      "source": "DSC_7238.jpg",
+      "stem": "dsc-7238",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7238"
+    },
+    {
+      "source": "DSC_7269.jpg",
+      "stem": "dsc-7269",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7269"
+    },
+    {
+      "source": "DSC_7272.jpg",
+      "stem": "dsc-7272",
+      "alt": "Players and attendees in the auditorium at the Desert Cubs capping ceremony \u2014 photograph 7272"
+    },
+    {
+      "source": "DSC_7296.jpg",
+      "stem": "dsc-7296",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7296"
+    },
+    {
+      "source": "DSC_7329.jpg",
+      "stem": "dsc-7329",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7329"
+    },
+    {
+      "source": "DSC_7355.jpg",
+      "stem": "dsc-7355",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7355"
+    },
+    {
+      "source": "DSC_7380.jpg",
+      "stem": "dsc-7380",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7380"
+    },
+    {
+      "source": "DSC_7409.jpg",
+      "stem": "dsc-7409",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7409"
+    },
+    {
+      "source": "DSC_7433.jpg",
+      "stem": "dsc-7433",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7433"
+    },
+    {
+      "source": "DSC_7457.jpg",
+      "stem": "dsc-7457",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7457"
+    },
+    {
+      "source": "DSC_7481.jpg",
+      "stem": "dsc-7481",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7481"
+    },
+    {
+      "source": "DSC_7510.jpg",
+      "stem": "dsc-7510",
+      "alt": "Desert Cubs players and coaches together on stage at the ECB capping ceremony \u2014 photograph 7510"
+    },
+    {
+      "source": "DSC_7514.jpg",
+      "stem": "dsc-7514",
+      "alt": "Players and attendees in the auditorium at the Desert Cubs capping ceremony \u2014 photograph 7514"
+    }
+  ],
+  "rosters": [
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 1,
+      "category": "Girls",
+      "team": "Roses",
+      "stem": "roster-01",
+      "alt": "Girls \u2014 Desert Cubs Roses: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 2,
+      "category": "Under 12 Boys",
+      "team": "Eagles",
+      "stem": "roster-02",
+      "alt": "Under 12 Boys \u2014 Desert Cubs Eagles: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 3,
+      "category": "Under 12 Boys",
+      "team": "Lions",
+      "stem": "roster-03",
+      "alt": "Under 12 Boys \u2014 Desert Cubs Lions: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 4,
+      "category": "Under 12 Boys",
+      "team": "Ninjas",
+      "stem": "roster-04",
+      "alt": "Under 12 Boys \u2014 Desert Cubs Ninjas: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 5,
+      "category": "Under 12 Boys",
+      "team": "Sharks",
+      "stem": "roster-05",
+      "alt": "Under 12 Boys \u2014 Desert Cubs Sharks: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 6,
+      "category": "Under 12 Boys",
+      "team": "Warriors",
+      "stem": "roster-06",
+      "alt": "Under 12 Boys \u2014 Desert Cubs Warriors: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 7,
+      "category": "Under 15 Boys",
+      "team": "Eagles",
+      "stem": "roster-07",
+      "alt": "Under 15 Boys \u2014 Desert Cubs Eagles: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 8,
+      "category": "Under 15 Boys",
+      "team": "Lions",
+      "stem": "roster-08",
+      "alt": "Under 15 Boys \u2014 Desert Cubs Lions: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 9,
+      "category": "Under 15 Boys",
+      "team": "Ninjas",
+      "stem": "roster-09",
+      "alt": "Under 15 Boys \u2014 Desert Cubs Ninjas: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 10,
+      "category": "Under 15 Boys",
+      "team": "Sharks",
+      "stem": "roster-10",
+      "alt": "Under 15 Boys \u2014 Desert Cubs Sharks: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 11,
+      "category": "Under 15 Boys",
+      "team": "Warriors",
+      "stem": "roster-11",
+      "alt": "Under 15 Boys \u2014 Desert Cubs Warriors: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 12,
+      "category": "Under 18 Boys",
+      "team": "Eagles",
+      "stem": "roster-12",
+      "alt": "Under 18 Boys \u2014 Desert Cubs Eagles: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 13,
+      "category": "Under 18 Boys",
+      "team": "Lions",
+      "stem": "roster-13",
+      "alt": "Under 18 Boys \u2014 Desert Cubs Lions: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 14,
+      "category": "Under 18 Boys",
+      "team": "Ninjas",
+      "stem": "roster-14",
+      "alt": "Under 18 Boys \u2014 Desert Cubs Ninjas: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 15,
+      "category": "Under 18 Boys",
+      "team": "Sharks",
+      "stem": "roster-15",
+      "alt": "Under 18 Boys \u2014 Desert Cubs Sharks: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 16,
+      "category": "Under 18 Boys",
+      "team": "Warriors",
+      "stem": "roster-16",
+      "alt": "Under 18 Boys \u2014 Desert Cubs Warriors: official 2026/27 roster graphic"
+    },
+    {
+      "source": "DC ROSES-001.pdf",
+      "page": 17,
+      "category": "Under 18 Boys",
+      "team": "Wizards",
+      "stem": "roster-17",
+      "alt": "Under 18 Boys \u2014 Desert Cubs Wizards: official 2026/27 roster graphic"
+    }
+  ],
+  "sources": {
+    "T shirt Sample 7.png": {
+      "sha256": "86a464ef44b90e02e3c297119308865db5874eb128dd9b41bb958d36d2e9295f",
+      "bytes": 2489249
+    },
+    "ECB BLOG.txt": {
+      "sha256": "40defbef72835f317df1a04a430877e6fcf6bbdc921ea1ea85f3a272964c28d0",
+      "bytes": 12882
+    },
+    "Desert_cubs_logo.png": {
+      "sha256": "522457b91ed93216934466cad726ffde9b699c08d8fdc816b31c177bad5f025f",
+      "bytes": 755519
+    },
+    "ECB.jpg": {
+      "sha256": "d7eacde3f26114c72532cc1e89a7099f378651c9f0d3cb9293daf9da9697887e",
+      "bytes": 61575
+    },
+    "SIRAJ Logo.jpg": {
+      "sha256": "402c804de85f600acad1b3d5ffe752df5b6164bb8e0acc596cd17569905fcfac",
+      "bytes": 233229
+    },
+    "SLAY Bar+kitchen-001.png": {
+      "sha256": "7c884e7693e887a44fb6d0146b4a0ae85a63d834921078171174e2bab4200ec8",
+      "bytes": 16248
+    },
+    "DC ROSES-001.pdf": {
+      "sha256": "c96e42e00ca08e1cab95cb9eae6a2fb838bb21ad3e333b503c248034c9ba4676",
+      "bytes": 179912599
+    },
+    "DSC_6943.jpg": {
+      "sha256": "cddb27bd0c23412427622a778797df35c4697741e3f37c64d631cb3a3e4fe03c",
+      "bytes": 5043249
+    },
+    "DSC_6953.jpg": {
+      "sha256": "ed2244e10f00b7c997e6eff013403d09136b8d1e57060db183e2f7a4477aa3f3",
+      "bytes": 5997029
+    },
+    "DSC_6972.jpg": {
+      "sha256": "ceabde1517f921f5542c3412afcd489712068f061e0a72b786170b32a998dbc0",
+      "bytes": 5916144
+    },
+    "DSC_7033.jpg": {
+      "sha256": "2adacfa3f6f66411ecd44996760dac34e69c578d0c88a581ac70bdae7be405f0",
+      "bytes": 5227132
+    },
+    "DSC_7039.jpg": {
+      "sha256": "2fed81b203cd1124101000be72154f27ebf64b58bca2a496d86e87ec22be260b",
+      "bytes": 7871942
+    },
+    "DSC_7127.jpg": {
+      "sha256": "0e4d3c2a04510625ac4f9c50e698c2e55ba044ccb930b86033eae216b0ff2b8a",
+      "bytes": 4163575
+    },
+    "DSC_7169.jpg": {
+      "sha256": "94857f0b2f1243f98cb909ab8f497f3e2774baa25c4d6b4848fb2254e92f026b",
+      "bytes": 5239472
+    },
+    "DSC_7196.jpg": {
+      "sha256": "f3d33c057df1addfe95cc5e8909be39515d7d6d4c5395a9a8cd5d2fc38b6c3a2",
+      "bytes": 4555197
+    },
+    "DSC_7238.jpg": {
+      "sha256": "88e5933ca946f3650d6cfd3044544923df43e1532591ee535886b237a8a811a8",
+      "bytes": 6171066
+    },
+    "DSC_7269.jpg": {
+      "sha256": "9ff1a408ae324375f3e73a9151733e45d61fa486919a75dad92beebb3c0baf31",
+      "bytes": 6687646
+    },
+    "DSC_7272.jpg": {
+      "sha256": "3a779a71bf23a4596a19791e1f2c6eb9b6d5d28e9b5b85a4c9955105800f8fb9",
+      "bytes": 8204975
+    },
+    "DSC_7296.jpg": {
+      "sha256": "685bd5df0e5e42add66afd5ef6c37b4b179c04c8b5a9c8239994e22b615e45cd",
+      "bytes": 5918236
+    },
+    "DSC_7329.jpg": {
+      "sha256": "06f4f67e5f9fc81359b5e8b069e39a1590800a53c5a000ec5571b2a336def1d2",
+      "bytes": 5496394
+    },
+    "DSC_7355.jpg": {
+      "sha256": "be1dd4c19ba0f1f5c890040467d64e83f811397beecf9add015daeaa400a85c8",
+      "bytes": 5086006
+    },
+    "DSC_7380.jpg": {
+      "sha256": "db066a20ab5c30baa66d9adba387567d7bfcb5e7395551fedf86d22b4bb39116",
+      "bytes": 5731998
+    },
+    "DSC_7409.jpg": {
+      "sha256": "87b8861e314edc68555672c4576a4e6360e50c765d269f13eab9e8939356ecb5",
+      "bytes": 5655296
+    },
+    "DSC_7433.jpg": {
+      "sha256": "cdc976cfc494cb4907c4ac3b0e45d1677c2e4a2a344eb844ed1ddf90e7bb6e8d",
+      "bytes": 5742859
+    },
+    "DSC_7457.jpg": {
+      "sha256": "259d6058470275d227136f84581fef53e41b8042c8a2f04b4e5005928af6f789",
+      "bytes": 5933739
+    },
+    "DSC_7481.jpg": {
+      "sha256": "2b7129eea3dfb14d9ec1207b842ac57d18eedc04213c74c2a15bec888dc14502",
+      "bytes": 5095974
+    },
+    "DSC_7510.jpg": {
+      "sha256": "a133dc7f23643cfb67a05256d0575f8ad1cdd21a12d848909a3c77891ece3c6c",
+      "bytes": 6369237
+    },
+    "DSC_7514.jpg": {
+      "sha256": "011e00ecbb27345bab190465dfbca1e88f82de48f6aeb626189a4460b73e7dbf",
+      "bytes": 6276785
+    },
+    "DSC_7538.jpg": {
+      "sha256": "593910c1363f4e06d54bb18fda2f5efc1f35801942524e384f7ee91bed078d46",
+      "bytes": 6034372
+    },
+    "player.png": {
+      "sha256": "10be4d7e426441bd70d386dcb82ed40c7f5b65167f25c5464e7c590267650dad",
+      "bytes": 1693139
+    }
+  }
+}

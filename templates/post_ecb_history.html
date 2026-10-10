@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ecb-history.css') }}">
+<meta property="article:published_time" content="2026-10-10T09:00:00+04:00">
+<meta property="article:modified_time" content="2026-10-10T09:00:00+04:00">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Siraj Finance Desert Cubs players assembled at the 2026/27 ECB capping ceremony">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "17 TEAMS. 220+ DREAMS. ONE DESERT CUBS LEGACY.",
+      "description": {{ meta.description | tojson }},
+      "image": {{ meta.og_image | tojson }},
+      "datePublished": "2026-10-10T09:00:00+04:00",
+      "dateModified": "2026-10-10T09:00:00+04:00",
+      "inLanguage": "en",
+      "articleSection": "ECB National Academy League",
+      "author": {"@type": "Organization", "name": "Desert Cubs Cricket Academy", "url": "https://www.desertcubs.com"},
+      "publisher": {"@type": "Organization", "name": "Desert Cubs Cricket Academy", "logo": {"@type": "ImageObject", "url": "https://www.desertcubs.com/static/img/ecb-2026-27/logo-desert-cubs.webp"}},
+      "mainEntityOfPage": {{ meta.canonical | tojson }},
+      "url": {{ meta.canonical | tojson }}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.desertcubs.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.desertcubs.com/blog"},
+        {"@type": "ListItem", "position": 3, "name": "17 Teams. 220+ Dreams. One Desert Cubs Legacy.", "item": {{ meta.canonical | tojson }}}
+      ]
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<article class="ecb-story">
+    <header class="ecb-hero">
+        <div class="ecb-hero__glow" aria-hidden="true"></div>
+        <img class="ecb-hero__player" src="/static/img/ecb-2026-27/player.webp" width="900" height="1350" alt="" aria-hidden="true" fetchpriority="high">
+        <div class="ecb-shell ecb-hero__content">
+            <nav class="ecb-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/blog">Cricket Insights</a><span aria-hidden="true">/</span><span>Our ECB legacy</span></nav>
+            <div class="ecb-logos" aria-label="Competition organiser and championship sponsor">
+                {% for file, name, role, width, height in [
+                    ('ecb', 'Emirates Cricket Board', 'Competition organiser', 600, 282),
+                    ('slay', 'SLAY', 'Championship sponsor', 490, 268)
+                ] %}
+                <figure><div><img src="/static/img/ecb-2026-27/logo-{{ file }}.webp" alt="{{ name }}" width="{{ width }}" height="{{ height }}"></div><figcaption>{{ role }}</figcaption></figure>
+                {% endfor %}
+            </div>
+            <div class="ecb-hero__copy">
+                <p class="ecb-eyebrow">ECB National Academy League 2026/27</p>
+                <h1><span>17 TEAMS.</span><span>220+ DREAMS.</span><span class="ecb-hero__legacy">ONE DESERT CUBS LEGACY.</span></h1>
+                <p class="ecb-hero__intro">From 11 young cricketers in 2007 to 17 national league teams in 2026 — a historic chapter in the Siraj Finance Desert Cubs journey.</p>
+                <a class="ecb-button" href="#ecb-article">Read Our Story <span aria-hidden="true">↓</span></a>
+                <p class="ecb-byline"><time datetime="2026-10-10">10 October 2026</time><span aria-hidden="true">·</span>Desert Cubs Cricket Academy</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="ecb-shell">
+        <figure class="ecb-cover">
+            <img src="/static/img/ecb-2026-27/ecb-17-teams-cover-1600.webp" srcset="/static/img/ecb-2026-27/ecb-17-teams-cover-480.webp 480w, /static/img/ecb-2026-27/ecb-17-teams-cover-960.webp 960w, /static/img/ecb-2026-27/ecb-17-teams-cover-1600.webp 1600w" sizes="(max-width: 1240px) 94vw, 1200px" width="1600" height="1065" alt="Siraj Finance Desert Cubs players and coaches assembled for the ECB National Academy League Championship 2026/27 capping ceremony" loading="lazy">
+            <figcaption>Siraj Finance Desert Cubs — ECB National Academy League Championship 2026/27.</figcaption>
+        </figure>
+        <dl class="ecb-stats" aria-label="The milestone in numbers">
+            {% for number, label in [('17','Official teams'),('220+','Young cricketers'),('4','Competition categories'),('19','Years of legacy'),('5','Training centres'),('15,000+','Alumni trained')] %}
+            <div><dt>{{ label }}</dt><dd>{{ number }}</dd></div>
+            {% endfor %}
+        </dl>
+    </div>
+
+    <div id="ecb-article" class="ecb-article">
+        <nav class="ecb-contents" aria-label="In this story"><span>In this story</span><a href="#chapter-2">Our journey</a><a href="#chapter-3">The teams</a><a href="#chapter-5">Capping ceremony</a><a href="#ecb-gallery-heading">Photographs</a></nav>
+        <div class="ecb-editorial">{{ content | safe }}</div>
+    </div>
+
+    <section class="ecb-ending" aria-labelledby="ecb-ending-title">
+        <div class="ecb-shell">
+            <p class="ecb-eyebrow">The legacy continues</p>
+            <h2 id="ecb-ending-title">Be Part of the Next Chapter</h2>
+            <p>The next generation of Desert Cubs players is already beginning its journey.</p>
+            <div class="ecb-ending__actions"><a class="ecb-button" href="https://www.desertcubs-admin.app/kiosk/register" data-track-event="ecb_history_register_click" data-track-label="ECB historical article">Register for 2026/27 <span aria-hidden="true">↗</span></a></div>
+            <a class="ecb-back" href="/blog">← Back to Cricket Insights</a>
+        </div>
+    </section>
+
+    <dialog class="ecb-lightbox" aria-labelledby="ecb-lightbox-caption">
+        <div class="ecb-lightbox__toolbar"><p id="ecb-lightbox-count" aria-live="polite"></p><button type="button" data-ecb-close aria-label="Close photograph">Close ×</button></div>
+        <div class="ecb-lightbox__stage"><button type="button" data-ecb-prev aria-label="Previous photograph">←</button><img alt="" id="ecb-lightbox-image"><button type="button" data-ecb-next aria-label="Next photograph">→</button></div>
+        <p id="ecb-lightbox-caption" aria-live="polite"></p>
+        <a id="ecb-lightbox-original" href="#" target="_blank" rel="noopener">Open full-size image ↗</a>
+    </dialog>
+</article>
+<script src="{{ url_for('static', filename='js/ecb-history.js') }}" defer></script>
+{% endblock %}

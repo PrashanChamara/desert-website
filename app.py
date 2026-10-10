@@ -31,6 +31,7 @@ def add_performance_headers(response):
 # ---------------------------------------------------------
 BLOG_DIR = 'content/posts'
 POSTS_PER_PAGE = 6
+ECB_HISTORY_SLUG = '2026-10-10_desert-cubs-17-teams-ecb-national-academy-league-2026-27'
 WEBHOOK_SECRET = os.environ.get('WEBHOOK_SECRET', '')
 SEASON_REGISTRATION_URL = "https://www.desertcubs-admin.app/kiosk/register?utm_source=desertcubs.com&utm_medium=website&utm_campaign=season_2026_27"
 ECB_SELECTION_VISIBLE_UNTIL = datetime.strptime("2026-09-06", "%Y-%m-%d").date()
@@ -822,7 +823,7 @@ def get_blog_posts():
                 meta = None
                 try:
                     with open(filepath, 'r', encoding='utf-8') as f:
-                        head = f.read(512)  # Only read first 512 bytes — DC_META is always first line
+                        head = f.read(16384)  # Bounded read for full editorial metadata comments.
                     meta = extract_post_meta(head)
                 except Exception:
                     pass
@@ -833,7 +834,10 @@ def get_blog_posts():
                     'date': date_part,
                     'slug': slug,
                     'filename': filename,
-                    'image': get_blog_image_filename(slug),
+                    'image': meta.get('image', get_blog_image_filename(slug)) if meta else get_blog_image_filename(slug),
+                    'image_path': meta.get('image_path', 'img/blog/' + get_blog_image_filename(slug)) if meta else 'img/blog/' + get_blog_image_filename(slug),
+                    'excerpt': meta.get('excerpt', '') if meta else '',
+                    'author': meta.get('author', 'Desert Cubs Academy Team') if meta else 'Desert Cubs Academy Team',
                     'category': meta.get('category', 'Cricket Tips') if meta else 'Cricket Tips'
                 })
             except Exception:
@@ -1013,6 +1017,9 @@ def blog_post(slug):
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
 
+    if safe_slug == ECB_HISTORY_SLUG and slug != safe_slug:
+        return redirect(url_for('blog_post', slug=safe_slug), code=301)
+
     # Use Gemini-generated SEO metadata if N8N embedded it, else fall back to slug
     post_meta = extract_post_meta(content)
     fallback_title = safe_slug[11:].replace('-', ' ').title()
@@ -1024,6 +1031,14 @@ def blog_post(slug):
         canonical=f"https://www.desertcubs.com/blog/{slug}",
         og_image=f"https://www.desertcubs.com/static/img/blog/{get_blog_image_filename(safe_slug)}"
     )
+    if safe_slug == ECB_HISTORY_SLUG:
+        meta.update({
+            'og_image': 'https://www.desertcubs.com/static/img/ecb-2026-27/ecb-17-teams-og.jpg',
+            'og_type': 'article',
+            'suppress_global_schema': True,
+            'keywords': 'Desert Cubs ECB National Academy League 2026/27, Siraj Finance Desert Cubs, Emirates Cricket Board National Academy League, Desert Cubs 17 teams, UAE youth cricket history, ECB Under 12 cricket, ECB Under 15 cricket, ECB Under 18 cricket, UAE girls cricket league',
+        })
+        return render_template('post_ecb_history.html', content=content, title=display_title, meta=meta, slug=safe_slug)
     return render_template('post.html', content=content, title=display_title, meta=meta, slug=slug, blog_image=get_blog_image_filename(safe_slug))
 
 
@@ -1321,6 +1336,7 @@ def robots():
     content = """User-agent: *
 Allow: /
 Disallow: /static/img/
+Allow: /static/img/ecb-2026-27/
 Disallow: /index.php
 Disallow: /component/k2/
 

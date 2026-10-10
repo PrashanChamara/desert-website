@@ -83,9 +83,9 @@
                 <a href="/blog/{{ post.slug }}" class="block h-52 bg-gray-200 relative overflow-hidden flex-shrink-0">
                     <picture>
                         {% if post.image.endswith('.webp') %}
-                        <source srcset="{{ url_for('static', filename='img/blog/' + post.slug + '.webp') }}" type="image/webp">
+                        <source srcset="{{ url_for('static', filename=post.image_path) }}" type="image/webp">
                         {% endif %}
-                        <img src="{{ url_for('static', filename='img/blog/' + post.image) }}"
+                        <img src="{{ url_for('static', filename=post.image_path) }}"
                              alt="{{ post.title }} — Desert Cubs Cricket Academy Blog"
                              width="800" height="400"
                              loading="lazy"
@@ -120,6 +120,9 @@
                     <h2 class="font-display text-2xl font-black text-cubs-blue mb-3 leading-tight group-hover:text-cubs-gold transition-colors" itemprop="headline">
                         <a href="/blog/{{ post.slug }}" itemprop="url">{{ post.title }}</a>
                     </h2>
+                    {% if post.excerpt %}
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">{{ post.excerpt }}</p>
+                    {% endif %}
 
                     <!-- Author -->
                     <div class="flex items-center gap-2 mt-auto pt-4 border-t border-gray-100">
@@ -127,7 +130,7 @@
                             <img src="{{ url_for('static', filename='img/Desert_cubs_logo.png') }}" alt="" class="w-5 h-5 object-contain">
                         </div>
                         <div class="flex-1">
-                            <p class="text-xs font-bold text-cubs-blue" itemprop="author">Desert Cubs Academy Team</p>
+                            <p class="text-xs font-bold text-cubs-blue" itemprop="author">{{ post.author }}</p>
                         </div>
                         <a href="/blog/{{ post.slug }}" 
                            class="text-xs font-black text-cubs-blue hover:text-cubs-gold transition-colors uppercase tracking-wider flex items-center gap-1">

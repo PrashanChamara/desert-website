@@ -23,7 +23,7 @@
     <link rel="canonical"    href="{{ meta.canonical | default('https://www.desertcubs.com') }}">
 
     <!-- Open Graph -->
-    <meta property="og:type"        content="website">
+    <meta property="og:type"        content="{{ meta.og_type | default('website') }}">
     <meta property="og:title"       content="{{ meta.title }}">
     <meta property="og:description" content="{{ meta.description }}">
     <meta property="og:image"       content="{{ meta.og_image | default('https://www.desertcubs.com/static/img/Desert_cubs_logo.png') }}">

@@ -3,3 +3,4 @@
 [2026-09-21] | Used “Concern Form” for the CTA when the approved user-facing button label is “Consent Form” | Confirm the exact visible CTA wording separately from surrounding section and modal terminology before finalizing
 [2026-10-07] | Presented Judith Jose Peter as the Girls Head Coach instead of Murali Sockalingam | Verify coaching leadership titles against the relevant branch roster before publishing coach-related content
 [2026-10-07] | Left the current-season homepage status as “begins” after the season had started | Review time-sensitive status copy across every occurrence on the affected page before publishing
+[2026-10-10] | Repeated the academy and title-partner logos and linked back to the website from its own article | Check what the visitor can already see on the current page and keep only the requested partner marks and conversion action
