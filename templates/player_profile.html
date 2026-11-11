@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/player-profile.css') }}">
+{% endblock %}
+
+{% block content %}
+<main class="player-profile">
+    <section class="pp-hero" aria-labelledby="player-name">
+        <div class="pp-wrap pp-layout">
+            <div class="pp-photo">
+                <img src="{{ url_for('static', filename=player.image) }}" alt="{{ player.image_alt }}" width="700" height="812" fetchpriority="high" decoding="async">
+                <span>Desert Cubs · UAE U19 National Team</span>
+            </div>
+            <div class="pp-copy">
+                <p class="pp-kicker">Desert Cubs · Legends of the Future</p>
+                <h1 id="player-name">{{ player.name }}</h1>
+                <p class="pp-selection">{{ player.selection }}</p>
+                <p>Years of learning, training and playing with Desert Cubs form part of {{ player.name.split(' ')[0] }}’s cricket journey. The selection is a proud milestone for the player, their family and the academy.</p>
+                <div class="pp-actions">
+                    <a class="pp-button pp-button-gold" href="/legends">Explore all legends <span aria-hidden="true">↗</span></a>
+                    <a class="pp-button pp-button-outline" href="/#player-pathway">Back to the homepage spotlight</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="pp-history" aria-labelledby="milestones-title">
+        <div class="pp-wrap pp-history-inner">
+            <p class="pp-kicker">Career milestones</p>
+            <h2 id="milestones-title">Part of the journey.</h2>
+            <p class="pp-intro">Earlier age-group achievements remain important milestones in {{ player.name }}’s development.</p>
+            <ul>{% for item in player.history %}<li><span aria-hidden="true">✦</span>{{ item }}</li>{% endfor %}</ul>
+            <a class="pp-back-link" href="/legends">← Return to Legends of the Future</a>
+        </div>
+    </section>
+</main>
+{% endblock %}

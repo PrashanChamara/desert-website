@@ -1,0 +1,41 @@
+{
+  "format": "VP9 WebM with alpha",
+  "dimensions": [
+    512,
+    640
+  ],
+  "fps": 24,
+  "status": "2D motion prototype; not production-approved; not a 3D model",
+  "states": {
+    "idle_loop": {
+      "file": "idle_loop.webm",
+      "duration": 4.0,
+      "loop": true,
+      "bytes": 359291
+    },
+    "walk_loop": {
+      "file": "walk_loop.webm",
+      "duration": 1.25,
+      "loop": true,
+      "bytes": 244509
+    },
+    "greeting_wave": {
+      "file": "greeting_wave.webm",
+      "duration": 3.0,
+      "loop": false,
+      "bytes": 379325
+    },
+    "flag_wave_loop": {
+      "file": "flag_wave_loop.webm",
+      "duration": 3.0,
+      "loop": true,
+      "bytes": 391146
+    },
+    "pause_idle": {
+      "file": "pause_idle.webm",
+      "duration": 1.0,
+      "loop": true,
+      "bytes": 81914
+    }
+  }
+}

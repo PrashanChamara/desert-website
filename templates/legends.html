@@ -9,7 +9,7 @@
       "@type": "WebPage",
       "url": "https://www.desertcubs.com/legends",
       "name": "Legends of the Future | Desert Cubs Cricket Academy | UAE Cricket Stars",
-      "description": "Desert Cubs Cricket Academy alumni who represent UAE and international cricket pathways. Macneil Hadley Noronha reached Chennai Super Kings in IPL 2026, alongside UAE national players, ECB champions and ACC West Zone Cup winners.",
+      "description": "Desert Cubs alumni Mohammed Nafees and Jordan Alvares are selected for the UAE U19 National Team at the 2026 Asia Cup in Oman. Their journeys sit alongside Macneil Hadley Noronha, Esha Oza, ECB champions and ACC West Zone Cup winners.",
       "mainEntity": {
         "@type": "SportsOrganization",
         "name": "Desert Cubs Cricket Academy",
@@ -111,6 +111,28 @@
                            color:#9ca3af;text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Building Champions</p>
             </div>
             </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Current national team milestone -->
+<section style="background:#f5f7fb;padding:54px 0;">
+    <div style="max-width:1120px;margin:0 auto;padding:0 20px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;margin-bottom:22px;">
+            <div>
+                <p style="margin:0 0 5px;color:#8a6b00;font:900 .68rem 'Nunito',sans-serif;letter-spacing:.15em;text-transform:uppercase;">U19 Asia Cup 2026 · Oman</p>
+                <h2 style="margin:0;color:#001f66;font:700 clamp(1.8rem,4vw,2.8rem)/1 'Teko',sans-serif;text-transform:uppercase;">Two Desert Cubs stars. One national honour.</h2>
+            </div>
+            <p style="max-width:520px;margin:0;color:#475569;font:700 .88rem/1.7 'Nunito',sans-serif;">Mohammed Nafees and Jordan Alvares have been selected to represent the UAE U19 National Team at the U19 Asia Cup 2026.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px;">
+            {% for slug, name, image in [('mohammed-nafees', 'Mohammed Nafees', 'mohammed-nafees.webp'), ('jordan-alvares', 'Jordan Alvares', 'jordan-alvares.webp')] %}
+            <a href="/legends/{{ slug }}" style="display:flex;min-height:112px;align-items:center;gap:16px;padding:10px;border:1px solid #e1e7f0;border-radius:14px;background:#fff;color:#001f66;text-decoration:none;box-shadow:0 8px 24px #001f660d;">
+                <img src="{{ url_for('static', filename='img/homepage/' ~ image) }}" alt="" width="80" height="92" loading="lazy" style="width:80px;height:92px;object-fit:cover;object-position:center 18%;border-radius:9px;background:#001f66;">
+                <span style="display:grid;gap:4px;"><strong style="font:700 1.35rem/1 'Teko',sans-serif;text-transform:uppercase;">{{ name }}</strong><small style="color:#536176;font:800 .62rem/1.5 'Nunito',sans-serif;text-transform:uppercase;">View player profile ↗</small></span>
+            </a>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -276,11 +298,11 @@
                 </div>
             </div>
 
-            <!-- Mohamed Nafees -->
+            <!-- Mohammed Nafees -->
             <div class="leg-card dcr d2">
                 <div style="height:220px;overflow:hidden;position:relative;background:#001f66;">
                     <img src="{{ url_for('static', filename='img/player_nafees.webp') }}"
-                         alt="Mohamed Nafees — UAE U16, Desert Cubs Academy"
+                         alt="Mohammed Nafees — UAE U16, Desert Cubs Academy"
                          width="400" height="220" loading="lazy"
                          style="width:100%;height:100%;object-fit:cover;object-position:center 20%;opacity:.9;">
                     <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.85) 0%,transparent 55%);"></div>
@@ -291,7 +313,7 @@
                 </div>
                 <div style="padding:20px 22px 24px;">
                     <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.5rem;
-                                color:#001f66;text-transform:uppercase;line-height:1;margin-bottom:4px;">Mohamed Nafees</h3>
+                                color:#001f66;text-transform:uppercase;line-height:1;margin-bottom:4px;">Mohammed Nafees</h3>
                     <p style="font-family:'Nunito',sans-serif;font-size:.72rem;color:#FFCC00;
                                font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;">
                         UAE U16 National Team &bull; Right-Hand Bat</p>

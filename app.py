@@ -147,6 +147,116 @@ BRANCHES = [
     },
 ]
 
+# Weekly training timetable transcribed from the academy's supplied 2026/27
+# schedule reference on 31 October 2026. Keep each weekday explicit so updates
+# can be compared directly against the published source.
+WEEKLY_TRAINING_SCHEDULE = [
+    {
+        "id": "SES", "branch_id": "sharjah-english-school",
+        "name": "Sharjah English School", "area": "Sharjah · Maliha Road",
+        "days": [
+            {"name": "Monday", "sessions": []},
+            {"name": "Tuesday", "sessions": [{"time": "4:00 PM–9:00 PM", "programme": "Individual and small group coaching"}]},
+            {"name": "Wednesday", "sessions": [{"time": "5:30 PM–7:30 PM", "programme": "General coaching · U11 and above"}]},
+            {"name": "Thursday", "sessions": [{"time": "4:00 PM–9:00 PM", "programme": "Individual and small group coaching"}]},
+            {"name": "Friday", "sessions": [{"time": "5:30 PM–7:30 PM", "programme": "General coaching · U11 and above"}]},
+            {"name": "Saturday", "sessions": [
+                {"time": "7:30 AM–9:30 AM", "programme": "General coaching · Girls and U13"},
+                {"time": "4:30 PM–6:30 PM", "programme": "General coaching · Beginners"},
+                {"time": "5:30 PM–7:30 PM", "programme": "General coaching · U11, U15 and above"},
+            ]},
+            {"name": "Sunday", "sessions": [
+                {"time": "7:30 AM–9:30 AM", "programme": "General coaching · Girls and U13"},
+                {"time": "4:30 PM–6:30 PM", "programme": "General coaching · Beginners"},
+                {"time": "5:30 PM–7:30 PM", "programme": "General coaching · U11, U15 and above"},
+            ]},
+        ],
+    },
+    {
+        "id": "SIS", "branch_id": "star-international-school",
+        "name": "Star International School", "area": "Dubai · Al Qusais 3",
+        "days": [
+            {"name": "Monday", "sessions": []},
+            {"name": "Tuesday", "sessions": [{"time": "4:00 PM–9:00 PM", "programme": "Individual and small group coaching"}]},
+            {"name": "Wednesday", "sessions": [{"time": "5:30 PM–7:30 PM", "programme": "General coaching · U11 and above"}]},
+            {"name": "Thursday", "sessions": [{"time": "4:00 PM–9:00 PM", "programme": "Individual and small group coaching"}]},
+            {"name": "Friday", "sessions": [{"time": "5:30 PM–7:30 PM", "programme": "General coaching · U11 and above"}]},
+            {"name": "Saturday", "sessions": [
+                {"time": "7:30 AM–9:30 AM", "programme": "General coaching · Beginners and U11"},
+                {"time": "5:30 PM–7:30 PM", "programme": "General coaching · U13 and above"},
+            ]},
+            {"name": "Sunday", "sessions": [
+                {"time": "7:30 AM–9:30 AM", "programme": "General coaching · Beginners and U11"},
+                {"time": "5:30 PM–7:30 PM", "programme": "General coaching · U13 and above"},
+            ]},
+        ],
+    },
+    {
+        "id": "DIS", "branch_id": "deira-international-school",
+        "name": "Deira International School", "area": "Dubai · Dubai Festival City",
+        "days": [
+            {"name": "Monday", "sessions": []},
+            {"name": "Tuesday", "sessions": [{"time": "4:00 PM–9:00 PM", "programme": "Individual and small group coaching"}]},
+            {"name": "Wednesday", "sessions": [{"time": "5:30 PM–7:30 PM", "programme": "General coaching · U11 and above"}]},
+            {"name": "Thursday", "sessions": [{"time": "4:00 PM–9:00 PM", "programme": "Individual and small group coaching"}]},
+            {"name": "Friday", "sessions": [{"time": "5:30 PM–7:30 PM", "programme": "General coaching · U11 and above"}]},
+            {"name": "Saturday", "sessions": [
+                {"time": "7:30 AM–9:30 AM", "programme": "General coaching · U15 and U18"},
+                {"time": "4:00 PM–6:00 PM", "programme": "General coaching · Beginners"},
+                {"time": "4:30 PM–6:30 PM", "programme": "General coaching · U11 to U15"},
+            ]},
+            {"name": "Sunday", "sessions": [
+                {"time": "7:30 AM–9:30 AM", "programme": "General coaching · U15 and U18"},
+                {"time": "4:00 PM–6:00 PM", "programme": "General coaching · Beginners"},
+                {"time": "4:30 PM–6:30 PM", "programme": "General coaching · U11 to U15"},
+            ]},
+        ],
+    },
+    {
+        "id": "DPS", "branch_id": "delhi-private-school",
+        "name": "Delhi Private School", "area": "Dubai · The Gardens / Jebel Ali",
+        "days": [
+            {"name": "Monday", "sessions": []},
+            {"name": "Tuesday", "sessions": [{"time": "5:30 PM–7:30 PM", "programme": "General coaching · U11"}]},
+            {"name": "Wednesday", "sessions": [{"time": "5:30 PM–7:30 PM", "programme": "General coaching · U11"}]},
+            {"name": "Thursday", "sessions": [{"time": "5:30 PM–7:30 PM", "programme": "General coaching · U13 and U16"}]},
+            {"name": "Friday", "sessions": [{"time": "5:30 PM–7:30 PM", "programme": "General coaching · U13 and U16"}]},
+            {"name": "Saturday", "sessions": [
+                {"time": "7:00 AM–9:00 AM", "programme": "General coaching · Beginners and U11"},
+                {"time": "5:00 PM–7:00 PM", "programme": "General coaching · U13 and above"},
+            ]},
+            {"name": "Sunday", "sessions": [
+                {"time": "7:00 AM–9:00 AM", "programme": "General coaching · Beginners and U11"},
+                {"time": "5:00 PM–7:00 PM", "programme": "General coaching · U13 and above"},
+            ]},
+        ],
+    },
+    {
+        "id": "BSA", "branch_id": "baseline-sports-academy",
+        "name": "Baseline Sports Academy", "area": "Dubai · Dubai Investment Park",
+        "days": [
+            {"name": "Monday", "sessions": []},
+            {"name": "Tuesday", "sessions": []},
+            {"name": "Wednesday", "sessions": [{"time": "5:00 PM–7:00 PM", "programme": "General coaching · Beginners and above"}]},
+            {"name": "Thursday", "sessions": []},
+            {"name": "Friday", "sessions": [{"time": "5:00 PM–7:00 PM", "programme": "General coaching · Beginners and above"}]},
+            {"name": "Saturday", "sessions": [{"time": "3:00 PM–5:00 PM", "programme": "General coaching · Beginners and above"}]},
+            {"name": "Sunday", "sessions": [{"time": "3:00 PM–5:00 PM", "programme": "General coaching · Beginners and above"}]},
+        ],
+    },
+]
+
+HOMEPAGE_EXPERIENCE_VIDEOS = [
+    {"file": "coaching-highlights", "title": "Coaching in action", "category": "Skill development"},
+    {"file": "junior-cricket-highlights", "title": "Junior cricket, up close", "category": "Academy life"},
+    {"file": "beach-run", "title": "A day together beyond the nets", "category": "Team life"},
+]
+
+HOMEPAGE_TESTIMONIAL_VIDEOS = [
+    {"file": "parent-review", "title": "A parent’s perspective", "category": "Parent review"},
+    {"file": "player-review", "title": "A player’s perspective", "category": "Player review"},
+]
+
 COACH_PROFILE_UPDATES = {
     "Murali Sockalingam": {
         "extra": [
@@ -919,7 +1029,7 @@ def index():
         keywords="best cricket academy UAE, best cricket academy Dubai, UAE junior cricket coaching, junior cricket Dubai, Sharjah junior cricket coaching, cricket academy UAE, cricket coaching UAE, kids cricket UAE, youth cricket academy Dubai, UAE national cricket player pathway",
         canonical="https://www.desertcubs.com/"
     )
-    return render_template('index.html', meta=meta, branches=BRANCHES, active_tournament=active_tournament, sponsors=SPONSORS, tours=TOURS, season_registration_url=SEASON_REGISTRATION_URL)
+    return render_template('index.html', meta=meta, branches=BRANCHES, active_tournament=active_tournament, sponsors=SPONSORS, tours=TOURS, season_registration_url=SEASON_REGISTRATION_URL, weekly_schedule=WEEKLY_TRAINING_SCHEDULE, master_classes=MASTER_CLASSES[:3], academy_videos=HOMEPAGE_EXPERIENCE_VIDEOS, testimonial_videos=HOMEPAGE_TESTIMONIAL_VIDEOS)
 
 
 @app.route('/tours')
@@ -1071,11 +1181,16 @@ def location_detail(branch_id):
             canonical=f"https://www.desertcubs.com/locations/{branch_id}"
         )
     page_registration_url = '#ses-enquiry' if branch_id == 'sharjah-english-school' else SEASON_REGISTRATION_URL
+    schedule_centre = next(
+        (centre['id'] for centre in WEEKLY_TRAINING_SCHEDULE if centre['branch_id'] == branch_id),
+        'SES',
+    )
     return render_template(
         'location_detail.html',
         branch=branch,
         meta=meta,
         season_registration_url=page_registration_url,
+        schedule_centre=schedule_centre,
     )
 
 
@@ -1147,8 +1262,8 @@ def summer_camp():
 def legends():
     meta = seo(
         title="Legends of the Future | Desert Cubs Cricket Academy Alumni | UAE Cricket Stars",
-        description="Desert Cubs Cricket Academy alumni who represent UAE nationally and internationally. Macneil Hadley Noronha, Esha Oza, ACC U16 winners, UAE U19 World Cup qualifiers and ECB Women's League champions.",
-        keywords="Macneil Noronha Desert Cubs, Macneil Hadley Noronha IPL 2026, Chennai Super Kings Desert Cubs, UAE cricket academy success stories, Desert Cubs alumni achievements, UAE national cricket players academy, cricket academy Dubai results, UAE U19 cricket stars, ACC cricket champions UAE, ECB cricket league champions UAE, Akshat Rai cricket UAE, Mohamed Nafees cricket, Kavisha Kumari world record cricket, Esha Oza Desert Cubs",
+        description="Desert Cubs alumni Mohammed Nafees and Jordan Alvares are selected for the UAE U19 National Team at the 2026 Asia Cup in Oman. Discover their stories alongside Macneil Hadley Noronha, Esha Oza and other academy legends.",
+        keywords="Mohammed Nafees, Jordan Alvares, UAE U19 Asia Cup 2026 Oman, Macneil Noronha Desert Cubs, IPL 2026, Chennai Super Kings Desert Cubs, UAE cricket academy success stories, Desert Cubs alumni achievements, UAE national cricket players academy, ACC cricket champions UAE, ECB cricket league champions UAE, Esha Oza Desert Cubs",
         canonical="https://www.desertcubs.com/legends",
         og_image="https://www.desertcubs.com/static/img/macneil-noronha/macneil-csk-flyer.jpg"
     )
@@ -1165,6 +1280,49 @@ def macneil_noronha():
         og_image="https://www.desertcubs.com/static/img/macneil-noronha/macneil-csk-flyer.jpg"
     )
     return render_template('macneil_noronha.html', meta=meta)
+
+
+@app.route('/legends/<player_slug>')
+def legends_player(player_slug):
+    players = {
+        'mohammed-nafees': {
+            'name': 'Mohammed Nafees',
+            'image': 'img/homepage/mohammed-nafees.webp',
+            'image_alt': 'Mohammed Nafees in UAE cricket colours',
+            'selection': 'Selected to represent the UAE U19 National Team at the U19 Asia Cup 2026 in Oman.',
+            'history': [
+                "ACC Men's U16 West Zone Cup 2025 champion with the UAE (Qatar).",
+                'Scored 127 from 114 balls against Oman during the ACC U16 campaign.',
+                'Captained the DCCA team to the ECB U16 National Academy League title in 2024/25.',
+                'Selected by Dubai Cricket Council at age 11; active since 2020.',
+            ],
+            'description': 'Meet Desert Cubs player Mohammed Nafees, selected for the UAE U19 National Team at the U19 Asia Cup 2026 in Oman. Explore his verified age-group milestones.',
+        },
+        'jordan-alvares': {
+            'name': 'Jordan Alvares',
+            'image': 'img/homepage/jordan-alvares.webp',
+            'image_alt': 'Jordan Alvares in UAE cricket colours',
+            'selection': 'Selected to represent the UAE U19 National Team at the U19 Asia Cup 2026 in Oman.',
+            'history': [
+                'ACC U16 West Zone Cup 2025 reserve squad member (Qatar).',
+                'Member of the DCCA ECB U16 National Academy League champions in 2024/25.',
+                'U16 Inter-Emirates champion with Dubai Cricket Council in 2025.',
+                'U19 Ramadan Youth League champion with Dubai CC Vikings in 2025.',
+            ],
+            'description': 'Meet Desert Cubs player Jordan Alvares, selected for the UAE U19 National Team at the U19 Asia Cup 2026 in Oman. Explore his verified age-group milestones.',
+        },
+    }
+    player = players.get(player_slug)
+    if not player:
+        abort(404)
+    meta = seo(
+        title=f"{player['name']} | UAE U19 Asia Cup 2026 | Desert Cubs",
+        description=player['description'],
+        keywords=f"{player['name']}, Desert Cubs, UAE U19 National Team, U19 Asia Cup 2026 Oman, junior cricket UAE",
+        canonical=f"https://www.desertcubs.com/legends/{player_slug}",
+        og_image=f"https://www.desertcubs.com/static/{player['image']}"
+    )
+    return render_template('player_profile.html', meta=meta, player=player)
 
 
 @app.route('/homelands')
@@ -1303,6 +1461,8 @@ def sitemap():
         ('/summer-camp', '0.9', 'monthly', today),
         ('/legends', '0.9', 'monthly', today),
         ('/legends/macneil-noronha', '0.9', 'monthly', today),
+        ('/legends/mohammed-nafees', '0.8', 'monthly', today),
+        ('/legends/jordan-alvares', '0.8', 'monthly', today),
         ('/homelands', '0.8', 'monthly', today),
         ('/homelands/portcity', '0.8', 'monthly', today),
         ('/tournaments', '0.8', 'weekly', today),

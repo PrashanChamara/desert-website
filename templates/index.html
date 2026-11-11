@@ -1,1222 +1,308 @@
 {% extends "base.html" %}
+
+{% block extra_head %}
+<link rel="preload" as="image" href="{{ url_for('static', filename='img/homepage/ecb-capping-group-2026-1600.webp') }}" imagesrcset="{{ url_for('static', filename='img/homepage/ecb-capping-group-2026-960.webp') }} 960w, {{ url_for('static', filename='img/homepage/ecb-capping-group-2026-1600.webp') }} 1600w, {{ url_for('static', filename='img/homepage/ecb-capping-group-2026-2200.webp') }} 2200w" imagesizes="(max-width: 1200px) 100vw, 1200px">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/homepage-refinement.css') }}">
+{% endblock %}
+
 {% block content %}
+<div class="dc-home">
 
-<!-- ============================================================
-     DESERT CUBS — HOMEPAGE v3 (2026)
-     • All grids use @media CSS — zero Tailwind responsive deps
-     • Container: 1440px max-width (fills wide monitors)
-     • All data, schema, animations preserved
-============================================================= -->
-<style>
-
-/* ── KEYFRAMES (all GPU-composited: only transform + opacity) ── */
-@keyframes floatY    { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-14px)} }
-/* goldPulse: use scale+opacity instead of box-shadow (GPU composited) */
-@keyframes goldPulse { 0%,100%{opacity:.8;transform:scale(1)} 50%{opacity:1;transform:scale(1.04)} }
-/* goldGlow: use filter brightness instead of box-shadow */
-@keyframes goldGlow  { 0%,100%{filter:brightness(1) drop-shadow(0 4px 8px rgba(255,204,0,.3))} 50%{filter:brightness(1.15) drop-shadow(0 8px 24px rgba(255,204,0,.55))} }
-/* shimmerBtn: use translateX on ::before pseudo-element (done via will-change below) */
-@keyframes shimmerBtn{ 0%{background-position:-200% center} 100%{background-position:200% center} }
-@keyframes rotateCW  { from{transform:rotate(0deg)}  to{transform:rotate(360deg)} }
-@keyframes rotateCCW { from{transform:rotate(0deg)}  to{transform:rotate(-360deg)} }
-@keyframes bounceScr { 0%,100%{transform:translateX(-50%) translateY(0);opacity:.5} 50%{transform:translateX(-50%) translateY(9px);opacity:1} }
-@keyframes trustMrq  { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-@keyframes liveDot   { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.6)} }
-@keyframes lineReveal{ from{width:0} to{width:52px} }
-@keyframes fadeUp    { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
-
-/* ── SCROLL REVEAL ────────────────────────────────────────── */
-.dcr{opacity:0;transform:translateY(36px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
-.dcr.on{opacity:1;transform:translateY(0)}
-.dcr.d1{transition-delay:.07s} .dcr.d2{transition-delay:.14s} .dcr.d3{transition-delay:.21s}
-.dcr.d4{transition-delay:.28s} .dcr.d5{transition-delay:.35s} .dcr.d6{transition-delay:.42s}
-
-/* ── CONTAINER — 1440px wide, responsive padding ─────────── */
-.dc-con{width:100%;max-width:1440px;margin:0 auto;padding:0 20px}
-@media(min-width:640px) {.dc-con{padding:0 32px}}
-@media(min-width:1024px){.dc-con{padding:0 56px}}
-@media(min-width:1440px){.dc-con{padding:0 80px}}
-
-/* ── HERO GRID ────────────────────────────────────────────── */
-.hero-grid{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
-.hero-grid>*{min-width:0}
-@media(min-width:1024px){.hero-grid{grid-template-columns:1fr 1fr;gap:60px}}
-
-/* Hero image — desktop slideshow */
-.hero-img{display:none}
-@media(min-width:1024px){.hero-img{display:block;position:relative}}
-.hero-slide{position:absolute;inset:0;opacity:0;visibility:hidden;animation:heroAlumniSwap 18s infinite;will-change:opacity}
-.hero-slide[href]{cursor:pointer}
-.hero-slide:nth-child(1){animation-delay:0s}
-.hero-slide:nth-child(2){animation-delay:6s}
-.hero-slide:nth-child(3){animation-delay:12s}
-.hero-slide img.hero-person{width:100%;height:100%;object-fit:cover;display:block}
-.hero-alumni-card{position:absolute;bottom:20px;left:20px;right:20px;
-                  background:rgba(255,255,255,.08);backdrop-filter:blur(12px);
-                  border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:15px 18px;z-index:3}
-@keyframes heroAlumniSwap{0%,27%{opacity:1;visibility:visible}33%,100%{opacity:0;visibility:hidden}}
-.hero-mobile-showcase{display:block;margin-top:30px;animation:fadeUp .8s .5s ease both}
-.hero-mobile-scroll{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,82%);gap:14px;overflow-x:auto;padding:2px 2px 12px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#FFCC00 #001045}
-.hero-mobile-card{position:relative;display:block;min-height:330px;border-radius:22px;overflow:hidden;border:1.5px solid rgba(255,204,0,.28);background:#001f66;scroll-snap-align:start;text-decoration:none;box-shadow:0 24px 60px rgba(0,0,0,.35)}
-.hero-mobile-card img{width:100%;height:330px;object-fit:cover;display:block}
-.hero-mobile-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.9) 0%,transparent 56%);pointer-events:none}
-.hero-mobile-badge{position:absolute;left:14px;right:14px;bottom:14px;z-index:2;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px);border-radius:14px;padding:12px 14px}
-@media(min-width:1024px){.hero-mobile-showcase{display:none}}
-
-/* ── TRUST STRIP GRID ─────────────────────────────────────── */
-.trust-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-@media(min-width:768px){.trust-grid{grid-template-columns:repeat(4,1fr)}}
-
-/* ── LOCATIONS GRID ───────────────────────────────────────── */
-.loc-grid{display:flex;flex-wrap:wrap;gap:24px;justify-content:center}
-
-/* ── FEATURES GRID ────────────────────────────────────────── */
-.feat-grid{display:grid;grid-template-columns:1fr;gap:20px}
-@media(min-width:768px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.feat-grid{grid-template-columns:repeat(3,1fr)}}
-
-/* ── TOURS GRID ───────────────────────────────────────────── */
-.tours-grid{display:grid;grid-template-columns:1fr;gap:24px}
-@media(min-width:768px){.tours-grid{grid-template-columns:repeat(3,1fr)}}
-
-/* ── REVIEWS GRID ─────────────────────────────────────────── */
-.rev-grid{display:grid;grid-template-columns:1fr;gap:24px}
-@media(min-width:768px){.rev-grid{grid-template-columns:repeat(3,1fr)}}
-
-/* ── TICKER FLEX ──────────────────────────────────────────── */
-.ticker-row{display:flex;flex-direction:column;gap:10px;align-items:center}
-@media(min-width:768px){.ticker-row{flex-direction:row;justify-content:space-between}}
-.ticker-desc{display:none}
-@media(min-width:768px){.ticker-desc{display:block}}
-
-/* ── STATS BAR ────────────────────────────────────────────── */
-.stat-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
-          border-top:1px solid rgba(255,255,255,.08);padding-top:28px}
-
-/* ── HERO CTA ROW ─────────────────────────────────────────── */
-.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:36px}
-@media(max-width:520px){
-    .hero-ctas{flex-direction:column;align-items:stretch}
-    .hero-ctas .btn-shimmer,.hero-ctas .btn-outline{width:100%;justify-content:center}
-    .stat-bar{gap:8px}
-}
-
-/* ── SHIMMER BUTTON (GPU-composited: pseudo-element translateX) */
-.btn-shimmer{position:relative;overflow:hidden;
-             background:#FFCC00;
-             color:#001f66!important;font-family:'Nunito',sans-serif;font-weight:900;
-             font-size:.86rem;letter-spacing:.07em;text-transform:uppercase;
-             text-decoration:none;border:none;cursor:pointer;border-radius:999px;
-             padding:13px 28px;display:inline-flex;align-items:center;gap:8px;
-             transition:transform .25s,box-shadow .25s;white-space:nowrap;
-             box-shadow:0 4px 18px rgba(255,204,0,.45)}
-.btn-shimmer::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
-             background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);
-             animation:shimmerBtn 2.5s ease-in-out infinite;will-change:transform}
-@keyframes shimmerBtn{0%{transform:translateX(-100%)} 60%,100%{transform:translateX(280%)}}
-.btn-shimmer:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,204,0,.55);color:#001f66!important}
-
-/* ── OUTLINE BUTTON ───────────────────────────────────────── */
-.btn-outline{display:inline-flex;align-items:center;gap:8px;
-             border:2px solid rgba(255,255,255,.3);color:#ffffff;
-             font-family:'Nunito',sans-serif;font-weight:900;font-size:.86rem;
-             text-transform:uppercase;letter-spacing:.07em;text-decoration:none;
-             padding:12px 24px;border-radius:999px;transition:all .25s ease}
-.btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.6);color:#ffffff}
-
-/* ── SECTION HEADER ───────────────────────────────────────── */
-.sec-hd{text-align:center;margin-bottom:52px}
-.sec-tag-blue{font-family:'Nunito',sans-serif;font-weight:900;font-size:.7rem;
-              letter-spacing:.28em;text-transform:uppercase;color:#003399;
-              display:block;margin-bottom:10px}
-.sec-tag-gold{font-family:'Nunito',sans-serif;font-weight:900;font-size:.7rem;
-              letter-spacing:.28em;text-transform:uppercase;color:#FFCC00;
-              display:block;margin-bottom:10px}
-.gold-bar{width:52px;height:4px;background:linear-gradient(90deg,#FFCC00,#e6b800);
-          border-radius:2px;margin:14px auto 0;animation:lineReveal .8s ease forwards}
-
-/* ── CARD COMPONENTS ──────────────────────────────────────── */
-.loc-card{background:#fff;border:1.5px solid #e8ecf4;border-radius:22px;
-          overflow:hidden;display:flex;flex-direction:column;width:100%;
-          transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s ease,border-color .4s ease}
-.loc-card:hover{transform:translateY(-7px);box-shadow:0 28px 70px rgba(0,51,153,.14);border-color:rgba(255,204,0,.45)}
-.loc-card:hover .loc-img{transform:scale(1.07)}
-.loc-img{transition:transform .65s cubic-bezier(.16,1,.3,1)}
-@media(min-width:768px){.loc-card{width:calc(50% - 12px)}}
-@media(min-width:1024px){.loc-card{width:calc(33.333% - 16px)}}
-@media(min-width:1024px){.loc-grid{max-width:1120px;margin:0 auto}}
-
-.feat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
-           border-radius:22px;padding:28px;
-           transition:all .35s cubic-bezier(.16,1,.3,1)}
-.feat-card:hover{background:rgba(255,204,0,.08);border-color:rgba(255,204,0,.3);
-                 transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.25)}
-.feat-card:hover .feat-ico{transform:scale(1.12);animation:goldGlow 1.5s ease infinite}
-.feat-ico{width:52px;height:52px;background:#FFCC00;border-radius:14px;
-          display:flex;align-items:center;justify-content:center;
-          margin-bottom:18px;transition:transform .3s ease}
-
-.legend-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
-             border-radius:18px;padding:22px 18px;text-align:center;flex-shrink:0;
-             width:165px;transition:all .3s ease}
-.legend-card:hover{background:rgba(255,204,0,.1);border-color:rgba(255,204,0,.4);transform:translateY(-5px)}
-
-.rev-card{background:#fff;border:1.5px solid #e8ecf4;border-radius:22px;padding:28px;
-          position:relative;overflow:hidden;
-          transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
-.rev-card::before{content:'\201C';position:absolute;top:-8px;right:18px;
-                  font-family:'Teko',sans-serif;font-size:7rem;
-                  color:rgba(0,51,153,.06);line-height:1;pointer-events:none}
-.rev-card:hover{transform:translateY(-5px);box-shadow:0 22px 55px rgba(0,51,153,.12);border-color:rgba(255,204,0,.35)}
-
-.tour-past{background:#f8fafc;border:1.5px solid #e5e7eb;border-radius:22px;
-           overflow:hidden;cursor:pointer;
-           transition:transform .4s ease,box-shadow .4s ease}
-.tour-past:hover{transform:translateY(-5px);box-shadow:0 22px 55px rgba(0,51,153,.12)}
-.tour-past:hover .tour-img{transform:scale(1.06)}
-.tour-img{transition:transform .65s cubic-bezier(.16,1,.3,1)}
-
-/* ── FAQ ACCORDION ────────────────────────────────────────── */
-.faq-item{background:#fff;border-radius:18px;border:1px solid #e2e8f0;overflow:hidden;
-          transition:box-shadow .3s ease}
-.faq-item:hover{box-shadow:0 8px 28px rgba(0,51,153,.08)}
-.faq-hdr{display:flex;justify-content:space-between;align-items:center;
-         padding:22px 28px;cursor:pointer;user-select:none;gap:16px}
-.faq-ico{width:32px;height:32px;border-radius:50%;background:#003399;
-         display:flex;align-items:center;justify-content:center;flex-shrink:0;
-         transition:transform .3s ease,background .3s ease}
-.faq-item.open .faq-ico{transform:rotate(45deg);background:#FFCC00}
-.faq-item.open .faq-ico i{color:#001f66}
-.faq-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.16,1,.3,1);padding:0 28px}
-.faq-item.open .faq-body{max-height:300px;padding-bottom:22px}
-
-/* ── LEGEND SCROLL WRAPPER ────────────────────────────────── */
-.legend-scroll{overflow-x:auto;padding-bottom:12px;
-               scrollbar-width:thin;scrollbar-color:#FFCC00 #001045;cursor:grab}
-.legend-scroll:active{cursor:grabbing}
-.legend-track{display:flex;gap:16px;width:max-content;padding:4px 2px}
-
-/* ── TRUST ICON HOVER ─────────────────────────────────────── */
-.trust-ico{width:58px;height:58px;
-           background:linear-gradient(135deg,#001f66,#003399);
-           border-radius:16px;display:flex;align-items:center;justify-content:center;
-           margin:0 auto 14px;box-shadow:0 6px 20px rgba(0,51,153,.22);
-           transition:transform .3s ease}
-.trust-ico:hover{transform:scale(1.1)}
-
-</style>
-
-
-<!-- ============================================================
-     1. HERO — 2026/27 relaunch
-============================================================= -->
-<section aria-label="Desert Cubs Cricket Academy UAE — Hero"
-         style="background:linear-gradient(135deg,#000d1a 0%,#001045 40%,#001f66 75%,#001a55 100%);
-                position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;">
-
-    <picture aria-hidden="true">
-        <source media="(max-width: 720px)" srcset="{{ url_for('static', filename='img/DC_UK_2026/hero-mobile.webp') }}" type="image/webp">
-        <source srcset="{{ url_for('static', filename='img/DC_UK_2026/hero-desktop.webp') }}" type="image/webp">
-        <img src="{{ url_for('static', filename='img/DC_UK_2026/hero-desktop.webp') }}"
-             alt=""
-             width="2400" height="1600"
-             fetchpriority="high" loading="eager"
-             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;opacity:.34;z-index:0;">
-    </picture>
-    <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,13,51,.98) 0%,rgba(0,16,69,.9) 38%,rgba(0,31,102,.6) 66%,rgba(0,31,102,.28) 100%);z-index:0;"></div>
-
-    <!-- Grid texture -->
-    <div aria-hidden="true"
-         style="position:absolute;inset:0;pointer-events:none;z-index:0;
-                background-image:linear-gradient(rgba(255,204,0,.025) 1px,transparent 1px),
-                linear-gradient(90deg,rgba(255,204,0,.025) 1px,transparent 1px);
-                background-size:64px 64px;"></div>
-
-    <!-- Animated decorative rings -->
-    <div aria-hidden="true"
-         style="position:absolute;top:50%;right:0;transform:translate(0,-50%);
-                width:640px;height:640px;pointer-events:none;z-index:0;">
-        <div style="position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,204,0,.06);animation:rotateCW 30s linear infinite;will-change:transform;"></div>
-        <div style="position:absolute;inset:50px;border-radius:50%;border:1px solid rgba(255,255,255,.04);animation:rotateCCW 22s linear infinite;will-change:transform;"></div>
-        <div style="position:absolute;inset:120px;border-radius:50%;border:1px solid rgba(255,204,0,.05);animation:rotateCW 18s linear infinite;will-change:transform;"></div>
-    </div>
-    <!-- Gold radial glow top-right -->
-    <div aria-hidden="true"
-         style="position:absolute;top:-120px;right:-120px;width:500px;height:500px;
-                background:radial-gradient(circle,rgba(255,204,0,.09) 0%,transparent 65%);
-                pointer-events:none;z-index:0;"></div>
-
-    <div style="position:relative;z-index:1;width:100%;padding:80px 0 60px;">
-    <div class="dc-con">
-    <div class="hero-grid">
-
-        <!-- LEFT: Copy -->
-        <div>
-            <!-- Live badge -->
-            <div style="display:inline-flex;align-items:center;gap:10px;
-                        background:rgba(255,204,0,.1);border:1px solid rgba(255,204,0,.3);
-                        border-radius:999px;padding:8px 18px;margin-bottom:24px;
-                        animation:fadeUp .7s ease both;">
-                <span style="width:8px;height:8px;background:#FFCC00;border-radius:50%;animation:liveDot 1.8s ease infinite;"></span>
-                <span style="color:#FFCC00;font-family:'Nunito',sans-serif;font-weight:900;
-                             font-size:.68rem;text-transform:uppercase;letter-spacing:.22em;">
-                    2026/27 Season Began Saturday, 05 September 2026 — Register Now</span>
+    <section class="dc-hero" aria-labelledby="home-title">
+        <div class="dc-wrap dc-hero-copy">
+            <p class="dc-kicker"><span aria-hidden="true"></span> Siraj Finance Desert Cubs · Est. 2007 · 2026/27 season began 05 September 2026</p>
+            <h1 id="home-title">We don’t just train cricketers.<br><span>We build legends.</span></h1>
+            <p class="dc-hero-lede">From grassroots cricket to national teams, international stages and the IPL.</p>
+            <div class="dc-actions">
+                <a class="dc-button dc-button-gold" href="{{ season_registration_url }}" target="_blank" rel="noopener" data-track-event="season_register_click" data-track-label="Homepage legacy hero">Join Desert Cubs <span aria-hidden="true">↗</span></a>
+                <a class="dc-button dc-button-outline" href="#legacy">Explore our legacy <span aria-hidden="true">↓</span></a>
             </div>
-
-            <!-- H1 -->
-            <h1 style="font-family:'Teko',sans-serif;font-weight:700;text-transform:uppercase;
-                       line-height:.95;margin-bottom:20px;letter-spacing:.01em;
-                       animation:fadeUp .8s .1s ease both;">
-                <span style="color:#ffffff;font-size:clamp(2.45rem,6vw,5rem);display:block;">Build The</span>
-                <span style="color:#FFCC00;font-size:clamp(2.55rem,10vw,6.5rem);display:block;
-                             text-shadow:0 0 60px rgba(255,204,0,.2);">Next Champion</span>
-            </h1>
-
-            <!-- Sub-copy -->
-            <p style="font-family:'Nunito',sans-serif;font-size:1.05rem;line-height:1.85;
-                      color:#8ba3c7;margin-bottom:30px;max-width:520px;
-                      animation:fadeUp .8s .2s ease both;">
-                World-class junior cricket coaching across
-                <strong style="color:#fff;font-weight:800;">five centres in Dubai and Sharjah.</strong>
-                The new season began
-                <strong style="color:#fff;font-weight:800;">Saturday, 05 September 2026.</strong>
-                Boys and girls across all skill levels are welcome.
-            </p>
-
-            <!-- CTAs -->
-            <div class="hero-ctas" style="animation:fadeUp .8s .3s ease both;">
-                <a href="{{ season_registration_url }}" target="_blank" rel="noopener" class="btn-shimmer"
-                   aria-label="Register for the Desert Cubs 2026/27 season"
-                   data-track-event="season_register_click" data-track-label="Homepage hero primary">
-                    <i class="fas fa-user-plus" style="font-size:.82rem;" aria-hidden="true"></i>
-                    Register for the 2026/27 Season
-                </a>
-                <a href="#branches" class="btn-outline">
-                    <i class="fas fa-map-marker-alt" style="font-size:.82rem;" aria-hidden="true"></i>
-                    Find Your Nearest Branch
-                </a>
+            <div class="dc-hero-facts" aria-label="Desert Cubs in 2026/27">
+                <div><strong>17</strong><span>ECB league teams</span></div>
+                <div><strong>220+</strong><span>Players at the 2026/27 capping ceremony</span></div>
+                <div><strong>5</strong><span>Active training centres</span></div>
             </div>
+        </div>
+        <figure class="dc-hero-photo dc-wrap">
+            <picture>
+                <source type="image/webp" srcset="{{ url_for('static', filename='img/homepage/ecb-capping-group-2026-960.webp') }} 960w, {{ url_for('static', filename='img/homepage/ecb-capping-group-2026-1600.webp') }} 1600w, {{ url_for('static', filename='img/homepage/ecb-capping-group-2026-2200.webp') }} 2200w" sizes="(max-width: 1200px) 100vw, 1200px">
+                <img src="{{ url_for('static', filename='img/homepage/ecb-capping-group-2026-1600.webp') }}" alt="Desert Cubs players and coaches at the 2026/27 ECB National Academy League capping ceremony on 27 September 2026" width="2200" height="1276" fetchpriority="high" loading="eager">
+            </picture>
+            <figcaption><span>2026 DC Capping Ceremony</span><span>ECB National Academy League · 27 September 2026</span></figcaption>
+        </figure>
+        <div class="dc-hero-bottom" aria-hidden="true"><span>Dubai</span><i></i><span>Sharjah</span><i></i><span>One cricket family</span></div>
+    </section>
 
-            <!-- Stats bar -->
-            <div class="stat-bar" style="animation:fadeUp .8s .4s ease both;">
-                <div>
-                    <p style="font-family:'Teko',sans-serif;font-size:2.8rem;font-weight:700;color:#FFCC00;line-height:1;"
-                       class="counter" data-target="15000" data-suffix="K+">15.0K+</p>
-                    <p style="font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:800;
-                               color:#4d6b94;text-transform:uppercase;letter-spacing:.14em;margin-top:3px;">Alumni Trained</p>
-                </div>
-                <div>
-                    <p style="font-family:'Teko',sans-serif;font-size:2.8rem;font-weight:700;color:#FFCC00;line-height:1;"
-                       class="counter" data-target="5" data-suffix="">5</p>
-                    <p style="font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:800;
-                               color:#4d6b94;text-transform:uppercase;letter-spacing:.14em;margin-top:3px;">Training Centres</p>
-                </div>
-                <div>
-                    <p style="font-family:'Teko',sans-serif;font-size:2.8rem;font-weight:700;color:#FFCC00;line-height:1;"
-                       class="counter" data-target="19" data-suffix="+">19+</p>
-                    <p style="font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:800;
-                               color:#4d6b94;text-transform:uppercase;letter-spacing:.14em;margin-top:3px;">Years of Legacy</p>
-                </div>
-            </div>
-
-            <div class="hero-mobile-showcase" aria-label="Desert Cubs UK Tour 2026 at Lord's">
-                <div class="hero-mobile-card" style="min-height:260px;">
-                    <img src="{{ url_for('static', filename='img/DC_UK_2026/hero-mobile.webp') }}"
-                         alt="Desert Cubs Cricket Academy touring teams at Lord's Cricket Ground during the successful UK Tour 2026."
-                         width="420" height="280" loading="eager"
-                         style="height:280px;object-position:center 42%;">
-                    <div class="hero-mobile-badge">
-                        <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.25rem;color:#fff;text-transform:uppercase;line-height:1;margin:0;">UK Tour 2026</p>
-                        <p style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.65rem;color:#FFCC00;text-transform:uppercase;letter-spacing:.1em;margin:5px 0 0;">Successfully completed at Lord's</p>
-                    </div>
-                </div>
-            </div>
-
-        </div><!-- /.left col -->
-
-        <!-- RIGHT: Hero image (desktop only via CSS) -->
-        <div class="hero-img">
-            <!-- Animated ring behind image -->
-            <div aria-hidden="true"
-                 style="position:absolute;inset:-28px;border-radius:30px;
-                        border:1px solid rgba(255,204,0,.12);
-                        animation:floatY 6s ease-in-out infinite;pointer-events:none;"></div>
-
-            <div style="border-radius:28px;overflow:hidden;height:520px;
-                        box-shadow:0 40px 100px rgba(0,0,0,.6);
-                        border:2px solid rgba(255,204,0,.2);position:relative;">
-                <img class="hero-person"
-                     src="{{ url_for('static', filename='img/DC_UK_2026/hero-desktop.webp') }}"
-                     alt="Desert Cubs Cricket Academy touring teams at Lord's Cricket Ground during the successful UK Tour 2026."
-                     width="700" height="520"
-                     fetchpriority="high" loading="eager"
-                     style="width:100%;height:100%;object-fit:cover;object-position:center 42%;">
-                <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.86) 0%,rgba(0,13,51,.08) 62%);"></div>
-                <div class="hero-alumni-card">
-                    <div style="display:flex;align-items:center;gap:13px;">
-                        <div style="width:42px;height:42px;background:#FFCC00;border-radius:50%;
-                                    display:flex;align-items:center;justify-content:center;flex-shrink:0;
-                                    animation:goldGlow 2s ease infinite;">
-                            <i class="fas fa-camera" style="color:#001f66;font-size:1rem;" aria-hidden="true"></i>
-                        </div>
-                        <div>
-                            <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.25rem;
-                                       color:#fff;text-transform:uppercase;line-height:1;">UK Tour 2026</p>
-                            <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;
-                                       color:#FFCC00;text-transform:uppercase;letter-spacing:.1em;">
-                                Successfully completed at Lord's Cricket Ground</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ECB badge -->
-            <div style="position:absolute;top:-18px;left:-18px;background:#003399;
-                        border:2px solid #FFCC00;border-radius:16px;padding:13px 17px;
-                        box-shadow:0 10px 32px rgba(0,0,0,.45);animation:floatY 5s 1s ease-in-out infinite;">
-                <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.6rem;color:#FFCC00;text-transform:uppercase;line-height:1;">ECB</p>
-                <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:.6rem;color:#fff;text-transform:uppercase;letter-spacing:.1em;">Affiliated<br>Academy</p>
-            </div>
-        </div><!-- /.hero-img -->
-
-    </div><!-- /.hero-grid -->
-    </div><!-- /.dc-con -->
-    </div>
-
-    <!-- Scroll indicator -->
-    <div aria-hidden="true"
-         style="position:absolute;bottom:26px;left:50%;
-                animation:bounceScr 2.2s ease-in-out infinite;
-                color:rgba(255,255,255,.35);font-size:1.4rem;">
-        <i class="fas fa-chevron-down"></i>
-    </div>
-</section>
-
-
-<!-- ============================================================
-     2. SEASON REGISTRATION STRIP
-============================================================= -->
-<div style="background:#FFCC00;position:relative;overflow:hidden;border-top:3px solid rgba(0,31,102,.1);">
-    <div class="dc-con" style="padding-top:14px;padding-bottom:14px;">
-    <div class="ticker-row">
-        <div style="display:flex;align-items:center;gap:14px;">
-            <div style="width:42px;height:42px;background:#001f66;border-radius:50%;
-                        display:flex;align-items:center;justify-content:center;flex-shrink:0;
-                        animation:goldPulse 2s infinite;">
-                <i class="fas fa-cricket-bat-ball" style="color:#FFCC00;" aria-hidden="true"></i>
-            </div>
+    <section class="dc-section dc-legacy" id="legacy" aria-labelledby="legacy-title">
+        <div class="dc-wrap dc-legacy-grid">
             <div>
-                <p style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.65rem;
-                           color:#001f66;text-transform:uppercase;letter-spacing:.22em;opacity:.7;">
-                    Season Launch</p>
-                <h2 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.85rem;
-                            color:#001f66;text-transform:uppercase;line-height:1.1;">
-                    2026/27 Season Began 05 September 2026</h2>
+                <p class="dc-eyebrow">From 11 young cricketers to a UAE-wide academy</p>
+                <h2 id="legacy-title">A legacy built<br>one player at a time.</h2>
+                <p class="dc-body">Founded in Sharjah in 2007, Desert Cubs has grown into a junior cricket academy serving families across Dubai and Sharjah. The journey brings together structured coaching, match opportunities, international tours and a community that stays with its players.</p>
+                <a class="dc-text-link" href="/about">Discover the Desert Cubs story <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="dc-legacy-stats" aria-label="Desert Cubs legacy">
+                <div><strong>2007</strong><span>Founded in Sharjah</span></div>
+                <div><strong>15,000+</strong><span>Alumni</span></div>
+                <div><strong>Dubai + Sharjah</strong><span>Five active centres</span></div>
+                <div><strong>Since day one</strong><span>Girls and boys on the field</span></div>
             </div>
         </div>
-        <p class="ticker-desc"
-           style="font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;
-                  color:#001f66;opacity:.8;max-width:320px;text-align:center;">
-            Register now for junior cricket coaching across Dubai and Sharjah.</p>
-        <a href="{{ season_registration_url }}" target="_blank" rel="noopener" class="btn-blue"
-           style="padding:10px 22px;font-size:.82rem;flex-shrink:0;"
-           aria-label="Register for the Desert Cubs 2026/27 season"
-           data-track-event="season_register_click" data-track-label="Homepage launch strip">
-            Register Now <i class="fas fa-arrow-right" style="font-size:.78rem;" aria-hidden="true"></i>
-        </a>
-    </div>
-    </div>
-</div>
+        <div class="dc-wrap dc-legacy-links">
+            <a href="/tournaments"><span>01</span><strong>Compete</strong><small>Academy leagues and ECB competition</small><b aria-hidden="true">↗</b></a>
+            <a href="/tours"><span>02</span><strong>Travel</strong><small>International cricket tours and match experience</small><b aria-hidden="true">↗</b></a>
+            <a href="/legends"><span>03</span><strong>Progress</strong><small>Follow the players and their journeys</small><b aria-hidden="true">↗</b></a>
+        </div>
+    </section>
 
-
-<!-- ============================================================
-     3. ANIMATED TRUST MARQUEE — dark scrolling strip
-============================================================= -->
-<div style="background:#000d1a;overflow:hidden;padding:15px 0;border-bottom:1px solid rgba(255,204,0,.1);">
-    <div style="display:flex;width:max-content;animation:trustMrq 30s linear infinite;">
-        {% for item in ['ECB Affiliated Academy','Age-Group Pathways','Est. 2007','15,000+ Alumni',
-                        '5 Training Centres','2026/27 Registration Open','UK Tours',
-                        'Australia Tours','Sri Lanka Tours','Best Cricket Academy UAE',
-                        'Dubai & Sharjah','ECB Affiliated Academy','Age-Group Pathways','Est. 2007',
-                        '15,000+ Alumni','5 Training Centres','2026/27 Registration Open',
-                        'UK Tours','Australia Tours','Sri Lanka Tours',
-                        'Best Cricket Academy UAE','Dubai & Sharjah'] %}
-        <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.75rem;
-                     text-transform:uppercase;letter-spacing:.16em;color:#4d6b94;
-                     padding:0 22px;display:flex;align-items:center;gap:22px;white-space:nowrap;">
-            {{ item }}<span style="width:5px;height:5px;background:#FFCC00;border-radius:50%;flex-shrink:0;"></span>
-        </span>
-        {% endfor %}
-    </div>
-</div>
-
-
-<!-- ============================================================
-     4. TRUST BADGES — 4 pillars
-============================================================= -->
-<section style="background:#ffffff;padding:52px 0;border-bottom:1px solid #e8ecf4;">
-    <div class="dc-con">
-        <div class="trust-grid">
-            {% for icon, title, sub in [
-                ('fa-shield-halved','ECB Affiliated','Academy Pathway'),
-                ('fa-children','Age-Group Pathways','Boys & Girls'),
-                ('fa-plane','Global Tours','UK, Australia, Sri Lanka'),
-                ('fa-trophy','15K+ Alumni','Champions Produced'),
-            ] %}
-            <div class="dcr d{{ loop.index }}" style="padding:20px;text-align:center;">
-                <div class="trust-ico">
-                    <i class="fas {{ icon }}" style="color:#FFCC00;font-size:1.3rem;" aria-hidden="true"></i>
-                </div>
-                <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.25rem;
-                           color:#001f66;text-transform:uppercase;line-height:1.1;margin-bottom:4px;">{{ title }}</p>
-                <p style="font-family:'Nunito',sans-serif;font-size:.78rem;font-weight:700;
-                           color:#64748b;text-transform:uppercase;letter-spacing:.1em;">{{ sub }}</p>
+    <section class="dc-section dc-players" id="player-pathway" aria-labelledby="players-title">
+        <div class="dc-wrap">
+            <div class="dc-section-head dc-section-head-dark">
+                <p class="dc-eyebrow">A proud moment for the academy</p>
+                <h2 id="players-title">From Desert Cubs<br><span>to the UAE national team.</span></h2>
+                <p class="dc-body">Every player’s journey is different. These stories show where commitment, opportunity and a love of cricket can lead.</p>
             </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-
-<!-- ============================================================
-     5. LOCATIONS / BRANCHES
-============================================================= -->
-<section id="branches" style="background:#f4f7fd;padding:88px 0;"
-         aria-label="Cricket training centres in Dubai and Sharjah">
-    <div class="dc-con">
-
-        <div class="sec-hd dcr">
-            <span class="sec-tag-blue">5 World-Class Centres</span>
-            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
-                        font-size:clamp(2.2rem,4vw,3.4rem);color:#001f66;
-                        text-transform:uppercase;margin-bottom:12px;line-height:1.05;">
-                Find Your <span style="color:#FFCC00;-webkit-text-stroke:1px #e6b800;">Nearest Location</span>
-            </h2>
-            <div class="gold-bar"></div>
-            <p style="font-family:'Nunito',sans-serif;color:#4d6b94;font-size:.97rem;
-                       max-width:460px;margin:16px auto 0;line-height:1.75;">
-                Cricket training centres across Dubai and Sharjah — find the one nearest to you.</p>
-        </div>
-
-        <div class="loc-grid">
-            {% for branch in branches if branch.get('active', True) %}
-            <article class="loc-card dcr d{{ loop.index }}"
-                     itemscope itemtype="https://schema.org/SportsActivityLocation">
-                <div style="height:200px;overflow:hidden;position:relative;background:#001f66;">
-                    <picture>
-                        <source srcset="{{ url_for('static', filename='img/' + branch.img.replace('.jpg','.webp')) }}" type="image/webp">
-                        <img src="{{ url_for('static', filename='img/' + branch.img) }}"
-                             alt="{{ branch.name }} — Cricket Academy in {{ branch.area }}, UAE"
-                             width="600" height="200" loading="lazy" class="loc-img"
-                             style="width:100%;height:100%;object-fit:cover;"
-                             itemprop="image"
-                             onerror="this.style.display='none'">
-                    </picture>
-                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,13,51,.7) 0%,transparent 55%);"></div>
-                    <div style="position:absolute;top:14px;left:14px;background:#FFCC00;color:#001f66;
-                                font-family:'Nunito',sans-serif;font-weight:900;font-size:.68rem;
-                                text-transform:uppercase;letter-spacing:.08em;padding:4px 13px;
-                                border-radius:999px;box-shadow:0 3px 10px rgba(255,204,0,.4);">
-                        {{ branch.area }}</div>
+            <article class="dc-national-feature">
+                <div class="dc-national-portraits">
+                    <a href="/legends/mohammed-nafees" class="dc-national-player">
+                        <img src="{{ url_for('static', filename='img/homepage/mohammed-nafees.webp') }}" alt="Mohammed Nafees, selected for the UAE U19 National Team" width="700" height="812" loading="lazy">
+                        <span><strong>Mohammed Nafees</strong><small>UAE U19 National Team</small></span>
+                    </a>
+                    <a href="/legends/jordan-alvares" class="dc-national-player">
+                        <img src="{{ url_for('static', filename='img/homepage/jordan-alvares.webp') }}" alt="Jordan Alvares, selected for the UAE U19 National Team" width="700" height="812" loading="lazy">
+                        <span><strong>Jordan Alvares</strong><small>UAE U19 National Team</small></span>
+                    </a>
                 </div>
-                <div style="padding:22px 24px;flex-grow:1;display:flex;flex-direction:column;">
-                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.55rem;
-                                color:#001f66;text-transform:uppercase;line-height:1.1;margin-bottom:8px;"
-                        itemprop="name">{{ branch.name }}</h3>
-                    <p style="font-family:'Nunito',sans-serif;font-size:.85rem;color:#4d6b94;
-                               line-height:1.7;margin-bottom:14px;flex-grow:1;"
-                       itemprop="description">{{ branch.desc }}</p>
-                    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">
-                        {% for fac in branch.facilities[:4] %}
-                        <span style="background:#eef2ff;color:#003399;font-family:'Nunito',sans-serif;
-                                     font-weight:800;font-size:.66rem;text-transform:uppercase;
-                                     padding:3px 10px;border-radius:999px;border:1px solid #c7d4f5;">
-                            {{ fac }}</span>
-                        {% endfor %}
-                    </div>
-                    <div style="display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid #f1f5f9;padding-top:14px;">
-                        <a href="/locations/{{ branch.id }}" class="btn-gold"
-                           style="padding:9px 18px;font-size:.78rem;flex:1;justify-content:center;"
-                           data-track-event="branch_view" data-track-label="{{ branch.id }}">
-                            <i class="fas fa-info-circle" style="font-size:.74rem;" aria-hidden="true"></i> Details
-                        </a>
-                        {% if branch.map_url %}
-                        <a href="{{ branch.map_url }}" target="_blank" rel="noopener"
-                           class="btn-blue" style="padding:9px 16px;font-size:.78rem;border-radius:12px;"
-                           aria-label="View {{ branch.name }} on map"
-                           data-track-event="directions_click" data-track-label="{{ branch.id }}">
-                            <i class="fas fa-map" style="font-size:.74rem;" aria-hidden="true"></i>
-                        </a>
-                        {% endif %}
-                        <button onclick="openSchedule('{{ url_for('static', filename='img/' + branch.schedule_img) }}','{{ branch.name }}')"
-                                class="btn-blue" style="padding:9px 16px;font-size:.78rem;border-radius:12px;"
-                                data-track-event="schedule_view" data-track-label="{{ branch.id }}"
-                                aria-label="View training schedule for {{ branch.name }}">
-                            <i class="fas fa-clock" style="font-size:.74rem;" aria-hidden="true"></i>
-                        </button>
-                    </div>
+                <div class="dc-national-copy">
+                    <p class="dc-eyebrow">U19 Asia Cup 2026 · Oman</p>
+                    <h3>Two Desert Cubs stars.<br><span>One national honour.</span></h3>
+                    <p>Congratulations to Mohammed Nafees and Jordan Alvares on their selection to represent the UAE U19 National Team at the U19 Asia Cup 2026 in Oman.</p>
+                    <div class="dc-national-links"><a href="/legends/mohammed-nafees">Meet Mohammed <span aria-hidden="true">↗</span></a><a href="/legends/jordan-alvares">Meet Jordan <span aria-hidden="true">↗</span></a></div>
+                    <p class="dc-national-note">Their earlier age-group achievements remain part of the journey. Read each player profile for verified career milestones.</p>
                 </div>
             </article>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-
-<!-- ============================================================
-     6. WHY DESERT CUBS — 6 features
-============================================================= -->
-<section style="background:linear-gradient(135deg,#000d1a 0%,#001045 50%,#001f66 100%);padding:88px 0;">
-    <div class="dc-con">
-
-        <div class="sec-hd dcr">
-            <span class="sec-tag-gold">Why Families Choose Us</span>
-            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
-                        font-size:clamp(2.2rem,4vw,3.4rem);color:#ffffff;
-                        text-transform:uppercase;margin-bottom:12px;line-height:1.05;">
-                The Desert Cubs <span style="color:#FFCC00;">Difference</span>
-            </h2>
-            <div class="gold-bar"></div>
-        </div>
-
-        <div class="feat-grid">
-            {% for icon, title, desc in [
-                ('fa-chalkboard-teacher','Elite Coaching Staff','ECB & ICC certified coaches with professional playing experience across UAE, India, Sri Lanka, Australia & England.'),
-                ('fa-star','Legend Master Classes','Learn directly from cricket icons — Jonty Rhodes, Marvan Atapattu, Dinesh Karthik, R. Ashwin and more.'),
-                ('fa-plane','International Tours','Annual tours to the UK, Australia, Sri Lanka & South Africa. Real match experience on world stages.'),
-                ('fa-trophy','Competitive Leagues','10 tournaments per season — internal leagues and national/regional championships for all age groups.'),
-                ('fa-venus','Girls\' Cricket','UAE\'s leading girls cricket programme. Our alumni include UAE Women\'s Captain Esha Oza.'),
-                ('fa-chart-line','Video Analysis','Professional video analysis, fitness tracking and personalised development plans for every student.'),
-            ] %}
-            <div class="feat-card dcr d{{ loop.index }}">
-                <div class="feat-ico">
-                    <i class="fas {{ icon }}" style="color:#001f66;font-size:1.3rem;" aria-hidden="true"></i>
-                </div>
-                <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.45rem;
-                            color:#ffffff;text-transform:uppercase;line-height:1.1;margin-bottom:10px;">
-                    {{ title }}</h3>
-                <p style="font-family:'Nunito',sans-serif;font-size:.88rem;color:#6888a8;line-height:1.8;">
-                    {{ desc }}</p>
+            <div class="dc-player-grid">
+                <article class="dc-player-card dc-player-feature">
+                    <a href="/legends/macneil-noronha" class="dc-player-image dc-macneil-image">
+                        <img src="{{ url_for('static', filename='img/macneil-noronha/macneil-main.webp') }}" alt="Macneil Hadley Noronha batting" width="812" height="456" loading="lazy">
+                        <span class="dc-image-label">Desert Cubs alumnus · Chennai Super Kings</span>
+                    </a>
+                    <div class="dc-player-copy"><p class="dc-eyebrow">A landmark moment</p><h3>Macneil Hadley Noronha</h3><p>Desert Cubs alumnus selected by Chennai Super Kings as a replacement player in IPL 2026.</p><a class="dc-text-link" href="/legends/macneil-noronha">Read Macneil’s story <span aria-hidden="true">→</span></a></div>
+                </article>
             </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-
-<!-- ============================================================
-     7. INTERNATIONAL TOURS
-============================================================= -->
-<section style="background:#ffffff;padding:88px 0;">
-    <div class="dc-con">
-
-        <div class="sec-hd dcr">
-            <span class="sec-tag-blue">Since 2008 · 10 Countries</span>
-            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
-                        font-size:clamp(2.2rem,4vw,3.4rem);color:#001f66;
-                        text-transform:uppercase;margin-bottom:12px;line-height:1.05;">
-                International <span style="color:#FFCC00;-webkit-text-stroke:1px #e6b800;">Cricket Tours</span>
-            </h2>
-            <div class="gold-bar"></div>
-        </div>
-
-        <div class="tours-grid">
-            <!-- UK 2026 — Featured -->
-            <div class="dcr d1" style="background:linear-gradient(135deg,#001f66,#003399);
-                 border-radius:22px;padding:32px;border:2px solid #FFCC00;position:relative;overflow:hidden;">
-                <div aria-hidden="true"
-                     style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;
-                            background:rgba(255,204,0,.07);border-radius:50%;pointer-events:none;"></div>
-                <div style="position:relative;z-index:1;">
-                    <span style="background:#FFCC00;color:#001f66;font-family:'Nunito',sans-serif;
-                                 font-weight:900;font-size:.65rem;text-transform:uppercase;
-                                 letter-spacing:.1em;padding:4px 13px;border-radius:999px;
-                                 display:inline-block;margin-bottom:14px;
-                                 animation:goldPulse 2s ease infinite;">
-                        Successfully Completed</span>
-                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:2.4rem;
-                                color:#ffffff;text-transform:uppercase;line-height:1;margin-bottom:10px;">
-                        UK Tour 2026</h3>
-                    <p style="font-family:'Nunito',sans-serif;font-size:.87rem;color:#8ba3c7;
-                               line-height:1.75;margin-bottom:20px;">
-                        Siraj Finance Desert Cubs completed an unforgettable cricket journey across England, combining competitive matches, elite exposure, historic venues and a celebration at Heathrow.
-                    </p>
-                    <div style="display:flex;flex-wrap:wrap;gap:10px;">
-                        <button onclick="openGallery('DC_UK_2026','DC_UK_2026_',12)" class="btn-gold"
-                                style="padding:11px 22px;font-size:.82rem;">
-                            <i class="fas fa-images" style="font-size:.78rem;" aria-hidden="true"></i>
-                            View Gallery
-                        </button>
-                        <a href="{{ url_for('static', filename='docs/uk-tour-2026-annual-magazine.pdf') }}"
-                           target="_blank" rel="noopener" class="btn-outline"
-                           style="padding:10px 20px;font-size:.8rem;border-color:rgba(255,204,0,.55);color:#FFCC00;">
-                            <i class="fas fa-book-open" style="font-size:.78rem;" aria-hidden="true"></i>
-                            Tour Magazine
-                        </a>
+            <section class="dc-global-pathway" aria-labelledby="global-pathway-title">
+                <div class="dc-global-copy">
+                    <p class="dc-eyebrow">Desert Cubs Global Cricket Pathway</p>
+                    <h2 id="global-pathway-title" class="dc-global-name">Winston Weeks</h2>
+                    <p class="dc-global-role"><strong>Global Consultant</strong><span>| Desert Cubs Cricket Academy UAE</span></p>
+                    <h3 class="dc-global-supporting-title">Local talent.<br><span>Global opportunities.</span></h3>
+                    <div class="dc-global-intro">
+                        <p>Winston Weeks brings extensive international cricket experience, having played in England, Zimbabwe and his native Barbados.</p>
+                        <p>Throughout his cricketing journey, he has supported emerging young cricketers in identifying opportunities to develop their careers in England and other parts of the world.</p>
+                        <p>As Global Consultant to Desert Cubs Cricket Academy UAE, Winston is helping strengthen connections with county cricket organisations, international clubs and the wider cricketing community.</p>
+                        <p>His role focuses on identifying promising Desert Cubs players, developing global pathways and connecting emerging talent with appropriate opportunities for international exposure.</p>
                     </div>
+                    <ol class="dc-pathway-steps" aria-label="Desert Cubs player development pathway">
+                        <li><span class="dc-step-number">01</span><span class="dc-step-label">Grassroots</span></li>
+                        <li><span class="dc-step-number">02</span><span class="dc-step-label">Academy Development</span></li>
+                        <li><span class="dc-step-number">03</span><span class="dc-step-label">Competitive Cricket</span></li>
+                        <li><span class="dc-step-number">04</span><span class="dc-step-label">National Recognition</span></li>
+                        <li><span class="dc-step-number">05</span><span class="dc-step-label">Global Opportunities</span></li>
+                    </ol>
+                    <p class="dc-global-disclaimer">A supported pathway for development and exposure; progression and selection are not guaranteed.</p>
                 </div>
-            </div>
-
-            <!-- Sri Lanka 2025 -->
-            <div class="tour-past dcr d2"
-                 onclick="openGallery('DC_Srilanka_2025','DC_Srilanka',10)"
-                 role="button" tabindex="0"
-                 aria-label="View Sri Lanka 2025 cricket tour gallery">
-                <div style="height:180px;overflow:hidden;position:relative;background:#001f66;">
-                    <picture>
-                        <source srcset="{{ url_for('static', filename='img/DC_Srilanka_2025/DC_Srilanka1.webp') }}" type="image/webp">
-                        <img src="{{ url_for('static', filename='img/DC_Srilanka_2025/DC_Srilanka1.webp') }}"
-                             alt="Desert Cubs cricket tour Sri Lanka 2025"
-                             width="600" height="180" loading="lazy" class="tour-img"
-                             style="width:100%;height:100%;object-fit:cover;"
-                             onerror="this.style.display='none'">
-                    </picture>
-                    <div style="position:absolute;inset:0;background:rgba(0,13,51,.35);"></div>
-                    <span style="position:absolute;bottom:12px;left:14px;background:#FFCC00;color:#001f66;
-                                 font-family:'Nunito',sans-serif;font-weight:900;font-size:.68rem;
-                                 padding:4px 12px;border-radius:999px;">View Gallery</span>
+                <div class="dc-global-video-wrap">
+                    <p>An introduction to Mohammed Nafees’s UK cricket pathway and international opportunities.</p>
+                    <button class="dc-global-video dc-play-card" type="button"
+                            data-video-src="{{ url_for('static', filename='video/homepage/winston-weeks-nafees-pathway-v2.mp4') }}"
+                            data-video-title="Winston Weeks and Mohammed Nafees: Global Cricket Pathways"
+                            aria-label="Play Winston Weeks and Mohammed Nafees discussing global cricket pathways">
+                        <img src="{{ url_for('static', filename='img/homepage/winston-weeks-nafees-pathway-poster-540.webp') }}" alt="Winston Weeks and Mohammed Nafees at a cricket ground" width="540" height="960" loading="lazy" decoding="async">
+                        <span class="dc-play-icon" aria-hidden="true">▶</span>
+                        <span class="dc-video-duration">Winston Weeks with Mohammed Nafees</span>
+                    </button>
                 </div>
-                <div style="padding:20px 22px;">
-                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.7rem;
-                                color:#001f66;text-transform:uppercase;line-height:1;margin-bottom:6px;">
-                        🇱🇰 Sri Lanka 2025</h3>
-                    <p style="font-family:'Nunito',sans-serif;font-size:.84rem;color:#4d6b94;line-height:1.65;">
-                        GCCA International Academy T20 Championship.</p>
-                </div>
-            </div>
-
-            <!-- Australia 2024 -->
-            <div class="tour-past dcr d3"
-                 onclick="openGallery('DC_Australia_2024','DC_Australia',10)"
-                 role="button" tabindex="0"
-                 aria-label="View Australia 2024 cricket tour gallery">
-                <div style="height:180px;overflow:hidden;position:relative;background:#001f66;">
-                    <picture>
-                        <source srcset="{{ url_for('static', filename='img/DC_Australia_2024/DC_Australia1.webp') }}" type="image/webp">
-                        <img src="{{ url_for('static', filename='img/DC_Australia_2024/DC_Australia1.webp') }}"
-                             alt="Desert Cubs cricket tour Australia 2024"
-                             width="600" height="180" loading="lazy" class="tour-img"
-                             style="width:100%;height:100%;object-fit:cover;"
-                             onerror="this.style.display='none'">
-                    </picture>
-                    <div style="position:absolute;inset:0;background:rgba(0,13,51,.35);"></div>
-                    <span style="position:absolute;bottom:12px;left:14px;background:#FFCC00;color:#001f66;
-                                 font-family:'Nunito',sans-serif;font-weight:900;font-size:.68rem;
-                                 padding:4px 12px;border-radius:999px;">View Gallery</span>
-                </div>
-                <div style="padding:20px 22px;">
-                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.7rem;
-                                color:#001f66;text-transform:uppercase;line-height:1;margin-bottom:6px;">
-                        🇦🇺 Australia 2024</h3>
-                    <p style="font-family:'Nunito',sans-serif;font-size:.84rem;color:#4d6b94;line-height:1.65;">
-                        High performance coaching at Bupa National Cricket Centre.</p>
-                </div>
-            </div>
+            </section>
+            <p class="dc-player-more"><a class="dc-button dc-button-light" href="/legends">Explore all player stories <span aria-hidden="true">→</span></a></p>
         </div>
+    </section>
 
-        <div style="text-align:center;margin-top:36px;" class="dcr">
-            <a href="/tours" class="btn-blue" style="padding:13px 32px;font-size:.88rem;">
-                <i class="fas fa-globe" style="font-size:.82rem;" aria-hidden="true"></i>
-                See All Tours (2008–2026)
-            </a>
-        </div>
-    </div>
-</section>
-
-
-<!-- ============================================================
-     8. CRICKET LEGENDS — horizontal scroll
-============================================================= -->
-<section style="background:linear-gradient(135deg,#000d1a 0%,#001045 60%,#001f66 100%);padding:88px 0;">
-    <div class="dc-con">
-
-        <div class="sec-hd dcr">
-            <span class="sec-tag-gold">High Performance Programs</span>
-            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
-                        font-size:clamp(2.2rem,4vw,3.4rem);color:#ffffff;
-                        text-transform:uppercase;margin-bottom:12px;line-height:1.05;">
-                Cricket <span style="color:#FFCC00;">Legends</span> at Desert Cubs
-            </h2>
-            <div class="gold-bar"></div>
-            <p style="font-family:'Nunito',sans-serif;color:#6888a8;font-size:.96rem;
-                       max-width:460px;margin:16px auto 0;line-height:1.75;">
-                Our players have trained with some of the world's greatest cricketers.</p>
-        </div>
-
-        <div class="legend-scroll" id="legendScroll">
-            <div class="legend-track">
-                {% set legends = [
-                    {'flag':'🇿🇦','name':'Jonty Rhodes','role':'Fielding Legend · SA'},
-                    {'flag':'🇱🇰','name':'Marvan Atapattu','role':'SL Captain & Coach'},
-                    {'flag':'🇮🇳','name':'Dinesh Karthik','role':'India WK-Batsman'},
-                    {'flag':'🇮🇳','name':'R. Ashwin','role':'World Cup Winner'},
-                    {'flag':'🇱🇰','name':'Chaminda Vaas','role':'Swing King · SL'},
-                    {'flag':'🇦🇺','name':'Dav Whatmore','role':'WC Winning Coach'},
-                    {'flag':'🇱🇰','name':'Romesh Kalu','role':'World Cup Winner'},
-                    {'flag':'🇱🇰','name':'Rumesh Ratna.','role':'Pace Expert · SL'},
-                ] %}
-                {% for l in legends %}
-                <div class="legend-card dcr d{{ [1,2,3,4,5,6,1,2][loop.index0] }}">
-                    <span style="font-size:2.8rem;display:block;margin-bottom:12px;">{{ l.flag }}</span>
-                    <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.2rem;
-                                color:#ffffff;text-transform:uppercase;line-height:1.1;margin-bottom:5px;">
-                        {{ l.name }}</h3>
-                    <p style="font-family:'Nunito',sans-serif;font-size:.74rem;color:#6888a8;font-weight:700;">
-                        {{ l.role }}</p>
-                </div>
+    <section class="dc-section dc-international" id="international-connections" aria-labelledby="international-title">
+        <div class="dc-wrap dc-international-layout">
+            <div class="dc-section-head">
+                <p class="dc-eyebrow">Learning from the game’s greats</p>
+                <h2 id="international-title">Big-game knowledge.<br><span>Shared on our grounds.</span></h2>
+                <p class="dc-body">International cricketers have visited Desert Cubs for masterclasses, coaching sessions and time with our players.</p>
+                <a class="dc-text-link" href="/events">See masterclasses and events <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="dc-masters">
+                {% for master in master_classes %}
+                <article class="dc-master-card">
+                    <img src="{{ url_for('static', filename='img/' + master.folder + '/' + master.prefix + '1.webp') }}" alt="{{ master.legend }} at a Desert Cubs {{ master.type|lower }}" width="480" height="320" loading="lazy">
+                    <div><span>{{ master.date }} · {{ master.type }}</span><h3>{{ master.legend }}</h3><p>{{ master.desc }}</p></div>
+                </article>
                 {% endfor %}
             </div>
         </div>
+    </section>
 
-        <div style="text-align:center;margin-top:36px;" class="dcr">
-            <a href="/events" class="btn-gold" style="padding:13px 32px;font-size:.88rem;">
-                <i class="fas fa-star" style="font-size:.82rem;" aria-hidden="true"></i>
-                All Master Classes &amp; Events
-            </a>
-        </div>
-    </div>
-</section>
-
-
-<!-- ============================================================
-     9. PARENT REVIEWS
-============================================================= -->
-<section style="background:#f4f7fd;padding:88px 0;">
-    <div class="dc-con">
-
-        <div class="sec-hd dcr">
-            <span class="sec-tag-blue">What Parents Say</span>
-            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
-                        font-size:clamp(2.2rem,4vw,3.4rem);color:#001f66;
-                        text-transform:uppercase;margin-bottom:12px;line-height:1.05;">
-                Parent <span style="color:#FFCC00;-webkit-text-stroke:1px #e6b800;">Reviews</span>
-            </h2>
-            <div class="gold-bar"></div>
-        </div>
-
-        <!-- AggregateRating schema — SEO advantage over competitors -->
-        <div class="rev-grid" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating"
-             style="display:none;">
-            <meta itemprop="ratingValue" content="5">
-            <meta itemprop="reviewCount" content="3">
-            <meta itemprop="bestRating" content="5">
-        </div>
-
-        <div class="rev-grid">
-
-            <!-- Testimonial 1 — Shivanthi & Malinda Perera -->
-            <div class="rev-card dcr d1" itemprop="review" itemscope itemtype="https://schema.org/Review">
-                <div style="display:flex;gap:4px;margin-bottom:16px;">
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <meta itemprop="reviewRating" content="5">
-                </div>
-                <p style="font-family:'Nunito',sans-serif;font-size:.89rem;color:#374151;
-                           line-height:1.85;margin-bottom:20px;font-style:italic;"
-                   itemprop="reviewBody">
-                    &ldquo;The coaches taught our sons discipline, sportsmanship, and the mental resilience needed to succeed on and off the field. Both boys were given the opportunity to captain the Under 11 team — and in 2023 we toured the UK together as a family. Memories that will stay with them for a lifetime.&rdquo;</p>
-                <div style="display:flex;align-items:center;gap:13px;
-                            border-top:1px solid #f1f5f9;padding-top:16px;">
-                    <img src="{{ url_for('static', filename='img/testimonial_shivanthi.webp') }}"
-                         alt="Shivanthi &amp; Malinda Perera — Desert Cubs parents"
-                         width="44" height="44" loading="lazy"
-                         style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;
-                                border:2px solid #FFCC00;">
-                    <div>
-                        <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.1rem;
-                                   color:#001f66;text-transform:uppercase;line-height:1;"
-                           itemprop="author">Shivanthi &amp; Malinda Perera</p>
-                        <p style="font-family:'Nunito',sans-serif;font-size:.72rem;color:#64748b;font-weight:700;">
-                            Parents of Shenul &amp; Denith &mdash; SES Centre</p>
+    <section class="dc-section dc-life" id="academy-life" aria-labelledby="life-title">
+        <div class="dc-wrap">
+            <div class="dc-section-head dc-section-head-dark dc-life-heading">
+                <p class="dc-eyebrow">More than a net session</p>
+                <h2 id="life-title">Inside <span>Desert Cubs.</span></h2>
+                <p class="dc-body">Skill work, match preparation, fitness and the friendships that grow around the game.</p>
+            </div>
+            <div class="dc-life-layout">
+                <figure class="dc-coaching-photo dc-coaching-photo-tall"><img src="{{ url_for('static', filename='img/homepage/coaching-01.webp') }}" alt="A Desert Cubs coach gives an individual batting lesson" width="1200" height="1800" loading="lazy"><figcaption>One-to-one coaching, built around the player.</figcaption></figure>
+                <div class="dc-life-main">
+                    <div class="dc-life-photo-pair">
+                    <figure class="dc-coaching-photo"><img src="{{ url_for('static', filename='img/homepage/coaching-03.webp') }}" alt="A Desert Cubs player working on batting technique with a coach" width="1200" height="1800" loading="lazy"><figcaption>Building technique through focused practice.</figcaption></figure>
+                    <figure class="dc-coaching-photo"><img src="{{ url_for('static', filename='img/homepage/coaching-04.webp') }}" alt="A Desert Cubs coach guiding a young batter during practice" width="1200" height="1800" loading="lazy"><figcaption>Personal coaching, player by player.</figcaption></figure>
+                    </div>
+                    <div class="dc-life-video-grid">
+                        {% for video in academy_videos %}
+                        <article class="dc-video-card">
+                            <button class="dc-play-card" type="button" data-video-src="{{ url_for('static', filename='video/homepage/' + video.file + '.mp4') }}" data-video-title="{{ video.title }}" aria-label="Play {{ video.title }}">
+                                <img src="{{ url_for('static', filename='img/homepage/' + video.file + '-poster.jpg') }}" alt="" width="720" height="900" loading="lazy"><span class="dc-play-icon" aria-hidden="true">▶</span>
+                            </button><div class="dc-video-caption"><span>{{ video.category }}</span><h3>{{ video.title }}</h3></div>
+                        </article>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
-
-            <!-- Testimonial 2 — Sudhir & Sowmya -->
-            <div class="rev-card dcr d2" itemprop="review" itemscope itemtype="https://schema.org/Review">
-                <div style="display:flex;gap:4px;margin-bottom:16px;">
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <meta itemprop="reviewRating" content="5">
-                </div>
-                <p style="font-family:'Nunito',sans-serif;font-size:.89rem;color:#374151;
-                           line-height:1.85;margin-bottom:20px;font-style:italic;"
-                   itemprop="reviewBody">
-                    &ldquo;Since Saaketh enrolled in 2021, his growth as a cricketer has been phenomenal — not just in skill but in fitness and mental strength. DCCA&rsquo;s overseas tours to South Africa, UK, and Australia gave him exposure no classroom could ever provide. We strongly believe his cricketing future is in safe hands.&rdquo;</p>
-                <div style="display:flex;align-items:center;gap:13px;
-                            border-top:1px solid #f1f5f9;padding-top:16px;">
-                    <img src="{{ url_for('static', filename='img/testimonial_sudhir.webp') }}"
-                         alt="Sudhir &amp; Sowmya — Desert Cubs parents"
-                         width="44" height="44" loading="lazy"
-                         style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;
-                                border:2px solid #FFCC00;">
-                    <div>
-                        <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.1rem;
-                                   color:#001f66;text-transform:uppercase;line-height:1;"
-                           itemprop="author">Sudhir &amp; Sowmya Mohandas</p>
-                        <p style="font-family:'Nunito',sans-serif;font-size:.72rem;color:#64748b;font-weight:700;">
-                            Parents of Saaketh &mdash; SES Centre</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonial 3 — Amitabh & Swati -->
-            <div class="rev-card dcr d3" itemprop="review" itemscope itemtype="https://schema.org/Review">
-                <div style="display:flex;gap:4px;margin-bottom:16px;">
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color:#FFCC00;font-size:.9rem;" aria-hidden="true"></i>
-                    <meta itemprop="reviewRating" content="5">
-                </div>
-                <p style="font-family:'Nunito',sans-serif;font-size:.89rem;color:#374151;
-                           line-height:1.85;margin-bottom:20px;font-style:italic;"
-                   itemprop="reviewBody">
-                    &ldquo;Since 2014, Desert Cubs has been an institution that makes learning fun. The MasterClasses with Jonty Rhodes, Chaminda Vaas, and Rumesh Ratnayake gave Akshat advanced-level insights money cannot buy. The coaches are not just technically brilliant — their calmness and humility have made him a better person.&rdquo;</p>
-                <div style="display:flex;align-items:center;gap:13px;
-                            border-top:1px solid #f1f5f9;padding-top:16px;">
-                    <img src="{{ url_for('static', filename='img/testimonial_swati.webp') }}"
-                         alt="Amitabh &amp; Swati — Desert Cubs parents"
-                         width="44" height="44" loading="lazy"
-                         style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;
-                                border:2px solid #FFCC00;">
-                    <div>
-                        <p style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.1rem;
-                                   color:#001f66;text-transform:uppercase;line-height:1;"
-                           itemprop="author">Amitabh Ranjan &amp; Swati Vats</p>
-                        <p style="font-family:'Nunito',sans-serif;font-size:.72rem;color:#64748b;font-weight:700;">
-                            Parents of Akshat Rai &mdash; SES Centre</p>
-                    </div>
-                </div>
-            </div>
-
+            <p class="dc-section-footnote">Videos play only when selected. Playback includes the original audio.</p>
         </div>
-    </div>
-</section>
+    </section>
 
-
-<!-- ============================================================
-     9b. GIRLS CRICKET UAE — Dedicated keyword section
-============================================================= -->
-<section style="background:#ffffff;padding:80px 0;border-top:1px solid #e8ecf4;"
-         aria-label="Girls cricket coaching UAE — Desert Cubs">
-    <div class="dc-con">
-        <div style="display:grid;grid-template-columns:1fr;gap:48px;align-items:center;">
-            <style>
-            @media(min-width:1024px){.gc-grid{grid-template-columns:1fr 1fr!important;}}
-            </style>
-            <div class="gc-grid" style="display:grid;grid-template-columns:1fr;gap:48px;align-items:center;">
-            <!-- Text side -->
-            <div class="dcr">
-                <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;
-                             text-transform:uppercase;letter-spacing:.28em;color:#FFCC00;display:block;margin-bottom:12px;">
-                    Girls Cricket UAE</span>
-                <h2 style="font-family:'Teko',sans-serif;font-weight:700;
-                            font-size:clamp(2rem,4vw,3.2rem);color:#001f66;
-                            text-transform:uppercase;line-height:1;margin-bottom:16px;">
-                    UAE's Leading<br><span style="color:#FFCC00;-webkit-text-stroke:1px #e6b800;">Girls Cricket</span><br>Programme
-                </h2>
-                <p style="font-family:'Nunito',sans-serif;font-size:.95rem;color:#4d6b94;
-                           line-height:1.85;margin-bottom:20px;">
-                    Desert Cubs runs one of the UAE's most recognised <strong style="color:#001f66;">girls cricket coaching</strong> programmes in Dubai and Sharjah. Our most celebrated alumna is <strong style="color:#001f66;">Esha Oza</strong> — UAE Women's Cricket Captain — who trained at Desert Cubs. We have dedicated female coaches including <strong style="color:#001f66;">Judith Jose Peter</strong> (ICC Global Level 2, ex-UAE Women's Player), ensuring a safe, structured, and empowering environment for girls of all ages.
-                </p>
-                <ul style="list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:10px;">
-                    {% for point in [
-                        'Dedicated girls cricket batches across Dubai & Sharjah',
-                        'Female coaches including ex-UAE Women\'s players',
-                        'Alumni: Esha Oza, UAE Women\'s Cricket Captain',
-                        'Structured training across age-group pathways',
-                        'Competition pathway: local leagues to international tours'
-                    ] %}
-                    <li style="display:flex;align-items:flex-start;gap:10px;font-family:'Nunito',sans-serif;font-size:.88rem;color:#374151;">
-                        <i class="fas fa-check-circle" style="color:#FFCC00;font-size:1rem;flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>
-                        {{ point }}
-                    </li>
-                    {% endfor %}
-                </ul>
-                <a href="/#branches" class="btn-gold" style="font-size:.84rem;padding:12px 26px;">
-                    <i class="fas fa-map-marker-alt" style="font-size:.8rem;" aria-hidden="true"></i>
-                    Find a Girls Cricket Centre
-                </a>
+    <section class="dc-section dc-schedule" id="weekly-schedule" aria-labelledby="schedule-title">
+        <div class="dc-wrap">
+            <div class="dc-section-head dc-section-head-dark">
+                <p class="dc-eyebrow">Find your training time</p>
+                <h2 id="schedule-title">A week of cricket.<br><span>Five places to play.</span></h2>
+                <p class="dc-body">Choose a centre to see the sessions currently listed in the academy timetable.</p>
             </div>
-            <!-- Stats / highlight cards side -->
-            <div class="dcr d2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-                {% for stat, label, icon in [
-                    ('Esha Oza','UAE Women\'s Captain','fa-star'),
-                    ('Pathways','Age-Group Training','fa-child'),
-                    ('ICC Lvl 1','Female Coach','fa-certificate'),
-                    ('5 Centres','Dubai & Sharjah','fa-map-marker-alt'),
-                ] %}
-                <div style="background:#f4f7fd;border:1px solid #e8ecf4;border-radius:16px;
-                            padding:22px 18px;text-align:center;border-top:3px solid #FFCC00;">
-                    <i class="fas {{ icon }}" style="color:#FFCC00;font-size:1.4rem;margin-bottom:10px;" aria-hidden="true"></i>
-                    <p style="font-family:'Teko',sans-serif;font-size:1.5rem;font-weight:700;
-                               color:#001f66;line-height:1;margin-bottom:4px;">{{ stat }}</p>
-                    <p style="font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:800;
-                               color:#64748b;text-transform:uppercase;letter-spacing:.1em;">{{ label }}</p>
-                </div>
+            <div class="dc-centre-tabs" role="tablist" aria-label="Choose a training centre">
+                {% for centre in weekly_schedule %}
+                <button class="dc-centre-tab" type="button" role="tab" id="tab-{{ centre.id }}" aria-controls="schedule-{{ centre.id }}" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ '0' if loop.first else '-1' }}" data-centre-tab="{{ centre.id }}">{{ centre.id }}<span>{{ centre.name }}</span></button>
                 {% endfor %}
             </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- ============================================================
-     9c. INDOOR CRICKET & SUMMER CAMPS — keyword section
-============================================================= -->
-<section style="background:linear-gradient(135deg,#000d1a 0%,#001045 50%,#001f66 100%);padding:80px 0;"
-         aria-label="Indoor cricket Dubai and UAE cricket summer camps">
-    <div class="dc-con">
-        <div class="sec-hd dcr">
-            <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;
-                         text-transform:uppercase;letter-spacing:.28em;color:#FFCC00;display:block;margin-bottom:12px;">
-                Year-Round Cricket · All Seasons</span>
-            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
-                        font-size:clamp(2.2rem,4vw,3.4rem);color:#ffffff;
-                        text-transform:uppercase;margin-bottom:12px;line-height:1.05;">
-                Indoor Cricket &amp; <span style="color:#FFCC00;">Summer Camps</span> UAE
-            </h2>
-            <div class="gold-bar" style="margin:0 auto;"></div>
-            <p style="font-family:'Nunito',sans-serif;color:#6888a8;font-size:.96rem;
-                       max-width:520px;margin:16px auto 0;line-height:1.75;">
-                Dubai's heat doesn't stop Desert Cubs. Train indoors — air-conditioned, year-round cricket.
-            </p>
-        </div>
-
-        <div style="display:grid;grid-template-columns:1fr;gap:24px;margin-top:12px;">
-        <style>@media(min-width:768px){.ic-grid{grid-template-columns:1fr 1fr!important;}}</style>
-        <div class="ic-grid" style="display:grid;grid-template-columns:1fr;gap:24px;">
-
-            <!-- Indoor Cricket Card -->
-            <div class="dcr d1" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,204,0,.25);
-                         border-radius:22px;padding:36px;border-top:3px solid #FFCC00;">
-                <div style="width:52px;height:52px;background:rgba(255,204,0,.1);border-radius:14px;
-                            display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-                    <i class="fas fa-building" style="color:#FFCC00;font-size:1.4rem;" aria-hidden="true"></i>
-                </div>
-                <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.9rem;
-                            color:#ffffff;text-transform:uppercase;line-height:1;margin-bottom:12px;">
-                    Indoor Cricket Dubai — BSA</h3>
-                <p style="font-family:'Nunito',sans-serif;font-size:.9rem;color:#6888a8;line-height:1.8;margin-bottom:20px;">
-                    Baseline Sports Academy (Dubai Investment Park) is one of the UAE's premier <strong style="color:#fff;">indoor cricket facilities</strong>. Fully air-conditioned with 5 specialised cricket lanes, video analysis, and year-round access. Train through the hottest UAE summers without interruption.
-                </p>
-                <ul style="list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:8px;">
-                    {% for f in ['5 indoor cricket lanes','AC-controlled facility','Video analysis technology','Year-round availability','Dubai Investment Park (DIP)'] %}
-                    <li style="display:flex;align-items:center;gap:8px;font-family:'Nunito',sans-serif;font-size:.85rem;color:#8ba3c7;">
-                        <i class="fas fa-check" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;" aria-hidden="true"></i>{{ f }}
-                    </li>
+            {% for centre in weekly_schedule %}
+            <section class="dc-schedule-panel" id="schedule-{{ centre.id }}" role="tabpanel" aria-labelledby="tab-{{ centre.id }}" data-centre="{{ centre.id }}" {% if not loop.first %}hidden{% endif %}>
+                <div class="dc-schedule-heading"><div><p class="dc-eyebrow">{{ centre.id }} · {{ centre.area }}</p><h3>{{ centre.name }}</h3></div><a class="dc-button dc-button-gold" href="/locations/{{ centre.branch_id }}">Centre details <span aria-hidden="true">↗</span></a></div>
+                <div class="dc-day-grid">
+                    {% for day in centre.days %}
+                    <article class="dc-day-card{% if not day.sessions %} dc-day-closed{% endif %}">
+                        <h4>{{ day.name }}</h4>
+                        {% if day.sessions %}
+                        {% for session in day.sessions %}<div class="dc-session"><strong>{{ session.time }}</strong><span>{{ session.programme }}</span></div>{% endfor %}
+                        {% else %}<p class="dc-closed-label">Closed</p>{% endif %}
+                    </article>
                     {% endfor %}
-                </ul>
-                <a href="/locations/baseline-sports-academy" class="btn-gold" style="font-size:.82rem;padding:11px 22px;">
-                    <i class="fas fa-arrow-right" style="font-size:.78rem;" aria-hidden="true"></i>
-                    View BSA Indoor Facility
-                </a>
-            </div>
-
-            <!-- Summer Camp Card -->
-            <div class="dcr d2" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,204,0,.25);
-                         border-radius:22px;padding:36px;border-top:3px solid #FFCC00;">
-                <div style="width:52px;height:52px;background:rgba(255,204,0,.1);border-radius:14px;
-                            display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
-                    <i class="fas fa-sun" style="color:#FFCC00;font-size:1.4rem;" aria-hidden="true"></i>
                 </div>
-                <h3 style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.9rem;
-                            color:#ffffff;text-transform:uppercase;line-height:1;margin-bottom:12px;">
-                    Cricket Summer Camps UAE</h3>
-                <p style="font-family:'Nunito',sans-serif;font-size:.9rem;color:#6888a8;line-height:1.8;margin-bottom:20px;">
-                    Desert Cubs runs <strong style="color:#fff;">cricket summer camps</strong> and holiday camps across Dubai and Sharjah during UAE school breaks. Intensive coaching, match play, fielding drills, and skills development — all in our world-class centres. Ideal for <strong style="color:#fff;">junior cricket training UAE</strong> across age-group pathways.
-                </p>
-                <ul style="list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:8px;">
-                    {% for f in ['Summer, winter & Ramadan camps','Age-group pathways, all skill levels','Intensive coaching sessions','Match practice included','Dubai & Sharjah locations'] %}
-                    <li style="display:flex;align-items:center;gap:8px;font-family:'Nunito',sans-serif;font-size:.85rem;color:#8ba3c7;">
-                        <i class="fas fa-check" style="color:#FFCC00;font-size:.75rem;flex-shrink:0;" aria-hidden="true"></i>{{ f }}
-                    </li>
-                    {% endfor %}
-                </ul>
-                <a href="tel:+971588274266" class="btn-gold" style="font-size:.82rem;padding:11px 22px;">
-                    <i class="fas fa-phone" style="font-size:.78rem;" aria-hidden="true"></i>
-                    Enquire About Camps
-                </a>
-            </div>
-
-        </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- ============================================================
-     10. FAQ — Interactive accordion (SEO schema-backed)
-============================================================= -->
-<section style="background:#ffffff;padding:88px 0;border-top:1px solid #e8ecf4;"
-         itemscope itemtype="https://schema.org/FAQPage">
-    <div class="dc-con" style="max-width:900px;">
-
-        <div class="sec-hd dcr">
-            <span class="sec-tag-blue">Common Questions</span>
-            <h2 style="font-family:'Teko',sans-serif;font-weight:700;
-                        font-size:clamp(2rem,4vw,3.2rem);color:#001f66;
-                        text-transform:uppercase;line-height:1.1;margin-bottom:12px;">
-                Frequently Asked <span style="color:#FFCC00;">Questions</span>
-            </h2>
-            <div class="gold-bar"></div>
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:14px;">
-
-            {% for q, a in [
-                ('What is the best cricket academy in UAE?',
-                 'Desert Cubs Cricket Academy is the <strong>best cricket academy in UAE</strong>, established in 2007 with over 15,000 alumni. We operate 5 world-class training centres across Dubai and Sharjah, offering UAE junior cricket coaching across structured age-group pathways.'),
-                ('Where can my child learn cricket in Dubai?',
-                 'Your child can learn cricket in Dubai at Desert Cubs Cricket Academy — with Dubai centres at <strong>Delhi Private School (The Gardens / Jebel Ali)</strong>, <strong>Deira International School (Dubai Festival City)</strong>, <strong>Star International School (Al Qusais)</strong>, and <strong>Baseline Sports Academy (Dubai Investment Park)</strong>. Boys and girls are welcome.'),
-                ('What age can kids start cricket coaching in UAE?',
-                 'Desert Cubs structures cricket coaching by junior age-group pathways, from foundation cricket to competitive under-age squads. Both boys and girls are welcome at Desert Cubs cricket training centres in Dubai and Sharjah.'),
-                ('Is there girls cricket coaching in UAE?',
-                 'Yes. Desert Cubs runs the UAE\'s leading <strong>girls cricket coaching</strong> programme. Our most celebrated alumna is <strong>Esha Oza — UAE Women\'s Cricket Captain</strong> — who trained at Desert Cubs. We have dedicated female coaches including Judith Jose Peter (ICC Global Level 2, ex-UAE Women\'s Player). Girls cricket coaching is available across Dubai and Sharjah centres.'),
-                ('Where is Sharjah junior cricket coaching available?',
-                 '<strong>Sharjah junior cricket coaching</strong> is available at our Sharjah English School (SES) centre on Maliha Road — the crown jewel of our network. It features a full natural grass ground, 6 centre turf pitches, floodlights, digital scoreboards, and video analysis. It is widely considered the <strong>best cricket ground in UAE</strong>.'),
-                ('Does Desert Cubs offer indoor cricket and summer camps in UAE?',
-                 'Yes! Our <strong>indoor cricket Dubai</strong> facility at Baseline Sports Academy (DIP) is fully air-conditioned with 5 specialised cricket lanes — one of a kind in the UAE. We run <strong>cricket summer camps UAE</strong> and holiday camps during school breaks. Train year-round regardless of UAE summer heat. Contact us to register for the next camp.'),
-                ('Which academy offers the UAE national cricket player pathway?',
-                 'Desert Cubs is an <strong>ECB-affiliated academy</strong> and provides the leading <strong>UAE national cricket player pathway</strong>. Our students compete in the ECB National Junior Tournament and undertake <strong>junior international cricket tours</strong> to UK, Australia, Sri Lanka, and South Africa — giving them the exposure needed for national selection consideration.'),
-                ('Which cricket academy runs the most tournaments in UAE?',
-                 'Desert Cubs runs the <strong>most cricket tournaments in UAE</strong> — 10 competitions per season (September to June). These include the DC Premier League, DC Emerging League, ECB National Junior Tournament, Gulf Cup, DC Winter Cup, DC Super League, 4-Nation <strong>Junior International Cricket Tournament</strong>, DC Junior Cups, DC Ramadan Cup, and DC Summer Bash.'),
-            ] %}
-            <div class="faq-item dcr d{{ loop.index }}"
-                 itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-hdr" onclick="toggleFaq(this)">
-                    <h3 itemprop="name"
-                        style="font-family:'Teko',sans-serif;font-weight:700;font-size:1.3rem;
-                               color:#001f66;text-transform:uppercase;margin:0;line-height:1.2;">
-                        {{ q }}</h3>
-                    <div class="faq-ico">
-                        <i class="fas fa-plus" style="color:#ffffff;font-size:.75rem;" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="faq-body"
-                     itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                    <p itemprop="text"
-                       style="font-family:'Nunito',sans-serif;color:#4b5563;line-height:1.8;margin:0;">
-                        {{ a|safe }}</p>
-                </div>
-            </div>
+                {% if centre.id == 'DIS' %}<p class="dc-schedule-note"><strong>Schedule note:</strong> The supplied DIS timetable lists overlapping Saturday and Sunday sessions from 4:00–6:00 PM and 4:30–6:30 PM. Both are shown as supplied; please confirm session allocation with the centre.</p>{% endif %}
+                <div class="dc-schedule-contact"><span>Questions about a session?</span><a href="https://wa.me/971588274266?text={{ ('Hi Desert Cubs, I have a question about training at ' + centre.name)|urlencode }}" target="_blank" rel="noopener" data-track-event="whatsapp_click" data-track-label="Schedule {{ centre.id }}">Ask about {{ centre.id }} on WhatsApp <span aria-hidden="true">↗</span></a></div>
+            </section>
             {% endfor %}
-
+            <p class="dc-section-footnote">Schedule transcribed from the supplied weekly training reference · Last updated: 31 October 2026.</p>
         </div>
+    </section>
+
+    <section class="dc-section dc-joe" id="joe-burns" aria-labelledby="joe-title">
+        <div class="dc-wrap dc-joe-layout">
+            <div class="dc-joe-poster dc-video-card">
+                <button class="dc-play-card" type="button" data-video-src="{{ url_for('static', filename='video/homepage/joe-burns-invitation.mp4') }}" data-video-title="Joe Burns invitation" aria-label="Play Joe Burns’s invitation"><img src="{{ url_for('static', filename='img/homepage/joe-burns-invitation-poster.jpg') }}" alt="Former Australian international cricketer Joe Burns in Desert Cubs kit" width="720" height="900" loading="lazy"><span class="dc-play-icon" aria-hidden="true">▶</span><span class="dc-video-duration">A personal message</span></button>
+            </div>
+            <div class="dc-joe-copy"><p class="dc-eyebrow">A message for our cricket community</p><h2 id="joe-title">An invitation from<br><span>Joe Burns.</span></h2><p>Former Australia international Joe Burns shares a personal invitation with the Desert Cubs community. Watch his message in his own words.</p><button class="dc-button dc-button-gold dc-inline-play" type="button" data-video-src="{{ url_for('static', filename='video/homepage/joe-burns-invitation.mp4') }}" data-video-title="Joe Burns invitation">Play Joe’s message <span aria-hidden="true">▶</span></button><p class="dc-section-footnote">A personal appearance; no partnership or coaching appointment is implied.</p></div>
+        </div>
+    </section>
+
+    <section class="dc-section dc-testimonials" id="video-testimonials" aria-labelledby="testimonials-title">
+        <div class="dc-wrap">
+            <div class="dc-section-head">
+                <p class="dc-eyebrow">Hear it from the people who know</p>
+                <h2 id="testimonials-title">Real families.<br><span>Real experiences.</span></h2>
+                <p class="dc-body">Parents and players share their own experiences of life at Desert Cubs.</p>
+            </div>
+            <div class="dc-testimonial-grid">
+                {% for video in testimonial_videos %}
+                <article class="dc-testimonial-card dc-video-card">
+                    <button class="dc-play-card" type="button" data-video-src="{{ url_for('static', filename='video/homepage/' + video.file + '.mp4') }}" data-video-title="{{ video.title }}" aria-label="Play {{ video.title }}"><img src="{{ url_for('static', filename='img/homepage/' + video.file + '-poster.jpg') }}" alt="" width="720" height="900" loading="lazy"><span class="dc-play-icon" aria-hidden="true">▶</span></button>
+                    <div><p class="dc-eyebrow">{{ video.category }}</p><h3>{{ video.title }}</h3><p>Hear their perspective in the original recording.</p></div>
+                </article>
+                {% endfor %}
+            </div>
+            <details class="dc-written-reviews">
+                <summary>More from Desert Cubs families</summary>
+                <div class="dc-written-review-grid">
+                    <blockquote><p>“The coaches taught our sons discipline, sportsmanship, and the mental resilience needed to succeed on and off the field. Both boys were given the opportunity to captain the Under 11 team — and in 2023 we toured the UK together as a family. Memories that will stay with them for a lifetime.”</p><footer><strong>Shivanthi &amp; Malinda Perera</strong><span>Parents of Shenul &amp; Denith · SES Centre</span></footer></blockquote>
+                    <blockquote><p>“Since Saaketh enrolled in 2021, his growth as a cricketer has been phenomenal — not just in skill but in fitness and mental strength. DCCA’s overseas tours to South Africa, UK, and Australia gave him exposure no classroom could ever provide. We strongly believe his cricketing future is in safe hands.”</p><footer><strong>Sudhir &amp; Sowmya Mohandas</strong><span>Parents of Saaketh · SES Centre</span></footer></blockquote>
+                    <blockquote><p>“Since 2014, Desert Cubs has been an institution that makes learning fun. The MasterClasses with Jonty Rhodes, Chaminda Vaas, and Rumesh Ratnayake gave Akshat advanced-level insights money cannot buy. The coaches are not just technically brilliant — their calmness and humility have made him a better person.”</p><footer><strong>Amitabh Ranjan &amp; Swati Vats</strong><span>Parents of Akshat Rai · SES Centre</span></footer></blockquote>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <section class="dc-section dc-journey" id="cricket-journey" aria-labelledby="journey-title">
+        <div class="dc-wrap">
+            <div class="dc-section-head dc-section-head-dark">
+                <p class="dc-eyebrow">A place to start. Room to grow.</p>
+                <h2 id="journey-title">Find your cricket<br><span>journey.</span></h2>
+                <p class="dc-body">Explore the programmes, people and places that make up Desert Cubs.</p>
+            </div>
+            <div class="dc-journey-grid">
+                <article class="dc-journey-card"><img class="dc-coaching-card-image" src="{{ url_for('static', filename='img/homepage/cricket-coaching-2026-10-v2.webp') }}" alt="Desert Cubs coach working closely with a young player during a batting session" width="720" height="1280" loading="lazy" decoding="async"><div><span>Build your skills</span><h3>Cricket coaching</h3><p>Explore academy pathways and find the right centre for your family.</p><a href="#weekly-schedule">View training times <span aria-hidden="true">→</span></a></div></article>
+                <article class="dc-journey-card"><img src="{{ url_for('static', filename='img/homepage/girls-cricket.webp') }}" srcset="{{ url_for('static', filename='img/homepage/girls-cricket-720.webp') }} 720w, {{ url_for('static', filename='img/homepage/girls-cricket.webp') }} 1100w" sizes="(max-width: 700px) 35vw, (max-width: 1100px) 45vw, 350px" alt="Desert Cubs girls cricket team together at an academy event" width="4893" height="3256" loading="lazy"><div><span>Every player belongs</span><h3>Girls’ cricket</h3><p>Discover girls’ coaching and the stories of Desert Cubs women cricketers.</p><a href="/girls-cricket">Explore girls’ cricket <span aria-hidden="true">→</span></a></div></article>
+                <article class="dc-journey-card"><img src="{{ url_for('static', filename='img/DPS_Location.webp') }}" alt="Delhi Private School training centre in The Gardens, Dubai" width="900" height="600" loading="lazy"><div><span>Five active locations</span><h3>Find your centre</h3><p>Training in Dubai and Sharjah, with a centre close to home.</p><a href="#locations">Explore all five centres <span aria-hidden="true">→</span></a></div></article>
+                <article class="dc-journey-card"><img src="{{ url_for('static', filename='img/DC_UK_2026/hero-desktop.webp') }}" alt="Desert Cubs touring players at Lord’s Cricket Ground during the completed UK Tour 2026" width="900" height="600" loading="lazy"><div><span>Beyond the boundary</span><h3>Tours &amp; competitions</h3><p>Explore international tours, tournaments and match opportunities.</p><a href="/tours">Explore tours and tournaments <span aria-hidden="true">→</span></a></div></article>
+                <article class="dc-journey-card"><img src="{{ url_for('static', filename='img/blog/2026-05-13_beat-the-heat-summer-cricket-camp-2026.webp') }}" alt="Junior cricketers at the Desert Cubs summer camp in 2026" width="900" height="600" loading="lazy"><div><span>School holiday cricket</span><h3>Camps &amp; programmes</h3><p>See published camp information and contact the academy about upcoming dates.</p><a href="/summer-camp">Explore camp information <span aria-hidden="true">→</span></a></div></article>
+            </div>
+            <span class="dc-anchor-alias" id="branches"></span>
+            <div class="dc-locations" id="locations">
+                <div><p class="dc-eyebrow">Five active training centres</p><h3>Train in Dubai &amp; Sharjah.</h3></div>
+                <div class="dc-location-links">{% for branch in branches if branch.get('active', True) %}<a href="/locations/{{ branch.id }}">{{ branch.name }}<b aria-hidden="true">↗</b></a>{% endfor %}</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dc-section dc-faq" id="faq" aria-labelledby="faq-title">
+        <div class="dc-wrap">
+            <div class="dc-section-head">
+                <p class="dc-eyebrow">For cricket families</p>
+                <h2 id="faq-title">A few things<br><span>you may be wondering.</span></h2>
+            </div>
+            <div class="dc-faq-list">
+                <details><summary>What is Desert Cubs Cricket Academy?</summary><p>Founded in Sharjah in 2007, Desert Cubs has trained more than 15,000 alumni and runs five active centres across Dubai and Sharjah. <a href="/about">Read the academy story.</a></p></details>
+                <details><summary>Where can my child train?</summary><p>Centres are at Sharjah English School, Delhi Private School, Deira International School, Star International School and Baseline Sports Academy. <a href="#locations">Explore the centres</a> or compare sessions in the <a href="#weekly-schedule">weekly timetable</a>.</p></details>
+                <details><summary>What experience levels can join?</summary><p>Desert Cubs has junior pathways from foundation cricket through competitive age-group squads. Session groups vary by centre and day; see the <a href="#weekly-schedule">timetable</a> or <a href="/locations/sharjah-english-school">contact a centre</a> to discuss a suitable session.</p></details>
+                <details><summary>Is girls’ cricket coaching available?</summary><p>Yes. Girls are welcome across the academy. Desert Cubs’ girls’ cricket history includes UAE Women’s Cricket Captain Esha Oza and the first ECB Women’s League title in 2017. <a href="/girls-cricket">Explore the girls’ programme.</a></p></details>
+                <details><summary>Where can players train in Sharjah?</summary><p>Sharjah English School on Maliha Road has a natural grass ground, six centre turf pitches, floodlights, a viewing pavilion and video-analysis facilities. <a href="/locations/sharjah-english-school">See SES centre details and training times.</a></p></details>
+                <details><summary>Are indoor cricket and holiday camps available?</summary><p>Baseline Sports Academy in Dubai Investment Park is an air-conditioned indoor centre with five cricket lanes. Camp dates vary by season; contact the academy for upcoming availability. <a href="/summer-camp">See published camp details.</a></p></details>
+                <details><summary>What tournaments and playing opportunities are available?</summary><p>Players can take part in academy and ECB competitions, and Desert Cubs organises junior international tours. <a href="/tournaments">Explore tournaments</a> and <a href="/tours">tour information and completed journeys</a>.</p></details>
+                <details><summary>How do I find current fees and registration information?</summary><p>Programme fees and availability vary by centre and session. Check the <a href="{{ season_registration_url }}" target="_blank" rel="noopener">official registration portal</a> or <a href="https://wa.me/971588274266" target="_blank" rel="noopener">contact Desert Cubs on WhatsApp</a> for current details.</p></details>
+            </div>
+        </div>
+    </section>
+
+    <section class="dc-section dc-blog" aria-labelledby="blog-title">
+        <div class="dc-wrap dc-blog-layout"><div><p class="dc-eyebrow">From the boundary line</p><h2 id="blog-title">Stories, skills<br>and cricket life.</h2><p class="dc-body">Read the latest from Desert Cubs players, coaches, tours and competitions.</p></div><a class="dc-button dc-button-light" href="/blog">Explore cricket insights <span aria-hidden="true">→</span></a></div>
+    </section>
+
+    <section class="dc-section dc-closing" id="join-legacy" aria-labelledby="closing-title">
+        <div class="dc-wrap dc-closing-inner"><p class="dc-eyebrow">Your next chapter starts here</p><h2 id="closing-title">Your cricket journey<br><span>starts here.</span></h2><p>Join the Desert Cubs community and find a training centre in Dubai or Sharjah.</p><div class="dc-actions"><a class="dc-button dc-button-gold" href="{{ season_registration_url }}" target="_blank" rel="noopener" data-track-event="season_register_click" data-track-label="Homepage closing CTA">Join Desert Cubs <span aria-hidden="true">↗</span></a><a class="dc-button dc-button-outline" href="https://wa.me/971588274266?text=Hi%20Desert%20Cubs%2C%20I%27d%20like%20to%20know%20about%20cricket%20training." target="_blank" rel="noopener" data-track-event="whatsapp_click" data-track-label="Homepage closing CTA">Ask us on WhatsApp <span aria-hidden="true">↗</span></a></div></div>
+    </section>
+
+<div class="dc-mascot is-static" data-mascot aria-hidden="true">
+    <video muted loop playsinline preload="none" poster="{{ url_for('static', filename='img/homepage/mascot-flag-wave-poster.webp') }}" aria-hidden="true">
+        <source src="{{ url_for('static', filename='video/homepage/flag_wave_loop.webm') }}" type="video/webm">
+    </video>
+    <img src="{{ url_for('static', filename='img/homepage/mascot-flag-wave-poster.webp') }}" alt="" width="512" height="640" loading="eager" decoding="async">
+</div>
+
+    <div class="dc-video-overlay" id="dcVideoOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="dcVideoTitle">
+        <div class="dc-video-dialog"><button class="dc-video-close" type="button" aria-label="Close video">×</button><video id="dcVideoPlayer" controls playsinline preload="none"></video><h2 id="dcVideoTitle" class="dc-video-dialog-title"></h2></div>
     </div>
-</section>
-
-
-<!-- ============================================================
-     11. FINAL CTA
-============================================================= -->
-<section style="background:linear-gradient(135deg,#000d1a 0%,#001045 50%,#001f66 100%);
-                padding:88px 0;position:relative;overflow:hidden;">
-    <div aria-hidden="true"
-         style="position:absolute;bottom:-80px;left:-80px;width:280px;height:280px;
-                border:2px solid rgba(255,204,0,.07);border-radius:50%;
-                animation:rotateCW 20s linear infinite;pointer-events:none;will-change:transform;"></div>
-    <div aria-hidden="true"
-         style="position:absolute;top:-50px;right:-50px;width:200px;height:200px;
-                border:2px solid rgba(255,255,255,.04);border-radius:50%;
-                animation:rotateCCW 15s linear infinite;pointer-events:none;will-change:transform;"></div>
-    <div aria-hidden="true"
-         style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-                width:600px;height:300px;
-                background:radial-gradient(ellipse,rgba(255,204,0,.06) 0%,transparent 70%);
-                pointer-events:none;"></div>
-
-    <div class="dc-con dcr" style="text-align:center;position:relative;z-index:1;">
-        <div style="width:64px;height:64px;background:rgba(255,204,0,.15);
-                    border:2px solid rgba(255,204,0,.3);border-radius:50%;
-                    display:flex;align-items:center;justify-content:center;
-                    margin:0 auto 24px;animation:goldGlow 2s ease infinite;">
-            <i class="fas fa-cricket-bat-ball" style="color:#FFCC00;font-size:1.6rem;" aria-hidden="true"></i>
-        </div>
-        <h2 style="font-family:'Teko',sans-serif;font-weight:700;
-                    font-size:clamp(2.4rem,5vw,4rem);color:#ffffff;
-                    text-transform:uppercase;margin-bottom:16px;line-height:1.05;">
-            Ready to Start Your<br><span style="color:#FFCC00;">Cricket Journey?</span>
-        </h2>
-        <p style="font-family:'Nunito',sans-serif;font-size:1.02rem;color:#8ba3c7;
-                   line-height:1.85;margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;">
-            Join 15,000+ alumni who started their cricket journey at Desert Cubs.
-            Register for the 2026/27 season across 5 centres in Dubai &amp; Sharjah.
-        </p>
-        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;">
-            <a href="{{ season_registration_url }}" target="_blank" rel="noopener" class="btn-shimmer"
-               data-track-event="season_register_click" data-track-label="Homepage final CTA">
-                <i class="fas fa-user-plus" style="font-size:.82rem;" aria-hidden="true"></i>
-                Register for 2026/27
-            </a>
-            <a href="/#branches" class="btn-outline">
-                <i class="fas fa-map-marker-alt" aria-hidden="true"></i> Find a Centre
-            </a>
-        </div>
-    </div>
-</section>
-
-
-<!-- ============================================================
-     PAGE SCRIPTS
-============================================================= -->
-<script>
-(function(){
-    'use strict';
-
-    /* ── SCROLL REVEAL ────────────────────────────────── */
-    var els = document.querySelectorAll('.dcr');
-    if('IntersectionObserver' in window && els.length){
-        var obs = new IntersectionObserver(function(entries){
-            entries.forEach(function(e){
-                if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}
-            });
-        },{threshold:.1,rootMargin:'0px 0px -30px 0px'});
-        els.forEach(function(el){obs.observe(el);});
-    } else {
-        els.forEach(function(el){el.classList.add('on');});
-    }
-
-    /* ── FAQ ACCORDION ────────────────────────────────── */
-    window.toggleFaq = function(hdr){
-        var item = hdr.closest('.faq-item');
-        var isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item.open').forEach(function(i){i.classList.remove('open');});
-        if(!isOpen) item.classList.add('open');
-    };
-
-    /* ── LEGEND DRAG-TO-SCROLL ────────────────────────── */
-    var scroll = document.getElementById('legendScroll');
-    if(scroll){
-        var down=false, sx=0, sl=0;
-        scroll.addEventListener('mousedown',function(e){down=true;sx=e.pageX-scroll.offsetLeft;sl=scroll.scrollLeft;scroll.style.cursor='grabbing';});
-        scroll.addEventListener('mouseleave',function(){down=false;scroll.style.cursor='grab';});
-        scroll.addEventListener('mouseup',function(){down=false;scroll.style.cursor='grab';});
-        scroll.addEventListener('mousemove',function(e){
-            if(!down) return;
-            e.preventDefault();
-            scroll.scrollLeft=sl-(e.pageX-scroll.offsetLeft-sx)*1.2;
-        });
-    }
-
-    /* ── KEYBOARD — tour past cards ─────────────────── */
-    document.querySelectorAll('.tour-past[role="button"]').forEach(function(el){
-        el.addEventListener('keydown',function(e){
-            if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click();}
-        });
-    });
-
-})();
-</script>
-
-
+</div>
+<script src="{{ url_for('static', filename='js/homepage.js') }}" defer></script>
 {% endblock %}

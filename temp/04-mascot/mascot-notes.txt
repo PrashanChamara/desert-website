@@ -1,0 +1,19 @@
+Desert Cubs Mascot Notes
+
+Use the supplied mascot assets for homepage mascot animation.
+
+Priority:
+1. Preserve the approved mascot identity exactly.
+2. Do not generate a new lion.
+3. Use mascot-walk-01.png and mascot-walk-02.png as alternating walk-cycle frames if useful.
+4. Use mascot-wave-01.png for greeting/wave moments.
+5. Use mascot-idle-01.png as the default resting pose.
+6. Use mascot-flag.png separately if independent flag animation is possible.
+7. The mascot should appear at the bottom-right/lower area of the homepage.
+8. It should not fade away automatically.
+9. It should remain visible on screen.
+10. It should gently move/walk within a safe lower-screen area and wave the flag.
+11. Avoid covering the WhatsApp button, CTAs, or important content.
+12. Respect prefers-reduced-motion.
+13. Reduce size and movement on mobile.
+14. Load mascot assets efficiently and optimize them for performance.
